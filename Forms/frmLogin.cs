@@ -12,9 +12,11 @@ namespace VaultLinkBankSystem
 {
     public partial class frmLogin : Form
     {
+        AdminRepository adminRepo;
         public frmLogin()
         {
             InitializeComponent();
+            adminRepo = new AdminRepository();
         }
 
         private void iconPictureBox2_MouseClick(object sender, MouseEventArgs e)
@@ -40,5 +42,59 @@ namespace VaultLinkBankSystem
 
             }
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            string username = tbxUsername.Text;
+            string password = tbxPassword.Text;
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please enter both username and password.",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                Admin admin = adminRepo.Login(username, password);
+                if (admin != null)
+                {
+                    MessageBox.Show("Login successful! Welcome " + username ,
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    frmDashBoard dashboard = new frmDashBoard(admin);
+                    dashboard.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username or password.",
+                        "Login Failed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    tbxUsername.Clear();
+                    tbxPassword.Clear();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
