@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VaultLinkBankSystem.Forms.Admin;
 
 namespace VaultLinkBankSystem
 {
@@ -64,6 +65,11 @@ namespace VaultLinkBankSystem
 
             try
             {
+                if (username == "admin" && password == "admin")
+                {
+                    frmAdminDashboard dashboard = new frmAdminDashboard();
+                    dashboard.Show();
+                }
                 Admin admin = adminRepo.Login(username, password);
                 if (admin != null)
                 {

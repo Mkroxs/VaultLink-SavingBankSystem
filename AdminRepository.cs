@@ -4,16 +4,18 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace VaultLinkBankSystem
 {
     public class AdminRepository
     {
         private readonly string _connectionString =
-    @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\USERS\JB\SOURCE\REPOS\VAULTLINK-SAVINGBANKSYSTEM\BANKING.MDF;Integrated Security=True";
+    @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Banking.mdf;Integrated Security=True;";
         public Admin Login(string username, string password)
         {
             Admin admin = null;
+            
 
             // First, retrieve the admin by username only
             string query = "SELECT * FROM Admin WHERE AdminUsername = @username";

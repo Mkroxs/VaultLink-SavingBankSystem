@@ -31,20 +31,18 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.btnLogin = new Guna.UI2.WinForms.Guna2Button();
-            this.iconPassword = new FontAwesome.Sharp.IconPictureBox();
             this.tbxPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.tbxUsername = new Guna.UI2.WinForms.Guna2TextBox();
+            this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
+            this.iconPassword = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel1.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -52,6 +50,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -82,7 +81,7 @@
             this.guna2Panel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel1.BorderColor = System.Drawing.Color.DimGray;
             this.guna2Panel1.BorderRadius = 90;
-            this.guna2Panel1.Controls.Add(this.label6);
+            this.guna2Panel1.Controls.Add(this.iconPictureBox1);
             this.guna2Panel1.CustomBorderColor = System.Drawing.Color.Transparent;
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
             this.guna2Panel1.Location = new System.Drawing.Point(29, 182);
@@ -91,17 +90,6 @@
             this.guna2Panel1.Size = new System.Drawing.Size(424, 258);
             this.guna2Panel1.TabIndex = 0;
             this.guna2Panel1.UseTransparentBackground = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.label6.Location = new System.Drawing.Point(144, 92);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(135, 48);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "LOGO";
             // 
             // panel2
             // 
@@ -119,8 +107,6 @@
             // guna2Panel2
             // 
             this.guna2Panel2.Controls.Add(this.iconPictureBox3);
-            this.guna2Panel2.Controls.Add(this.label4);
-            this.guna2Panel2.Controls.Add(this.label3);
             this.guna2Panel2.Controls.Add(this.label2);
             this.guna2Panel2.Controls.Add(this.label1);
             this.guna2Panel2.Controls.Add(this.lblUsername);
@@ -133,43 +119,6 @@
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(348, 454);
             this.guna2Panel2.TabIndex = 11;
-            // 
-            // iconPictureBox3
-            // 
-            this.iconPictureBox3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.iconPictureBox3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.User;
-            this.iconPictureBox3.IconColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Regular;
-            this.iconPictureBox3.IconSize = 42;
-            this.iconPictureBox3.Location = new System.Drawing.Point(260, 128);
-            this.iconPictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.iconPictureBox3.Name = "iconPictureBox3";
-            this.iconPictureBox3.Size = new System.Drawing.Size(43, 42);
-            this.iconPictureBox3.TabIndex = 10;
-            this.iconPictureBox3.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Bahnschrift", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.label4.Location = new System.Drawing.Point(195, 404);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 16);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Sign Up";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Bahnschrift", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.label3.Location = new System.Drawing.Point(40, 404);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 16);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Don\'t Have an Account?";
             // 
             // label2
             // 
@@ -225,22 +174,6 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "LOGIN";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // iconPassword
-            // 
-            this.iconPassword.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.iconPassword.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.iconPassword.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
-            this.iconPassword.IconColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.iconPassword.IconFont = FontAwesome.Sharp.IconFont.Regular;
-            this.iconPassword.IconSize = 42;
-            this.iconPassword.Location = new System.Drawing.Point(261, 250);
-            this.iconPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.iconPassword.Name = "iconPassword";
-            this.iconPassword.Size = new System.Drawing.Size(43, 42);
-            this.iconPassword.TabIndex = 2;
-            this.iconPassword.TabStop = false;
-            this.iconPassword.MouseClick += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseClick);
             // 
             // tbxPassword
             // 
@@ -308,6 +241,37 @@
             this.tbxUsername.Size = new System.Drawing.Size(267, 54);
             this.tbxUsername.TabIndex = 0;
             // 
+            // iconPictureBox3
+            // 
+            this.iconPictureBox3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.iconPictureBox3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.User;
+            this.iconPictureBox3.IconColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Regular;
+            this.iconPictureBox3.IconSize = 42;
+            this.iconPictureBox3.Location = new System.Drawing.Point(260, 128);
+            this.iconPictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconPictureBox3.Name = "iconPictureBox3";
+            this.iconPictureBox3.Size = new System.Drawing.Size(43, 42);
+            this.iconPictureBox3.TabIndex = 10;
+            this.iconPictureBox3.TabStop = false;
+            // 
+            // iconPassword
+            // 
+            this.iconPassword.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.iconPassword.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.iconPassword.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+            this.iconPassword.IconColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.iconPassword.IconFont = FontAwesome.Sharp.IconFont.Regular;
+            this.iconPassword.IconSize = 42;
+            this.iconPassword.Location = new System.Drawing.Point(261, 250);
+            this.iconPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconPassword.Name = "iconPassword";
+            this.iconPassword.Size = new System.Drawing.Size(43, 42);
+            this.iconPassword.TabIndex = 2;
+            this.iconPassword.TabStop = false;
+            this.iconPassword.MouseClick += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseClick);
+            // 
             // iconPictureBox2
             // 
             this.iconPictureBox2.BackColor = System.Drawing.Color.Transparent;
@@ -323,6 +287,22 @@
             this.iconPictureBox2.TabIndex = 9;
             this.iconPictureBox2.TabStop = false;
             this.iconPictureBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox2_MouseClick);
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.iconPictureBox1.BackgroundImage = global::VaultLinkBankSystem.Properties.Resources.eec0955fbfea82922a07c10d54b666eb8baf30c9;
+            this.iconPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.iconPictureBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ControlText;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 290;
+            this.iconPictureBox1.Location = new System.Drawing.Point(-20, -10);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(450, 290);
+            this.iconPictureBox1.TabIndex = 12;
+            this.iconPictureBox1.TabStop = false;
             // 
             // frmLogin
             // 
@@ -345,13 +325,13 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -366,15 +346,13 @@
         private Guna.UI2.WinForms.Guna2Button btnLogin;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private System.Windows.Forms.Label label5;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private System.Windows.Forms.Label label6;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
     }
 }
 
