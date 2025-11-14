@@ -11,7 +11,7 @@ namespace VaultLinkBankSystem
     public class AdminRepository
     {
         private readonly string _connectionString =
-    @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Banking.mdf;Integrated Security=True;";
+    @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Programming\VaultLinkBankSystem\Banking.mdf;Integrated Security=True;";
         public Admin Login(string username, string password)
         {
             Admin admin = null;

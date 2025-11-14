@@ -178,7 +178,7 @@
     <None Include="Resources\Screenshot 2025-11-01 181527.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Banking.mdf" />
+    <None Include="Banking.mdf" />
     <Content Include="Banking_log.ldf">
       <DependentUpon>Banking.mdf</DependentUpon>
     </Content>
