@@ -14,7 +14,7 @@ namespace VaultLinkBankSystem
     {
         CustomerRepository customerRepository = new CustomerRepository();
         Customer newCustomer;
-        private int _custId;
+        //private int _custId;
         public frmDashBoard(Admin admin)
         {
             InitializeComponent();

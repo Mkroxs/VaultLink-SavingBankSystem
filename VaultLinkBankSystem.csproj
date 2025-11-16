@@ -68,7 +68,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlClient, Version=4.6.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Data.SqlClient.4.9.0\lib\net462\System.Data.SqlClient.dll</HintPath>
@@ -76,6 +78,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -100,6 +103,18 @@
     <Compile Include="CustomerKCY.cs" />
     <Compile Include="CustomerKYCRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
+    <Compile Include="Forms\Admin\frmAdminDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmAdminDashboard.Designer.cs">
+      <DependentUpon>frmAdminDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_AdminSidebar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_AdminSidebar.Designer.cs">
+      <DependentUpon>UC_AdminSidebar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +135,54 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\Admin\UC_AdminDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_AdminDashboard.Designer.cs">
+      <DependentUpon>UC_AdminDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_CustomerManagement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_CustomerManagement.Designer.cs">
+      <DependentUpon>UC_CustomerManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_AccountManagement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_AccountManagement.Designer.cs">
+      <DependentUpon>UC_AccountManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_Withdraw.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_Withdraw.Designer.cs">
+      <DependentUpon>UC_Withdraw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_Reports.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_Reports.Designer.cs">
+      <DependentUpon>UC_Reports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_VerifyKYC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\UC_VerifyKYC.Designer.cs">
+      <DependentUpon>UC_VerifyKYC.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\Admin\frmAdminDashboard.resx">
+      <DependentUpon>frmAdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\UC_AccountManagement.resx">
+      <DependentUpon>UC_AccountManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\UC_AdminDashboard.resx">
+      <DependentUpon>UC_AdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\UC_AdminSidebar.resx">
+      <DependentUpon>UC_AdminSidebar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +202,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\Admin\UC_CustomerManagement.resx">
+      <DependentUpon>UC_CustomerManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\UC_VerifyKYC.resx">
+      <DependentUpon>UC_VerifyKYC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\UC_Withdraw.resx">
+      <DependentUpon>UC_Withdraw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\UC_Reports.resx">
+      <DependentUpon>UC_Reports.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -155,9 +230,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\Admin\" />
     <Folder Include="Forms\Customer\" />
-    <Folder Include="UserControls\Admin\" />
     <Folder Include="UserControls\Customer\" />
   </ItemGroup>
   <ItemGroup>
@@ -170,10 +243,19 @@
     <None Include="Resources\Screenshot 2025-11-01 181527.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Banking.mdf" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\Rectangle.png" />
+    <None Include="Resources\peso.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\arrow_drop_down %281%29.png" />
+    <None Include="Resources\arrow_right %281%291.png" />
+    <None Include="Resources\arrow_right %281%29.png" />
+    <None Include="Banking.mdf" />
     <Content Include="Banking_log.ldf">
       <DependentUpon>Banking.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\ChatGPT_Image_Oct_30__2025__07_25_46_PM-removebg-preview 1.png" />
+    <None Include="Resources\eec0955fbfea82922a07c10d54b666eb8baf30c9.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
