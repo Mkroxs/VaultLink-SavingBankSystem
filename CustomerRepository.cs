@@ -13,11 +13,53 @@ namespace VaultLinkBankSystem
             _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\JB\Source\Repos\VaultLink-SavingBankSystem\Banking.mdf;Integrated Security=True";
         }
 
+        public string GeneratePIN()
+        {
+            Random random = new Random();
+            return random.Next(100000, 999999).ToString();
+        }
+
+        public Customer KioskLogin(string email, string pin)
+        {
+            string query = "SELECT * FROM Customers WHERE Email = @Email AND PIN = @PIN";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@PIN", pin);
+
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return MapCustomerFromReader(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error during kiosk login: " + ex.Message);
+            }
+
+            return null;
+        }
+
         // Create new customer
         public int CreateCustomer(Customer customer)
         {
-            string query = @"INSERT INTO Customers (CustomerCode, FullName, Address, Email, Phone, Gender, BirthDate, CivilStatus, ImagePath, CreatedAt)
-                           VALUES (@CustomerCode, @FullName, @Address, @Email, @Phone, @Gender, @BirthDate, @CivilStatus, @ImagePath, @CreatedAt);
+            // Auto-generate PIN if not provided
+            if (string.IsNullOrEmpty(customer.PIN))
+            {
+                customer.PIN = GeneratePIN();
+            }
+
+            string query = @"INSERT INTO Customers (CustomerCode, FullName, Address, Email, Phone, Gender, BirthDate, CivilStatus, ImagePath, PIN, CreatedAt)
+                           VALUES (@CustomerCode, @FullName, @Address, @Email, @Phone, @Gender, @BirthDate, @CivilStatus, @ImagePath, @PIN, @CreatedAt);
                            SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
             try
@@ -34,6 +76,7 @@ namespace VaultLinkBankSystem
                     cmd.Parameters.AddWithValue("@BirthDate", customer.BirthDate ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@CivilStatus", customer.CivilStatus ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@ImagePath", customer.ImagePath ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@PIN", customer.PIN);
                     cmd.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
 
                     conn.Open();
