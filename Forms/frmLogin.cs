@@ -69,18 +69,19 @@ namespace VaultLinkBankSystem
                 {
                     frmAdminDashboard dashboard = new frmAdminDashboard();
                     dashboard.Show();
-                }
-                Admin admin = adminRepo.Login(username, password);
-                if (admin != null)
-                {
-                    MessageBox.Show("Login successful! Welcome " + username ,
-                        "Success",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    frmDashBoard dashboard = new frmDashBoard(admin);
-                    dashboard.Show();
                     this.Hide();
                 }
+                //Admin admin = adminRepo.Login(username, password);
+                //if (admin != null)
+                //{
+                //    MessageBox.Show("Login successful! Welcome " + username ,
+                //        "Success",
+                //        MessageBoxButtons.OK,
+                //        MessageBoxIcon.Information);
+                //    frmDashBoard dashboard = new frmDashBoard(admin);
+                //    dashboard.Show();
+                //    this.Hide();
+                //}
                 else
                 {
                     MessageBox.Show("Invalid username or password.",
