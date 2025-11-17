@@ -13,14 +13,14 @@ namespace VaultLinkBankSystem
     public partial class frmSavingAccountCreation : Form
     {
         private int _currentCustomerId;
-        private AccountCreationService _accountService;
-        private CustomerRepository _customerRepo;
+/*        private AccountCreationService _accountService;
+*/        private CustomerRepository _customerRepo;
         public frmSavingAccountCreation(int customerId)
         {
             InitializeComponent();
             _currentCustomerId = customerId;
-            _accountService = new AccountCreationService();
-            _customerRepo = new CustomerRepository();
+/*            _accountService = new AccountCreationService();
+*/            _customerRepo = new CustomerRepository();
         }
 
         private void frmSavingAccountCreation_Load(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace VaultLinkBankSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 if (!ValidateInputs())
                     return;
@@ -87,7 +87,7 @@ namespace VaultLinkBankSystem
             {
                 MessageBox.Show($"Error creating account: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
         }
 
 

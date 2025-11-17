@@ -19,6 +19,18 @@ namespace VaultLinkBankSystem
         public string CivilStatus { get; set; }
         public string ImagePath { get; set; }
         public string PIN { get; set; }
+
+        // KYC Information (Now part of customer)
+        public string EmploymentStatus { get; set; }
+        public string EmployerName { get; set; }
+        public string SourceOfFunds { get; set; }
+        public string MonthlyIncomeRange { get; set; }
+        public string IDType { get; set; }
+        public string IDNumber { get; set; }
+
+        // System Fields
+        public bool IsKYCVerified { get; set; }
+        public DateTime? KYCVerifiedDate { get; set; }
         public DateTime CreatedAt { get; set; }
 
     }

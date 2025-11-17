@@ -56,11 +56,11 @@ namespace VaultLinkBankSystem
 
             string customerCode = txtCustId.Text;
 
-            Customer ifFound = customerRepository.GetCustomerByCode(customerCode);
-            if(ifFound != null)
+/*            Customer ifFound = customerRepository.GetCustomerByCode(customerCode);
+*//*            if(ifFound != null)
             {
                 lblCustAccountNum.Text = ifFound.FullName;
-            }
+            }*/
         }
 
         private void btnCreateSavingsAcc_Click(object sender, EventArgs e)

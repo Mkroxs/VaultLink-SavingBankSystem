@@ -71,6 +71,7 @@
     <Reference Include="System">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlClient, Version=4.6.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Data.SqlClient.4.9.0\lib\net462\System.Data.SqlClient.dll</HintPath>
@@ -94,15 +95,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
-    <Compile Include="AccountCreationService.cs" />
     <Compile Include="AccountRepository.cs" />
-    <Compile Include="AccountWithKCY.cs" />
+    <Compile Include="AccountWithCustomer.cs" />
     <Compile Include="Admin.cs" />
     <Compile Include="AdminRepository.cs" />
     <Compile Include="Customercs.cs" />
-    <Compile Include="CustomerKCY.cs" />
-    <Compile Include="CustomerKYCRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
+    <Compile Include="Forms\Admin\frmAddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmAddCustomer.Designer.cs">
+      <DependentUpon>frmAddCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Admin\frmAdminDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +175,9 @@
     <Compile Include="UserControls\Admin\UC_VerifyKYC.Designer.cs">
       <DependentUpon>UC_VerifyKYC.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\Admin\frmAddCustomer.resx">
+      <DependentUpon>frmAddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmAdminDashboard.resx">
       <DependentUpon>frmAdminDashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,9 +257,12 @@
     <None Include="Resources\arrow_drop_down %281%29.png" />
     <None Include="Resources\arrow_right %281%291.png" />
     <None Include="Resources\arrow_right %281%29.png" />
-    <None Include="Banking.mdf" />
+    <None Include="Banking.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Banking_log.ldf">
       <DependentUpon>Banking.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\ChatGPT_Image_Oct_30__2025__07_25_46_PM-removebg-preview 1.png" />
     <None Include="Resources\eec0955fbfea82922a07c10d54b666eb8baf30c9.png" />

@@ -5,15 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
+using System.Configuration;
+
 
 namespace VaultLinkBankSystem
 {
+
     public class AdminRepository
     {
-        private readonly string _connectionString =
-    @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Programming\VaultLinkBankSystem\Banking.mdf;Integrated Security=True;";
+        private readonly string _connectionString;
+
+        public AdminRepository()
+        {
+            _connectionString = ConfigurationManager.ConnectionStrings["BankingDB"].ConnectionString;
+        }
+
+
         public Admin Login(string username, string password)
         {
+
             Admin admin = null;
             
 
