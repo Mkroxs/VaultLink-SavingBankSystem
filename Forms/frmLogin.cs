@@ -65,21 +65,11 @@ namespace VaultLinkBankSystem
 
             try
             {
-                /*if (username == "admin" && password == "admin")
-                {
-                    frmAdminDashboard dashboard = new frmAdminDashboard();
-                    dashboard.Show();
-                    this.Hide();
-                }*/
+                
                 Admin admin = adminRepo.Login(username, password);
                 if (admin != null)
                 {
-                    MessageBox.Show("Login successful! Welcome " + username,
-                        "Success",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    /*                    frmDashBoard dashboard = new frmDashBoard(admin);
-                    */
+                  
                     frmAdminDashboard dashboard = new frmAdminDashboard();
 
                     dashboard.Show();
@@ -106,9 +96,26 @@ namespace VaultLinkBankSystem
             }
         }
 
+        public void ShowLoginForm()
+        {
+            this.tbxUsername.Clear();
+            this.tbxPassword.Clear();
+            this.Show();
+        }
+
+        public void ExitApplication()
+        {
+            Application.Exit();
+        }
+
         private void lblUsername_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void iconPictureBox2_Click(object sender, EventArgs e)
+        {
+            ExitApplication();
         }
     }
 }

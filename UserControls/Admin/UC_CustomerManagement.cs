@@ -114,11 +114,27 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            using (Forms.Admin.frmAddCustomer addForm = new Forms.Admin.frmAddCustomer())
+            Form parentForm = this.FindForm();
+
+            using (Forms.Admin.frmRegisterCust registerForm = new Forms.Admin.frmRegisterCust())
             {
-                addForm.ShowDialog();
+                // Disable automatic form reposition
+                registerForm.StartPosition = FormStartPosition.Manual;
+                // Center it relative to parent
+                registerForm.Location = new System.Drawing.Point(
+                    parentForm.Location.X + (parentForm.Width - registerForm.Width) / 2,
+                    parentForm.Location.Y + (parentForm.Height - registerForm.Height) / 2
+                );
+
+                registerForm.ShowDialog(parentForm);
             }
             LoadData();
+
+            //using (Forms.Admin.frmAddCustomer addForm = new Forms.Admin.frmAddCustomer())
+            //{
+            //    addForm.ShowDialog();
+            //}
+            //LoadData();
         }
 
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -259,6 +275,12 @@ namespace VaultLinkBankSystem.UserControls.Admin
             // Disable buttons until a row is clicked
             /*btnViewDetails.Enabled = false;
             btnDeleteCustomer.Enabled = false;*/
+        }
+
+        private void btnVerification_Click(object sender, EventArgs e)
+        {
+             
+            
         }
     }
 }

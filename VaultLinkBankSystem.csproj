@@ -55,7 +55,8 @@
       <HintPath>packages\FontAwesome.Sharp.6.6.0\lib\net48\FontAwesome.Sharp.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
-      <HintPath>packages\Guna.UI2.WinForms.2.0.4.7\lib\net48\Guna.UI2.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\MIKE\Downloads\GunaPatcher-master\GunaPatcher-master\GunaPatcher\bin\Debug\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
@@ -101,6 +102,12 @@
     <Compile Include="AdminRepository.cs" />
     <Compile Include="Customercs.cs" />
     <Compile Include="CustomerRepository.cs" />
+    <Compile Include="Forms\Admin\frmRegisterCust.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmRegisterCust.Designer.cs">
+      <DependentUpon>frmRegisterCust.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Admin\frmAddCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +120,7 @@
     <Compile Include="Forms\Admin\frmAdminDashboard.Designer.cs">
       <DependentUpon>frmAdminDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="UiHelpers.cs" />
     <Compile Include="UserControls\Admin\UC_AdminSidebar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -175,11 +183,32 @@
     <Compile Include="UserControls\Admin\UC_VerifyKYC.Designer.cs">
       <DependentUpon>UC_VerifyKYC.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Registration\UC_AddressInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Registration\UC_AddressInfo.Designer.cs">
+      <DependentUpon>UC_AddressInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Registration\UC_BasicInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Registration\UC_BasicInfo.Designer.cs">
+      <DependentUpon>UC_BasicInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Registration\UC_IdentityVerification.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Registration\UC_IdentityVerification.Designer.cs">
+      <DependentUpon>UC_IdentityVerification.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\Admin\frmAddCustomer.resx">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmAdminDashboard.resx">
       <DependentUpon>frmAdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frmRegisterCust.resx">
+      <DependentUpon>frmRegisterCust.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Admin\UC_AccountManagement.resx">
       <DependentUpon>UC_AccountManagement.cs</DependentUpon>
@@ -220,6 +249,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Admin\UC_Reports.resx">
       <DependentUpon>UC_Reports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Registration\UC_AddressInfo.resx">
+      <DependentUpon>UC_AddressInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Registration\UC_BasicInfo.resx">
+      <DependentUpon>UC_BasicInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Registration\UC_IdentityVerification.resx">
+      <DependentUpon>UC_IdentityVerification.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />

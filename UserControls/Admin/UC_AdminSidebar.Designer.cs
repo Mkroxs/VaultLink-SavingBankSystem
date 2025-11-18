@@ -61,10 +61,10 @@
             this.btnDashboard.FillColor = System.Drawing.Color.Transparent;
             this.btnDashboard.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnDashboard.ForeColor = System.Drawing.Color.White;
-            this.btnDashboard.Location = new System.Drawing.Point(2, 2);
-            this.btnDashboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDashboard.Location = new System.Drawing.Point(3, 2);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(253, 49);
+            this.btnDashboard.Size = new System.Drawing.Size(336, 60);
             this.btnDashboard.TabIndex = 0;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -83,10 +83,10 @@
             this.btnReports.FillColor = System.Drawing.Color.Transparent;
             this.btnReports.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnReports.ForeColor = System.Drawing.Color.White;
-            this.btnReports.Location = new System.Drawing.Point(2, 484);
-            this.btnReports.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReports.Location = new System.Drawing.Point(3, 534);
+            this.btnReports.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(253, 49);
+            this.btnReports.Size = new System.Drawing.Size(336, 60);
             this.btnReports.TabIndex = 14;
             this.btnReports.Text = "Report";
             this.btnReports.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -106,10 +106,10 @@
             this.btnSettings.FillColor = System.Drawing.Color.Transparent;
             this.btnSettings.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnSettings.ForeColor = System.Drawing.Color.White;
-            this.btnSettings.Location = new System.Drawing.Point(2, 431);
-            this.btnSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSettings.Location = new System.Drawing.Point(3, 598);
+            this.btnSettings.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(253, 49);
+            this.btnSettings.Size = new System.Drawing.Size(336, 60);
             this.btnSettings.TabIndex = 15;
             this.btnSettings.Text = "Settings";
             this.btnSettings.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -127,10 +127,10 @@
             this.btnInterestComputation.FillColor = System.Drawing.Color.Transparent;
             this.btnInterestComputation.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnInterestComputation.ForeColor = System.Drawing.Color.White;
-            this.btnInterestComputation.Location = new System.Drawing.Point(2, 378);
-            this.btnInterestComputation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInterestComputation.Location = new System.Drawing.Point(3, 470);
+            this.btnInterestComputation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInterestComputation.Name = "btnInterestComputation";
-            this.btnInterestComputation.Size = new System.Drawing.Size(253, 49);
+            this.btnInterestComputation.Size = new System.Drawing.Size(336, 60);
             this.btnInterestComputation.TabIndex = 13;
             this.btnInterestComputation.Text = "Interest Computation";
             this.btnInterestComputation.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -149,10 +149,10 @@
             this.btnTransfer.FillColor = System.Drawing.Color.Transparent;
             this.btnTransfer.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnTransfer.ForeColor = System.Drawing.Color.White;
-            this.btnTransfer.Location = new System.Drawing.Point(2, 82);
-            this.btnTransfer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTransfer.Location = new System.Drawing.Point(3, 98);
+            this.btnTransfer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTransfer.Name = "btnTransfer";
-            this.btnTransfer.Size = new System.Drawing.Size(184, 36);
+            this.btnTransfer.Size = new System.Drawing.Size(245, 44);
             this.btnTransfer.TabIndex = 12;
             this.btnTransfer.Text = "Transfer";
             // 
@@ -168,10 +168,10 @@
             this.btnDeposit.FillColor = System.Drawing.Color.Transparent;
             this.btnDeposit.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnDeposit.ForeColor = System.Drawing.Color.White;
-            this.btnDeposit.Location = new System.Drawing.Point(2, 42);
-            this.btnDeposit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDeposit.Location = new System.Drawing.Point(3, 50);
+            this.btnDeposit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeposit.Name = "btnDeposit";
-            this.btnDeposit.Size = new System.Drawing.Size(184, 36);
+            this.btnDeposit.Size = new System.Drawing.Size(245, 44);
             this.btnDeposit.TabIndex = 11;
             this.btnDeposit.Text = "Deposit";
             // 
@@ -187,10 +187,10 @@
             this.btnWithdraw.FillColor = System.Drawing.Color.Transparent;
             this.btnWithdraw.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnWithdraw.ForeColor = System.Drawing.Color.White;
-            this.btnWithdraw.Location = new System.Drawing.Point(2, 2);
-            this.btnWithdraw.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnWithdraw.Location = new System.Drawing.Point(3, 2);
+            this.btnWithdraw.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnWithdraw.Name = "btnWithdraw";
-            this.btnWithdraw.Size = new System.Drawing.Size(184, 36);
+            this.btnWithdraw.Size = new System.Drawing.Size(245, 44);
             this.btnWithdraw.TabIndex = 10;
             this.btnWithdraw.Text = "Withdraw";
             this.btnWithdraw.Click += new System.EventHandler(this.btnWithdraw_Click);
@@ -209,10 +209,10 @@
             this.btnLogout.FillColor = System.Drawing.Color.Transparent;
             this.btnLogout.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(2, 616);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogout.Location = new System.Drawing.Point(3, 760);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(253, 49);
+            this.btnLogout.Size = new System.Drawing.Size(336, 60);
             this.btnLogout.TabIndex = 8;
             this.btnLogout.Text = "Logout";
             this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -236,10 +236,10 @@
             this.btnTransactions.FillColor = System.Drawing.Color.Transparent;
             this.btnTransactions.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnTransactions.ForeColor = System.Drawing.Color.White;
-            this.btnTransactions.Location = new System.Drawing.Point(2, 161);
-            this.btnTransactions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTransactions.Location = new System.Drawing.Point(3, 194);
+            this.btnTransactions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTransactions.Name = "btnTransactions";
-            this.btnTransactions.Size = new System.Drawing.Size(253, 49);
+            this.btnTransactions.Size = new System.Drawing.Size(336, 60);
             this.btnTransactions.TabIndex = 3;
             this.btnTransactions.Text = "Transactions";
             this.btnTransactions.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -259,10 +259,10 @@
             this.btnAccountManagement.FillColor = System.Drawing.Color.Transparent;
             this.btnAccountManagement.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnAccountManagement.ForeColor = System.Drawing.Color.White;
-            this.btnAccountManagement.Location = new System.Drawing.Point(2, 108);
-            this.btnAccountManagement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAccountManagement.Location = new System.Drawing.Point(3, 130);
+            this.btnAccountManagement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAccountManagement.Name = "btnAccountManagement";
-            this.btnAccountManagement.Size = new System.Drawing.Size(253, 49);
+            this.btnAccountManagement.Size = new System.Drawing.Size(336, 60);
             this.btnAccountManagement.TabIndex = 2;
             this.btnAccountManagement.Text = "Account Management";
             this.btnAccountManagement.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -282,10 +282,10 @@
             this.btnCustomerManagement.FillColor = System.Drawing.Color.Transparent;
             this.btnCustomerManagement.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnCustomerManagement.ForeColor = System.Drawing.Color.White;
-            this.btnCustomerManagement.Location = new System.Drawing.Point(2, 55);
-            this.btnCustomerManagement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCustomerManagement.Location = new System.Drawing.Point(3, 66);
+            this.btnCustomerManagement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCustomerManagement.Name = "btnCustomerManagement";
-            this.btnCustomerManagement.Size = new System.Drawing.Size(253, 49);
+            this.btnCustomerManagement.Size = new System.Drawing.Size(336, 60);
             this.btnCustomerManagement.TabIndex = 1;
             this.btnCustomerManagement.Text = "Customer Management";
             this.btnCustomerManagement.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -303,16 +303,17 @@
             this.tableLayoutPanel1.Controls.Add(this.btnAccountManagement, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnTransactions, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnCustomerManagement, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnInterestComputation, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.btnReports, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.btnLogout, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnLogout, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.btnReports, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.btnInterestComputation, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.btnVerifyKYC, 0, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 6);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowCount = 11;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -323,7 +324,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(257, 667);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(342, 822);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // flowLayoutPanel1
@@ -333,13 +335,12 @@
             this.flowLayoutPanel1.Controls.Add(this.btnWithdraw);
             this.flowLayoutPanel1.Controls.Add(this.btnDeposit);
             this.flowLayoutPanel1.Controls.Add(this.btnTransfer);
-            this.flowLayoutPanel1.Controls.Add(this.btnVerifyKYC);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 214);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.flowLayoutPanel1.MaximumSize = new System.Drawing.Size(208, 181);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 258);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel1.MaximumSize = new System.Drawing.Size(277, 223);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(188, 160);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(251, 144);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // btnVerifyKYC
@@ -351,29 +352,31 @@
             this.btnVerifyKYC.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnVerifyKYC.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnVerifyKYC.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnVerifyKYC.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnVerifyKYC.FillColor = System.Drawing.Color.Transparent;
             this.btnVerifyKYC.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
             this.btnVerifyKYC.ForeColor = System.Drawing.Color.White;
-            this.btnVerifyKYC.Location = new System.Drawing.Point(2, 122);
-            this.btnVerifyKYC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnVerifyKYC.Location = new System.Drawing.Point(3, 406);
+            this.btnVerifyKYC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVerifyKYC.Name = "btnVerifyKYC";
-            this.btnVerifyKYC.Size = new System.Drawing.Size(184, 36);
+            this.btnVerifyKYC.Size = new System.Drawing.Size(336, 60);
             this.btnVerifyKYC.TabIndex = 13;
-            this.btnVerifyKYC.Text = "VerifyKYC";
+            this.btnVerifyKYC.Text = "Customer Verification";
+            this.btnVerifyKYC.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnVerifyKYC.Click += new System.EventHandler(this.btnVerifyKYC_Click);
             this.btnVerifyKYC.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnVerifyKYC_MouseClick);
             // 
             // UC_AdminSidebar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UC_AdminSidebar";
-            this.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.Size = new System.Drawing.Size(267, 679);
+            this.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.Size = new System.Drawing.Size(356, 836);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -395,7 +398,7 @@
         private Guna.UI2.WinForms.Guna2Button btnWithdraw;
         public System.Windows.Forms.Timer timerSlide;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Guna.UI2.WinForms.Guna2Button btnVerifyKYC;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private Guna.UI2.WinForms.Guna2Button btnVerifyKYC;
     }
 }

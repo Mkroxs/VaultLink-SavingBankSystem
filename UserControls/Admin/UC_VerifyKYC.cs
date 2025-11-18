@@ -68,9 +68,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 // Clear selection if no pending customers
                 if (pendingCustomers.Count == 0)
                 {
-                    ShowNoDataMessage();
-                    btnVerify.Enabled = false;
-                    btnReject.Enabled = false;
+                    //ShowNoDataMessage();
+                    //btnVerify.Enabled = false;
+                    //btnReject.Enabled = false;
                 }
                 else
                 {
