@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guna.UI2.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VaultLinkBankSystem.Helpers;
 
 namespace VaultLinkBankSystem.UserControls.Registration
 {
@@ -15,6 +17,21 @@ namespace VaultLinkBankSystem.UserControls.Registration
         public UC_AddressInfo()
         {
             InitializeComponent();
+        }
+
+        private void guna2Shapes1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Panel15_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void UC_AddressInfo_Load(object sender, EventArgs e)
+        {
+            UiHelpers.FixGuna2TextBoxVisibility(this);
         }
     }
 }

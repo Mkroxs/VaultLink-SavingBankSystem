@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using VaultLinkBankSystem.Helpers;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -24,7 +25,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void UC_AdminDashboard_Load(object sender, EventArgs e)
         {
-
+            UiHelpers.FixGuna2TextBoxVisibility(this);
         }
         private void StyleDashboardChart()
         {

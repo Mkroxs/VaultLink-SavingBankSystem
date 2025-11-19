@@ -15,15 +15,14 @@ namespace VaultLinkBankSystem.UserControls.Admin
             InitializeComponent();
             _customerRepo = new CustomerRepository();
 
-            // Setup DataGridView events
+           
             dgvPendingKYC.SelectionChanged += DgvPendingKYC_SelectionChanged;
             dgvPendingKYC.CellFormatting += DgvPendingKYC_CellFormatting;
 
-            // Setup button events
+            
             btnVerify.Click += btnVerify_Click;
             btnReject.Click += btnReject_Click;
             btnRefresh.Click += btnRefresh_Click;
-            btnClose.Click += btnClose_Click;
             dgvPendingKYC.DataBindingComplete += DgvPendingKYC_DataBindingComplete;
 
             LoadPendingKYC();
@@ -35,7 +34,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             ConfigureColumns();
         }
 
-        // Designer-generated event handler
+       
         private void UC_VerifyKYC_Load(object sender, EventArgs e)
         {
 
@@ -45,32 +44,30 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             try
             {
-                // Get all customers
+                
                 var allCustomers = _customerRepo.GetAllCustomers();
 
-                // Filter only pending KYC (not verified)
+              
                 var pendingCustomers = allCustomers.Where(c => !c.IsKYCVerified).ToList();
 
-                // Bind to DataGridView
+             
                 dgvPendingKYC.DataSource = null;
                 dgvPendingKYC.DataSource = pendingCustomers;
 
-                // Update pending count label
+               
                 lblPendingCount.Text = $"Total Pending: {pendingCustomers.Count}";
                 lblPendingCount.ForeColor = pendingCustomers.Count > 0 ?
                     Color.FromArgb(231, 76, 60) : Color.FromArgb(46, 204, 113);
 
-                // Configure columns ONLY if we have data
+             
                 if (pendingCustomers.Count > 0 && dgvPendingKYC.Columns.Count > 0)
                 {
                 }
 
-                // Clear selection if no pending customers
+                
                 if (pendingCustomers.Count == 0)
                 {
-                    //ShowNoDataMessage();
-                    //btnVerify.Enabled = false;
-                    //btnReject.Enabled = false;
+                    
                 }
                 else
                 {
@@ -93,13 +90,10 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     if (col == null) continue;
                     if (string.IsNullOrWhiteSpace(col.DataPropertyName)) continue;
                     if (string.IsNullOrWhiteSpace(col.Name))
-                        col.Name = col.DataPropertyName; // Fix unnamed columns
+                        col.Name = col.DataPropertyName; 
 
-                    // SAFE GUARD: Skip columns without matching property
                     if (!ColumnExistsOnCustomer(col.DataPropertyName))
                         continue;
-
-                    // Hide unwanted columns
                     if (new[] {
                 "CustomerID", "PIN", "ImagePath", "IsKYCVerified", "KYCVerifiedDate",
                 "Address", "Gender", "BirthDate", "CivilStatus",
@@ -110,7 +104,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
                         continue;
                     }
 
-                    // Apply settings
                     switch (col.Name)
                     {
                         case "CustomerCode":
@@ -150,7 +143,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-        // Checks if the column really exists in your Customer class
         private bool ColumnExistsOnCustomer(string propertyName)
         {
             return typeof(Customer).GetProperty(propertyName) != null;
@@ -351,21 +343,22 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            // UserControl doesn't have Close() method
         }
 
-        // Designer-generated event handlers (keep these even if empty)
         private void label1_Click(object sender, EventArgs e)
         {
-            // Empty - Designer generated
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-            // Empty - Designer generated
         }
 
         private void dgvPendingKYC_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
         {
 
         }

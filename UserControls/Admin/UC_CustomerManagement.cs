@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VaultLinkBankSystem.Helpers;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -54,44 +55,33 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             var dgv = dvgListOfCustomers;
 
-            // Make sure selection is full row and only one row can be selected
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv.MultiSelect = false;
 
-            // Basic colors — pick contrasts that work with your theme
-            dgv.BackgroundColor = Color.White;                       // grid background
-            dgv.GridColor = Color.FromArgb(230, 230, 230);           // grid lines
-            dgv.DefaultCellStyle.ForeColor = Color.Black;            // text color
-            dgv.DefaultCellStyle.BackColor = Color.White;            // normal row background
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 249, 249); // alternate row
+            dgv.BackgroundColor = Color.White;                       
+            dgv.GridColor = Color.FromArgb(230, 230, 230);           
+            dgv.DefaultCellStyle.ForeColor = Color.Black;           
+            dgv.DefaultCellStyle.BackColor = Color.White;           
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 249, 249); 
 
-            // Header styling
-            dgv.EnableHeadersVisualStyles = false; // let us control header colors
+            dgv.EnableHeadersVisualStyles = false; 
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 62, 84);
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
-            /*dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = dgv.ColumnHeadersDefaultCellStyle.BackColor;
-            dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = dgv.ColumnHeadersDefaultCellStyle.ForeColor;
-*/
-            // Selection styling — this is the highlight color when a row is selected
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 144, 255); // DodgerBlue-ish
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 144, 255); 
             dgv.DefaultCellStyle.SelectionForeColor = Color.White;
 
-            // Make row headers less distracting (optional)
             dgv.RowHeadersVisible = false;
 
-            // Improve cell padding / readability
             dgv.RowTemplate.Height = 28;
             dgv.RowTemplate.DefaultCellStyle.Padding = new Padding(4, 2, 4, 2);
 
-            // Optional: remove cell border noise
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
         }
 
         private void DvgListOfCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Ensure click on actual row (not header)
             if (e.RowIndex >= 0)
             {
                 dvgListOfCustomers.ClearSelection();
@@ -102,7 +92,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void DvgListOfCustomers_SelectionChanged(object sender, EventArgs e)
         {
-            // Keep only single-row selection and ensure current row is selected
             if (dvgListOfCustomers.SelectedRows.Count > 0)
             {
                 var row = dvgListOfCustomers.SelectedRows[0];
@@ -116,11 +105,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             Form parentForm = this.FindForm();
 
-            using (Forms.Admin.frmRegisterCust registerForm = new Forms.Admin.frmRegisterCust())
+            using (Forms.Admin.frmRegistration registerForm = new Forms.Admin.frmRegistration())
             {
-                // Disable automatic form reposition
                 registerForm.StartPosition = FormStartPosition.Manual;
-                // Center it relative to parent
                 registerForm.Location = new System.Drawing.Point(
                     parentForm.Location.X + (parentForm.Width - registerForm.Width) / 2,
                     parentForm.Location.Y + (parentForm.Height - registerForm.Height) / 2
@@ -129,12 +116,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 registerForm.ShowDialog(parentForm);
             }
             LoadData();
-
-            //using (Forms.Admin.frmAddCustomer addForm = new Forms.Admin.frmAddCustomer())
-            //{
-            //    addForm.ShowDialog();
-            //}
-            //LoadData();
         }
 
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -142,11 +123,11 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         }
 
+
         private void guna2DataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dvgListOfCustomers.SelectedRows.Count > 0)
             {
-                // Get the complete Customer object from the selected row
                 Customer selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customer;
 
                 if (selectedCustomer != null)
@@ -154,8 +135,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     _selectedCustomerId = selectedCustomer.CustomerID;
 
 
-                    /*btnViewDetails.Enabled = true;
-                    btnDeleteCustomer.Enabled = true;*/
+                   
                 }
             }
             else
@@ -163,8 +143,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 _selectedCustomerId = 0;
 
 
-                /*btnViewDetails.Enabled = false;
-                btnDeleteCustomer.Enabled = false;*/
+              
             }
         }
 
@@ -220,7 +199,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "MM/dd/yyyy" }
             });
 
-            // Hidden columns (not shown in grid)
             string[] hiddenColumns =
             {
         "CustomerID", "PIN", "ImagePath", "IsKYCVerified", "KYCVerifiedDate",
@@ -268,13 +246,12 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void UC_CustomerManagement_Load_1(object sender, EventArgs e)
         {
+            UiHelpers.FixGuna2TextBoxVisibility(this);
             BuildColumns();
             LoadData();
 
 
-            // Disable buttons until a row is clicked
-            /*btnViewDetails.Enabled = false;
-            btnDeleteCustomer.Enabled = false;*/
+           
         }
 
         private void btnVerification_Click(object sender, EventArgs e)

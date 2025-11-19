@@ -14,6 +14,7 @@ namespace VaultLinkBankSystem.Forms.Admin
         public event EventHandler TransferClicked;
         public event EventHandler ReportsClicked;
         public event EventHandler VerifyKYCClicked;
+        public event EventHandler InterestComputationClicked;
 
         private bool isExpanded = false;
         private bool isAnimating = false;
@@ -63,6 +64,9 @@ namespace VaultLinkBankSystem.Forms.Admin
 
                 btnVerifyKYC.Click -= BtnVerifyKYC_Click;
                 btnVerifyKYC.Click += BtnVerifyKYC_Click;
+
+                btnInterestComputation.Click -= BtnInterestComputation_Click;
+                btnInterestComputation.Click += BtnInterestComputation_Click;
             }
             catch
             {
@@ -166,10 +170,15 @@ namespace VaultLinkBankSystem.Forms.Admin
             VerifyKYCClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void timerSlide_Tick_1(object sender, EventArgs e) {  }
-        private void btnTransactions_MouseClick(object sender, MouseEventArgs e) {  }
-        private void guna2Button1_Click(object sender, EventArgs e) {  }
-        private void guna2Button2_Click(object sender, EventArgs e) {  }
+        private void BtnInterestComputation_Click(object sender, EventArgs e)
+        {
+            InterestComputationClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void timerSlide_Tick_1(object sender, EventArgs e) { }
+        private void btnTransactions_MouseClick(object sender, MouseEventArgs e) { }
+        private void guna2Button1_Click(object sender, EventArgs e) { }
+        private void guna2Button2_Click(object sender, EventArgs e) { }
         private void btnDashboard_MouseClick(object sender, MouseEventArgs e) { DashboardClicked?.Invoke(this, EventArgs.Empty); }
         private void btnCustomerManagement_MouseClick(object sender, MouseEventArgs e) { CustomerManagementClicked?.Invoke(this, EventArgs.Empty); }
         private void btnAccountManagement_MouseClick(object sender, MouseEventArgs e) { AccountManagementClicked?.Invoke(this, EventArgs.Empty); }
@@ -243,5 +252,24 @@ namespace VaultLinkBankSystem.Forms.Admin
             TransferClicked?.Invoke(this, EventArgs.Empty);
         }
 
+        private void btnDeposit_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTransfer_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeposit_MouseClick_1(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btnTransfer_MouseClick_1(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

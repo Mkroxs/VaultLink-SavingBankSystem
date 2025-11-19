@@ -29,44 +29,39 @@
         private void InitializeComponent()
         {
             this.guna2Panel15 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Panel13 = new Guna.UI2.WinForms.Guna2Panel();
-            this.tbxContactNumber = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.guna2Shapes3 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.guna2Shapes2 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.guna2Shapes1 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.guna2Panel9 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.tbxStreetName = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel12 = new Guna.UI2.WinForms.Guna2Panel();
-            this.tbxCivilStatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.tbxBarangay = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel11 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.tbxCity = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2Panel13 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.tbxZipCode = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel10 = new Guna.UI2.WinForms.Guna2Panel();
-            this.tbxEmail = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2Panel9 = new Guna.UI2.WinForms.Guna2Panel();
-            this.tbxName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.tbxProvince = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.guna2Shapes2 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.guna2Shapes3 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.guna2Shapes1 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel15.SuspendLayout();
-            this.guna2Panel13.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.guna2Panel9.SuspendLayout();
             this.guna2Panel12.SuspendLayout();
             this.guna2Panel11.SuspendLayout();
+            this.guna2Panel13.SuspendLayout();
             this.guna2Panel10.SuspendLayout();
-            this.guna2Panel9.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2Panel15
             // 
-            this.guna2Panel15.Controls.Add(this.flowLayoutPanel3);
             this.guna2Panel15.Controls.Add(this.flowLayoutPanel2);
             this.guna2Panel15.Controls.Add(this.flowLayoutPanel1);
             this.guna2Panel15.Controls.Add(this.guna2HtmlLabel2);
@@ -75,236 +70,7 @@
             this.guna2Panel15.Name = "guna2Panel15";
             this.guna2Panel15.Size = new System.Drawing.Size(639, 658);
             this.guna2Panel15.TabIndex = 22;
-            // 
-            // guna2Panel13
-            // 
-            this.guna2Panel13.Controls.Add(this.tbxContactNumber);
-            this.guna2Panel13.Controls.Add(this.guna2HtmlLabel7);
-            this.guna2Panel13.Location = new System.Drawing.Point(3, 273);
-            this.guna2Panel13.Name = "guna2Panel13";
-            this.guna2Panel13.Size = new System.Drawing.Size(430, 84);
-            this.guna2Panel13.TabIndex = 17;
-            // 
-            // tbxContactNumber
-            // 
-            this.tbxContactNumber.BackColor = System.Drawing.Color.Silver;
-            this.tbxContactNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxContactNumber.DefaultText = "";
-            this.tbxContactNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxContactNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxContactNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxContactNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxContactNumber.FillColor = System.Drawing.Color.Silver;
-            this.tbxContactNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxContactNumber.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
-            this.tbxContactNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxContactNumber.Location = new System.Drawing.Point(6, 36);
-            this.tbxContactNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbxContactNumber.Name = "tbxContactNumber";
-            this.tbxContactNumber.PlaceholderText = "";
-            this.tbxContactNumber.SelectedText = "";
-            this.tbxContactNumber.Size = new System.Drawing.Size(418, 36);
-            this.tbxContactNumber.TabIndex = 14;
-            // 
-            // guna2HtmlLabel7
-            // 
-            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(4, 6);
-            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(84, 27);
-            this.guna2HtmlLabel7.TabIndex = 8;
-            this.guna2HtmlLabel7.Text = "Zip Code:";
-            this.guna2HtmlLabel7.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // guna2Panel12
-            // 
-            this.guna2Panel12.Controls.Add(this.tbxCivilStatus);
-            this.guna2Panel12.Controls.Add(this.guna2HtmlLabel6);
-            this.guna2Panel12.Location = new System.Drawing.Point(3, 93);
-            this.guna2Panel12.Name = "guna2Panel12";
-            this.guna2Panel12.Size = new System.Drawing.Size(430, 84);
-            this.guna2Panel12.TabIndex = 18;
-            // 
-            // tbxCivilStatus
-            // 
-            this.tbxCivilStatus.BackColor = System.Drawing.Color.Transparent;
-            this.tbxCivilStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.tbxCivilStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tbxCivilStatus.FillColor = System.Drawing.Color.Silver;
-            this.tbxCivilStatus.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxCivilStatus.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxCivilStatus.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
-            this.tbxCivilStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.tbxCivilStatus.ItemHeight = 30;
-            this.tbxCivilStatus.Location = new System.Drawing.Point(6, 36);
-            this.tbxCivilStatus.Name = "tbxCivilStatus";
-            this.tbxCivilStatus.Size = new System.Drawing.Size(418, 36);
-            this.tbxCivilStatus.TabIndex = 9;
-            // 
-            // guna2HtmlLabel6
-            // 
-            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(4, 6);
-            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(88, 27);
-            this.guna2HtmlLabel6.TabIndex = 8;
-            this.guna2HtmlLabel6.Text = "Barangay:";
-            this.guna2HtmlLabel6.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // guna2Panel11
-            // 
-            this.guna2Panel11.Controls.Add(this.guna2TextBox1);
-            this.guna2Panel11.Controls.Add(this.guna2HtmlLabel5);
-            this.guna2Panel11.Location = new System.Drawing.Point(3, 183);
-            this.guna2Panel11.Name = "guna2Panel11";
-            this.guna2Panel11.Size = new System.Drawing.Size(430, 84);
-            this.guna2Panel11.TabIndex = 17;
-            // 
-            // guna2HtmlLabel5
-            // 
-            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(4, 6);
-            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(150, 27);
-            this.guna2HtmlLabel5.TabIndex = 8;
-            this.guna2HtmlLabel5.Text = "City/Municipality";
-            this.guna2HtmlLabel5.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // guna2Panel10
-            // 
-            this.guna2Panel10.Controls.Add(this.tbxEmail);
-            this.guna2Panel10.Controls.Add(this.guna2HtmlLabel4);
-            this.guna2Panel10.Location = new System.Drawing.Point(3, 363);
-            this.guna2Panel10.Name = "guna2Panel10";
-            this.guna2Panel10.Size = new System.Drawing.Size(430, 84);
-            this.guna2Panel10.TabIndex = 16;
-            // 
-            // tbxEmail
-            // 
-            this.tbxEmail.BackColor = System.Drawing.Color.Silver;
-            this.tbxEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxEmail.DefaultText = "";
-            this.tbxEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxEmail.FillColor = System.Drawing.Color.Silver;
-            this.tbxEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxEmail.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
-            this.tbxEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxEmail.Location = new System.Drawing.Point(6, 36);
-            this.tbxEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbxEmail.Name = "tbxEmail";
-            this.tbxEmail.PlaceholderText = "";
-            this.tbxEmail.SelectedText = "";
-            this.tbxEmail.Size = new System.Drawing.Size(418, 36);
-            this.tbxEmail.TabIndex = 14;
-            // 
-            // guna2HtmlLabel4
-            // 
-            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(4, 6);
-            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(129, 27);
-            this.guna2HtmlLabel4.TabIndex = 8;
-            this.guna2HtmlLabel4.Text = "State/Province";
-            this.guna2HtmlLabel4.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // guna2Panel9
-            // 
-            this.guna2Panel9.Controls.Add(this.tbxName);
-            this.guna2Panel9.Controls.Add(this.guna2HtmlLabel3);
-            this.guna2Panel9.Location = new System.Drawing.Point(3, 3);
-            this.guna2Panel9.Name = "guna2Panel9";
-            this.guna2Panel9.Size = new System.Drawing.Size(430, 84);
-            this.guna2Panel9.TabIndex = 15;
-            // 
-            // tbxName
-            // 
-            this.tbxName.BackColor = System.Drawing.Color.Silver;
-            this.tbxName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxName.DefaultText = "";
-            this.tbxName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxName.FillColor = System.Drawing.Color.Silver;
-            this.tbxName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxName.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
-            this.tbxName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxName.Location = new System.Drawing.Point(6, 36);
-            this.tbxName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbxName.Name = "tbxName";
-            this.tbxName.PlaceholderText = "";
-            this.tbxName.SelectedText = "";
-            this.tbxName.Size = new System.Drawing.Size(418, 36);
-            this.tbxName.TabIndex = 14;
-            // 
-            // guna2HtmlLabel3
-            // 
-            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(4, 6);
-            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(116, 27);
-            this.guna2HtmlLabel3.TabIndex = 8;
-            this.guna2HtmlLabel3.Text = "Street Name:";
-            this.guna2HtmlLabel3.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // guna2HtmlLabel2
-            // 
-            this.guna2HtmlLabel2.AutoSize = false;
-            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(0, 0);
-            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(639, 42);
-            this.guna2HtmlLabel2.TabIndex = 7;
-            this.guna2HtmlLabel2.Text = "Address Information:";
-            // 
-            // guna2TextBox1
-            // 
-            this.guna2TextBox1.BackColor = System.Drawing.Color.Silver;
-            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox1.DefaultText = "";
-            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.FillColor = System.Drawing.Color.Silver;
-            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
-            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Location = new System.Drawing.Point(6, 36);
-            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2TextBox1.Name = "guna2TextBox1";
-            this.guna2TextBox1.PlaceholderText = "";
-            this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(418, 36);
-            this.guna2TextBox1.TabIndex = 15;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.guna2Panel9);
-            this.flowLayoutPanel1.Controls.Add(this.guna2Panel12);
-            this.flowLayoutPanel1.Controls.Add(this.guna2Panel11);
-            this.flowLayoutPanel1.Controls.Add(this.guna2Panel13);
-            this.flowLayoutPanel1.Controls.Add(this.guna2Panel10);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(82, 58);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(436, 450);
-            this.flowLayoutPanel1.TabIndex = 19;
+            this.guna2Panel15.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel15_Paint);
             // 
             // flowLayoutPanel2
             // 
@@ -320,27 +86,11 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(165, 19);
             this.flowLayoutPanel2.TabIndex = 28;
             // 
-            // guna2Shapes2
-            // 
-            this.guna2Shapes2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Shapes2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2Shapes2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(70)))), ((int)(((byte)(100)))));
-            this.guna2Shapes2.Location = new System.Drawing.Point(58, 3);
-            this.guna2Shapes2.Name = "guna2Shapes2";
-            this.guna2Shapes2.PolygonSkip = 1;
-            this.guna2Shapes2.Rotate = 0F;
-            this.guna2Shapes2.RoundedRadius = 5;
-            this.guna2Shapes2.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rounded;
-            this.guna2Shapes2.Size = new System.Drawing.Size(49, 13);
-            this.guna2Shapes2.TabIndex = 22;
-            this.guna2Shapes2.Text = "guna2Shapes2";
-            this.guna2Shapes2.UseTransparentBackground = true;
-            this.guna2Shapes2.Zoom = 100;
-            // 
             // guna2Shapes3
             // 
             this.guna2Shapes3.BackColor = System.Drawing.Color.Transparent;
             this.guna2Shapes3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2Shapes3.BorderThickness = 1;
             this.guna2Shapes3.FillColor = System.Drawing.Color.Transparent;
             this.guna2Shapes3.Location = new System.Drawing.Point(3, 3);
             this.guna2Shapes3.Name = "guna2Shapes3";
@@ -354,10 +104,29 @@
             this.guna2Shapes3.UseTransparentBackground = true;
             this.guna2Shapes3.Zoom = 100;
             // 
+            // guna2Shapes2
+            // 
+            this.guna2Shapes2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Shapes2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2Shapes2.BorderThickness = 1;
+            this.guna2Shapes2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(70)))), ((int)(((byte)(100)))));
+            this.guna2Shapes2.Location = new System.Drawing.Point(58, 3);
+            this.guna2Shapes2.Name = "guna2Shapes2";
+            this.guna2Shapes2.PolygonSkip = 1;
+            this.guna2Shapes2.Rotate = 0F;
+            this.guna2Shapes2.RoundedRadius = 5;
+            this.guna2Shapes2.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rounded;
+            this.guna2Shapes2.Size = new System.Drawing.Size(49, 13);
+            this.guna2Shapes2.TabIndex = 22;
+            this.guna2Shapes2.Text = "guna2Shapes2";
+            this.guna2Shapes2.UseTransparentBackground = true;
+            this.guna2Shapes2.Zoom = 100;
+            // 
             // guna2Shapes1
             // 
             this.guna2Shapes1.BackColor = System.Drawing.Color.Transparent;
             this.guna2Shapes1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2Shapes1.BorderThickness = 1;
             this.guna2Shapes1.FillColor = System.Drawing.Color.Transparent;
             this.guna2Shapes1.Location = new System.Drawing.Point(113, 3);
             this.guna2Shapes1.Name = "guna2Shapes1";
@@ -370,49 +139,268 @@
             this.guna2Shapes1.Text = "guna2Shapes1";
             this.guna2Shapes1.UseTransparentBackground = true;
             this.guna2Shapes1.Zoom = 100;
+            this.guna2Shapes1.Click += new System.EventHandler(this.guna2Shapes1_Click);
             // 
-            // flowLayoutPanel3
+            // flowLayoutPanel1
             // 
-            this.flowLayoutPanel3.AutoSize = true;
-            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel3.Controls.Add(this.guna2Button2);
-            this.flowLayoutPanel3.Controls.Add(this.guna2Button1);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(396, 610);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(194, 34);
-            this.flowLayoutPanel3.TabIndex = 31;
+            this.flowLayoutPanel1.Controls.Add(this.guna2Panel9);
+            this.flowLayoutPanel1.Controls.Add(this.guna2Panel12);
+            this.flowLayoutPanel1.Controls.Add(this.guna2Panel11);
+            this.flowLayoutPanel1.Controls.Add(this.guna2Panel13);
+            this.flowLayoutPanel1.Controls.Add(this.guna2Panel10);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(82, 58);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(440, 540);
+            this.flowLayoutPanel1.TabIndex = 19;
             // 
-            // guna2Button2
+            // guna2Panel9
             // 
-            this.guna2Button2.BorderRadius = 10;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(70)))), ((int)(((byte)(100)))));
-            this.guna2Button2.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Location = new System.Drawing.Point(3, 3);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(91, 28);
-            this.guna2Button2.TabIndex = 29;
-            this.guna2Button2.Text = "Previous";
+            this.guna2Panel9.Controls.Add(this.guna2HtmlLabel3);
+            this.guna2Panel9.Controls.Add(this.tbxStreetName);
+            this.guna2Panel9.Location = new System.Drawing.Point(3, 3);
+            this.guna2Panel9.Name = "guna2Panel9";
+            this.guna2Panel9.Size = new System.Drawing.Size(430, 84);
+            this.guna2Panel9.TabIndex = 15;
             // 
-            // guna2Button1
+            // guna2HtmlLabel3
             // 
-            this.guna2Button1.BorderRadius = 10;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(70)))), ((int)(((byte)(100)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(100, 3);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(91, 28);
-            this.guna2Button1.TabIndex = 28;
-            this.guna2Button1.Text = "Next";
+            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(0, 21);
+            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(430, 27);
+            this.guna2HtmlLabel3.TabIndex = 8;
+            this.guna2HtmlLabel3.Text = "Street Name:";
+            this.guna2HtmlLabel3.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbxStreetName
+            // 
+            this.tbxStreetName.Animated = true;
+            this.tbxStreetName.BackColor = System.Drawing.Color.White;
+            this.tbxStreetName.BorderColor = System.Drawing.Color.Black;
+            this.tbxStreetName.BorderThickness = 0;
+            this.tbxStreetName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxStreetName.DefaultText = "";
+            this.tbxStreetName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxStreetName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxStreetName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxStreetName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxStreetName.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbxStreetName.FillColor = System.Drawing.Color.Silver;
+            this.tbxStreetName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxStreetName.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
+            this.tbxStreetName.ForeColor = System.Drawing.Color.Black;
+            this.tbxStreetName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxStreetName.Location = new System.Drawing.Point(0, 48);
+            this.tbxStreetName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbxStreetName.Name = "tbxStreetName";
+            this.tbxStreetName.PlaceholderText = "";
+            this.tbxStreetName.SelectedText = "";
+            this.tbxStreetName.Size = new System.Drawing.Size(430, 36);
+            this.tbxStreetName.TabIndex = 14;
+            // 
+            // guna2Panel12
+            // 
+            this.guna2Panel12.Controls.Add(this.guna2HtmlLabel6);
+            this.guna2Panel12.Controls.Add(this.tbxBarangay);
+            this.guna2Panel12.Location = new System.Drawing.Point(3, 93);
+            this.guna2Panel12.Name = "guna2Panel12";
+            this.guna2Panel12.Size = new System.Drawing.Size(430, 84);
+            this.guna2Panel12.TabIndex = 18;
+            // 
+            // guna2HtmlLabel6
+            // 
+            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(0, 21);
+            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(430, 27);
+            this.guna2HtmlLabel6.TabIndex = 8;
+            this.guna2HtmlLabel6.Text = "Barangay:";
+            this.guna2HtmlLabel6.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbxBarangay
+            // 
+            this.tbxBarangay.BackColor = System.Drawing.Color.White;
+            this.tbxBarangay.BorderColor = System.Drawing.Color.Black;
+            this.tbxBarangay.BorderThickness = 0;
+            this.tbxBarangay.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxBarangay.DefaultText = "";
+            this.tbxBarangay.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxBarangay.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxBarangay.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxBarangay.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxBarangay.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbxBarangay.FillColor = System.Drawing.Color.Silver;
+            this.tbxBarangay.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxBarangay.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
+            this.tbxBarangay.ForeColor = System.Drawing.Color.Black;
+            this.tbxBarangay.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxBarangay.Location = new System.Drawing.Point(0, 48);
+            this.tbxBarangay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbxBarangay.Name = "tbxBarangay";
+            this.tbxBarangay.PlaceholderText = "";
+            this.tbxBarangay.SelectedText = "";
+            this.tbxBarangay.Size = new System.Drawing.Size(430, 36);
+            this.tbxBarangay.TabIndex = 15;
+            // 
+            // guna2Panel11
+            // 
+            this.guna2Panel11.Controls.Add(this.guna2HtmlLabel5);
+            this.guna2Panel11.Controls.Add(this.tbxCity);
+            this.guna2Panel11.Location = new System.Drawing.Point(3, 183);
+            this.guna2Panel11.Name = "guna2Panel11";
+            this.guna2Panel11.Size = new System.Drawing.Size(430, 84);
+            this.guna2Panel11.TabIndex = 17;
+            // 
+            // guna2HtmlLabel5
+            // 
+            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(0, 21);
+            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(430, 27);
+            this.guna2HtmlLabel5.TabIndex = 8;
+            this.guna2HtmlLabel5.Text = "City/Municipality";
+            this.guna2HtmlLabel5.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbxCity
+            // 
+            this.tbxCity.BackColor = System.Drawing.Color.Silver;
+            this.tbxCity.BorderColor = System.Drawing.Color.Black;
+            this.tbxCity.BorderThickness = 0;
+            this.tbxCity.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxCity.DefaultText = "";
+            this.tbxCity.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxCity.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxCity.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxCity.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxCity.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbxCity.FillColor = System.Drawing.Color.Silver;
+            this.tbxCity.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxCity.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
+            this.tbxCity.ForeColor = System.Drawing.Color.Black;
+            this.tbxCity.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxCity.Location = new System.Drawing.Point(0, 48);
+            this.tbxCity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbxCity.Name = "tbxCity";
+            this.tbxCity.PlaceholderText = "";
+            this.tbxCity.SelectedText = "";
+            this.tbxCity.Size = new System.Drawing.Size(430, 36);
+            this.tbxCity.TabIndex = 15;
+            // 
+            // guna2Panel13
+            // 
+            this.guna2Panel13.Controls.Add(this.guna2HtmlLabel7);
+            this.guna2Panel13.Controls.Add(this.tbxZipCode);
+            this.guna2Panel13.Location = new System.Drawing.Point(3, 273);
+            this.guna2Panel13.Name = "guna2Panel13";
+            this.guna2Panel13.Size = new System.Drawing.Size(430, 84);
+            this.guna2Panel13.TabIndex = 17;
+            // 
+            // guna2HtmlLabel7
+            // 
+            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(0, 21);
+            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(430, 27);
+            this.guna2HtmlLabel7.TabIndex = 8;
+            this.guna2HtmlLabel7.Text = "Zip Code:";
+            this.guna2HtmlLabel7.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbxZipCode
+            // 
+            this.tbxZipCode.BackColor = System.Drawing.Color.Silver;
+            this.tbxZipCode.BorderColor = System.Drawing.Color.Black;
+            this.tbxZipCode.BorderThickness = 0;
+            this.tbxZipCode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxZipCode.DefaultText = "";
+            this.tbxZipCode.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxZipCode.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxZipCode.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxZipCode.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxZipCode.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbxZipCode.FillColor = System.Drawing.Color.Silver;
+            this.tbxZipCode.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxZipCode.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
+            this.tbxZipCode.ForeColor = System.Drawing.Color.Black;
+            this.tbxZipCode.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxZipCode.Location = new System.Drawing.Point(0, 48);
+            this.tbxZipCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbxZipCode.Name = "tbxZipCode";
+            this.tbxZipCode.PlaceholderText = "";
+            this.tbxZipCode.SelectedText = "";
+            this.tbxZipCode.Size = new System.Drawing.Size(430, 36);
+            this.tbxZipCode.TabIndex = 14;
+            // 
+            // guna2Panel10
+            // 
+            this.guna2Panel10.Controls.Add(this.guna2HtmlLabel4);
+            this.guna2Panel10.Controls.Add(this.tbxProvince);
+            this.guna2Panel10.Location = new System.Drawing.Point(3, 363);
+            this.guna2Panel10.Name = "guna2Panel10";
+            this.guna2Panel10.Size = new System.Drawing.Size(430, 84);
+            this.guna2Panel10.TabIndex = 16;
+            // 
+            // guna2HtmlLabel4
+            // 
+            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(0, 21);
+            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(430, 27);
+            this.guna2HtmlLabel4.TabIndex = 8;
+            this.guna2HtmlLabel4.Text = "State/Province";
+            this.guna2HtmlLabel4.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbxProvince
+            // 
+            this.tbxProvince.BackColor = System.Drawing.Color.Silver;
+            this.tbxProvince.BorderColor = System.Drawing.Color.Black;
+            this.tbxProvince.BorderThickness = 0;
+            this.tbxProvince.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxProvince.DefaultText = "";
+            this.tbxProvince.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxProvince.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxProvince.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxProvince.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxProvince.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbxProvince.FillColor = System.Drawing.Color.Silver;
+            this.tbxProvince.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxProvince.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
+            this.tbxProvince.ForeColor = System.Drawing.Color.Black;
+            this.tbxProvince.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxProvince.Location = new System.Drawing.Point(0, 48);
+            this.tbxProvince.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbxProvince.Name = "tbxProvince";
+            this.tbxProvince.PlaceholderText = "";
+            this.tbxProvince.SelectedText = "";
+            this.tbxProvince.Size = new System.Drawing.Size(430, 36);
+            this.tbxProvince.TabIndex = 14;
+            // 
+            // guna2HtmlLabel2
+            // 
+            this.guna2HtmlLabel2.AutoSize = false;
+            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(0, 0);
+            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(639, 42);
+            this.guna2HtmlLabel2.TabIndex = 7;
+            this.guna2HtmlLabel2.Text = "Address Information:";
             // 
             // UC_AddressInfo
             // 
@@ -421,21 +409,21 @@
             this.Controls.Add(this.guna2Panel15);
             this.Name = "UC_AddressInfo";
             this.Size = new System.Drawing.Size(639, 658);
+            this.Load += new System.EventHandler(this.UC_AddressInfo_Load);
             this.guna2Panel15.ResumeLayout(false);
             this.guna2Panel15.PerformLayout();
-            this.guna2Panel13.ResumeLayout(false);
-            this.guna2Panel13.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.guna2Panel9.ResumeLayout(false);
+            this.guna2Panel9.PerformLayout();
             this.guna2Panel12.ResumeLayout(false);
             this.guna2Panel12.PerformLayout();
             this.guna2Panel11.ResumeLayout(false);
             this.guna2Panel11.PerformLayout();
+            this.guna2Panel13.ResumeLayout(false);
+            this.guna2Panel13.PerformLayout();
             this.guna2Panel10.ResumeLayout(false);
             this.guna2Panel10.PerformLayout();
-            this.guna2Panel9.ResumeLayout(false);
-            this.guna2Panel9.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -444,19 +432,18 @@
 
         private Guna.UI2.WinForms.Guna2Panel guna2Panel15;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel13;
-        private Guna.UI2.WinForms.Guna2TextBox tbxContactNumber;
+        private Guna.UI2.WinForms.Guna2TextBox tbxZipCode;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel12;
-        private Guna.UI2.WinForms.Guna2ComboBox tbxCivilStatus;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel11;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Guna.UI2.WinForms.Guna2TextBox tbxCity;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel10;
-        private Guna.UI2.WinForms.Guna2TextBox tbxEmail;
+        private Guna.UI2.WinForms.Guna2TextBox tbxProvince;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel9;
-        private Guna.UI2.WinForms.Guna2TextBox tbxName;
+        private Guna.UI2.WinForms.Guna2TextBox tbxStreetName;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -464,8 +451,6 @@
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes2;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes3;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2TextBox tbxBarangay;
     }
 }

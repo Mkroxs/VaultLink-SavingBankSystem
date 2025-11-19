@@ -155,6 +155,8 @@
             this.btnTransfer.Size = new System.Drawing.Size(245, 44);
             this.btnTransfer.TabIndex = 12;
             this.btnTransfer.Text = "Transfer";
+            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click_1);
+            this.btnTransfer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnTransfer_MouseClick_1);
             // 
             // btnDeposit
             // 
@@ -174,6 +176,8 @@
             this.btnDeposit.Size = new System.Drawing.Size(245, 44);
             this.btnDeposit.TabIndex = 11;
             this.btnDeposit.Text = "Deposit";
+            this.btnDeposit.Click += new System.EventHandler(this.btnDeposit_Click_1);
+            this.btnDeposit.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDeposit_MouseClick_1);
             // 
             // btnWithdraw
             // 
@@ -375,7 +379,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UC_AdminSidebar";
-            this.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.Padding = new System.Windows.Forms.Padding(7);
             this.Size = new System.Drawing.Size(356, 836);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
