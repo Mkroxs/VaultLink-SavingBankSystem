@@ -1,0 +1,592 @@
+﻿namespace VaultLinkBankSystem.UserControls.Admin
+{
+    partial class UC_Transfer
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
+            this.tbxAccountNumber = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Panel13 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblTotalBalance = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Panel9 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblName = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Panel12 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblCustomerID = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.tbxAmount = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Panel10 = new Guna.UI2.WinForms.Guna2Panel();
+            this.tbxRecipientNumber = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Panel11 = new Guna.UI2.WinForms.Guna2Panel();
+            this.cbxSelectAccount = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.guna2Panel6.SuspendLayout();
+            this.guna2Panel3.SuspendLayout();
+            this.guna2Panel7.SuspendLayout();
+            this.guna2Panel5.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.guna2Panel1.SuspendLayout();
+            this.guna2Panel13.SuspendLayout();
+            this.guna2Panel9.SuspendLayout();
+            this.guna2Panel12.SuspendLayout();
+            this.guna2Panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.guna2Panel4.SuspendLayout();
+            this.guna2Panel2.SuspendLayout();
+            this.guna2Panel10.SuspendLayout();
+            this.guna2Panel11.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.guna2Panel6, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.guna2Panel5, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1200, 700);
+            this.tableLayoutPanel1.TabIndex = 20;
+            // 
+            // guna2Panel6
+            // 
+            this.guna2Panel6.Controls.Add(this.guna2Panel3);
+            this.guna2Panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel6.Location = new System.Drawing.Point(3, 60);
+            this.guna2Panel6.Name = "guna2Panel6";
+            this.guna2Panel6.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.guna2Panel6.Size = new System.Drawing.Size(1194, 108);
+            this.guna2Panel6.TabIndex = 20;
+            // 
+            // guna2Panel3
+            // 
+            this.guna2Panel3.Controls.Add(this.guna2Panel7);
+            this.guna2Panel3.Controls.Add(this.btnSearch);
+            this.guna2Panel3.Controls.Add(this.guna2HtmlLabel2);
+            this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Panel3.Location = new System.Drawing.Point(15, 0);
+            this.guna2Panel3.Name = "guna2Panel3";
+            this.guna2Panel3.Padding = new System.Windows.Forms.Padding(15, 0, 15, 20);
+            this.guna2Panel3.Size = new System.Drawing.Size(1164, 108);
+            this.guna2Panel3.TabIndex = 5;
+            // 
+            // guna2Panel7
+            // 
+            this.guna2Panel7.Controls.Add(this.tbxAccountNumber);
+            this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Panel7.Location = new System.Drawing.Point(15, 49);
+            this.guna2Panel7.Name = "guna2Panel7";
+            this.guna2Panel7.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.guna2Panel7.Size = new System.Drawing.Size(996, 39);
+            this.guna2Panel7.TabIndex = 5;
+            // 
+            // tbxAccountNumber
+            // 
+            this.tbxAccountNumber.BorderRadius = 20;
+            this.tbxAccountNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxAccountNumber.DefaultText = "Search Account Number";
+            this.tbxAccountNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxAccountNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxAccountNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxAccountNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxAccountNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxAccountNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxAccountNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbxAccountNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxAccountNumber.IconLeft = global::VaultLinkBankSystem.Properties.Resources.search;
+            this.tbxAccountNumber.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.tbxAccountNumber.Location = new System.Drawing.Point(0, 0);
+            this.tbxAccountNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxAccountNumber.Name = "tbxAccountNumber";
+            this.tbxAccountNumber.PlaceholderText = "";
+            this.tbxAccountNumber.SelectedText = "";
+            this.tbxAccountNumber.Size = new System.Drawing.Size(981, 39);
+            this.tbxAccountNumber.TabIndex = 3;
+            this.tbxAccountNumber.TextOffset = new System.Drawing.Point(10, 0);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BorderRadius = 20;
+            this.btnSearch.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSearch.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSearch.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
+            this.btnSearch.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(1011, 49);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(138, 39);
+            this.btnSearch.TabIndex = 4;
+            this.btnSearch.Text = "Search";
+            // 
+            // guna2HtmlLabel2
+            // 
+            this.guna2HtmlLabel2.AutoSize = false;
+            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Malgun Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(15, 0);
+            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(1134, 49);
+            this.guna2HtmlLabel2.TabIndex = 7;
+            this.guna2HtmlLabel2.Text = "Account Number:";
+            this.guna2HtmlLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2Panel5
+            // 
+            this.guna2Panel5.Controls.Add(this.guna2HtmlLabel1);
+            this.guna2Panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel5.Location = new System.Drawing.Point(3, 3);
+            this.guna2Panel5.Name = "guna2Panel5";
+            this.guna2Panel5.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+            this.guna2Panel5.Size = new System.Drawing.Size(1194, 51);
+            this.guna2Panel5.TabIndex = 19;
+            // 
+            // guna2HtmlLabel1
+            // 
+            this.guna2HtmlLabel1.AutoSize = false;
+            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold);
+            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(10, 5);
+            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(1179, 50);
+            this.guna2HtmlLabel1.TabIndex = 6;
+            this.guna2HtmlLabel1.Text = "Transfer";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.guna2Panel1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.guna2Panel4, 1, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 174);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1194, 523);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2Panel1.Controls.Add(this.guna2Panel13);
+            this.guna2Panel1.Controls.Add(this.guna2Panel9);
+            this.guna2Panel1.Controls.Add(this.guna2Panel12);
+            this.guna2Panel1.Controls.Add(this.guna2Panel8);
+            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Panel1.Location = new System.Drawing.Point(3, 3);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(717, 517);
+            this.guna2Panel1.TabIndex = 16;
+            // 
+            // guna2Panel13
+            // 
+            this.guna2Panel13.Controls.Add(this.lblTotalBalance);
+            this.guna2Panel13.Controls.Add(this.guna2HtmlLabel7);
+            this.guna2Panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel13.Location = new System.Drawing.Point(0, 302);
+            this.guna2Panel13.Name = "guna2Panel13";
+            this.guna2Panel13.Size = new System.Drawing.Size(717, 50);
+            this.guna2Panel13.TabIndex = 18;
+            // 
+            // lblTotalBalance
+            // 
+            this.lblTotalBalance.AutoSize = false;
+            this.lblTotalBalance.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalBalance.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.lblTotalBalance.ForeColor = System.Drawing.Color.Transparent;
+            this.lblTotalBalance.Location = new System.Drawing.Point(160, 4);
+            this.lblTotalBalance.Name = "lblTotalBalance";
+            this.lblTotalBalance.Size = new System.Drawing.Size(160, 40);
+            this.lblTotalBalance.TabIndex = 15;
+            this.lblTotalBalance.Text = "--------";
+            // 
+            // guna2HtmlLabel7
+            // 
+            this.guna2HtmlLabel7.AutoSize = false;
+            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(6, 4);
+            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(280, 40);
+            this.guna2HtmlLabel7.TabIndex = 14;
+            this.guna2HtmlLabel7.Text = "Total Balance:";
+            // 
+            // guna2Panel9
+            // 
+            this.guna2Panel9.Controls.Add(this.lblName);
+            this.guna2Panel9.Controls.Add(this.guna2HtmlLabel6);
+            this.guna2Panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel9.Location = new System.Drawing.Point(0, 250);
+            this.guna2Panel9.Name = "guna2Panel9";
+            this.guna2Panel9.Size = new System.Drawing.Size(717, 52);
+            this.guna2Panel9.TabIndex = 17;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = false;
+            this.lblName.BackColor = System.Drawing.Color.Transparent;
+            this.lblName.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.lblName.ForeColor = System.Drawing.Color.Transparent;
+            this.lblName.Location = new System.Drawing.Point(100, 4);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(288, 40);
+            this.lblName.TabIndex = 16;
+            this.lblName.Text = "---------";
+            // 
+            // guna2HtmlLabel6
+            // 
+            this.guna2HtmlLabel6.AutoSize = false;
+            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(6, 4);
+            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(78, 38);
+            this.guna2HtmlLabel6.TabIndex = 13;
+            this.guna2HtmlLabel6.Text = "Name:";
+            // 
+            // guna2Panel12
+            // 
+            this.guna2Panel12.Controls.Add(this.lblCustomerID);
+            this.guna2Panel12.Controls.Add(this.guna2HtmlLabel5);
+            this.guna2Panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel12.Location = new System.Drawing.Point(0, 194);
+            this.guna2Panel12.Name = "guna2Panel12";
+            this.guna2Panel12.Size = new System.Drawing.Size(717, 56);
+            this.guna2Panel12.TabIndex = 18;
+            // 
+            // lblCustomerID
+            // 
+            this.lblCustomerID.AutoSize = false;
+            this.lblCustomerID.BackColor = System.Drawing.Color.Transparent;
+            this.lblCustomerID.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.lblCustomerID.ForeColor = System.Drawing.Color.Transparent;
+            this.lblCustomerID.Location = new System.Drawing.Point(152, 10);
+            this.lblCustomerID.Name = "lblCustomerID";
+            this.lblCustomerID.Size = new System.Drawing.Size(258, 40);
+            this.lblCustomerID.TabIndex = 17;
+            this.lblCustomerID.Text = "---------";
+            // 
+            // guna2HtmlLabel5
+            // 
+            this.guna2HtmlLabel5.AutoSize = false;
+            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(6, 8);
+            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(346, 40);
+            this.guna2HtmlLabel5.TabIndex = 12;
+            this.guna2HtmlLabel5.Text = "Customer ID:";
+            // 
+            // guna2Panel8
+            // 
+            this.guna2Panel8.Controls.Add(this.pictureBox1);
+            this.guna2Panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel8.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel8.Name = "guna2Panel8";
+            this.guna2Panel8.Padding = new System.Windows.Forms.Padding(10, 15, 160, 15);
+            this.guna2Panel8.Size = new System.Drawing.Size(717, 194);
+            this.guna2Panel8.TabIndex = 16;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Location = new System.Drawing.Point(10, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(182, 164);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // guna2Panel4
+            // 
+            this.guna2Panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2Panel4.Controls.Add(this.guna2Panel2);
+            this.guna2Panel4.Controls.Add(this.guna2Button2);
+            this.guna2Panel4.Controls.Add(this.guna2Panel10);
+            this.guna2Panel4.Controls.Add(this.guna2Panel11);
+            this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Panel4.Location = new System.Drawing.Point(726, 3);
+            this.guna2Panel4.Name = "guna2Panel4";
+            this.guna2Panel4.Padding = new System.Windows.Forms.Padding(40);
+            this.guna2Panel4.Size = new System.Drawing.Size(465, 517);
+            this.guna2Panel4.TabIndex = 17;
+            // 
+            // guna2Panel2
+            // 
+            this.guna2Panel2.Controls.Add(this.tbxAmount);
+            this.guna2Panel2.Controls.Add(this.guna2HtmlLabel8);
+            this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel2.Location = new System.Drawing.Point(40, 260);
+            this.guna2Panel2.Name = "guna2Panel2";
+            this.guna2Panel2.Padding = new System.Windows.Forms.Padding(0, 10, 0, 20);
+            this.guna2Panel2.Size = new System.Drawing.Size(385, 112);
+            this.guna2Panel2.TabIndex = 19;
+            // 
+            // tbxAmount
+            // 
+            this.tbxAmount.BorderRadius = 20;
+            this.tbxAmount.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxAmount.DefaultText = "Amount";
+            this.tbxAmount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxAmount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxAmount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxAmount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxAmount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxAmount.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbxAmount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxAmount.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.tbxAmount.Location = new System.Drawing.Point(0, 50);
+            this.tbxAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxAmount.Name = "tbxAmount";
+            this.tbxAmount.PlaceholderText = "";
+            this.tbxAmount.SelectedText = "";
+            this.tbxAmount.Size = new System.Drawing.Size(385, 42);
+            this.tbxAmount.TabIndex = 10;
+            this.tbxAmount.TextOffset = new System.Drawing.Point(10, 0);
+            // 
+            // guna2HtmlLabel8
+            // 
+            this.guna2HtmlLabel8.AutoSize = false;
+            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2HtmlLabel8.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel8.Location = new System.Drawing.Point(0, 10);
+            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
+            this.guna2HtmlLabel8.Size = new System.Drawing.Size(385, 40);
+            this.guna2HtmlLabel8.TabIndex = 9;
+            this.guna2HtmlLabel8.Text = "Amount:";
+            // 
+            // guna2Button2
+            // 
+            this.guna2Button2.BorderRadius = 20;
+            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
+            this.guna2Button2.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button2.ForeColor = System.Drawing.Color.White;
+            this.guna2Button2.Location = new System.Drawing.Point(40, 429);
+            this.guna2Button2.Name = "guna2Button2";
+            this.guna2Button2.Size = new System.Drawing.Size(385, 48);
+            this.guna2Button2.TabIndex = 6;
+            this.guna2Button2.Text = "Confirm";
+            // 
+            // guna2Panel10
+            // 
+            this.guna2Panel10.Controls.Add(this.tbxRecipientNumber);
+            this.guna2Panel10.Controls.Add(this.guna2HtmlLabel4);
+            this.guna2Panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel10.Location = new System.Drawing.Point(40, 148);
+            this.guna2Panel10.Name = "guna2Panel10";
+            this.guna2Panel10.Padding = new System.Windows.Forms.Padding(0, 10, 0, 20);
+            this.guna2Panel10.Size = new System.Drawing.Size(385, 112);
+            this.guna2Panel10.TabIndex = 18;
+            // 
+            // tbxRecipientNumber
+            // 
+            this.tbxRecipientNumber.BorderRadius = 20;
+            this.tbxRecipientNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxRecipientNumber.DefaultText = "Amount";
+            this.tbxRecipientNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxRecipientNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxRecipientNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxRecipientNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxRecipientNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxRecipientNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxRecipientNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbxRecipientNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxRecipientNumber.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.tbxRecipientNumber.Location = new System.Drawing.Point(0, 50);
+            this.tbxRecipientNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxRecipientNumber.Name = "tbxRecipientNumber";
+            this.tbxRecipientNumber.PlaceholderText = "";
+            this.tbxRecipientNumber.SelectedText = "";
+            this.tbxRecipientNumber.Size = new System.Drawing.Size(385, 42);
+            this.tbxRecipientNumber.TabIndex = 10;
+            this.tbxRecipientNumber.TextOffset = new System.Drawing.Point(10, 0);
+            // 
+            // guna2HtmlLabel4
+            // 
+            this.guna2HtmlLabel4.AutoSize = false;
+            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(0, 10);
+            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(385, 40);
+            this.guna2HtmlLabel4.TabIndex = 9;
+            this.guna2HtmlLabel4.Text = "Recipient Number:";
+            // 
+            // guna2Panel11
+            // 
+            this.guna2Panel11.Controls.Add(this.cbxSelectAccount);
+            this.guna2Panel11.Controls.Add(this.guna2HtmlLabel3);
+            this.guna2Panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel11.Location = new System.Drawing.Point(40, 40);
+            this.guna2Panel11.Name = "guna2Panel11";
+            this.guna2Panel11.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.guna2Panel11.Size = new System.Drawing.Size(385, 108);
+            this.guna2Panel11.TabIndex = 18;
+            // 
+            // cbxSelectAccount
+            // 
+            this.cbxSelectAccount.BackColor = System.Drawing.Color.White;
+            this.cbxSelectAccount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbxSelectAccount.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbxSelectAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSelectAccount.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbxSelectAccount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbxSelectAccount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxSelectAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbxSelectAccount.ItemHeight = 30;
+            this.cbxSelectAccount.Location = new System.Drawing.Point(0, 60);
+            this.cbxSelectAccount.Name = "cbxSelectAccount";
+            this.cbxSelectAccount.Size = new System.Drawing.Size(385, 36);
+            this.cbxSelectAccount.TabIndex = 11;
+            // 
+            // guna2HtmlLabel3
+            // 
+            this.guna2HtmlLabel3.AutoSize = false;
+            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(0, 10);
+            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(385, 50);
+            this.guna2HtmlLabel3.TabIndex = 8;
+            this.guna2HtmlLabel3.Text = "Select Account:";
+            // 
+            // UC_Transfer
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Name = "UC_Transfer";
+            this.Size = new System.Drawing.Size(1200, 700);
+            this.Load += new System.EventHandler(this.UC_Transfer_Load);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.guna2Panel6.ResumeLayout(false);
+            this.guna2Panel3.ResumeLayout(false);
+            this.guna2Panel7.ResumeLayout(false);
+            this.guna2Panel5.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.guna2Panel1.ResumeLayout(false);
+            this.guna2Panel13.ResumeLayout(false);
+            this.guna2Panel9.ResumeLayout(false);
+            this.guna2Panel12.ResumeLayout(false);
+            this.guna2Panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.guna2Panel4.ResumeLayout(false);
+            this.guna2Panel2.ResumeLayout(false);
+            this.guna2Panel10.ResumeLayout(false);
+            this.guna2Panel11.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
+        private Guna.UI2.WinForms.Guna2TextBox tbxAccountNumber;
+        private Guna.UI2.WinForms.Guna2Button btnSearch;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel13;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTotalBalance;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel9;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblName;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel12;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblCustomerID;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel8;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel10;
+        private Guna.UI2.WinForms.Guna2TextBox tbxRecipientNumber;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel11;
+        private Guna.UI2.WinForms.Guna2ComboBox cbxSelectAccount;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Guna.UI2.WinForms.Guna2TextBox tbxAmount;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
+    }
+}

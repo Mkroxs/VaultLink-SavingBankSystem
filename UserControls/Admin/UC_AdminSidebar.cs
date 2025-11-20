@@ -6,64 +6,72 @@ namespace VaultLinkBankSystem.Forms.Admin
 {
     public partial class UC_AdminSidebar : UserControl
     {
-        private bool isExpanded = false;
-        private bool isAnimating = false;
-        private int step = 0;
-
-      
         public event EventHandler DashboardClicked;
         public event EventHandler CustomerManagementClicked;
         public event EventHandler AccountManagementClicked;
         public event EventHandler WithdrawClicked;
+        public event EventHandler DepositClicked;
+        public event EventHandler TransferClicked;
         public event EventHandler ReportsClicked;
         public event EventHandler VerifyKYCClicked;
+        public event EventHandler InterestComputationClicked;
+
+        private bool isExpanded = false;
+        private bool isAnimating = false;
+        private int step = 0;
+
         public UC_AdminSidebar()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            this.UpdateStyles();
 
-            timerSlide.Tick -= timerSlide_Tick;
-            timerSlide.Tick += timerSlide_Tick;
+            try
+            {
+                btnWithdraw.Visible = false;
+                btnDeposit.Visible = false;
+                btnTransfer.Visible = false;
 
-       
-            btnWithdraw.Visible = false;
-            btnDeposit.Visible = false;
-            btnTransfer.Visible = false;
-            btnVerifyKYC.Visible = false;
+                btnWithdraw.Dock = DockStyle.Top;
+                btnDeposit.Dock = DockStyle.Top;
+                btnTransfer.Dock = DockStyle.Top;
 
-            btnWithdraw.Dock = DockStyle.Top;
-            btnDeposit.Dock = DockStyle.Top;
-            btnTransfer.Dock = DockStyle.Top;
+                timerSlide.Interval = 20;
+                timerSlide.Tick -= timerSlide_Tick;
+                timerSlide.Tick += timerSlide_Tick;
 
-        
-            timerSlide.Interval = 20;
+                btnTransactions.Click -= btnTransactions_Click;
+                btnTransactions.Click += btnTransactions_Click;
 
-          
-            btnTransactions.Click += btnTransactions_Click;
+                btnDashboard.Click -= BtnDashboard_Click;
+                btnDashboard.Click += BtnDashboard_Click;
 
-            btnDashboard.Click += BtnDashboard_Click;
-            btnDashboard.MouseClick += BtnDashboard_MouseClick;
+                btnCustomerManagement.Click -= BtnCustomerManagement_Click;
+                btnCustomerManagement.Click += BtnCustomerManagement_Click;
 
-            btnCustomerManagement.Click += BtnCustomerManagement_Click;
-            btnCustomerManagement.MouseClick += BtnCustomerManagement_MouseClick;
+                btnAccountManagement.Click -= BtnAccountManagement_Click;
+                btnAccountManagement.Click += BtnAccountManagement_Click;
 
-            
-            btnAccountManagement.Click += btnAccountManagement_Click;
-            btnAccountManagement.MouseClick += btnAccountManagement_MouseClick;
+                btnWithdraw.Click -= BtnWithdraw_Click;
+                btnWithdraw.Click += BtnWithdraw_Click;
 
-            btnWithdraw.Click += btnWithdraw_Click;
-            btnWithdraw.MouseClick += btnWithdraw_MouseClick;
+                btnDeposit.Click -= BtnDeposit_Click;
+                btnDeposit.Click += BtnDeposit_Click;
 
-            btnReports.Click += btnReports_Click;
-            btnReports.MouseClick += btnReports_MouseClick;
+                btnTransfer.Click -= BtnTransfer_Click;
+                btnTransfer.Click += BtnTransfer_Click;
 
-            btnVerifyKYC.Click += btnVerifyKYC_Click;
-            btnVerifyKYC.MouseClick += btnVerifyKYC_MouseClick;
+                btnReports.Click -= BtnReports_Click;
+                btnReports.Click += BtnReports_Click;
+
+                btnVerifyKYC.Click -= BtnVerifyKYC_Click;
+                btnVerifyKYC.Click += BtnVerifyKYC_Click;
+
+                btnInterestComputation.Click -= BtnInterestComputation_Click;
+                btnInterestComputation.Click += BtnInterestComputation_Click;
+            }
+            catch
+            {
+            }
         }
-
-
 
         private void timerSlide_Tick(object sender, EventArgs e)
         {
@@ -71,45 +79,46 @@ namespace VaultLinkBankSystem.Forms.Admin
 
             if (!isExpanded)
             {
-              
                 if (step == 0) btnWithdraw.Visible = true;
                 else if (step == 1) btnDeposit.Visible = true;
                 else if (step == 2) btnTransfer.Visible = true;
-                else if (step == 3) btnVerifyKYC.Visible = true;
 
                 step++;
 
-                if (step > 3)
+                if (step > 2)
                 {
                     timerSlide.Stop();
                     isExpanded = true;
                     isAnimating = false;
                     step = 0;
 
-                    btnTransactions.CustomImages.Image =
-                        Properties.Resources.arrow_drop_down__1_;
+                    try
+                    {
+                        btnTransactions.CustomImages.Image = Properties.Resources.arrow_drop_down__1_;
+                    }
+                    catch { }
                 }
             }
             else
             {
-            
                 if (step == 0) btnTransfer.Visible = false;
                 else if (step == 1) btnDeposit.Visible = false;
                 else if (step == 2) btnWithdraw.Visible = false;
-                else if (step == 3) btnVerifyKYC.Visible = false;
-
 
                 step++;
 
-                if (step > 3)
+                if (step > 2)
                 {
                     timerSlide.Stop();
                     isExpanded = false;
                     isAnimating = false;
                     step = 0;
 
-                    btnTransactions.CustomImages.Image =
-                        Properties.Resources.arrow_right__1_1;
+                    try
+                    {
+                        btnTransactions.CustomImages.Image = Properties.Resources.arrow_right__1_1;
+                    }
+                    catch { }
                 }
             }
         }
@@ -121,54 +130,96 @@ namespace VaultLinkBankSystem.Forms.Admin
             timerSlide.Start();
         }
 
-
-   
         private void BtnDashboard_Click(object sender, EventArgs e)
         {
             DashboardClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void BtnDashboard_MouseClick(object sender, MouseEventArgs e)
-        {
-            DashboardClicked?.Invoke(this, EventArgs.Empty);
-        }
-
-
-     
         private void BtnCustomerManagement_Click(object sender, EventArgs e)
         {
             CustomerManagementClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void BtnCustomerManagement_MouseClick(object sender, MouseEventArgs e)
+        private void BtnAccountManagement_Click(object sender, EventArgs e)
         {
-            CustomerManagementClicked?.Invoke(this, EventArgs.Empty);
+            AccountManagementClicked?.Invoke(this, EventArgs.Empty);
         }
 
+        private void BtnWithdraw_Click(object sender, EventArgs e)
+        {
+            WithdrawClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void BtnDeposit_Click(object sender, EventArgs e)
+        {
+            DepositClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void BtnTransfer_Click(object sender, EventArgs e)
+        {
+            TransferClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void BtnReports_Click(object sender, EventArgs e)
+        {
+            ReportsClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void BtnVerifyKYC_Click(object sender, EventArgs e)
+        {
+            VerifyKYCClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void BtnInterestComputation_Click(object sender, EventArgs e)
+        {
+            InterestComputationClicked?.Invoke(this, EventArgs.Empty);
+        }
 
         private void timerSlide_Tick_1(object sender, EventArgs e) { }
         private void btnTransactions_MouseClick(object sender, MouseEventArgs e) { }
         private void guna2Button1_Click(object sender, EventArgs e) { }
         private void guna2Button2_Click(object sender, EventArgs e) { }
-        private void btnDashboard_Click_1(object sender, EventArgs e) { }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            Form parent = this.FindForm();
-            parent.Close();
-            frmLogin login = new frmLogin();
-            login.Show();
-        }
+        private void btnDashboard_MouseClick(object sender, MouseEventArgs e) { DashboardClicked?.Invoke(this, EventArgs.Empty); }
+        private void btnCustomerManagement_MouseClick(object sender, MouseEventArgs e) { CustomerManagementClicked?.Invoke(this, EventArgs.Empty); }
+        private void btnAccountManagement_MouseClick(object sender, MouseEventArgs e) { AccountManagementClicked?.Invoke(this, EventArgs.Empty); }
 
         private void btnAccountManagement_Click(object sender, EventArgs e)
         {
             AccountManagementClicked?.Invoke(this, EventArgs.Empty);
-
         }
 
-        private void btnAccountManagement_MouseClick(object sender, MouseEventArgs e)
+        private void btnDashboard_Click_1(object sender, EventArgs e)
         {
-            AccountManagementClicked?.Invoke(this, EventArgs.Empty);
+            DashboardClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            frmAdminDashboard frmAdminDashboard = (frmAdminDashboard)this.FindForm();
+            frmLogin loginForm = new frmLogin();
+            frmAdminDashboard.Hide();
+            loginForm.Show();
+            loginForm.BringToFront();
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            ReportsClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnReports_MouseClick(object sender, MouseEventArgs e)
+        {
+            ReportsClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnVerifyKYC_Click(object sender, EventArgs e)
+        {
+            VerifyKYCClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnVerifyKYC_MouseClick(object sender, MouseEventArgs e)
+        {
+            VerifyKYCClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnWithdraw_Click(object sender, EventArgs e)
@@ -181,26 +232,43 @@ namespace VaultLinkBankSystem.Forms.Admin
             WithdrawClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void btnReports_MouseClick(object sender, MouseEventArgs e)
+        private void btnDeposit_Click(object sender, EventArgs e)
         {
-            ReportsClicked?.Invoke(this, EventArgs.Empty);
+            DepositClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void btnReports_Click(object sender, EventArgs e)
+        private void btnDeposit_MouseClick(object sender, MouseEventArgs e)
         {
-            ReportsClicked?.Invoke(this, EventArgs.Empty);
+            DepositClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void btnVerifyKYC_Click(object sender, EventArgs e)
+        private void btnTransfer_Click(object sender, EventArgs e)
         {
+            TransferClicked?.Invoke(this, EventArgs.Empty);
+        }
 
-            VerifyKYCClicked?.Invoke(this, EventArgs.Empty);
+        private void btnTransfer_MouseClick(object sender, MouseEventArgs e)
+        {
+            TransferClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnDeposit_Click_1(object sender, EventArgs e)
+        {
 
         }
 
-        private void btnVerifyKYC_MouseClick(object sender, MouseEventArgs e)
+        private void btnTransfer_Click_1(object sender, EventArgs e)
         {
-            VerifyKYCClicked?.Invoke(this, EventArgs.Empty);
+
+        }
+
+        private void btnDeposit_MouseClick_1(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btnTransfer_MouseClick_1(object sender, MouseEventArgs e)
+        {
 
         }
     }

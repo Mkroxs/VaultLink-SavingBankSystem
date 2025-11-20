@@ -302,6 +302,7 @@
             this.iconPictureBox2.Size = new System.Drawing.Size(28, 28);
             this.iconPictureBox2.TabIndex = 9;
             this.iconPictureBox2.TabStop = false;
+            this.iconPictureBox2.Click += new System.EventHandler(this.iconPictureBox2_Click);
             this.iconPictureBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox2_MouseClick);
             // 
             // frmLogin

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VaultLinkBankSystem.Helpers;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -79,6 +80,15 @@ namespace VaultLinkBankSystem.UserControls.Admin
             guna2DataGridView1.Rows.Add("TX1003", "ACC2025-0002", "0002", "Transfer", "₱1,500", "01/04/2025", "Pending", "Transfer to 0003");
         }
 
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void UC_Reports_Load_1(object sender, EventArgs e)
+        {
+            UiHelpers.FixGuna2TextBoxVisibility(this);
+        }
     }
 
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VaultLinkBankSystem.Helpers;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -23,6 +24,11 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void UC_AccountManagement_Load(object sender, EventArgs e)
+        {
+            UiHelpers.FixGuna2TextBoxVisibility(this);
         }
     }
 }

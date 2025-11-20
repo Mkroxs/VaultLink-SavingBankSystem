@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VaultLinkBankSystem.Helpers;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -38,6 +39,11 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void UC_Withdraw_Load(object sender, EventArgs e)
+        {
+            UiHelpers.FixGuna2TextBoxVisibility(this);
         }
     }
 }
