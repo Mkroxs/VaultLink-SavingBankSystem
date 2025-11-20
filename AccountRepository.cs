@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace VaultLinkBankSystem
 
         public AccountRepository()
         {
-            _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\JB\Source\Repos\VaultLink-SavingBankSystem\Banking.mdf;Integrated Security=True";
+            _connectionString = ConfigurationManager.ConnectionStrings["BankingDB"].ConnectionString;
         }
 
         // Create account (much simpler now - no KYC needed!)

@@ -47,14 +47,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 var allCustomers = _customerRepo.GetAllCustomers();
                 var verifiedCustomers = allCustomers.Where(c => c.IsKYCVerified).ToList();
 
-                // If you have a ComboBox for customer selection
-                if (cmbCustomer != null)
-                {
-                    cmbCustomer.DataSource = verifiedCustomers;
-                    cmbCustomer.DisplayMember = "FullName"; // Shows customer name
-                    cmbCustomer.ValueMember = "CustomerID"; // Stores customer ID
-                    cmbCustomer.SelectedIndex = -1; // No selection by default
-                }
+                
             }
             catch (Exception ex)
             {

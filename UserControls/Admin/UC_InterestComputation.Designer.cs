@@ -77,19 +77,19 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1388, 652);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1261, 706);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
             // guna2Panel7
             // 
+            this.guna2Panel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guna2Panel7.Controls.Add(this.btnComputeInterest);
-            this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel7.Location = new System.Drawing.Point(3, 591);
+            this.guna2Panel7.Location = new System.Drawing.Point(3, 644);
             this.guna2Panel7.Name = "guna2Panel7";
             this.guna2Panel7.Padding = new System.Windows.Forms.Padding(5);
-            this.guna2Panel7.Size = new System.Drawing.Size(1382, 58);
+            this.guna2Panel7.Size = new System.Drawing.Size(1253, 61);
             this.guna2Panel7.TabIndex = 7;
             // 
             // btnComputeInterest
@@ -103,9 +103,9 @@
             this.btnComputeInterest.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.btnComputeInterest.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnComputeInterest.ForeColor = System.Drawing.Color.White;
-            this.btnComputeInterest.Location = new System.Drawing.Point(1023, 5);
+            this.btnComputeInterest.Location = new System.Drawing.Point(894, 5);
             this.btnComputeInterest.Name = "btnComputeInterest";
-            this.btnComputeInterest.Size = new System.Drawing.Size(354, 48);
+            this.btnComputeInterest.Size = new System.Drawing.Size(354, 51);
             this.btnComputeInterest.TabIndex = 13;
             this.btnComputeInterest.Text = "Compute Interest";
             // 
@@ -253,17 +253,18 @@
             // 
             // guna2Panel4
             // 
+            this.guna2Panel4.AutoSize = true;
+            this.guna2Panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guna2Panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.guna2Panel4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.guna2Panel4.BorderRadius = 20;
             this.guna2Panel4.BorderThickness = 15;
             this.guna2Panel4.Controls.Add(this.dvgListOfCustomers);
-            this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel4.Location = new System.Drawing.Point(3, 199);
             this.guna2Panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
-            this.guna2Panel4.Size = new System.Drawing.Size(1382, 387);
+            this.guna2Panel4.Size = new System.Drawing.Size(1252, 440);
             this.guna2Panel4.TabIndex = 12;
             // 
             // dvgListOfCustomers
@@ -294,7 +295,6 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(80)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dvgListOfCustomers.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dvgListOfCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dvgListOfCustomers.EnableHeadersVisualStyles = true;
             this.dvgListOfCustomers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.dvgListOfCustomers.Location = new System.Drawing.Point(11, 10);
@@ -314,7 +314,7 @@
             this.dvgListOfCustomers.RowHeadersVisible = false;
             this.dvgListOfCustomers.RowHeadersWidth = 51;
             this.dvgListOfCustomers.RowTemplate.Height = 24;
-            this.dvgListOfCustomers.Size = new System.Drawing.Size(1360, 367);
+            this.dvgListOfCustomers.Size = new System.Drawing.Size(1227, 418);
             this.dvgListOfCustomers.TabIndex = 10;
             this.dvgListOfCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dvgListOfCustomers.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -346,7 +346,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UC_InterestComputation";
             this.Padding = new System.Windows.Forms.Padding(25, 20, 20, 20);
-            this.Size = new System.Drawing.Size(1433, 692);
+            this.Size = new System.Drawing.Size(1306, 746);
             this.Load += new System.EventHandler(this.UC_InterestComputation_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

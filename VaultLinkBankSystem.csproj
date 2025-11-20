@@ -149,6 +149,12 @@
     <Compile Include="Forms\Admin\frmRegistration.Designer.cs">
       <DependentUpon>frmRegistration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Admin\frmViewDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmViewDetails.Designer.cs">
+      <DependentUpon>frmViewDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="UiHelpers.cs" />
     <Compile Include="UserControls\Admin\UC_AdminSidebar.cs">
       <SubType>UserControl</SubType>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmRegistration.resx">
       <DependentUpon>frmRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frmViewDetails.resx">
+      <DependentUpon>frmViewDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Admin\UC_AccountManagement.resx">
       <DependentUpon>UC_AccountManagement.cs</DependentUpon>

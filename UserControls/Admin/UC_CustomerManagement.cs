@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VaultLinkBankSystem.Helpers;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -17,6 +16,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private CustomerRepository _customerRepo;
         private int _selectedCustomerId = 0;
         private List<Customer> _allCustomers;
+
+        private Forms.Admin.frmViewDetails _preloadedViewDetails;
+
         public UC_CustomerManagement()
         {
             InitializeComponent();
@@ -33,6 +35,37 @@ namespace VaultLinkBankSystem.UserControls.Admin
             this.dvgListOfCustomers.DataBindingComplete += dvgListOfCustomers_DataBindingComplete;
             this.dvgListOfCustomers.SelectionChanged += DvgListOfCustomers_SelectionChanged;
             this.dvgListOfCustomers.CellClick += DvgListOfCustomers_CellClick;
+
+            try
+            {
+                btnViewDetail.Click -= BtnViewDetails_Click;
+                btnViewDetail.Click += BtnViewDetails_Click;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                _preloadedViewDetails = new Forms.Admin.frmViewDetails();
+
+                var h = _preloadedViewDetails.Handle;
+                _preloadedViewDetails.CreateControl();
+                _preloadedViewDetails.SuspendLayout();
+                _preloadedViewDetails.ResumeLayout(false);
+                _preloadedViewDetails.PerformLayout();
+
+                _preloadedViewDetails.Visible = false;
+            }
+            catch
+            {
+                _preloadedViewDetails = null;
+            }
+
+            this.Disposed += (s, e) =>
+            {
+                try { _preloadedViewDetails?.Dispose(); } catch { }
+            };
         }
 
         private void LoadData()
@@ -60,8 +93,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             dgv.BackgroundColor = Color.White;                       
             dgv.GridColor = Color.FromArgb(230, 230, 230);           
-            dgv.DefaultCellStyle.ForeColor = Color.Black;           
-            dgv.DefaultCellStyle.BackColor = Color.White;           
+            dgv.DefaultCellStyle.ForeColor = Color.Black;            
+            dgv.DefaultCellStyle.BackColor = Color.White;            
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 249, 249); 
 
             dgv.EnableHeadersVisualStyles = false; 
@@ -123,7 +156,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         }
 
-
         private void guna2DataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dvgListOfCustomers.SelectedRows.Count > 0)
@@ -133,24 +165,67 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 if (selectedCustomer != null)
                 {
                     _selectedCustomerId = selectedCustomer.CustomerID;
-
-
-                   
                 }
             }
             else
             {
                 _selectedCustomerId = 0;
-
-
-              
             }
         }
 
+        private void BtnViewDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Customer selectedCustomer = null;
 
+                if (dvgListOfCustomers.SelectedRows.Count > 0)
+                {
+                    selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customer;
+                }
 
+                if (selectedCustomer == null && _selectedCustomerId != 0)
+                {
+                    selectedCustomer = _allCustomers.FirstOrDefault(c => c.CustomerID == _selectedCustomerId);
+                }
 
+                Form parentForm = this.FindForm();
 
+                Forms.Admin.frmViewDetails viewForm = _preloadedViewDetails;
+                bool createdLocally = false;
+                if (viewForm == null)
+                {
+                    viewForm = new Forms.Admin.frmViewDetails();
+                    createdLocally = true;
+                }
+
+                if (selectedCustomer != null)
+                {
+                    viewForm.Tag = selectedCustomer.CustomerID;
+                }
+
+                try
+                {
+                    viewForm.ShowDialog(parentForm);
+                }
+                finally
+                {
+                    if (createdLocally)
+                    {
+                        try { viewForm.Dispose(); } catch { }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error showing details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void guna2DataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
 
         private void BuildColumns()
         {
@@ -218,17 +293,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
         private void btnViewDetails(object sender, EventArgs e)
         {
 
@@ -236,24 +300,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string searchText = guna2TextBox1.Text.Trim(); // <-- your textbox name (adjust if different)
 
-            if (string.IsNullOrWhiteSpace(searchText))
-            {
-                // If empty, reload everything
-                LoadData();
-                return;
-            }
-
-            try
-            {
-                List<Customer> filteredList = _customerRepo.SearchCustomers(searchText);
-                dvgListOfCustomers.DataSource = filteredList;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Search failed: " + ex.Message);
-            }
         }
 
         private void dvgListOfCustomers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -263,30 +310,15 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void UC_CustomerManagement_Load_1(object sender, EventArgs e)
         {
-            UiHelpers.FixGuna2TextBoxVisibility(this);
             BuildColumns();
             LoadData();
 
-
-           
         }
 
         private void btnVerification_Click(object sender, EventArgs e)
         {
-             
-            
-        }
 
-        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(guna2TextBox1.Text))
-            {
-                LoadData();
-            }
-            else
-            {
-                dvgListOfCustomers.DataSource = _customerRepo.SearchCustomers(guna2TextBox1.Text.Trim());
-            }
+
         }
     }
 }
