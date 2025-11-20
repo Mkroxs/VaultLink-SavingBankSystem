@@ -37,6 +37,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2Panel9 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.tbxName = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel10 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.tbxEmail = new Guna.UI2.WinForms.Guna2TextBox();
@@ -45,6 +46,7 @@
             this.dtpBirthdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.guna2Panel12 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.cbxCivilStatus = new System.Windows.Forms.ComboBox();
             this.guna2Panel13 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.tbxContactNumber = new Guna.UI2.WinForms.Guna2TextBox();
@@ -53,8 +55,6 @@
             this.rbtMale = new Guna.UI2.WinForms.Guna2RadioButton();
             this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.cbxCivilStatus1 = new System.Windows.Forms.ComboBox();
-            this.tbxName = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel15.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -74,15 +74,18 @@
             this.guna2Panel15.Controls.Add(this.guna2HtmlLabel2);
             this.guna2Panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel15.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel15.Name = "guna2Panel15";
-            this.guna2Panel15.Size = new System.Drawing.Size(639, 658);
+            this.guna2Panel15.Size = new System.Drawing.Size(479, 535);
             this.guna2Panel15.TabIndex = 21;
+            this.guna2Panel15.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel15_Paint);
             // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.AutoSize = true;
             this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(493, 610);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(370, 496);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel3.TabIndex = 30;
@@ -95,10 +98,10 @@
             this.flowLayoutPanel2.Controls.Add(this.guna2Shapes2);
             this.flowLayoutPanel2.Controls.Add(this.guna2Shapes3);
             this.flowLayoutPanel2.Controls.Add(this.guna2Shapes1);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(220, 618);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(165, 502);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 1, 2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(165, 19);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(123, 15);
             this.flowLayoutPanel2.TabIndex = 27;
             // 
             // guna2Shapes2
@@ -107,13 +110,14 @@
             this.guna2Shapes2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
             this.guna2Shapes2.BorderThickness = 1;
             this.guna2Shapes2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(70)))), ((int)(((byte)(100)))));
-            this.guna2Shapes2.Location = new System.Drawing.Point(3, 3);
+            this.guna2Shapes2.Location = new System.Drawing.Point(2, 2);
+            this.guna2Shapes2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Shapes2.Name = "guna2Shapes2";
             this.guna2Shapes2.PolygonSkip = 1;
             this.guna2Shapes2.Rotate = 0F;
             this.guna2Shapes2.RoundedRadius = 5;
             this.guna2Shapes2.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rounded;
-            this.guna2Shapes2.Size = new System.Drawing.Size(49, 13);
+            this.guna2Shapes2.Size = new System.Drawing.Size(37, 11);
             this.guna2Shapes2.TabIndex = 22;
             this.guna2Shapes2.Text = "guna2Shapes2";
             this.guna2Shapes2.UseTransparentBackground = true;
@@ -125,13 +129,14 @@
             this.guna2Shapes3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
             this.guna2Shapes3.BorderThickness = 1;
             this.guna2Shapes3.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Shapes3.Location = new System.Drawing.Point(58, 3);
+            this.guna2Shapes3.Location = new System.Drawing.Point(43, 2);
+            this.guna2Shapes3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Shapes3.Name = "guna2Shapes3";
             this.guna2Shapes3.PolygonSkip = 1;
             this.guna2Shapes3.Rotate = 0F;
             this.guna2Shapes3.RoundedRadius = 5;
             this.guna2Shapes3.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rounded;
-            this.guna2Shapes3.Size = new System.Drawing.Size(49, 13);
+            this.guna2Shapes3.Size = new System.Drawing.Size(37, 11);
             this.guna2Shapes3.TabIndex = 24;
             this.guna2Shapes3.Text = "guna2Shapes3";
             this.guna2Shapes3.UseTransparentBackground = true;
@@ -143,13 +148,14 @@
             this.guna2Shapes1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
             this.guna2Shapes1.BorderThickness = 1;
             this.guna2Shapes1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Shapes1.Location = new System.Drawing.Point(113, 3);
+            this.guna2Shapes1.Location = new System.Drawing.Point(84, 2);
+            this.guna2Shapes1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Shapes1.Name = "guna2Shapes1";
             this.guna2Shapes1.PolygonSkip = 1;
             this.guna2Shapes1.Rotate = 0F;
             this.guna2Shapes1.RoundedRadius = 5;
             this.guna2Shapes1.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rounded;
-            this.guna2Shapes1.Size = new System.Drawing.Size(49, 13);
+            this.guna2Shapes1.Size = new System.Drawing.Size(37, 11);
             this.guna2Shapes1.TabIndex = 23;
             this.guna2Shapes1.Text = "guna2Shapes1";
             this.guna2Shapes1.UseTransparentBackground = true;
@@ -164,18 +170,20 @@
             this.flowLayoutPanel1.Controls.Add(this.guna2Panel12);
             this.flowLayoutPanel1.Controls.Add(this.guna2Panel13);
             this.flowLayoutPanel1.Controls.Add(this.guna2Panel14);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(82, 62);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(62, 50);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(440, 540);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(330, 439);
             this.flowLayoutPanel1.TabIndex = 19;
             // 
             // guna2Panel9
             // 
             this.guna2Panel9.Controls.Add(this.guna2HtmlLabel3);
             this.guna2Panel9.Controls.Add(this.tbxName);
-            this.guna2Panel9.Location = new System.Drawing.Point(3, 3);
+            this.guna2Panel9.Location = new System.Drawing.Point(2, 2);
+            this.guna2Panel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel9.Name = "guna2Panel9";
-            this.guna2Panel9.Size = new System.Drawing.Size(430, 84);
+            this.guna2Panel9.Size = new System.Drawing.Size(322, 68);
             this.guna2Panel9.TabIndex = 15;
             // 
             // guna2HtmlLabel3
@@ -184,259 +192,13 @@
             this.guna2HtmlLabel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(0, 21);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(0, 18);
+            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(59, 27);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(322, 21);
             this.guna2HtmlLabel3.TabIndex = 8;
             this.guna2HtmlLabel3.Text = "Name:";
             this.guna2HtmlLabel3.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // guna2Panel10
-            // 
-            this.guna2Panel10.Controls.Add(this.guna2HtmlLabel4);
-            this.guna2Panel10.Controls.Add(this.tbxEmail);
-            this.guna2Panel10.Location = new System.Drawing.Point(3, 93);
-            this.guna2Panel10.Name = "guna2Panel10";
-            this.guna2Panel10.Size = new System.Drawing.Size(430, 84);
-            this.guna2Panel10.TabIndex = 16;
-            // 
-            // guna2HtmlLabel4
-            // 
-            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(0, 21);
-            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(430, 27);
-            this.guna2HtmlLabel4.TabIndex = 8;
-            this.guna2HtmlLabel4.Text = "Email:";
-            this.guna2HtmlLabel4.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // tbxEmail
-            // 
-            this.tbxEmail.BackColor = System.Drawing.Color.Transparent;
-            this.tbxEmail.BorderColor = System.Drawing.Color.Black;
-            this.tbxEmail.BorderThickness = 0;
-            this.tbxEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxEmail.DefaultText = "";
-            this.tbxEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxEmail.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tbxEmail.FillColor = System.Drawing.Color.Silver;
-            this.tbxEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxEmail.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
-            this.tbxEmail.ForeColor = System.Drawing.Color.Black;
-            this.tbxEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxEmail.Location = new System.Drawing.Point(0, 48);
-            this.tbxEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbxEmail.Name = "tbxEmail";
-            this.tbxEmail.PlaceholderText = "";
-            this.tbxEmail.SelectedText = "";
-            this.tbxEmail.Size = new System.Drawing.Size(430, 36);
-            this.tbxEmail.TabIndex = 14;
-            // 
-            // guna2Panel11
-            // 
-            this.guna2Panel11.Controls.Add(this.guna2HtmlLabel5);
-            this.guna2Panel11.Controls.Add(this.dtpBirthdate);
-            this.guna2Panel11.Location = new System.Drawing.Point(3, 183);
-            this.guna2Panel11.Name = "guna2Panel11";
-            this.guna2Panel11.Size = new System.Drawing.Size(430, 84);
-            this.guna2Panel11.TabIndex = 17;
-            // 
-            // guna2HtmlLabel5
-            // 
-            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(0, 21);
-            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(430, 27);
-            this.guna2HtmlLabel5.TabIndex = 8;
-            this.guna2HtmlLabel5.Text = "Birthdate:";
-            this.guna2HtmlLabel5.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // dtpBirthdate
-            // 
-            this.dtpBirthdate.Checked = true;
-            this.dtpBirthdate.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dtpBirthdate.FillColor = System.Drawing.Color.Silver;
-            this.dtpBirthdate.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpBirthdate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpBirthdate.Location = new System.Drawing.Point(0, 48);
-            this.dtpBirthdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpBirthdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpBirthdate.Name = "dtpBirthdate";
-            this.dtpBirthdate.Size = new System.Drawing.Size(430, 36);
-            this.dtpBirthdate.TabIndex = 9;
-            this.dtpBirthdate.Value = new System.DateTime(2025, 11, 18, 0, 24, 16, 633);
-            // 
-            // guna2Panel12
-            // 
-            this.guna2Panel12.Controls.Add(this.guna2HtmlLabel6);
-            this.guna2Panel12.Controls.Add(this.cbxCivilStatus1);
-            this.guna2Panel12.Location = new System.Drawing.Point(3, 273);
-            this.guna2Panel12.Name = "guna2Panel12";
-            this.guna2Panel12.Size = new System.Drawing.Size(431, 84);
-            this.guna2Panel12.TabIndex = 18;
-            // 
-            // guna2HtmlLabel6
-            // 
-            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(0, 24);
-            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(103, 27);
-            this.guna2HtmlLabel6.TabIndex = 8;
-            this.guna2HtmlLabel6.Text = "Civil Status:";
-            this.guna2HtmlLabel6.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // guna2Panel13
-            // 
-            this.guna2Panel13.Controls.Add(this.guna2HtmlLabel7);
-            this.guna2Panel13.Controls.Add(this.tbxContactNumber);
-            this.guna2Panel13.Location = new System.Drawing.Point(3, 363);
-            this.guna2Panel13.Name = "guna2Panel13";
-            this.guna2Panel13.Size = new System.Drawing.Size(430, 84);
-            this.guna2Panel13.TabIndex = 17;
-            // 
-            // guna2HtmlLabel7
-            // 
-            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(0, 21);
-            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(430, 27);
-            this.guna2HtmlLabel7.TabIndex = 8;
-            this.guna2HtmlLabel7.Text = "Contact Number:";
-            this.guna2HtmlLabel7.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // tbxContactNumber
-            // 
-            this.tbxContactNumber.BackColor = System.Drawing.Color.Silver;
-            this.tbxContactNumber.BorderColor = System.Drawing.Color.Black;
-            this.tbxContactNumber.BorderThickness = 0;
-            this.tbxContactNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxContactNumber.DefaultText = "";
-            this.tbxContactNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxContactNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxContactNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxContactNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxContactNumber.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tbxContactNumber.FillColor = System.Drawing.Color.Silver;
-            this.tbxContactNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxContactNumber.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
-            this.tbxContactNumber.ForeColor = System.Drawing.Color.Black;
-            this.tbxContactNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxContactNumber.Location = new System.Drawing.Point(0, 48);
-            this.tbxContactNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbxContactNumber.Name = "tbxContactNumber";
-            this.tbxContactNumber.PlaceholderText = "";
-            this.tbxContactNumber.SelectedText = "";
-            this.tbxContactNumber.Size = new System.Drawing.Size(430, 36);
-            this.tbxContactNumber.TabIndex = 14;
-            // 
-            // guna2Panel14
-            // 
-            this.guna2Panel14.Controls.Add(this.rbtFemale);
-            this.guna2Panel14.Controls.Add(this.rbtMale);
-            this.guna2Panel14.Controls.Add(this.guna2HtmlLabel8);
-            this.guna2Panel14.Location = new System.Drawing.Point(3, 453);
-            this.guna2Panel14.Name = "guna2Panel14";
-            this.guna2Panel14.Size = new System.Drawing.Size(430, 84);
-            this.guna2Panel14.TabIndex = 18;
-            // 
-            // rbtFemale
-            // 
-            this.rbtFemale.Animated = true;
-            this.rbtFemale.AutoSize = true;
-            this.rbtFemale.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbtFemale.CheckedState.BorderThickness = 0;
-            this.rbtFemale.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.rbtFemale.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.rbtFemale.CheckedState.InnerOffset = -4;
-            this.rbtFemale.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Bold);
-            this.rbtFemale.Location = new System.Drawing.Point(92, 38);
-            this.rbtFemale.Name = "rbtFemale";
-            this.rbtFemale.Size = new System.Drawing.Size(93, 27);
-            this.rbtFemale.TabIndex = 16;
-            this.rbtFemale.Text = "Female";
-            this.rbtFemale.UncheckedState.BorderColor = System.Drawing.Color.Black;
-            this.rbtFemale.UncheckedState.BorderThickness = 1;
-            this.rbtFemale.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.rbtFemale.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            // 
-            // rbtMale
-            // 
-            this.rbtMale.Animated = true;
-            this.rbtMale.AutoSize = true;
-            this.rbtMale.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbtMale.CheckedState.BorderThickness = 0;
-            this.rbtMale.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.rbtMale.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.rbtMale.CheckedState.InnerOffset = -4;
-            this.rbtMale.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtMale.Location = new System.Drawing.Point(6, 36);
-            this.rbtMale.Name = "rbtMale";
-            this.rbtMale.Size = new System.Drawing.Size(74, 27);
-            this.rbtMale.TabIndex = 15;
-            this.rbtMale.Text = "Male";
-            this.rbtMale.UncheckedState.BorderColor = System.Drawing.Color.Black;
-            this.rbtMale.UncheckedState.BorderThickness = 1;
-            this.rbtMale.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.rbtMale.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            // 
-            // guna2HtmlLabel8
-            // 
-            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2HtmlLabel8.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(0, 0);
-            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(430, 27);
-            this.guna2HtmlLabel8.TabIndex = 8;
-            this.guna2HtmlLabel8.Text = "Gender:";
-            this.guna2HtmlLabel8.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // guna2HtmlLabel2
-            // 
-            this.guna2HtmlLabel2.AutoSize = false;
-            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(0, 0);
-            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(639, 42);
-            this.guna2HtmlLabel2.TabIndex = 7;
-            this.guna2HtmlLabel2.Text = "Basic Information:";
-            // 
-            // cbxCivilStatus1
-            // 
-            this.cbxCivilStatus1.BackColor = System.Drawing.Color.DarkGray;
-            this.cbxCivilStatus1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.cbxCivilStatus1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCivilStatus1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbxCivilStatus1.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
-            this.cbxCivilStatus1.FormattingEnabled = true;
-            this.cbxCivilStatus1.Items.AddRange(new object[] {
-            "Single",
-            "Married",
-            "Widow",
-            "Widower"});
-            this.cbxCivilStatus1.Location = new System.Drawing.Point(0, 51);
-            this.cbxCivilStatus1.Name = "cbxCivilStatus1";
-            this.cbxCivilStatus1.Size = new System.Drawing.Size(431, 33);
-            this.cbxCivilStatus1.TabIndex = 36;
             // 
             // tbxName
             // 
@@ -461,22 +223,287 @@
             this.tbxName.HoverState.BorderColor = System.Drawing.Color.Transparent;
             this.tbxName.HoverState.ForeColor = System.Drawing.Color.Black;
             this.tbxName.IconRightSize = new System.Drawing.Size(40, 40);
-            this.tbxName.Location = new System.Drawing.Point(0, 48);
-            this.tbxName.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.tbxName.Location = new System.Drawing.Point(0, 39);
+            this.tbxName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tbxName.Name = "tbxName";
             this.tbxName.PlaceholderForeColor = System.Drawing.Color.DarkGray;
             this.tbxName.PlaceholderText = "";
             this.tbxName.SelectedText = "";
-            this.tbxName.Size = new System.Drawing.Size(430, 36);
+            this.tbxName.Size = new System.Drawing.Size(322, 29);
             this.tbxName.TabIndex = 31;
+            this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
+            // 
+            // guna2Panel10
+            // 
+            this.guna2Panel10.Controls.Add(this.guna2HtmlLabel4);
+            this.guna2Panel10.Controls.Add(this.tbxEmail);
+            this.guna2Panel10.Location = new System.Drawing.Point(2, 74);
+            this.guna2Panel10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel10.Name = "guna2Panel10";
+            this.guna2Panel10.Size = new System.Drawing.Size(322, 68);
+            this.guna2Panel10.TabIndex = 16;
+            // 
+            // guna2HtmlLabel4
+            // 
+            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(0, 18);
+            this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(322, 21);
+            this.guna2HtmlLabel4.TabIndex = 8;
+            this.guna2HtmlLabel4.Text = "Email:";
+            this.guna2HtmlLabel4.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbxEmail
+            // 
+            this.tbxEmail.BackColor = System.Drawing.Color.Transparent;
+            this.tbxEmail.BorderColor = System.Drawing.Color.Black;
+            this.tbxEmail.BorderThickness = 0;
+            this.tbxEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxEmail.DefaultText = "";
+            this.tbxEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxEmail.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbxEmail.FillColor = System.Drawing.Color.Silver;
+            this.tbxEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxEmail.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
+            this.tbxEmail.ForeColor = System.Drawing.Color.Black;
+            this.tbxEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxEmail.Location = new System.Drawing.Point(0, 39);
+            this.tbxEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxEmail.Name = "tbxEmail";
+            this.tbxEmail.PlaceholderText = "";
+            this.tbxEmail.SelectedText = "";
+            this.tbxEmail.Size = new System.Drawing.Size(322, 29);
+            this.tbxEmail.TabIndex = 14;
+            // 
+            // guna2Panel11
+            // 
+            this.guna2Panel11.Controls.Add(this.guna2HtmlLabel5);
+            this.guna2Panel11.Controls.Add(this.dtpBirthdate);
+            this.guna2Panel11.Location = new System.Drawing.Point(2, 146);
+            this.guna2Panel11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel11.Name = "guna2Panel11";
+            this.guna2Panel11.Size = new System.Drawing.Size(322, 68);
+            this.guna2Panel11.TabIndex = 17;
+            // 
+            // guna2HtmlLabel5
+            // 
+            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(0, 18);
+            this.guna2HtmlLabel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(322, 21);
+            this.guna2HtmlLabel5.TabIndex = 8;
+            this.guna2HtmlLabel5.Text = "Birthdate:";
+            this.guna2HtmlLabel5.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // dtpBirthdate
+            // 
+            this.dtpBirthdate.Checked = true;
+            this.dtpBirthdate.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dtpBirthdate.FillColor = System.Drawing.Color.Silver;
+            this.dtpBirthdate.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpBirthdate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpBirthdate.Location = new System.Drawing.Point(0, 39);
+            this.dtpBirthdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpBirthdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpBirthdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpBirthdate.Name = "dtpBirthdate";
+            this.dtpBirthdate.Size = new System.Drawing.Size(322, 29);
+            this.dtpBirthdate.TabIndex = 9;
+            this.dtpBirthdate.Value = new System.DateTime(2025, 11, 18, 0, 24, 16, 633);
+            // 
+            // guna2Panel12
+            // 
+            this.guna2Panel12.Controls.Add(this.guna2HtmlLabel6);
+            this.guna2Panel12.Controls.Add(this.cbxCivilStatus);
+            this.guna2Panel12.Location = new System.Drawing.Point(2, 218);
+            this.guna2Panel12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel12.Name = "guna2Panel12";
+            this.guna2Panel12.Size = new System.Drawing.Size(323, 68);
+            this.guna2Panel12.TabIndex = 18;
+            // 
+            // guna2HtmlLabel6
+            // 
+            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(0, 20);
+            this.guna2HtmlLabel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(323, 21);
+            this.guna2HtmlLabel6.TabIndex = 8;
+            this.guna2HtmlLabel6.Text = "Civil Status:";
+            this.guna2HtmlLabel6.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // cbxCivilStatus
+            // 
+            this.cbxCivilStatus.BackColor = System.Drawing.Color.DarkGray;
+            this.cbxCivilStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.cbxCivilStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCivilStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbxCivilStatus.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
+            this.cbxCivilStatus.FormattingEnabled = true;
+            this.cbxCivilStatus.Items.AddRange(new object[] {
+            "Single",
+            "Married",
+            "Widow",
+            "Widower"});
+            this.cbxCivilStatus.Location = new System.Drawing.Point(0, 41);
+            this.cbxCivilStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxCivilStatus.Name = "cbxCivilStatus";
+            this.cbxCivilStatus.Size = new System.Drawing.Size(323, 27);
+            this.cbxCivilStatus.TabIndex = 36;
+            // 
+            // guna2Panel13
+            // 
+            this.guna2Panel13.Controls.Add(this.guna2HtmlLabel7);
+            this.guna2Panel13.Controls.Add(this.tbxContactNumber);
+            this.guna2Panel13.Location = new System.Drawing.Point(2, 290);
+            this.guna2Panel13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel13.Name = "guna2Panel13";
+            this.guna2Panel13.Size = new System.Drawing.Size(322, 68);
+            this.guna2Panel13.TabIndex = 17;
+            // 
+            // guna2HtmlLabel7
+            // 
+            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(0, 18);
+            this.guna2HtmlLabel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(322, 21);
+            this.guna2HtmlLabel7.TabIndex = 8;
+            this.guna2HtmlLabel7.Text = "Contact Number:";
+            this.guna2HtmlLabel7.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbxContactNumber
+            // 
+            this.tbxContactNumber.BackColor = System.Drawing.Color.Silver;
+            this.tbxContactNumber.BorderColor = System.Drawing.Color.Black;
+            this.tbxContactNumber.BorderThickness = 0;
+            this.tbxContactNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxContactNumber.DefaultText = "";
+            this.tbxContactNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxContactNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxContactNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxContactNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxContactNumber.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbxContactNumber.FillColor = System.Drawing.Color.Silver;
+            this.tbxContactNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxContactNumber.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold);
+            this.tbxContactNumber.ForeColor = System.Drawing.Color.Black;
+            this.tbxContactNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxContactNumber.Location = new System.Drawing.Point(0, 39);
+            this.tbxContactNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxContactNumber.Name = "tbxContactNumber";
+            this.tbxContactNumber.PlaceholderText = "";
+            this.tbxContactNumber.SelectedText = "";
+            this.tbxContactNumber.Size = new System.Drawing.Size(322, 29);
+            this.tbxContactNumber.TabIndex = 14;
+            // 
+            // guna2Panel14
+            // 
+            this.guna2Panel14.Controls.Add(this.rbtFemale);
+            this.guna2Panel14.Controls.Add(this.rbtMale);
+            this.guna2Panel14.Controls.Add(this.guna2HtmlLabel8);
+            this.guna2Panel14.Location = new System.Drawing.Point(2, 362);
+            this.guna2Panel14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel14.Name = "guna2Panel14";
+            this.guna2Panel14.Size = new System.Drawing.Size(322, 68);
+            this.guna2Panel14.TabIndex = 18;
+            // 
+            // rbtFemale
+            // 
+            this.rbtFemale.Animated = true;
+            this.rbtFemale.AutoSize = true;
+            this.rbtFemale.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rbtFemale.CheckedState.BorderThickness = 0;
+            this.rbtFemale.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
+            this.rbtFemale.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.rbtFemale.CheckedState.InnerOffset = -4;
+            this.rbtFemale.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Bold);
+            this.rbtFemale.Location = new System.Drawing.Point(69, 31);
+            this.rbtFemale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbtFemale.Name = "rbtFemale";
+            this.rbtFemale.Size = new System.Drawing.Size(79, 23);
+            this.rbtFemale.TabIndex = 16;
+            this.rbtFemale.Text = "Female";
+            this.rbtFemale.UncheckedState.BorderColor = System.Drawing.Color.Black;
+            this.rbtFemale.UncheckedState.BorderThickness = 1;
+            this.rbtFemale.UncheckedState.FillColor = System.Drawing.Color.Transparent;
+            this.rbtFemale.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
+            // 
+            // rbtMale
+            // 
+            this.rbtMale.Animated = true;
+            this.rbtMale.AutoSize = true;
+            this.rbtMale.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rbtMale.CheckedState.BorderThickness = 0;
+            this.rbtMale.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
+            this.rbtMale.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.rbtMale.CheckedState.InnerOffset = -4;
+            this.rbtMale.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtMale.Location = new System.Drawing.Point(4, 29);
+            this.rbtMale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbtMale.Name = "rbtMale";
+            this.rbtMale.Size = new System.Drawing.Size(63, 23);
+            this.rbtMale.TabIndex = 15;
+            this.rbtMale.Text = "Male";
+            this.rbtMale.UncheckedState.BorderColor = System.Drawing.Color.Black;
+            this.rbtMale.UncheckedState.BorderThickness = 1;
+            this.rbtMale.UncheckedState.FillColor = System.Drawing.Color.Transparent;
+            this.rbtMale.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
+            this.rbtMale.CheckedChanged += new System.EventHandler(this.rbtMale_CheckedChanged);
+            // 
+            // guna2HtmlLabel8
+            // 
+            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2HtmlLabel8.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel8.Location = new System.Drawing.Point(0, 0);
+            this.guna2HtmlLabel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
+            this.guna2HtmlLabel8.Size = new System.Drawing.Size(322, 21);
+            this.guna2HtmlLabel8.TabIndex = 8;
+            this.guna2HtmlLabel8.Text = "Gender:";
+            this.guna2HtmlLabel8.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // guna2HtmlLabel2
+            // 
+            this.guna2HtmlLabel2.AutoSize = false;
+            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(0, 0);
+            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(479, 34);
+            this.guna2HtmlLabel2.TabIndex = 7;
+            this.guna2HtmlLabel2.Text = "Basic Information:";
             // 
             // UC_BasicInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.guna2Panel15);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "UC_BasicInfo";
-            this.Size = new System.Drawing.Size(639, 658);
+            this.Size = new System.Drawing.Size(479, 535);
             this.Load += new System.EventHandler(this.UC_BasicInfo_Load);
             this.guna2Panel15.ResumeLayout(false);
             this.guna2Panel15.PerformLayout();
@@ -525,7 +552,7 @@
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes1;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.ComboBox cbxCivilStatus1;
+        private System.Windows.Forms.ComboBox cbxCivilStatus;
         private Guna.UI2.WinForms.Guna2TextBox tbxName;
     }
 }

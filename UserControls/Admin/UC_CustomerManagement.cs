@@ -236,7 +236,24 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            string searchText = guna2TextBox1.Text.Trim(); // <-- your textbox name (adjust if different)
 
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                // If empty, reload everything
+                LoadData();
+                return;
+            }
+
+            try
+            {
+                List<Customer> filteredList = _customerRepo.SearchCustomers(searchText);
+                dvgListOfCustomers.DataSource = filteredList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search failed: " + ex.Message);
+            }
         }
 
         private void dvgListOfCustomers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -258,6 +275,18 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
              
             
+        }
+
+        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(guna2TextBox1.Text))
+            {
+                LoadData();
+            }
+            else
+            {
+                dvgListOfCustomers.DataSource = _customerRepo.SearchCustomers(guna2TextBox1.Text.Trim());
+            }
         }
     }
 }

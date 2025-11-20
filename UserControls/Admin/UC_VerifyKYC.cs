@@ -95,9 +95,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     if (!ColumnExistsOnCustomer(col.DataPropertyName))
                         continue;
                     if (new[] {
-                "CustomerID", "PIN", "ImagePath", "IsKYCVerified", "KYCVerifiedDate",
+                "CustomerID", "PIN","EmploymentStatus", "ImagePath", "IsKYCVerified", "KYCVerifiedDate",
                 "Address", "Gender", "BirthDate", "CivilStatus",
-                "EmployerName", "SourceOfFunds", "MonthlyIncomeRange"
+                "EmployerName", "SourceOfFunds", "MonthlyIncomeRange", "IDType", "IDNumber"
             }.Contains(col.Name))
                     {
                         col.Visible = false;
@@ -112,22 +112,12 @@ namespace VaultLinkBankSystem.UserControls.Admin
                             break;
                         case "FullName":
                             col.HeaderText = "Full Name";
-                            col.Width = 200;
                             break;
                         case "Email":
                             col.HeaderText = "Email";
                             break;
                         case "Phone":
                             col.HeaderText = "Phone";
-                            break;
-                        case "EmploymentStatus":
-                            col.HeaderText = "Employment";
-                            break;
-                        case "IDType":
-                            col.HeaderText = "ID Type";
-                            break;
-                        case "IDNumber":
-                            col.HeaderText = "ID Number";
                             break;
                         case "CreatedAt":
                             col.HeaderText = "Registered";

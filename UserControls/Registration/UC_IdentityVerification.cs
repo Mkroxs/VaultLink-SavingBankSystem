@@ -22,7 +22,26 @@ namespace VaultLinkBankSystem.UserControls.Registration
         {
 
         }
-
+        public string CustomerIDType
+        {
+            get { return cbxIdType.SelectedItem?.ToString() ?? string.Empty; }
+        }
+        public string CustomerIDNumber
+        {
+            get { return tbxIdNumber.Text; }
+        }
+        public string CustomerSourceOfFunds
+        {
+            get { return cbxSourceOfFunds.SelectedItem?.ToString() ?? string.Empty; }
+        }
+        public string CustomerEmploymentStatus
+        {
+            get { return cbxEmploymentStatus.SelectedItem?.ToString() ?? string.Empty; }
+        }
+        public string CustomerMonthlyIncome
+        {
+            get { return cbxMonthlyIncomeRange.SelectedItem?.ToString() ?? string.Empty; }
+        }
         private void UC_IdentityVerification_Load(object sender, EventArgs e)
         {
             UiHelpers.FixGuna2TextBoxVisibility(this);

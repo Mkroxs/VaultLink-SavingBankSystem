@@ -14,6 +14,7 @@ namespace VaultLinkBankSystem.UserControls.Registration
 {
     public partial class UC_AddressInfo : UserControl
     {
+        string address;
         public UC_AddressInfo()
         {
             InitializeComponent();
@@ -26,6 +27,15 @@ namespace VaultLinkBankSystem.UserControls.Registration
 
         private void guna2Panel15_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        public string CustomerAddress
+        {
+            get {
+                return address = tbxStreetName.Text + ", " + tbxBarangay.Text + ", "
+                    + tbxCity.Text + ", " + tbxProvince + ", " + tbxZipCode;
+            }
 
         }
 

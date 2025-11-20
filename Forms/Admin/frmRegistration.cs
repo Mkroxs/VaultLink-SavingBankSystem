@@ -5,8 +5,14 @@ using VaultLinkBankSystem.Helpers;
 
 namespace VaultLinkBankSystem.Forms.Admin
 {
+
     public partial class frmRegistration : Form
     {
+        CustomerRepository customerRepo = new CustomerRepository();
+
+
+
+
         // Keep one instance of each registration step
         private UC_BasicInfo _ucBasicInfo;
         private UC_AddressInfo _ucAddressInfo;
@@ -98,16 +104,13 @@ namespace VaultLinkBankSystem.Forms.Admin
         {
             try
             {
-                // Show initial registration step (BasicInfo) - already preloaded
                 _currentStep = 0;
                 UiHelpers.ShowPage(panelMainRegister, _ucBasicInfo, ref _currentPage);
 
-                // Set up button click events
                 btnNext.Click += BtnNext_Click;
                 btnPrevious.Click += BtnPrevious_Click;
                 btnRegister.Click += BtnRegister_Click;
 
-                // Initialize button visibility for first step
                 UpdateButtonVisibility();
             }
             catch (Exception ex)
@@ -211,6 +214,40 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void iconPictureBox2_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void panelMainRegister_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnRegister_Click_1(object sender, EventArgs e)
+        {
+            Customer testCustomer = new Customer
+            {
+                CustomerCode = customerRepo.GenerateCustomerCode(),
+                FullName = _ucBasicInfo.CustomerName,
+                Address = _ucAddressInfo.CustomerAddress,
+                Email = _ucBasicInfo.CustomerEmail,
+                Phone = _ucBasicInfo.CustomerContactNumber,
+                Gender = _ucBasicInfo.CustomerGender,
+                BirthDate = _ucBasicInfo.CustomerBirthDate,
+                CivilStatus = _ucBasicInfo.CustomerCivilStatus,
+                ImagePath = "john.jpg",
+                PIN = customerRepo.GeneratePIN(),
+                EmploymentStatus = _ucIdentityVerification.CustomerEmploymentStatus,
+                EmployerName = "Elon Musk",
+                SourceOfFunds = _ucIdentityVerification.CustomerSourceOfFunds,
+                MonthlyIncomeRange = _ucIdentityVerification.CustomerMonthlyIncome,
+                IDType = _ucIdentityVerification.CustomerIDType,
+                IDNumber = _ucIdentityVerification.CustomerIDNumber,
+                IsKYCVerified = false,  // ← NOT VERIFIED
+                KYCVerifiedDate = null
+            };
+
+            customerRepo.CreateCustomer(testCustomer);
+
             this.Close();
         }
     }
