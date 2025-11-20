@@ -35,6 +35,7 @@
             this.panelMain = new Guna.UI2.WinForms.Guna2Panel();
             this.panelSidebar = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.panelTopbar.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -47,7 +48,7 @@
             this.panelTopbar.BorderThickness = 100;
             this.panelTopbar.Controls.Add(this.panel1);
             this.panelTopbar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.panelTopbar.CustomBorderThickness = new System.Windows.Forms.Padding(0, 3, 3, 6);
+            this.panelTopbar.CustomBorderThickness = new System.Windows.Forms.Padding(0, 3, 3, 8);
             this.panelTopbar.CustomizableEdges.BottomLeft = false;
             this.panelTopbar.CustomizableEdges.BottomRight = false;
             this.panelTopbar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -97,10 +98,10 @@
             this.panelMain.CustomizableEdges.TopRight = false;
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.panelMain.Location = new System.Drawing.Point(434, 254);
+            this.panelMain.Location = new System.Drawing.Point(420, 254);
             this.panelMain.Name = "panelMain";
             this.panelMain.Padding = new System.Windows.Forms.Padding(30, 30, 50, 70);
-            this.panelMain.Size = new System.Drawing.Size(696, 476);
+            this.panelMain.Size = new System.Drawing.Size(710, 476);
             this.panelMain.TabIndex = 15;
             // 
             // panelSidebar
@@ -109,7 +110,6 @@
             this.panelSidebar.BorderRadius = 40;
             this.panelSidebar.BorderThickness = 100;
             this.panelSidebar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.panelSidebar.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.panelSidebar.CustomizableEdges.BottomLeft = false;
             this.panelSidebar.CustomizableEdges.BottomRight = false;
             this.panelSidebar.CustomizableEdges.TopLeft = false;
@@ -118,7 +118,7 @@
             this.panelSidebar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.panelSidebar.Location = new System.Drawing.Point(70, 254);
             this.panelSidebar.Name = "panelSidebar";
-            this.panelSidebar.Size = new System.Drawing.Size(364, 476);
+            this.panelSidebar.Size = new System.Drawing.Size(350, 476);
             this.panelSidebar.TabIndex = 15;
             // 
             // guna2BorderlessForm1
@@ -127,12 +127,21 @@
             this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             this.guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.guna2Panel1.Location = new System.Drawing.Point(420, 254);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(10, 476);
+            this.guna2Panel1.TabIndex = 0;
+            // 
             // frmAdminDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1200, 800);
+            this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelSidebar);
             this.Controls.Add(this.panelTopbar);
@@ -158,5 +167,6 @@
         private Guna.UI2.WinForms.Guna2Panel panelMain;
         private System.Windows.Forms.Panel panel1;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
     }
 }

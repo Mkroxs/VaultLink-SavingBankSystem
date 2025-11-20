@@ -70,7 +70,7 @@
             this.tableLayoutPanel1.Controls.Add(this.guna2Panel2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.guna2Panel4, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(25, 20);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -79,17 +79,17 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1315, 692);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1388, 652);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
             // guna2Panel7
             // 
             this.guna2Panel7.Controls.Add(this.btnComputeInterest);
             this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel7.Location = new System.Drawing.Point(3, 631);
+            this.guna2Panel7.Location = new System.Drawing.Point(3, 591);
             this.guna2Panel7.Name = "guna2Panel7";
             this.guna2Panel7.Padding = new System.Windows.Forms.Padding(5);
-            this.guna2Panel7.Size = new System.Drawing.Size(1309, 58);
+            this.guna2Panel7.Size = new System.Drawing.Size(1382, 58);
             this.guna2Panel7.TabIndex = 7;
             // 
             // btnComputeInterest
@@ -103,7 +103,7 @@
             this.btnComputeInterest.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.btnComputeInterest.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnComputeInterest.ForeColor = System.Drawing.Color.White;
-            this.btnComputeInterest.Location = new System.Drawing.Point(950, 5);
+            this.btnComputeInterest.Location = new System.Drawing.Point(1023, 5);
             this.btnComputeInterest.Name = "btnComputeInterest";
             this.btnComputeInterest.Size = new System.Drawing.Size(354, 48);
             this.btnComputeInterest.TabIndex = 13;
@@ -118,7 +118,7 @@
             this.guna2Panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.guna2Panel3.Size = new System.Drawing.Size(1309, 68);
+            this.guna2Panel3.Size = new System.Drawing.Size(1382, 68);
             this.guna2Panel3.TabIndex = 5;
             // 
             // guna2HtmlLabel2
@@ -129,7 +129,7 @@
             this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.White;
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(0, 1);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(1294, 27);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(105, 27);
             this.guna2HtmlLabel2.TabIndex = 1;
             this.guna2HtmlLabel2.Text = "Select Date:";
             // 
@@ -139,7 +139,7 @@
             this.guna2Panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.guna2Panel6.Location = new System.Drawing.Point(0, 28);
             this.guna2Panel6.Name = "guna2Panel6";
-            this.guna2Panel6.Size = new System.Drawing.Size(1294, 40);
+            this.guna2Panel6.Size = new System.Drawing.Size(1367, 40);
             this.guna2Panel6.TabIndex = 2;
             // 
             // guna2DateTimePicker1
@@ -156,7 +156,7 @@
             this.guna2DateTimePicker1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.guna2DateTimePicker1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            this.guna2DateTimePicker1.Size = new System.Drawing.Size(330, 40);
+            this.guna2DateTimePicker1.Size = new System.Drawing.Size(426, 40);
             this.guna2DateTimePicker1.TabIndex = 0;
             this.guna2DateTimePicker1.Value = new System.DateTime(2025, 11, 19, 18, 46, 30, 454);
             // 
@@ -174,7 +174,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1309, 63);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1382, 63);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -184,7 +184,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(365, 2);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(941, 0);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1014, 0);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // guna2Panel1
@@ -219,7 +219,7 @@
             this.guna2Panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
-            this.guna2Panel2.Size = new System.Drawing.Size(1309, 54);
+            this.guna2Panel2.Size = new System.Drawing.Size(1382, 54);
             this.guna2Panel2.TabIndex = 5;
             // 
             // guna2Panel5
@@ -228,7 +228,7 @@
             this.guna2Panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel5.Location = new System.Drawing.Point(11, 10);
             this.guna2Panel5.Name = "guna2Panel5";
-            this.guna2Panel5.Size = new System.Drawing.Size(1287, 34);
+            this.guna2Panel5.Size = new System.Drawing.Size(1360, 34);
             this.guna2Panel5.TabIndex = 6;
             // 
             // guna2CheckBox1
@@ -263,7 +263,7 @@
             this.guna2Panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
-            this.guna2Panel4.Size = new System.Drawing.Size(1309, 427);
+            this.guna2Panel4.Size = new System.Drawing.Size(1382, 387);
             this.guna2Panel4.TabIndex = 12;
             // 
             // dvgListOfCustomers
@@ -314,7 +314,7 @@
             this.dvgListOfCustomers.RowHeadersVisible = false;
             this.dvgListOfCustomers.RowHeadersWidth = 51;
             this.dvgListOfCustomers.RowTemplate.Height = 24;
-            this.dvgListOfCustomers.Size = new System.Drawing.Size(1287, 407);
+            this.dvgListOfCustomers.Size = new System.Drawing.Size(1360, 367);
             this.dvgListOfCustomers.TabIndex = 10;
             this.dvgListOfCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dvgListOfCustomers.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -345,7 +345,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UC_InterestComputation";
-            this.Size = new System.Drawing.Size(1315, 692);
+            this.Padding = new System.Windows.Forms.Padding(25, 20, 20, 20);
+            this.Size = new System.Drawing.Size(1433, 692);
             this.Load += new System.EventHandler(this.UC_InterestComputation_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

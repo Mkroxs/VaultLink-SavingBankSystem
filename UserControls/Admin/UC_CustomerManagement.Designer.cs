@@ -90,16 +90,17 @@
             this.btnSearch.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.btnSearch.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(1159, 10);
+            this.btnSearch.Location = new System.Drawing.Point(1232, 10);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(139, 51);
+            this.btnSearch.Size = new System.Drawing.Size(139, 52);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // guna2Panel2
             // 
+            this.guna2Panel2.AutoSize = true;
             this.guna2Panel2.Controls.Add(this.guna2Panel3);
             this.guna2Panel2.Controls.Add(this.btnSearch);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -107,7 +108,7 @@
             this.guna2Panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
-            this.guna2Panel2.Size = new System.Drawing.Size(1309, 71);
+            this.guna2Panel2.Size = new System.Drawing.Size(1382, 72);
             this.guna2Panel2.TabIndex = 5;
             // 
             // guna2Panel3
@@ -118,7 +119,7 @@
             this.guna2Panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.guna2Panel3.Size = new System.Drawing.Size(1148, 52);
+            this.guna2Panel3.Size = new System.Drawing.Size(1221, 52);
             this.guna2Panel3.TabIndex = 5;
             // 
             // guna2TextBox1
@@ -141,7 +142,7 @@
             this.guna2TextBox1.Name = "guna2TextBox1";
             this.guna2TextBox1.PlaceholderText = "";
             this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(1133, 52);
+            this.guna2TextBox1.Size = new System.Drawing.Size(1206, 52);
             this.guna2TextBox1.TabIndex = 3;
             this.guna2TextBox1.TextOffset = new System.Drawing.Point(10, 0);
             // 
@@ -211,7 +212,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(365, 2);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(941, 54);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1014, 54);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // dvgListOfCustomers
@@ -262,7 +263,7 @@
             this.dvgListOfCustomers.RowHeadersVisible = false;
             this.dvgListOfCustomers.RowHeadersWidth = 51;
             this.dvgListOfCustomers.RowTemplate.Height = 24;
-            this.dvgListOfCustomers.Size = new System.Drawing.Size(1287, 526);
+            this.dvgListOfCustomers.Size = new System.Drawing.Size(1360, 526);
             this.dvgListOfCustomers.TabIndex = 10;
             this.dvgListOfCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dvgListOfCustomers.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -296,14 +297,14 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.guna2Panel2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(25, 20);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1315, 692);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1388, 652);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
             // guna2Panel4
@@ -314,11 +315,11 @@
             this.guna2Panel4.BorderThickness = 10;
             this.guna2Panel4.Controls.Add(this.dvgListOfCustomers);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Panel4.Location = new System.Drawing.Point(3, 144);
+            this.guna2Panel4.Location = new System.Drawing.Point(3, 145);
             this.guna2Panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
-            this.guna2Panel4.Size = new System.Drawing.Size(1309, 546);
+            this.guna2Panel4.Size = new System.Drawing.Size(1382, 546);
             this.guna2Panel4.TabIndex = 12;
             // 
             // tableLayoutPanel2
@@ -335,7 +336,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1309, 63);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1382, 63);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // UC_CustomerManagement
@@ -346,7 +347,8 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UC_CustomerManagement";
-            this.Size = new System.Drawing.Size(1315, 692);
+            this.Padding = new System.Windows.Forms.Padding(25, 20, 20, 20);
+            this.Size = new System.Drawing.Size(1433, 692);
             this.Load += new System.EventHandler(this.UC_CustomerManagement_Load_1);
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
