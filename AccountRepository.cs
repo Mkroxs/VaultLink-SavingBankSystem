@@ -175,6 +175,43 @@ namespace VaultLinkBankSystem
                 ClosedDate = reader["ClosedDate"] != DBNull.Value ? (DateTime?)reader["ClosedDate"] : null
             };
         }
+        public Account GetAccountByAccountNumber(string accountNumber)
+        {
+            string query = "SELECT * FROM Accounts WHERE AccountNumber = @AccountNumber";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@AccountNumber", accountNumber);
+
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Account
+                            {
+                                AccountID = (int)reader["AccountID"],
+                                CustomerID = (int)reader["CustomerID"],
+                                AccountNumber = reader["AccountNumber"].ToString(),
+                                AccountType = reader["AccountType"].ToString(),
+                                Balance = (decimal)reader["Balance"],
+                                DateOpened = (DateTime)reader["DateOpened"],
+                                Status = reader["Status"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting account by account number: " + ex.Message);
+            }
+
+            return null;
+        }
     }
 }
 

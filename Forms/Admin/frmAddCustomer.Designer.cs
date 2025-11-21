@@ -1,4 +1,6 @@
-﻿namespace VaultLinkBankSystem.Forms.Admin
+﻿using Guna.UI2.WinForms;
+
+namespace VaultLinkBankSystem.Forms.Admin
 {
     partial class frmAddCustomer
     {

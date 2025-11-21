@@ -247,22 +247,22 @@ namespace VaultLinkBankSystem
         }
 
         // Search customers
-        public List<Customer> SearchCustomers(string searchTerm)
+        public List<Customer> SearchCustomers(string searchText)
         {
             List<Customer> customers = new List<Customer>();
+            // Use '%' for SQL LIKE wildcards. Search fields: FullName, CustomerCode, Phone, Email
             string query = @"SELECT * FROM Customers 
-                           WHERE FullName LIKE @SearchTerm 
-                           OR Email LIKE @SearchTerm 
-                           OR Phone LIKE @SearchTerm 
-                           OR CustomerCode LIKE @SearchTerm
-                           ORDER BY CreatedAt DESC";
+                     WHERE FullName LIKE @SearchText 
+                     OR CustomerCode LIKE @SearchText 
+                     OR Phone LIKE @SearchText 
+                     OR Email LIKE @SearchText";
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+                    cmd.Parameters.AddWithValue("@SearchText", $"%{searchText}%");
 
                     conn.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -276,7 +276,8 @@ namespace VaultLinkBankSystem
             }
             catch (Exception ex)
             {
-                throw new Exception("Error searching customers: " + ex.Message);
+                // Log error or rethrow
+                throw new Exception("Error during customer search: " + ex.Message);
             }
 
             return customers;
