@@ -252,6 +252,12 @@
     <Compile Include="Forms\Admin\frmViewDetails.Designer.cs">
       <DependentUpon>frmViewDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Customer\frmCustomerDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\frmCustomerDashboard.Designer.cs">
+      <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionRepository.cs" />
     <Compile Include="TransactionWithDetails.cs" />
@@ -366,6 +372,9 @@
     <EmbeddedResource Include="Forms\Admin\frmViewDetails.resx">
       <DependentUpon>frmViewDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\frmCustomerDashboard.resx">
+      <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Admin\UC_AccountManagement.resx">
       <DependentUpon>UC_AccountManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -440,7 +449,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\Customer\" />
+    <Folder Include="Transaction_Receipts\Withdraws\" />
     <Folder Include="UserControls\Customer\" />
   </ItemGroup>
   <ItemGroup>
