@@ -1,4 +1,20 @@
-﻿using iText.IO.Font;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using VaultLinkBankSystem.Helpers;
+
+// System.Drawing aliases (for WinForms UI)
+using WinFormsColor = System.Drawing.Color;
+using WinFormsFont = System.Drawing.Font;
+using WinFormsPoint = System.Drawing.Point;
+using WinFormsSize = System.Drawing.Size;
+using WinFormsImage = System.Drawing.Image;
+using WinFormsFontStyle = System.Drawing.FontStyle;
+using WinFormsPadding = System.Windows.Forms.Padding;
+
+// iText7 imports (for PDF generation)
 using iText.IO.Font.Constants;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
@@ -6,29 +22,8 @@ using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
 using iText.Layout.Element;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using VaultLinkBankSystem.Helpers;
-using Path = System.IO.Path;
-
-using Paragraph = iText.Layout.Element.Paragraph;
-using LineSeparator = iText.Layout.Element.LineSeparator;
-using SolidLine = iText.Kernel.Pdf.Canvas.Draw.SolidLine;
-
-
-using iText.Kernel.Colors;
-
+using iText.Layout.Properties;
+using PdfColor = iText.Kernel.Colors.ColorConstants;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -37,7 +32,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private TransactionRepository _transactionRepo;
         private AccountRepository _accountRepo;
         private CustomerRepository _customerRepo;
-
         private Customer _selectedCustomer;
         private List<Account> _customerAccounts;
 
@@ -48,13 +42,10 @@ namespace VaultLinkBankSystem.UserControls.Admin
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.UpdateStyles();
 
-
             _transactionRepo = new TransactionRepository();
             _accountRepo = new AccountRepository();
             _customerRepo = new CustomerRepository();
         }
-
-
 
         private void UC_Withdraw_Load(object sender, EventArgs e)
         {
@@ -62,115 +53,220 @@ namespace VaultLinkBankSystem.UserControls.Admin
             ClearForm();
         }
 
+        // ============================================
+        // SEARCH BUTTON CLICK
+        // ============================================
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
             {
-                string searchText = tbxSearchAccountNumber.Text.Trim(); // tbxSearchAccountNumber is now used for Customer Search
+                string searchTerm = tbxSearchCustomer.Text.Trim();
 
-                if (string.IsNullOrEmpty(searchText))
+                if (string.IsNullOrEmpty(searchTerm))
                 {
-                    MessageBox.Show("Please enter a customer name, code, or phone number to search.",
-                        "Validation Error",
+                    MessageBox.Show("Please enter a customer code or name to search.",
+                        "Validation",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
                     return;
                 }
 
-                // *** MODIFIED LOGIC START ***
-                // Search for customers by FullName, Email, Phone, or CustomerCode
-                List<Customer> foundCustomers = _customerRepo.SearchCustomers(searchText);
+                var allCustomers = _customerRepo.GetAllCustomers();
+                var foundCustomers = allCustomers
+                    .Where(c => c.IsKYCVerified &&
+                                (c.CustomerCode.ToLower().Contains(searchTerm.ToLower()) ||
+                                 c.FullName.ToLower().Contains(searchTerm.ToLower())))
+                    .ToList();
 
-                if (foundCustomers == null || foundCustomers.Count == 0)
+                if (foundCustomers.Count == 0)
                 {
-                    MessageBox.Show("Customer not found.",
-                        "Search Result",
+                    MessageBox.Show($"No verified customer found matching '{searchTerm}'.",
+                        "Not Found",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
-                    ClearForm();
+                    ClearCustomerInfo();
                     return;
                 }
 
-                if (foundCustomers.Count > 1)
+                if (foundCustomers.Count == 1)
                 {
-                    // Handle multiple results (e.g., prompt user to select one)
-                    // For now, we will select the first customer found.
-                    MessageBox.Show($"Found {foundCustomers.Count} customers. Selecting the first result. You should implement a customer selection screen.",
-                        "Multiple Results",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    _selectedCustomer = foundCustomers.First();
+                    DisplayCustomerInfo(foundCustomers[0]);
                 }
                 else
                 {
-                    // Exactly one customer found
-                    _selectedCustomer = foundCustomers.First();
+                    ShowCustomerSelectionDialog(foundCustomers);
                 }
-                // *** MODIFIED LOGIC END ***
-
-                // Get all accounts for this customer
-                _customerAccounts = _accountRepo.GetAccountsByCustomerId(_selectedCustomer.CustomerID);
-
-                // Display customer information
-                DisplayCustomerInfo();
-
-                // Populate account dropdown
-                PopulateAccountDropdown();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error searching for customer: {ex.Message}",
+                MessageBox.Show($"Error searching customer: {ex.Message}",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-
         }
 
-
-        private void DisplayCustomerInfo()
+        // ============================================
+        // SHOW CUSTOMER SELECTION DIALOG
+        // ============================================
+        private void ShowCustomerSelectionDialog(List<Customer> customers)
         {
-            if (_selectedCustomer != null)
+            Form selectionForm = new Form
             {
-                lblCustomerID.Text = _selectedCustomer.CustomerCode.ToString();
-                lblName.Text = $"{_selectedCustomer.FullName}";
+                Text = "Select Customer",
+                Size = new WinFormsSize(700, 450),
+                StartPosition = FormStartPosition.CenterParent,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                MaximizeBox = false,
+                MinimizeBox = false
+            };
 
-                // Calculate total balance across all accounts
-                decimal totalBalance = _customerAccounts.Sum(a => a.Balance);
-                lblTotalBalance.Text = totalBalance.ToString("C2");
+            DataGridView dgv = new DataGridView
+            {
+                Location = new WinFormsPoint(10, 10),
+                Size = new WinFormsSize(665, 350),
+                DataSource = customers,
+                AllowUserToAddRows = false,
+                AllowUserToDeleteRows = false,
+                ReadOnly = true,
+                SelectionMode = DataGridViewSelectionMode.FullRowSelect,
+                MultiSelect = false,
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            };
 
-                // Load customer picture if available
-                if (!string.IsNullOrEmpty(_selectedCustomer.ImagePath))
+            SetupGridStyle(dgv);
+
+            dgv.DataBindingComplete += (s, ev) =>
+            {
+                string[] allowedColumns = { "CustomerID", "CustomerCode", "FullName", "Email", "Phone" };
+                foreach (DataGridViewColumn column in dgv.Columns)
                 {
-                    // Check if the file exists at the given path to prevent exceptions
-                    if (System.IO.File.Exists(_selectedCustomer.ImagePath))
-                    {
-                        try
-                        {
-                            // Load the image directly from the file path
-                            pbCustomerPicture.Image = System.Drawing.Image.FromFile(_selectedCustomer.ImagePath);
-                        }
-                        catch (System.Exception ex)
-                        {
-
-                            System.Diagnostics.Debug.WriteLine($"Error loading image from file: {ex.Message}");
-                            pbCustomerPicture.Image = null; // Set to null on error
-                        }
-                    }
-                    else
-                    {
-                        pbCustomerPicture.Image = null;
-                    }
+                    column.Visible = allowedColumns.Contains(column.Name);
                 }
-                else
+
+                if (dgv.Columns.Contains("CustomerID"))
+                    dgv.Columns["CustomerID"].HeaderText = "ID";
+                if (dgv.Columns.Contains("CustomerCode"))
+                    dgv.Columns["CustomerCode"].HeaderText = "Customer Code";
+                if (dgv.Columns.Contains("FullName"))
+                    dgv.Columns["FullName"].HeaderText = "Full Name";
+                if (dgv.Columns.Contains("Email"))
+                    dgv.Columns["Email"].HeaderText = "Email";
+                if (dgv.Columns.Contains("Phone"))
+                    dgv.Columns["Phone"].HeaderText = "Phone";
+            };
+
+            Button btnSelect = new Button
+            {
+                Text = "Select Customer",
+                Location = new WinFormsPoint(475, 375),
+                Size = new WinFormsSize(120, 35),
+                DialogResult = DialogResult.OK,
+                BackColor = WinFormsColor.FromArgb(30, 144, 255),
+                ForeColor = WinFormsColor.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new WinFormsFont("Segoe UI", 9, WinFormsFontStyle.Bold)
+            };
+            btnSelect.FlatAppearance.BorderSize = 0;
+
+            Button btnCancel = new Button
+            {
+                Text = "Cancel",
+                Location = new WinFormsPoint(605, 375),
+                Size = new WinFormsSize(70, 35),
+                DialogResult = DialogResult.Cancel,
+                BackColor = WinFormsColor.FromArgb(200, 200, 200),
+                ForeColor = WinFormsColor.Black,
+                FlatStyle = FlatStyle.Flat,
+                Font = new WinFormsFont("Segoe UI", 9)
+            };
+            btnCancel.FlatAppearance.BorderSize = 0;
+
+            selectionForm.Controls.Add(dgv);
+            selectionForm.Controls.Add(btnSelect);
+            selectionForm.Controls.Add(btnCancel);
+
+            if (selectionForm.ShowDialog() == DialogResult.OK && dgv.SelectedRows.Count > 0)
+            {
+                Customer selectedCustomer = dgv.SelectedRows[0].DataBoundItem as Customer;
+                if (selectedCustomer != null)
                 {
-                    pbCustomerPicture.Image = null;
+                    DisplayCustomerInfo(selectedCustomer);
                 }
             }
         }
 
+        // ============================================
+        // SETUP GRID STYLE
+        // ============================================
+        private void SetupGridStyle(DataGridView dgv)
+        {
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.MultiSelect = false;
+            dgv.BackgroundColor = WinFormsColor.White;
+            dgv.GridColor = WinFormsColor.FromArgb(230, 230, 230);
+            dgv.DefaultCellStyle.ForeColor = WinFormsColor.Black;
+            dgv.DefaultCellStyle.BackColor = WinFormsColor.White;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = WinFormsColor.FromArgb(249, 249, 249);
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = WinFormsColor.FromArgb(42, 62, 84);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = WinFormsColor.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new WinFormsFont(dgv.Font, WinFormsFontStyle.Bold);
+            dgv.DefaultCellStyle.SelectionBackColor = WinFormsColor.FromArgb(30, 144, 255);
+            dgv.DefaultCellStyle.SelectionForeColor = WinFormsColor.White;
+            dgv.RowHeadersVisible = false;
+            dgv.RowTemplate.Height = 28;
+            dgv.RowTemplate.DefaultCellStyle.Padding = new WinFormsPadding(4, 2, 4, 2);
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+        }
 
+        // ============================================
+        // DISPLAY CUSTOMER INFORMATION
+        // ============================================
+        private void DisplayCustomerInfo(Customer customer)
+        {
+            _selectedCustomer = customer;
+            _customerAccounts = _accountRepo.GetAccountsByCustomerId(_selectedCustomer.CustomerID);
 
+            if (_customerAccounts == null || _customerAccounts.Count == 0)
+            {
+                MessageBox.Show("This customer has no accounts.",
+                    "No Accounts",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                ClearCustomerInfo();
+                return;
+            }
+
+            lblCustomerID.Text = _selectedCustomer.CustomerID.ToString();
+            lblName.Text = _selectedCustomer.FullName;
+
+            decimal totalBalance = _customerAccounts.Sum(a => a.Balance);
+            lblTotalBalance.Text = totalBalance.ToString("C2");
+
+            if (!string.IsNullOrEmpty(_selectedCustomer.ImagePath) && File.Exists(_selectedCustomer.ImagePath))
+            {
+                try
+                {
+                    pbCustomerPicture.Image = WinFormsImage.FromFile(_selectedCustomer.ImagePath);
+                }
+                catch
+                {
+                    pbCustomerPicture.Image = null;
+                }
+            }
+            else
+            {
+                pbCustomerPicture.Image = null;
+            }
+
+            PopulateAccountDropdown();
+        }
+
+        // ============================================
+        // POPULATE ACCOUNT DROPDOWN
+        // ============================================
         private void PopulateAccountDropdown()
         {
             cbxSelectAccount.Items.Clear();
@@ -182,6 +278,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 cbxSelectAccount.Items.Add(new
                 {
                     AccountID = account.AccountID,
+                    AccountNumber = account.AccountNumber,
                     DisplayText = $"{account.AccountNumber} - {account.AccountType} ({account.Balance:C2})"
                 });
             }
@@ -192,13 +289,13 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-
-
+        // ============================================
+        // CONFIRM WITHDRAWAL BUTTON CLICK
+        // ============================================
         private void btnWthdraw_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validation
                 if (_selectedCustomer == null)
                 {
                     MessageBox.Show("Please search for a customer first.",
@@ -217,7 +314,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     return;
                 }
 
-                if (string.IsNullOrEmpty(tbxAmount.Text))
+                if (string.IsNullOrEmpty(txtWithdrawAmount.Text))
                 {
                     MessageBox.Show("Please enter an amount.",
                         "Validation Error",
@@ -226,8 +323,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     return;
                 }
 
-                // Parse amount
-                if (!decimal.TryParse(tbxAmount.Text, out decimal amount))
+                if (!decimal.TryParse(txtWithdrawAmount.Text, out decimal amount))
                 {
                     MessageBox.Show("Please enter a valid amount.",
                         "Validation Error",
@@ -247,8 +343,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
                 dynamic selectedItem = cbxSelectAccount.SelectedItem;
                 int accountId = selectedItem.AccountID;
-                string accountDisplay = selectedItem.DisplayText;
-                // Confirm withdrawal
+                string accountNumber = selectedItem.AccountNumber;
+
                 DialogResult result = MessageBox.Show(
                     $"Are you sure you want to withdraw {amount:C2} from this account?",
                     "Confirm Withdrawal",
@@ -257,8 +353,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
                 if (result == DialogResult.Yes)
                 {
-                    // Process withdrawal
-                    Transaction transaction = _transactionRepo.Withdraw(accountId, amount, "Withdraw");
+                    Transaction transaction = _transactionRepo.Withdraw(accountId, amount, "ATM Withdrawal");
 
                     MessageBox.Show(
                         $"Withdrawal successful!\n\n" +
@@ -271,16 +366,17 @@ namespace VaultLinkBankSystem.UserControls.Admin
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
+                    // Generate receipt
+                    GenerateReceipt(
+                        _selectedCustomer.FullName,
+                        accountNumber,
+                        amount,
+                        transaction.NewBalance,
+                        transaction.TransactionID,
+                        "WITHDRAWAL");
 
-
-
-                    GenerateReceipt(_selectedCustomer.FullName, accountDisplay, amount, transaction.NewBalance, transaction.TransactionID);
-
-                    // Refresh the display
-                    btnSearch_Click(sender, e); // Re-search to update balances
-
-                    // Clear amount field
-                    tbxAmount.Clear();
+                    DisplayCustomerInfo(_selectedCustomer);
+                    txtWithdrawAmount.Clear();
                 }
             }
             catch (Exception ex)
@@ -292,31 +388,13 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-
-
-
-        private void ClearForm()
-        {
-            tbxSearchAccountNumber.Clear();
-            tbxAmount.Clear();
-            cbxSelectAccount.Items.Clear();
-            lblCustomerID.Text = "----------";
-            lblName.Text = "----------";
-            lblTotalBalance.Text = "--------";
-            lblCurrentBalance.Text = "--------";
-            pbCustomerPicture.Image = null;
-            _selectedCustomer = null;
-            _customerAccounts = null;
-        }
-
-
-
-
+        // ============================================
+        // GENERATE RECEIPT
+        // ============================================
         public void GenerateReceipt(string customerName, string accountNumber, decimal amount, decimal newBalance, int transactionId, string transactionType = "WITHDRAWAL")
         {
             try
             {
-                // 1. SETUP FILE PATHS (Dynamic, not hardcoded)
                 string cleanCustomerName = System.Text.RegularExpressions.Regex.Replace(customerName, @"[^a-zA-Z0-9_]", "_");
                 string cleanAccountNumber = System.Text.RegularExpressions.Regex.Replace(accountNumber, @"[^a-zA-Z0-9_]", "_");
                 string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
@@ -331,20 +409,15 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
                 string filePath = System.IO.Path.Combine(folder, fileName);
 
-                // 2. GENERATE PDF
-                // The 'using' block automatically closes the file, writer, and document when done.
                 using (PdfWriter writer = new PdfWriter(filePath))
                 using (PdfDocument pdf = new PdfDocument(writer))
                 using (Document doc = new Document(pdf, PageSize.A4))
                 {
-                    // Set margins
                     doc.SetMargins(50, 50, 50, 50);
 
-                    // Create fonts
                     PdfFont boldFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
                     PdfFont regularFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
 
-                    // Add Content using your helper methods
                     AddHeader(doc, boldFont, regularFont);
                     AddTransactionInfo(doc, boldFont, regularFont, transactionId, transactionType);
                     AddCustomerInfo(doc, boldFont, regularFont, customerName, accountNumber);
@@ -352,7 +425,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     AddFooter(doc, regularFont);
                 }
 
-                // 3. SUCCESS & OPEN FILE
                 DialogResult result = MessageBox.Show(
                     $"Receipt generated successfully!\n\nSaved at:\n{filePath}\n\nDo you want to open it now?",
                     "Success",
@@ -373,7 +445,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
             catch (IOException ioEx)
             {
-                MessageBox.Show($"File access error (is the file open?): {ioEx.Message}", "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"File access error: {ioEx.Message}", "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -381,23 +453,21 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-        // --- YOUR HELPER METHODS (Unchanged, just ensuring they are here) ---
-
         private void AddHeader(Document doc, PdfFont boldFont, PdfFont regularFont)
         {
             doc.Add(new Paragraph("TRANSACTION RECEIPT")
-                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetTextAlignment(TextAlignment.CENTER)
                 .SetFontSize(20)
                 .SetFont(boldFont)
                 .SetMarginBottom(5));
 
             doc.Add(new Paragraph("VaultLink Bank")
-                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetTextAlignment(TextAlignment.CENTER)
                 .SetFontSize(14)
                 .SetFont(regularFont)
                 .SetMarginBottom(20));
 
-            doc.Add(new LineSeparator(new iText.Kernel.Pdf.Canvas.Draw.SolidLine()).SetMarginBottom(15));
+            doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
         }
 
         private void AddTransactionInfo(Document doc, PdfFont boldFont, PdfFont regularFont, int transactionId, string transactionType)
@@ -420,7 +490,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             doc.Add(new Paragraph($"Account Number: {accountNumber}")
                 .SetFont(regularFont).SetFontSize(11).SetMarginBottom(15));
 
-            doc.Add(new LineSeparator(new iText.Kernel.Pdf.Canvas.Draw.SolidLine()).SetMarginBottom(15));
+            doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
         }
 
         private void AddTransactionSummary(Document doc, PdfFont boldFont, PdfFont regularFont, decimal amount, decimal newBalance, string transactionType)
@@ -428,7 +498,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
             doc.Add(new Paragraph("TRANSACTION SUMMARY")
                 .SetFont(boldFont).SetFontSize(12).SetMarginBottom(10));
 
-            // Logic Check: If withdrawal, we had MORE money before. If Deposit, we had LESS.
             decimal previousBalance = transactionType.ToUpper() == "WITHDRAWAL"
                 ? newBalance + amount
                 : newBalance - amount;
@@ -438,26 +507,38 @@ namespace VaultLinkBankSystem.UserControls.Admin
             doc.Add(new Paragraph($"New Balance: {newBalance:C2}")
                 .SetFont(boldFont).SetFontSize(13).SetMarginBottom(20));
 
-            doc.Add(new LineSeparator(new iText.Kernel.Pdf.Canvas.Draw.SolidLine()).SetMarginBottom(15));
+            doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
         }
 
         private void AddFooter(Document doc, PdfFont regularFont)
         {
             doc.Add(new Paragraph("Thank you for banking with VaultLink!")
-                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetTextAlignment(TextAlignment.CENTER)
                 .SetFont(regularFont).SetFontSize(10).SetMarginBottom(5));
 
             doc.Add(new Paragraph("This is an electronic receipt and does not require a signature.")
-                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetTextAlignment(TextAlignment.CENTER)
                 .SetFont(regularFont).SetFontSize(8)
-                .SetFontColor(ColorConstants.GRAY));
+                .SetFontColor(PdfColor.GRAY));
         }
 
+        private void ClearCustomerInfo()
+        {
+            cbxSelectAccount.Items.Clear();
+            lblCustomerID.Text = "----------";
+            lblName.Text = "----------";
+            lblTotalBalance.Text = "--------";
+            pbCustomerPicture.Image = null;
+            _selectedCustomer = null;
+            _customerAccounts = null;
+        }
 
-
-
-
-
+        private void ClearForm()
+        {
+            tbxSearchCustomer.Clear();
+            txtWithdrawAmount.Clear();
+            ClearCustomerInfo();
+        }
 
         private void cbxSelectAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -465,55 +546,47 @@ namespace VaultLinkBankSystem.UserControls.Admin
             {
                 try
                 {
-                    // We need to find the Account object corresponding to the selected item.
-                    // A safer way is to extract the AccountID and find the original object.
                     dynamic selectedItem = cbxSelectAccount.SelectedItem;
                     int accountId = selectedItem.AccountID;
 
-                    // Find the full Account object from the cached list
                     Account selectedAccount = _customerAccounts.FirstOrDefault(a => a.AccountID == accountId);
 
                     if (selectedAccount != null)
                     {
                         lblCurrentBalance.Text = selectedAccount.Balance.ToString("C2");
-                        tbxAmount.Enabled = true;
+                        txtWithdrawAmount.Enabled = true;
                         btnWthdraw.Enabled = true;
                     }
                 }
                 catch
                 {
-                    // If casting fails or list is empty
                     lblCurrentBalance.Text = "N/A";
-                    tbxAmount.Enabled = false;
+                    txtWithdrawAmount.Enabled = false;
                     btnWthdraw.Enabled = false;
                 }
             }
             else
             {
                 lblCurrentBalance.Text = "N/A";
-                tbxAmount.Enabled = false;
+                txtWithdrawAmount.Enabled = false;
                 btnWthdraw.Enabled = false;
             }
         }
 
         private void guna2HtmlLabel3_Click(object sender, EventArgs e)
         {
-
         }
 
         private void guna2HtmlLabel2_Click(object sender, EventArgs e)
         {
-
         }
 
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void tbxSearchAccountNumber_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }
