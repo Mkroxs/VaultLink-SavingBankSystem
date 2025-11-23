@@ -31,7 +31,7 @@
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.tbxAmount = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtWithdrawAmount = new Guna.UI2.WinForms.Guna2TextBox();
             this.cbxSelectAccount = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -55,7 +55,7 @@
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
-            this.tbxSearchAccountNumber = new Guna.UI2.WinForms.Guna2TextBox();
+            this.tbxSearchCustomer = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
@@ -121,28 +121,28 @@
             this.guna2HtmlLabel4.TabIndex = 9;
             this.guna2HtmlLabel4.Text = "Amount:";
             // 
-            // tbxAmount
+            // txtWithdrawAmount
             // 
-            this.tbxAmount.BorderRadius = 20;
-            this.tbxAmount.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxAmount.DefaultText = "Amount";
-            this.tbxAmount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxAmount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxAmount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxAmount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxAmount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxAmount.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tbxAmount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxAmount.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.tbxAmount.Location = new System.Drawing.Point(0, 40);
-            this.tbxAmount.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tbxAmount.Name = "tbxAmount";
-            this.tbxAmount.PlaceholderText = "";
-            this.tbxAmount.SelectedText = "";
-            this.tbxAmount.Size = new System.Drawing.Size(289, 35);
-            this.tbxAmount.TabIndex = 10;
-            this.tbxAmount.TextOffset = new System.Drawing.Point(10, 0);
+            this.txtWithdrawAmount.BorderRadius = 20;
+            this.txtWithdrawAmount.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtWithdrawAmount.DefaultText = "Amount";
+            this.txtWithdrawAmount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtWithdrawAmount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtWithdrawAmount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtWithdrawAmount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtWithdrawAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtWithdrawAmount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtWithdrawAmount.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtWithdrawAmount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtWithdrawAmount.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.txtWithdrawAmount.Location = new System.Drawing.Point(0, 40);
+            this.txtWithdrawAmount.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtWithdrawAmount.Name = "txtWithdrawAmount";
+            this.txtWithdrawAmount.PlaceholderText = "";
+            this.txtWithdrawAmount.SelectedText = "";
+            this.txtWithdrawAmount.Size = new System.Drawing.Size(289, 35);
+            this.txtWithdrawAmount.TabIndex = 10;
+            this.txtWithdrawAmount.TextOffset = new System.Drawing.Point(10, 0);
             // 
             // cbxSelectAccount
             // 
@@ -372,7 +372,7 @@
             // 
             // guna2Panel10
             // 
-            this.guna2Panel10.Controls.Add(this.tbxAmount);
+            this.guna2Panel10.Controls.Add(this.txtWithdrawAmount);
             this.guna2Panel10.Controls.Add(this.guna2HtmlLabel4);
             this.guna2Panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel10.Location = new System.Drawing.Point(30, 130);
@@ -440,7 +440,7 @@
             // 
             // guna2Panel7
             // 
-            this.guna2Panel7.Controls.Add(this.tbxSearchAccountNumber);
+            this.guna2Panel7.Controls.Add(this.tbxSearchCustomer);
             this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel7.Location = new System.Drawing.Point(11, 40);
             this.guna2Panel7.Margin = new System.Windows.Forms.Padding(2);
@@ -449,30 +449,30 @@
             this.guna2Panel7.Size = new System.Drawing.Size(802, 32);
             this.guna2Panel7.TabIndex = 5;
             // 
-            // tbxSearchAccountNumber
+            // tbxSearchCustomer
             // 
-            this.tbxSearchAccountNumber.BorderRadius = 20;
-            this.tbxSearchAccountNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxSearchAccountNumber.DefaultText = "Search Customer";
-            this.tbxSearchAccountNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxSearchAccountNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxSearchAccountNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxSearchAccountNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxSearchAccountNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxSearchAccountNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxSearchAccountNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tbxSearchAccountNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxSearchAccountNumber.IconLeft = global::VaultLinkBankSystem.Properties.Resources.search;
-            this.tbxSearchAccountNumber.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.tbxSearchAccountNumber.Location = new System.Drawing.Point(0, 0);
-            this.tbxSearchAccountNumber.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tbxSearchAccountNumber.Name = "tbxSearchAccountNumber";
-            this.tbxSearchAccountNumber.PlaceholderText = "";
-            this.tbxSearchAccountNumber.SelectedText = "";
-            this.tbxSearchAccountNumber.Size = new System.Drawing.Size(791, 32);
-            this.tbxSearchAccountNumber.TabIndex = 3;
-            this.tbxSearchAccountNumber.TextOffset = new System.Drawing.Point(10, 0);
-            this.tbxSearchAccountNumber.TextChanged += new System.EventHandler(this.tbxSearchAccountNumber_TextChanged);
+            this.tbxSearchCustomer.BorderRadius = 20;
+            this.tbxSearchCustomer.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxSearchCustomer.DefaultText = "Search Customer";
+            this.tbxSearchCustomer.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tbxSearchCustomer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tbxSearchCustomer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxSearchCustomer.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tbxSearchCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxSearchCustomer.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxSearchCustomer.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbxSearchCustomer.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxSearchCustomer.IconLeft = global::VaultLinkBankSystem.Properties.Resources.search;
+            this.tbxSearchCustomer.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.tbxSearchCustomer.Location = new System.Drawing.Point(0, 0);
+            this.tbxSearchCustomer.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tbxSearchCustomer.Name = "tbxSearchCustomer";
+            this.tbxSearchCustomer.PlaceholderText = "";
+            this.tbxSearchCustomer.SelectedText = "";
+            this.tbxSearchCustomer.Size = new System.Drawing.Size(791, 32);
+            this.tbxSearchCustomer.TabIndex = 3;
+            this.tbxSearchCustomer.TextOffset = new System.Drawing.Point(10, 0);
+            this.tbxSearchCustomer.TextChanged += new System.EventHandler(this.tbxSearchAccountNumber_TextChanged);
             // 
             // btnSearch
             // 
@@ -567,7 +567,7 @@
         }
 
         #endregion
-        private Guna.UI2.WinForms.Guna2TextBox tbxAmount;
+        private Guna.UI2.WinForms.Guna2TextBox txtWithdrawAmount;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
@@ -592,7 +592,7 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
-        private Guna.UI2.WinForms.Guna2TextBox tbxSearchAccountNumber;
+        private Guna.UI2.WinForms.Guna2TextBox tbxSearchCustomer;
         private Guna.UI2.WinForms.Guna2Button btnSearch;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel8;

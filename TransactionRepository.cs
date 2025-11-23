@@ -376,6 +376,146 @@ namespace VaultLinkBankSystem
             return summary;
         }
 
+        // ============================================
+        // TRANSFER MONEY
+        // ============================================
+        public (Transaction senderTransaction, Transaction recipientTransaction) Transfer(
+            int senderAccountId,
+            int recipientAccountId,
+            decimal amount,
+            string remarks = "")
+        {
+            if (amount <= 0)
+            {
+                throw new Exception("Transfer amount must be greater than zero.");
+            }
+
+            if (senderAccountId == recipientAccountId)
+            {
+                throw new Exception("Cannot transfer to the same account.");
+            }
+
+            // Get current balances
+            decimal senderBalance = GetAccountBalance(senderAccountId);
+            decimal recipientBalance = GetAccountBalance(recipientAccountId);
+
+            // Check if sufficient balance
+            if (amount > senderBalance)
+            {
+                throw new Exception($"Insufficient balance. Available: {senderBalance:C2}, Requested: {amount:C2}");
+            }
+
+            // Calculate new balances
+            decimal newSenderBalance = senderBalance - amount;
+            decimal newRecipientBalance = recipientBalance + amount;
+
+            // Create transaction records
+            Transaction senderTransaction = new Transaction
+            {
+                AccountID = senderAccountId,
+                TransactionDate = DateTime.Now,
+                TransactionType = "Transfer Out",
+                Amount = amount,
+                PreviousBalance = senderBalance,
+                NewBalance = newSenderBalance,
+                Remarks = string.IsNullOrEmpty(remarks) ? "Transfer Out" : remarks
+            };
+
+            Transaction recipientTransaction = new Transaction
+            {
+                AccountID = recipientAccountId,
+                TransactionDate = DateTime.Now,
+                TransactionType = "Transfer In",
+                Amount = amount,
+                PreviousBalance = recipientBalance,
+                NewBalance = newRecipientBalance,
+                Remarks = string.IsNullOrEmpty(remarks) ? "Transfer In" : remarks
+            };
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    // Use SQL Transaction to ensure ALL changes occur or none do
+                    using (SqlTransaction sqlTransaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            // 1. Insert sender transaction record
+                            string insertQuery = @"INSERT INTO Transactions (AccountID, TransactionDate, TransactionType, Amount, PreviousBalance, NewBalance, Remarks)
+                                         VALUES (@AccountID, @TransactionDate, @TransactionType, @Amount, @PreviousBalance, @NewBalance, @Remarks);
+                                         SELECT CAST(SCOPE_IDENTITY() AS INT);";
+
+                            using (SqlCommand cmd = new SqlCommand(insertQuery, conn, sqlTransaction))
+                            {
+                                cmd.Parameters.AddWithValue("@AccountID", senderTransaction.AccountID);
+                                cmd.Parameters.AddWithValue("@TransactionDate", senderTransaction.TransactionDate);
+                                cmd.Parameters.AddWithValue("@TransactionType", senderTransaction.TransactionType);
+                                cmd.Parameters.AddWithValue("@Amount", senderTransaction.Amount);
+                                cmd.Parameters.AddWithValue("@PreviousBalance", senderTransaction.PreviousBalance);
+                                cmd.Parameters.AddWithValue("@NewBalance", senderTransaction.NewBalance);
+                                cmd.Parameters.AddWithValue("@Remarks", senderTransaction.Remarks);
+
+                                senderTransaction.TransactionID = (int)cmd.ExecuteScalar();
+                            }
+
+                            // 2. Insert recipient transaction record
+                            using (SqlCommand cmd = new SqlCommand(insertQuery, conn, sqlTransaction))
+                            {
+                                cmd.Parameters.AddWithValue("@AccountID", recipientTransaction.AccountID);
+                                cmd.Parameters.AddWithValue("@TransactionDate", recipientTransaction.TransactionDate);
+                                cmd.Parameters.AddWithValue("@TransactionType", recipientTransaction.TransactionType);
+                                cmd.Parameters.AddWithValue("@Amount", recipientTransaction.Amount);
+                                cmd.Parameters.AddWithValue("@PreviousBalance", recipientTransaction.PreviousBalance);
+                                cmd.Parameters.AddWithValue("@NewBalance", recipientTransaction.NewBalance);
+                                cmd.Parameters.AddWithValue("@Remarks", recipientTransaction.Remarks);
+
+                                recipientTransaction.TransactionID = (int)cmd.ExecuteScalar();
+                            }
+
+                            // 3. Update sender account balance
+                            string updateQuery = "UPDATE Accounts SET Balance = @NewBalance WHERE AccountID = @AccountID";
+
+                            using (SqlCommand cmd = new SqlCommand(updateQuery, conn, sqlTransaction))
+                            {
+                                cmd.Parameters.AddWithValue("@NewBalance", newSenderBalance);
+                                cmd.Parameters.AddWithValue("@AccountID", senderAccountId);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // 4. Update recipient account balance
+                            using (SqlCommand cmd = new SqlCommand(updateQuery, conn, sqlTransaction))
+                            {
+                                cmd.Parameters.AddWithValue("@NewBalance", newRecipientBalance);
+                                cmd.Parameters.AddWithValue("@AccountID", recipientAccountId);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // Commit transaction
+                            sqlTransaction.Commit();
+
+                            return (senderTransaction, recipientTransaction);
+                        }
+                        catch (Exception)
+                        {
+                            sqlTransaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error processing transfer: " + ex.Message);
+            }
+        }
+
+
+
+
+
         private Transaction MapTransactionFromReader(SqlDataReader reader)
         {
             return new Transaction

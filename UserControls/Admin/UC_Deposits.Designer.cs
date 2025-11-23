@@ -55,7 +55,7 @@
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnDeposit = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel10 = new Guna.UI2.WinForms.Guna2Panel();
-            this.tbxAmount = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtDepositAmount = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel11 = new Guna.UI2.WinForms.Guna2Panel();
             this.cbxSelectAccount = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -136,7 +136,7 @@
             // 
             this.tbxSearchCustomer.BorderRadius = 20;
             this.tbxSearchCustomer.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxSearchCustomer.DefaultText = "Search Account Number";
+            this.tbxSearchCustomer.DefaultText = "Search Customer Name";
             this.tbxSearchCustomer.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.tbxSearchCustomer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.tbxSearchCustomer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -188,7 +188,7 @@
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             this.guna2HtmlLabel2.Size = new System.Drawing.Size(906, 40);
             this.guna2HtmlLabel2.TabIndex = 7;
-            this.guna2HtmlLabel2.Text = "Account Number:";
+            this.guna2HtmlLabel2.Text = "Customer Name:";
             this.guna2HtmlLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // guna2Panel5
@@ -421,6 +421,7 @@
             this.guna2Panel4.Padding = new System.Windows.Forms.Padding(30, 32, 30, 32);
             this.guna2Panel4.Size = new System.Drawing.Size(349, 429);
             this.guna2Panel4.TabIndex = 17;
+            this.guna2Panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel4_Paint);
             // 
             // btnDeposit
             // 
@@ -443,7 +444,7 @@
             // 
             // guna2Panel10
             // 
-            this.guna2Panel10.Controls.Add(this.tbxAmount);
+            this.guna2Panel10.Controls.Add(this.txtDepositAmount);
             this.guna2Panel10.Controls.Add(this.guna2HtmlLabel4);
             this.guna2Panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel10.Location = new System.Drawing.Point(30, 130);
@@ -453,28 +454,28 @@
             this.guna2Panel10.Size = new System.Drawing.Size(289, 91);
             this.guna2Panel10.TabIndex = 18;
             // 
-            // tbxAmount
+            // txtDepositAmount
             // 
-            this.tbxAmount.BorderRadius = 20;
-            this.tbxAmount.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxAmount.DefaultText = "Amount";
-            this.tbxAmount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxAmount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxAmount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxAmount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxAmount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxAmount.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tbxAmount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxAmount.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.tbxAmount.Location = new System.Drawing.Point(0, 40);
-            this.tbxAmount.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tbxAmount.Name = "tbxAmount";
-            this.tbxAmount.PlaceholderText = "";
-            this.tbxAmount.SelectedText = "";
-            this.tbxAmount.Size = new System.Drawing.Size(289, 35);
-            this.tbxAmount.TabIndex = 10;
-            this.tbxAmount.TextOffset = new System.Drawing.Point(10, 0);
+            this.txtDepositAmount.BorderRadius = 20;
+            this.txtDepositAmount.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDepositAmount.DefaultText = "Amount";
+            this.txtDepositAmount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtDepositAmount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtDepositAmount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDepositAmount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDepositAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDepositAmount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDepositAmount.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtDepositAmount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDepositAmount.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.txtDepositAmount.Location = new System.Drawing.Point(0, 40);
+            this.txtDepositAmount.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtDepositAmount.Name = "txtDepositAmount";
+            this.txtDepositAmount.PlaceholderText = "";
+            this.txtDepositAmount.SelectedText = "";
+            this.txtDepositAmount.Size = new System.Drawing.Size(289, 35);
+            this.txtDepositAmount.TabIndex = 10;
+            this.txtDepositAmount.TextOffset = new System.Drawing.Point(10, 0);
             // 
             // guna2HtmlLabel4
             // 
@@ -591,7 +592,7 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private Guna.UI2.WinForms.Guna2Button btnDeposit;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel10;
-        private Guna.UI2.WinForms.Guna2TextBox tbxAmount;
+        private Guna.UI2.WinForms.Guna2TextBox txtDepositAmount;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel11;
         private Guna.UI2.WinForms.Guna2ComboBox cbxSelectAccount;
