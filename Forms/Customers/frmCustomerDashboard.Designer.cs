@@ -36,6 +36,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.panelTopbar.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -86,6 +87,7 @@
             this.panelTopbar.BackColor = System.Drawing.Color.Transparent;
             this.panelTopbar.BorderRadius = 40;
             this.panelTopbar.BorderThickness = 100;
+            this.panelTopbar.Controls.Add(this.guna2HtmlLabel1);
             this.panelTopbar.Controls.Add(this.panel1);
             this.panelTopbar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
             this.panelTopbar.CustomBorderThickness = new System.Windows.Forms.Padding(0, 3, 3, 8);
@@ -135,6 +137,18 @@
             this.guna2Panel1.Size = new System.Drawing.Size(10, 476);
             this.guna2Panel1.TabIndex = 19;
             // 
+            // guna2HtmlLabel1
+            // 
+            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Malgun Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(546, 60);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(479, 56);
+            this.guna2HtmlLabel1.TabIndex = 20;
+            this.guna2HtmlLabel1.Text = "Welcome, John Melbern!";
+            // 
             // frmCustomerDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -151,6 +165,7 @@
             this.Text = "frmCustomerDashboard";
             this.Load += new System.EventHandler(this.frmCustomerDashboard_Load);
             this.panelTopbar.ResumeLayout(false);
+            this.panelTopbar.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -166,5 +181,6 @@
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
     }
 }

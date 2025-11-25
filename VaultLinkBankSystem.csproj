@@ -342,6 +342,18 @@
     <Compile Include="UserControls\Admin\UC_Deposits.Designer.cs">
       <DependentUpon>UC_Deposits.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Customers\UC_CustomerDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Customers\UC_CustomerDashboard.Designer.cs">
+      <DependentUpon>UC_CustomerDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Customers\UC_CustomerSidebar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Customers\UC_CustomerSidebar.Designer.cs">
+      <DependentUpon>UC_CustomerSidebar.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Registration\UC_AddressInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -424,6 +436,12 @@
     <EmbeddedResource Include="UserControls\Admin\UC_Deposits.resx">
       <DependentUpon>UC_Deposits.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Customers\UC_CustomerDashboard.resx">
+      <DependentUpon>UC_CustomerDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Customers\UC_CustomerSidebar.resx">
+      <DependentUpon>UC_CustomerSidebar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Registration\UC_AddressInfo.resx">
       <DependentUpon>UC_AddressInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -450,7 +468,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Transaction_Receipts\Withdraws\" />
-    <Folder Include="UserControls\Customers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\account.png" />
