@@ -135,7 +135,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private bool ColumnExistsOnCustomer(string propertyName)
         {
-            return typeof(Customer).GetProperty(propertyName) != null;
+            return typeof(Customers).GetProperty(propertyName) != null;
         }
 
 
@@ -144,7 +144,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             if (dgvPendingKYC.SelectedRows.Count > 0)
             {
-                Customer selectedCustomer = dgvPendingKYC.SelectedRows[0].DataBoundItem as Customer;
+                Customers selectedCustomer = dgvPendingKYC.SelectedRows[0].DataBoundItem as Customers;
                 if (selectedCustomer != null)
                 {
                     _selectedCustomerId = selectedCustomer.CustomerID;
@@ -163,7 +163,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-        private void DisplayCustomerDetails(Customer customer)
+        private void DisplayCustomerDetails(Customers customer)
         {
             txtCustomerCode.Text = customer.CustomerCode;
             txtFullName.Text = customer.FullName;
@@ -221,7 +221,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             try
             {
-                Customer customer = _customerRepo.GetCustomerById(_selectedCustomerId);
+                Customers customer = _customerRepo.GetCustomerById(_selectedCustomerId);
 
                 if (customer == null)
                 {
@@ -288,7 +288,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             try
             {
-                Customer customer = _customerRepo.GetCustomerById(_selectedCustomerId);
+                Customers customer = _customerRepo.GetCustomerById(_selectedCustomerId);
 
                 if (customer == null)
                 {

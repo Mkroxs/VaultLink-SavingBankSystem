@@ -1,22 +1,27 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using VaultLinkBankSystem;
-using FontAwesome.Sharp;
+using static Syncfusion.Windows.Forms.TabBar;
 
 namespace VaultLinkBankSystem.Forms.Admin
 {
     public partial class frmViewDetails : Form
     {
+        private Customers _customer;
+
         private CustomerRepository _customerRepo;
+
         private bool _isEditing;
 
-        public frmViewDetails()
+        public frmViewDetails(Customers customer)
         {
             InitializeComponent();
             _customerRepo = new CustomerRepository();
             _isEditing = false;
+            _customer = customer;
         }
 
         private void guna2Panel8_Paint(object sender, PaintEventArgs e)
@@ -143,6 +148,88 @@ namespace VaultLinkBankSystem.Forms.Admin
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving customer details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void frmViewDetails_Load(object sender, EventArgs e)
+        {
+            if (_customer != null)
+            {
+                if (!_customer.IsKYCVerified)
+                {
+                    lblKYCStatus.Text = "Not Verified";
+                    lblKYCStatus.ForeColor = Color.Red;
+                }
+                else
+                {
+                    lblKYCStatus.Text = "Verified";
+                    lblKYCStatus.ForeColor = Color.Green;
+                }
+
+                lblCustomerCode.Text = _customer.CustomerCode;
+                lblFullName.Text = _customer.FullName;
+
+                tbxCivilStatus.Text = _customer.CivilStatus;
+                tbxGender.Text = _customer.Gender;
+                tbxDateOfBirth.Text = _customer.BirthDate.HasValue
+                    ? _customer.BirthDate.Value.ToString("MMMM dd, yyyy")
+                    : "N/A";
+
+                tbxContactNumber.Text = _customer.Phone;
+                tbxEmailAddress.Text = _customer.Email;
+
+                if (!string.IsNullOrEmpty(_customer.Address))
+                {
+                    string[] parts = _customer.Address.Split(',');
+                    for (int i = 0; i < parts.Length; i++)
+                        parts[i] = parts[i].Trim();
+
+                    // Address format from UC_AddressInfo:
+                    // StreetName, Barangay, City, Province, ZipCode
+                    if (parts.Length >= 5)
+                    {
+                        tbxStreetName.Text = parts[0];      // Street Name
+                        tbxBarangay.Text = parts[1];        // Barangay
+                        tbxCity.Text = parts[2];            // City/Municipality
+                        tbxProvince.Text = parts[3];        // Province
+                        tbxZipCode.Text = parts[4];         // Zip Code
+                    }
+                    else
+                    {
+                        // Handle incomplete address
+                        tbxStreetName.Text = parts.Length > 0 ? parts[0] : "N/A";
+                        tbxBarangay.Text = parts.Length > 1 ? parts[1] : "N/A";
+                        tbxCity.Text = parts.Length > 2 ? parts[2] : "N/A";
+                        tbxProvince.Text = parts.Length > 3 ? parts[3] : "N/A";
+                        tbxZipCode.Text = parts.Length > 4 ? parts[4] : "N/A";
+                    }
+                }
+                else
+                {
+                    tbxStreetName.Text = "N/A";
+                    tbxBarangay.Text = "N/A";
+                    tbxCity.Text = "N/A";
+                    tbxProvince.Text = "N/A";
+                    tbxZipCode.Text = "N/A";
+                }
+
+                if (!string.IsNullOrEmpty(_customer.ImagePath) && System.IO.File.Exists(_customer.ImagePath))
+                {
+                    try
+                    {
+                        pbCustomerPicture.Image = Image.FromFile(_customer.ImagePath);
+                        pbCustomerPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    catch
+                    {
+                        // If image fails to load, keep default
+                        pbCustomerPicture.Image = null;
+                    }
+                }
+
+                    lblRegisteredDate.Text = _customer.CreatedAt.ToString("MMMM dd, yyyy");
+
+
             }
         }
     }

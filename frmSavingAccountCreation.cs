@@ -25,7 +25,7 @@ namespace VaultLinkBankSystem
 
         private void frmSavingAccountCreation_Load(object sender, EventArgs e)
         {
-            Customer cust = _customerRepo.GetCustomerById(_currentCustomerId);
+            Customers cust = _customerRepo.GetCustomerById(_currentCustomerId);
             if (cust != null)
             {
                 lblCustomerNameInformation.Text = cust.FullName;

@@ -33,7 +33,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private AccountRepository _accountRepo;
         private CustomerRepository _customerRepo;
 
-        private Customer _selectedCustomer;
+        private Customers _selectedCustomer;
         private List<Account> _customerAccounts;
         public UC_Deposits()
         {
@@ -101,7 +101,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         }
 
 
-        private void ShowCustomerSelectionDialog(List<Customer> customers)
+        private void ShowCustomerSelectionDialog(List<Customers> customers)
         {
             Form selectionForm = new Form
             {
@@ -180,7 +180,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             if (selectionForm.ShowDialog() == DialogResult.OK && dgv.SelectedRows.Count > 0)
             {
-                Customer selectedCustomer = dgv.SelectedRows[0].DataBoundItem as Customer;
+                Customers selectedCustomer = dgv.SelectedRows[0].DataBoundItem as Customers;
                 if (selectedCustomer != null)
                 {
                     DisplayCustomerInfo(selectedCustomer);
@@ -212,7 +212,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
 
 
-        private void DisplayCustomerInfo(Customer customer)
+        private void DisplayCustomerInfo(Customers customer)
         {
             _selectedCustomer = customer;
             _customerAccounts = _accountRepo.GetAccountsByCustomerId(_selectedCustomer.CustomerID);

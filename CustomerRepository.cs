@@ -15,7 +15,7 @@ namespace VaultLinkBankSystem
         }
 
         // Create customer WITH KYC (all in one step)
-        public int CreateCustomer(Customer customer)
+        public int CreateCustomer(Customers customer)
         {
             string query = @"INSERT INTO Customers (
                 CustomerCode, FullName, Address, Email, Phone, Gender, BirthDate, CivilStatus, ImagePath, PIN,
@@ -77,7 +77,7 @@ namespace VaultLinkBankSystem
         }
 
         // Get customer by ID
-        public Customer GetCustomerById(int customerId)
+        public Customers GetCustomerById(int customerId)
         {
             string query = "SELECT * FROM Customers WHERE CustomerID = @CustomerID";
 
@@ -107,7 +107,7 @@ namespace VaultLinkBankSystem
         }
 
         // Update customer (including KYC info)
-        public bool UpdateCustomer(Customer customer)
+        public bool UpdateCustomer(Customers customer)
         {
             string query = @"UPDATE Customers 
                            SET FullName = @FullName, 
@@ -186,7 +186,7 @@ namespace VaultLinkBankSystem
         }
 
         // Kiosk Login
-        public Customer KioskLogin(string email, string pin)
+        public Customers KioskLogin(string email, string pin)
         {
             string query = "SELECT * FROM Customers WHERE Email = @Email AND PIN = @PIN";
 
@@ -247,9 +247,9 @@ namespace VaultLinkBankSystem
         }
 
         // Search customers
-        public List<Customer> SearchCustomers(string searchText)
+        public List<Customers> SearchCustomers(string searchText)
         {
-            List<Customer> customers = new List<Customer>();
+            List<Customers> customers = new List<Customers>();
             // Use '%' for SQL LIKE wildcards. Search fields: FullName, CustomerCode, Phone, Email
             string query = @"SELECT * FROM Customers 
                      WHERE FullName LIKE @SearchText 
@@ -284,9 +284,9 @@ namespace VaultLinkBankSystem
         }
 
         // Get all customers
-        public List<Customer> GetAllCustomers()
+        public List<Customers> GetAllCustomers()
         {
-            List<Customer> customers = new List<Customer>();
+            List<Customers> customers = new List<Customers>();
             string query = "SELECT * FROM Customers ORDER BY CreatedAt DESC";
 
             try
@@ -312,9 +312,9 @@ namespace VaultLinkBankSystem
             return customers;
         }
 
-        private Customer MapCustomerFromReader(SqlDataReader reader)
+        private Customers MapCustomerFromReader(SqlDataReader reader)
         {
-            return new Customer
+            return new Customers
             {
                 CustomerID = (int)reader["CustomerID"],
                 CustomerCode = reader["CustomerCode"].ToString(),
