@@ -398,7 +398,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                 string fileName = $"Receipt_{cleanCustomerName}_{cleanAccountNumber}_{timestamp}.pdf";
 
-                string folder = @"C:\Users\JB\source\repos\VaultLink-SavingBankSystem2\Transactions_Receipts\Withdraws";
+                string folder = @"D:\Programming\VaultLinkBankSystem\Transaction_Receipts\Withdraws\";
 
                 if (!Directory.Exists(folder))
                 {

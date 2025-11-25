@@ -293,7 +293,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                 string fileName = $"Transfer_{cleanSenderName}_to_{cleanRecipientName}_{timestamp}.pdf";
 
-                string folder = @"C:\Users\JB\source\repos\VaultLink-SavingBankSystem2\Transactions_Receipts\Transfers";
+                string folder = @"D:\Programming\VaultLinkBankSystem\Transaction_Receipts\Withdraws\s";
 
                 if (!Directory.Exists(folder))
                 {

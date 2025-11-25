@@ -252,10 +252,10 @@
     <Compile Include="Forms\Admin\frmViewDetails.Designer.cs">
       <DependentUpon>frmViewDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\frmCustomerDashboard.cs">
+    <Compile Include="Forms\Customers\frmCustomerDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customer\frmCustomerDashboard.Designer.cs">
+    <Compile Include="Forms\Customers\frmCustomerDashboard.Designer.cs">
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction.cs" />
@@ -372,7 +372,7 @@
     <EmbeddedResource Include="Forms\Admin\frmViewDetails.resx">
       <DependentUpon>frmViewDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\frmCustomerDashboard.resx">
+    <EmbeddedResource Include="Forms\Customers\frmCustomerDashboard.resx">
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Admin\UC_AccountManagement.resx">
@@ -450,7 +450,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Transaction_Receipts\Withdraws\" />
-    <Folder Include="UserControls\Customer\" />
+    <Folder Include="UserControls\Customers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\account.png" />

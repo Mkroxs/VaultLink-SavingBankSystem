@@ -10,18 +10,12 @@ namespace VaultLinkBankSystem.Forms.Admin
     {
         CustomerRepository customerRepo = new CustomerRepository();
 
-
-
-
-        // Keep one instance of each registration step
         private UC_BasicInfo _ucBasicInfo;
         private UC_AddressInfo _ucAddressInfo;
         private UC_IdentityVerification _ucIdentityVerification;
 
-        // Track current visible page
         private UserControl _currentPage;
 
-        // Track current step (0 = BasicInfo, 1 = AddressInfo, 2 = IdentityVerification)
         private int _currentStep = 0;
 
         public frmRegistration()
@@ -30,45 +24,35 @@ namespace VaultLinkBankSystem.Forms.Admin
 
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 
-            // Enable double buffering on the form itself
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             this.UpdateStyles();
 
-            // Best-effort: enable double buffering and composited style for this form
             UiHelpers.EnableDoubleBufferingRecursive(this);
             UiHelpers.TryEnableComposited(this);
 
-            // PRELOAD ALL USER CONTROLS HERE IN CONSTRUCTOR (before form is shown)
             PreloadAllUserControls();
 
             // Wire up the Load event
             this.Load += FrmRegistration_Load;
         }
 
-        /// <summary>
-        /// Preload all user controls in the constructor before the form is visible
-        /// This ensures they are fully initialized and laid out, eliminating flicker
-        /// </summary>
+       
         private void PreloadAllUserControls()
         {
-            // Suspend layout during initialization
             this.SuspendLayout();
             panelMainRegister.SuspendLayout();
 
             try
             {
-                // Instantiate all registration steps
                 _ucBasicInfo = new UC_BasicInfo();
                 _ucAddressInfo = new UC_AddressInfo();
                 _ucIdentityVerification = new UC_IdentityVerification();
 
-                // Apply double buffering recursively to all new controls
                 UiHelpers.EnableDoubleBufferingRecursive(_ucBasicInfo);
                 UiHelpers.EnableDoubleBufferingRecursive(_ucAddressInfo);
                 UiHelpers.EnableDoubleBufferingRecursive(_ucIdentityVerification);
 
-                // Add all controls to the panel and force layout calculations
                 _ucBasicInfo.Dock = DockStyle.Fill;
                 _ucBasicInfo.Visible = false;
                 panelMainRegister.Controls.Add(_ucBasicInfo);
@@ -81,7 +65,6 @@ namespace VaultLinkBankSystem.Forms.Admin
                 _ucIdentityVerification.Visible = false;
                 panelMainRegister.Controls.Add(_ucIdentityVerification);
 
-                // Force all controls to render and calculate their layouts
                 panelMainRegister.PerformLayout();
                 _ucBasicInfo.CreateControl();
                 _ucBasicInfo.PerformLayout();
@@ -94,7 +77,6 @@ namespace VaultLinkBankSystem.Forms.Admin
             }
             finally
             {
-                // Resume layout after all changes
                 panelMainRegister.ResumeLayout(false);
                 this.ResumeLayout(false);
             }
@@ -119,29 +101,24 @@ namespace VaultLinkBankSystem.Forms.Admin
             }
         }
 
-        /// <summary>
-        /// Update button visibility based on current step
-        /// Step 0 (BasicInfo): Hide Previous, Show Next, Hide Register
-        /// Step 1 (AddressInfo): Show Previous, Show Next, Hide Register
-        /// Step 2 (IdentityVerification): Show Previous, Hide Next, Show Register
-        /// </summary>
+      
         private void UpdateButtonVisibility()
         {
             switch (_currentStep)
             {
-                case 0: // BasicInfo
+                case 0: 
                     btnPrevious.Visible = false;
                     btnNext.Visible = true;
                     btnRegister.Visible = false;
                     break;
 
-                case 1: // AddressInfo
+                case 1: 
                     btnPrevious.Visible = true;
                     btnNext.Visible = true;
                     btnRegister.Visible = false;
                     break;
 
-                case 2: // IdentityVerification
+                case 2: 
                     btnPrevious.Visible = true;
                     btnNext.Visible = false;
                     btnRegister.Visible = true;
@@ -169,15 +146,11 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void BtnRegister_Click(object sender, EventArgs e)
         {
-            // TODO: Implement registration logic here
             MessageBox.Show("Registration submitted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // Close form or reset
-            // this.Close();
+            
         }
 
-        /// <summary>
-        /// Show the current step based on _currentStep value
-        /// </summary>
+     
         private void ShowCurrentStep()
         {
             switch (_currentStep)
@@ -196,7 +169,6 @@ namespace VaultLinkBankSystem.Forms.Admin
             UpdateButtonVisibility();
         }
 
-        // Public methods to navigate between registration steps
         public void ShowBasicInfo()
         {
             UiHelpers.ShowPage(panelMainRegister, _ucBasicInfo, ref _currentPage);
@@ -224,7 +196,8 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void btnRegister_Click_1(object sender, EventArgs e)
         {
-            Customer testCustomer = new Customer
+            VaultLinkBankSystem.Customer testCustomer = new VaultLinkBankSystem.Customer()
+
             {
                 CustomerCode = customerRepo.GenerateCustomerCode(),
                 FullName = _ucBasicInfo.CustomerName,
@@ -242,7 +215,7 @@ namespace VaultLinkBankSystem.Forms.Admin
                 MonthlyIncomeRange = _ucIdentityVerification.CustomerMonthlyIncome,
                 IDType = _ucIdentityVerification.CustomerIDType,
                 IDNumber = _ucIdentityVerification.CustomerIDNumber,
-                IsKYCVerified = false,  // ← NOT VERIFIED
+                IsKYCVerified = false, 
                 KYCVerifiedDate = null
             };
 

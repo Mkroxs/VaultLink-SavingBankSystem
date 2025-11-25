@@ -1,0 +1,170 @@
+﻿namespace VaultLinkBankSystem.Forms.Customer
+{
+    partial class frmCustomerDashboard
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
+            this.panelMain = new Guna.UI2.WinForms.Guna2Panel();
+            this.panelSidebar = new Guna.UI2.WinForms.Guna2Panel();
+            this.panelTopbar = new Guna.UI2.WinForms.Guna2Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.panelTopbar.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // guna2BorderlessForm1
+            // 
+            this.guna2BorderlessForm1.ContainerControl = this;
+            this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
+            this.guna2BorderlessForm1.TransparentWhileDrag = true;
+            // 
+            // panelMain
+            // 
+            this.panelMain.BackColor = System.Drawing.Color.Transparent;
+            this.panelMain.BorderRadius = 40;
+            this.panelMain.BorderThickness = 100;
+            this.panelMain.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.panelMain.CustomizableEdges.BottomLeft = false;
+            this.panelMain.CustomizableEdges.TopLeft = false;
+            this.panelMain.CustomizableEdges.TopRight = false;
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
+            this.panelMain.Location = new System.Drawing.Point(420, 254);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Padding = new System.Windows.Forms.Padding(30, 30, 50, 70);
+            this.panelMain.Size = new System.Drawing.Size(710, 476);
+            this.panelMain.TabIndex = 18;
+            // 
+            // panelSidebar
+            // 
+            this.panelSidebar.BackColor = System.Drawing.Color.Transparent;
+            this.panelSidebar.BorderRadius = 40;
+            this.panelSidebar.BorderThickness = 100;
+            this.panelSidebar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.panelSidebar.CustomizableEdges.BottomLeft = false;
+            this.panelSidebar.CustomizableEdges.BottomRight = false;
+            this.panelSidebar.CustomizableEdges.TopLeft = false;
+            this.panelSidebar.CustomizableEdges.TopRight = false;
+            this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelSidebar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
+            this.panelSidebar.Location = new System.Drawing.Point(70, 254);
+            this.panelSidebar.Name = "panelSidebar";
+            this.panelSidebar.Size = new System.Drawing.Size(350, 476);
+            this.panelSidebar.TabIndex = 17;
+            // 
+            // panelTopbar
+            // 
+            this.panelTopbar.BackColor = System.Drawing.Color.Transparent;
+            this.panelTopbar.BorderRadius = 40;
+            this.panelTopbar.BorderThickness = 100;
+            this.panelTopbar.Controls.Add(this.panel1);
+            this.panelTopbar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.panelTopbar.CustomBorderThickness = new System.Windows.Forms.Padding(0, 3, 3, 8);
+            this.panelTopbar.CustomizableEdges.BottomLeft = false;
+            this.panelTopbar.CustomizableEdges.BottomRight = false;
+            this.panelTopbar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTopbar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
+            this.panelTopbar.Location = new System.Drawing.Point(70, 70);
+            this.panelTopbar.Name = "panelTopbar";
+            this.panelTopbar.Size = new System.Drawing.Size(1060, 184);
+            this.panelTopbar.TabIndex = 16;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.iconPictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(456, 184);
+            this.panel1.TabIndex = 14;
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.iconPictureBox1.BackgroundImage = global::VaultLinkBankSystem.Properties.Resources.ChatGPT_Image_Oct_30__2025__07_25_46_PM_removebg_preview_1;
+            this.iconPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.iconPictureBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ButtonFace;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 374;
+            this.iconPictureBox1.Location = new System.Drawing.Point(-38, -80);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(524, 374);
+            this.iconPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.iconPictureBox1.TabIndex = 13;
+            this.iconPictureBox1.TabStop = false;
+            // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.guna2Panel1.Location = new System.Drawing.Point(420, 254);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(10, 476);
+            this.guna2Panel1.TabIndex = 19;
+            // 
+            // frmCustomerDashboard
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.ClientSize = new System.Drawing.Size(1200, 800);
+            this.Controls.Add(this.guna2Panel1);
+            this.Controls.Add(this.panelMain);
+            this.Controls.Add(this.panelSidebar);
+            this.Controls.Add(this.panelTopbar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "frmCustomerDashboard";
+            this.Padding = new System.Windows.Forms.Padding(70);
+            this.Text = "frmCustomerDashboard";
+            this.Load += new System.EventHandler(this.frmCustomerDashboard_Load);
+            this.panelTopbar.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
+        private Guna.UI2.WinForms.Guna2Panel panelMain;
+        private Guna.UI2.WinForms.Guna2Panel panelSidebar;
+        private Guna.UI2.WinForms.Guna2Panel panelTopbar;
+        private System.Windows.Forms.Panel panel1;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+    }
+}
