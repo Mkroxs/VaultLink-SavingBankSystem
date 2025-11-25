@@ -252,10 +252,10 @@
     <Compile Include="Forms\Admin\frmViewDetails.Designer.cs">
       <DependentUpon>frmViewDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customers\frmCustomerDashboard.cs">
+    <Compile Include="Forms\CustomersFolder\frmCustomerDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customers\frmCustomerDashboard.Designer.cs">
+    <Compile Include="Forms\CustomersFolder\frmCustomerDashboard.Designer.cs">
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction.cs" />
@@ -384,7 +384,7 @@
     <EmbeddedResource Include="Forms\Admin\frmViewDetails.resx">
       <DependentUpon>frmViewDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customers\frmCustomerDashboard.resx">
+    <EmbeddedResource Include="Forms\CustomersFolder\frmCustomerDashboard.resx">
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Admin\UC_AccountManagement.resx">

@@ -117,7 +117,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 
 
                 // Confirmation dialog
-                Customer customer = _customerRepo.GetCustomerById(customerId);
+                Customers customer = _customerRepo.GetCustomerById(customerId);
                 DialogResult result = MessageBox.Show(
                     $"Create new savings account for:\n\n" +
                     $"Customer: {customer.FullName}\n" +
@@ -214,7 +214,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         }
 
-        private void ShowCustomerSelectionDialog(System.Collections.Generic.List<Customer> customers)
+        private void ShowCustomerSelectionDialog(System.Collections.Generic.List<Customers> customers)
         {
             Form selectionForm = new Form
             {
@@ -275,7 +275,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             if (selectionForm.ShowDialog() == DialogResult.OK && dgv.SelectedRows.Count > 0)
             {
-                Customer selectedCustomer = dgv.SelectedRows[0].DataBoundItem as Customer;
+                Customers selectedCustomer = dgv.SelectedRows[0].DataBoundItem as Customers;
                 if (selectedCustomer != null)
                 {
                     DisplayCustomerInfo(selectedCustomer);
@@ -284,7 +284,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         }
 
 
-        private void DisplayCustomerInfo(Customer customer)
+        private void DisplayCustomerInfo(Customers customer)
         {
             // Display customer details in your textboxes/labels
             txtCustomerCode.Text = customer.CustomerCode;

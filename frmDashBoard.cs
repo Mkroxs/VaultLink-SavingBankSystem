@@ -13,7 +13,7 @@ namespace VaultLinkBankSystem
     public partial class frmDashBoard : Form
     {
         CustomerRepository customerRepository = new CustomerRepository();
-        Customer newCustomer;
+        Customers newCustomer;
         //private int _custId;
         public frmDashBoard(Admin admin)
         {
@@ -28,7 +28,7 @@ namespace VaultLinkBankSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            newCustomer = new Customer
+            newCustomer = new Customers
             {
                 CustomerCode = "CUST010",
                 FullName = "Mike",

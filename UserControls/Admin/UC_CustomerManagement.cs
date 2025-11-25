@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VaultLinkBankSystem.Forms.Admin;
+using static Syncfusion.Windows.Forms.TabBar;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -15,7 +17,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
     {
         private CustomerRepository _customerRepo;
         private int _selectedCustomerId = 0;
-        private List<Customer> _allCustomers;
+        private List<Customers> _allCustomers;
+        private List<Customers> customers = new List<Customers>();
+
 
         private Forms.Admin.frmViewDetails _preloadedViewDetails;
 
@@ -24,7 +28,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             InitializeComponent();
 
             _customerRepo = new CustomerRepository();
-            _allCustomers = new List<Customer>();
+            _allCustomers = new List<Customers>();
 
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -36,18 +40,14 @@ namespace VaultLinkBankSystem.UserControls.Admin
             this.dvgListOfCustomers.SelectionChanged += DvgListOfCustomers_SelectionChanged;
             this.dvgListOfCustomers.CellClick += DvgListOfCustomers_CellClick;
 
-            try
-            {
-                btnViewDetail.Click -= BtnViewDetails_Click;
-                btnViewDetail.Click += BtnViewDetails_Click;
-            }
-            catch
-            {
-            }
 
             try
             {
-                _preloadedViewDetails = new Forms.Admin.frmViewDetails();
+                Customers selectedCustomer;
+
+                selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customers;
+
+                _preloadedViewDetails = new Forms.Admin.frmViewDetails(selectedCustomer);
 
                 var h = _preloadedViewDetails.Handle;
                 _preloadedViewDetails.CreateControl();
@@ -56,17 +56,27 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 _preloadedViewDetails.PerformLayout();
 
                 _preloadedViewDetails.Visible = false;
+
+                this.Disposed += (s, e) =>
+                {
+                    // Clean up _preloadedViewDetails when the control is disposed.
+                    try { _preloadedViewDetails?.Dispose(); } catch { }
+                };
+
             }
             catch
             {
                 _preloadedViewDetails = null;
             }
 
-            this.Disposed += (s, e) =>
-            {
-                try { _preloadedViewDetails?.Dispose(); } catch { }
-            };
         }
+
+
+        
+
+
+
+
 
         private void LoadData()
         {
@@ -82,6 +92,24 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 MessageBox.Show($"Error loading customer data: {ex.Message}");
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         private void SetupGridStyle()
@@ -160,7 +188,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             if (dvgListOfCustomers.SelectedRows.Count > 0)
             {
-                Customer selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customer;
+                Customers selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customers;
 
                 if (selectedCustomer != null)
                 {
@@ -170,55 +198,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
             else
             {
                 _selectedCustomerId = 0;
-            }
-        }
-
-        private void BtnViewDetails_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Customer selectedCustomer = null;
-
-                if (dvgListOfCustomers.SelectedRows.Count > 0)
-                {
-                    selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customer;
-                }
-
-                if (selectedCustomer == null && _selectedCustomerId != 0)
-                {
-                    selectedCustomer = _allCustomers.FirstOrDefault(c => c.CustomerID == _selectedCustomerId);
-                }
-
-                Form parentForm = this.FindForm();
-
-                Forms.Admin.frmViewDetails viewForm = _preloadedViewDetails;
-                bool createdLocally = false;
-                if (viewForm == null)
-                {
-                    viewForm = new Forms.Admin.frmViewDetails();
-                    createdLocally = true;
-                }
-
-                if (selectedCustomer != null)
-                {
-                    viewForm.Tag = selectedCustomer.CustomerID;
-                }
-
-                try
-                {
-                    viewForm.ShowDialog(parentForm);
-                }
-                finally
-                {
-                    if (createdLocally)
-                    {
-                        try { viewForm.Dispose(); } catch { }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error showing details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -295,13 +274,69 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void btnViewDetails(object sender, EventArgs e)
         {
+            if (dvgListOfCustomers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a customer first.");
+                return;
+            }
 
+            Customers selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customers;
+
+            if (selectedCustomer == null)
+            {
+                MessageBox.Show("Invalid customer selection.");
+                return;
+            }
+
+            using (frmViewDetails viewForm = new frmViewDetails(selectedCustomer))
+            {
+                viewForm.ShowDialog();
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string searchTerm = txbCustomerSearch.Text.Trim();
 
-        }
+                // If empty → reload full data
+                if (string.IsNullOrEmpty(searchTerm))
+                {
+                    dvgListOfCustomers.DataSource = _allCustomers;
+                    return;
+                }
+
+                // Search through already-loaded customers
+                var foundCustomers = _allCustomers
+                    .Where(c =>
+    (c.CustomerCode != null && c.CustomerCode.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0) ||
+    (c.FullName != null && c.FullName.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0) ||
+    (c.Email != null && c.Email.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0) ||
+    (c.Phone != null && c.Phone.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0)
+)
+                    .ToList();
+
+                dvgListOfCustomers.DataSource = foundCustomers;
+
+                if (foundCustomers.Count == 0)
+                {
+                    MessageBox.Show("No matching customers found.", "Search Result",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error during search: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
+    
+}
+
+
+
+
 
         private void dvgListOfCustomers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -320,5 +355,30 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
 
         }
+
+        private void txbCustomerSearch_TextChanged(object sender, EventArgs e)
+        {
+
+            string keyword = txbCustomerSearch.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                dvgListOfCustomers.DataSource = _allCustomers; // reset
+                return;
+            }
+
+            var filtered = _allCustomers
+                .Where(c =>
+                    (!string.IsNullOrEmpty(c.FullName) && c.FullName.ToLower().Contains(keyword)) ||
+                    (!string.IsNullOrEmpty(c.Address) && c.Address.ToLower().Contains(keyword)) ||
+                    (!string.IsNullOrEmpty(c.Email) && c.Email.ToLower().Contains(keyword)) ||
+                    (!string.IsNullOrEmpty(c.Phone) && c.Phone.ToLower().Contains(keyword))
+                )
+                .ToList();
+
+            dvgListOfCustomers.DataSource = filtered;
+        }
+
+       
     }
 }

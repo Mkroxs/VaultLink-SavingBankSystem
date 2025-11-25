@@ -33,8 +33,8 @@ namespace VaultLinkBankSystem.UserControls.Registration
         public string CustomerAddress
         {
             get {
-                return address = tbxStreetName.Text + ", " + tbxBarangay.Text + ", "
-                    + tbxCity.Text + ", " + tbxProvince + ", " + tbxZipCode;
+                return tbxStreetName.Text + ", " + tbxBarangay.Text + ", "
+                    + tbxCity.Text + ", " + tbxProvince.Text + ", " + tbxZipCode.Text;
             }
 
         }
