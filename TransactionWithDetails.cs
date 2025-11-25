@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VaultLinkBankSystem
 {
-    public class TransactionWithDetails
+    public class TransactionReportData
     {
         public int TransactionID { get; set; }
         public DateTime TransactionDate { get; set; }

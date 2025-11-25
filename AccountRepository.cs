@@ -212,6 +212,46 @@ namespace VaultLinkBankSystem
 
             return null;
         }
+
+
+
+
+        public List<Account> GetAllAccounts()
+        {
+            List<Account> accounts = new List<Account>();
+            string query = "SELECT * FROM Accounts ORDER BY AccountID DESC";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            accounts.Add(new Account
+                            {
+                                AccountID = (int)reader["AccountID"],
+                                CustomerID = (int)reader["CustomerID"],
+                                AccountNumber = reader["AccountNumber"].ToString(),
+                                AccountType = reader["AccountType"].ToString(),
+                                Balance = (decimal)reader["Balance"],
+                                DateOpened = (DateTime)reader["DateOpened"],
+                                Status = reader["Status"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting all accounts: " + ex.Message);
+            }
+
+            return accounts;
+        }
     }
 }
 
