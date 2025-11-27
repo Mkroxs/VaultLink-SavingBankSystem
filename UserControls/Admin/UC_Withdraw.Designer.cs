@@ -474,6 +474,8 @@
             this.tbxSearchCustomer.TabIndex = 3;
             this.tbxSearchCustomer.TextOffset = new System.Drawing.Point(10, 0);
             this.tbxSearchCustomer.TextChanged += new System.EventHandler(this.tbxSearchAccountNumber_TextChanged);
+            this.tbxSearchCustomer.Click += new System.EventHandler(this.tbxSearchCustomer_Click);
+            this.tbxSearchCustomer.Leave += new System.EventHandler(this.tbxSearchCustomer_Leave);
             // 
             // btnSearch
             // 

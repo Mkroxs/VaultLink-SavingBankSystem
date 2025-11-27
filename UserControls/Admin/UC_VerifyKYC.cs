@@ -44,34 +44,46 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             try
             {
-                
+                // Get all customers
                 var allCustomers = _customerRepo.GetAllCustomers();
 
-              
+                // Filter only unverified customers
                 var pendingCustomers = allCustomers.Where(c => !c.IsKYCVerified).ToList();
 
-             
+                // Bind to DataGridView
                 dgvPendingKYC.DataSource = null;
                 dgvPendingKYC.DataSource = pendingCustomers;
 
-               
+                ConfigureColumns();
+
+                // Update pending count label
                 lblPendingCount.Text = $"Total Pending: {pendingCustomers.Count}";
                 lblPendingCount.ForeColor = pendingCustomers.Count > 0 ?
                     Color.FromArgb(231, 76, 60) : Color.FromArgb(46, 204, 113);
 
-             
-                if (pendingCustomers.Count > 0 && dgvPendingKYC.Columns.Count > 0)
-                {
-                }
-
-                
+                // Handle display based on count
                 if (pendingCustomers.Count == 0)
                 {
-                    
+                    ShowNoDataMessage();
                 }
                 else
                 {
-                    ClearDetailsPanel();
+                    // Auto-select first row after data loads
+                    if (dgvPendingKYC.Rows.Count > 0)
+                    {
+                        dgvPendingKYC.ClearSelection();
+                        dgvPendingKYC.Rows[0].Selected = true;
+
+                        // Manually trigger display of first customer
+                        Customers firstCustomer = dgvPendingKYC.Rows[0].DataBoundItem as Customers;
+                        if (firstCustomer != null)
+                        {
+                            _selectedCustomerId = firstCustomer.CustomerID;
+                            DisplayCustomerDetails(firstCustomer);
+                            btnVerify.Enabled = true;
+                            btnReject.Enabled = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -80,6 +92,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
 
         private void ConfigureColumns()
         {
@@ -206,8 +220,10 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void ShowNoDataMessage()
         {
             ClearDetailsPanel();
-            MessageBox.Show("✅ No pending KYC verifications!\n\nAll customers have been verified.",
-                "No Pending KYC", MessageBoxButtons.OK, MessageBoxIcon.Information);
+         
+            txtFullName.Text = "No pending KYC verifications";
+            txtCustomerCode.Text = "All customers verified! ✅";
+        
         }
 
         private void btnVerify_Click(object sender, EventArgs e)

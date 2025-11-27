@@ -641,5 +641,15 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             e.DrawFocusRectangle();
         }
+
+        private void tbxSearchCustomer_Click(object sender, EventArgs e)
+        {
+            tbxSearchCustomer.Clear();
+        }
+
+        private void tbxSearchCustomer_Leave(object sender, EventArgs e)
+        {
+            tbxSearchCustomer.Text = "Search Customer Name";
+        }
     }
 }

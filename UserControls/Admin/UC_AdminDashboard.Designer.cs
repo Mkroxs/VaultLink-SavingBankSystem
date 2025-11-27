@@ -260,7 +260,6 @@
             // 
             this.dgvRecentTransactions.AllowUserToAddRows = false;
             this.dgvRecentTransactions.AllowUserToDeleteRows = false;
-            this.dgvRecentTransactions.AllowUserToOrderColumns = true;
             this.dgvRecentTransactions.AllowUserToResizeColumns = false;
             this.dgvRecentTransactions.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;

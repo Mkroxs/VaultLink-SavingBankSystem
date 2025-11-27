@@ -728,5 +728,14 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
+        private void txbCustomerSearch_Click(object sender, EventArgs e)
+        {
+            txbCustomerSearch.Text = "";
+        }
+
+        private void txbCustomerSearch_Leave(object sender, EventArgs e)
+        {
+            txbCustomerSearch.Text = "Search/Select Customer";
+        }
     }
 }

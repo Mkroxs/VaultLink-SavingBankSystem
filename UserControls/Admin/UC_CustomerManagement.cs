@@ -379,6 +379,14 @@ namespace VaultLinkBankSystem.UserControls.Admin
             dvgListOfCustomers.DataSource = filtered;
         }
 
-       
+        private void txbCustomerSearch_Click(object sender, EventArgs e)
+        {
+            txbCustomerSearch.Clear();
+        }
+
+        private void txbCustomerSearch_Leave(object sender, EventArgs e)
+        {
+            txbCustomerSearch.Text = "Search";
+        }
     }
 }

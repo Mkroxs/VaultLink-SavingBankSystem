@@ -132,6 +132,8 @@
             this.txbCustomerSearch.TabIndex = 3;
             this.txbCustomerSearch.TextOffset = new System.Drawing.Point(10, 0);
             this.txbCustomerSearch.TextChanged += new System.EventHandler(this.txbCustomerSearch_TextChanged);
+            this.txbCustomerSearch.Click += new System.EventHandler(this.txbCustomerSearch_Click);
+            this.txbCustomerSearch.Leave += new System.EventHandler(this.txbCustomerSearch_Leave);
             // 
             // btnSearch
             // 
@@ -303,7 +305,6 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCustomerAccounts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCustomerAccounts.ColumnHeadersHeight = 35;
-            this.dgvCustomerAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(45)))), ((int)(((byte)(80)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -318,6 +319,7 @@
             this.dgvCustomerAccounts.Location = new System.Drawing.Point(2, 2);
             this.dgvCustomerAccounts.Margin = new System.Windows.Forms.Padding(2);
             this.dgvCustomerAccounts.Name = "dgvCustomerAccounts";
+            this.dgvCustomerAccounts.ReadOnly = true;
             this.dgvCustomerAccounts.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvCustomerAccounts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -344,9 +346,9 @@
             this.dgvCustomerAccounts.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvCustomerAccounts.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvCustomerAccounts.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvCustomerAccounts.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvCustomerAccounts.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvCustomerAccounts.ThemeStyle.HeaderStyle.Height = 35;
-            this.dgvCustomerAccounts.ThemeStyle.ReadOnly = false;
+            this.dgvCustomerAccounts.ThemeStyle.ReadOnly = true;
             this.dgvCustomerAccounts.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvCustomerAccounts.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvCustomerAccounts.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -32,7 +32,7 @@
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
-            this.txtSearchAccountNumber = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtSearchCustomerName = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
@@ -127,7 +127,7 @@
             // 
             // guna2Panel7
             // 
-            this.guna2Panel7.Controls.Add(this.txtSearchAccountNumber);
+            this.guna2Panel7.Controls.Add(this.txtSearchCustomerName);
             this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel7.Location = new System.Drawing.Point(11, 40);
             this.guna2Panel7.Margin = new System.Windows.Forms.Padding(2);
@@ -136,29 +136,32 @@
             this.guna2Panel7.Size = new System.Drawing.Size(802, 32);
             this.guna2Panel7.TabIndex = 5;
             // 
-            // txtSearchAccountNumber
+            // txtSearchCustomerName
             // 
-            this.txtSearchAccountNumber.BorderRadius = 20;
-            this.txtSearchAccountNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearchAccountNumber.DefaultText = "Search Account Number";
-            this.txtSearchAccountNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtSearchAccountNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtSearchAccountNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearchAccountNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearchAccountNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSearchAccountNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearchAccountNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtSearchAccountNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearchAccountNumber.IconLeft = global::VaultLinkBankSystem.Properties.Resources.search;
-            this.txtSearchAccountNumber.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtSearchAccountNumber.Location = new System.Drawing.Point(0, 0);
-            this.txtSearchAccountNumber.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.txtSearchAccountNumber.Name = "txtSearchAccountNumber";
-            this.txtSearchAccountNumber.PlaceholderText = "";
-            this.txtSearchAccountNumber.SelectedText = "";
-            this.txtSearchAccountNumber.Size = new System.Drawing.Size(791, 32);
-            this.txtSearchAccountNumber.TabIndex = 3;
-            this.txtSearchAccountNumber.TextOffset = new System.Drawing.Point(10, 0);
+            this.txtSearchCustomerName.BorderRadius = 20;
+            this.txtSearchCustomerName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSearchCustomerName.DefaultText = "Search Customer Name";
+            this.txtSearchCustomerName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtSearchCustomerName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtSearchCustomerName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearchCustomerName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearchCustomerName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearchCustomerName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearchCustomerName.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtSearchCustomerName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearchCustomerName.IconLeft = global::VaultLinkBankSystem.Properties.Resources.search;
+            this.txtSearchCustomerName.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.txtSearchCustomerName.Location = new System.Drawing.Point(0, 0);
+            this.txtSearchCustomerName.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtSearchCustomerName.Name = "txtSearchCustomerName";
+            this.txtSearchCustomerName.PlaceholderText = "";
+            this.txtSearchCustomerName.SelectedText = "";
+            this.txtSearchCustomerName.Size = new System.Drawing.Size(791, 32);
+            this.txtSearchCustomerName.TabIndex = 3;
+            this.txtSearchCustomerName.TextOffset = new System.Drawing.Point(10, 0);
+            this.txtSearchCustomerName.TextChanged += new System.EventHandler(this.txtSearchCustomerName_TextChanged);
+            this.txtSearchCustomerName.Click += new System.EventHandler(this.txtSearchAccountNumber_Click);
+            this.txtSearchCustomerName.Leave += new System.EventHandler(this.txtSearchCustomerName_Leave);
             // 
             // btnSearch
             // 
@@ -627,7 +630,7 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
-        private Guna.UI2.WinForms.Guna2TextBox txtSearchAccountNumber;
+        private Guna.UI2.WinForms.Guna2TextBox txtSearchCustomerName;
         private Guna.UI2.WinForms.Guna2Button btnSearch;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;

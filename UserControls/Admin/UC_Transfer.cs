@@ -56,7 +56,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             try
             {
-                string searchTerm = txtSearchAccountNumber.Text.Trim();
+                string searchTerm = txtSearchCustomerName.Text.Trim();
 
                 if (string.IsNullOrEmpty(searchTerm))
                 {
@@ -438,7 +438,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         }
         private void ClearForm()
         {
-            txtSearchAccountNumber.Clear();
+            txtSearchCustomerName.Clear();
             txtRecipientNumber.Clear();
             txtTransferAmount.Clear();
             ClearCustomerInfo();
@@ -675,6 +675,22 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 txtTransferAmount.Enabled = true;
                 btnConfirmTransfer.Enabled = true;
             }
+        }
+
+        private void txtSearchAccountNumber_Click(object sender, EventArgs e)
+        {
+            txtSearchCustomerName.Clear();
+            
+        }
+
+        private void txtSearchCustomerName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearchCustomerName_Leave(object sender, EventArgs e)
+        {
+            txtSearchCustomerName.Text = "Seach Customer Name";
         }
     }
 }
