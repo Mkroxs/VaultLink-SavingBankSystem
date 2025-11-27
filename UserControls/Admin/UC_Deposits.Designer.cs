@@ -519,6 +519,7 @@
             this.cbxSelectAccount.Name = "cbxSelectAccount";
             this.cbxSelectAccount.Size = new System.Drawing.Size(289, 36);
             this.cbxSelectAccount.TabIndex = 11;
+            this.cbxSelectAccount.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cbxSelectAccount_DrawItem);
             this.cbxSelectAccount.SelectedIndexChanged += new System.EventHandler(this.cbxSelectAccount_SelectedIndexChanged);
             // 
             // guna2HtmlLabel3

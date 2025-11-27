@@ -228,6 +228,7 @@
     <Compile Include="AdminRepository.cs" />
     <Compile Include="Customercs.cs" />
     <Compile Include="CustomerRepository.cs" />
+    <Compile Include="DailyTransactionData.cs" />
     <Compile Include="Forms\Admin\frmAddCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,8 +259,10 @@
     <Compile Include="Forms\CustomersFolder\frmCustomerDashboard.Designer.cs">
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="InterestRepository.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionRepository.cs" />
+    <Compile Include="TransactionWithCustomer.cs" />
     <Compile Include="TransactionWithDetails.cs" />
     <Compile Include="UiHelpers.cs" />
     <Compile Include="UserControls\Admin\UC_AdminSidebar.cs">

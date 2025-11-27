@@ -1,7 +1,10 @@
-﻿using System;
+﻿using iText.IO.Image;
+using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using VaultLinkBankSystem.UserControls.Registration;
 using VaultLinkBankSystem.Helpers;
+using VaultLinkBankSystem.UserControls.Registration;
 
 namespace VaultLinkBankSystem.Forms.Admin
 {
@@ -18,9 +21,13 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private int _currentStep = 0;
 
+        private string imagePath = null;
+
+
         public frmRegistration()
         {
             InitializeComponent();
+            
 
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 
@@ -128,12 +135,173 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            if (_currentStep < 2)
+            if (ValidateCurrentStep())
             {
-                _currentStep++;
-                ShowCurrentStep();
+                if (_currentStep < 2)
+                {
+                    _currentStep++;
+                    ShowCurrentStep();
+                }
             }
         }
+
+        private bool ValidateID(string idType, string idNumber)
+        {
+            // 1. Clean the input: Remove spaces and dashes for easier checking
+            // Example: User types "123-456", we turn it into "123456"
+            string cleanId = idNumber.Replace("-", "").Replace(" ", "").Trim();
+
+            string pattern = "";
+
+            switch (idType)
+            {
+                case "National ID":
+                    // PhilSys is 16 digits
+                    pattern = @"^\d{16}$";
+                    break;
+
+                case "Passport":
+                    // New PH Passports: Letter + 8 digits (e.g., P12345678)
+                    // Older ones might vary, but this covers the standard 10-year passport.
+                    pattern = @"^[A-Z]\d{8}$";
+                    break;
+
+                case "Driver’s License":
+                    // Format: L02-12-123456. Cleaned: L0212123456 (1 Letter + 10 digits)
+                    pattern = @"^[A-Z]\d{10}$";
+                    break;
+
+                case "UMID":
+                    // Unified Multi-Purpose ID (12 digits)
+                    pattern = @"^\d{12}$";
+                    break;
+
+                case "SSS ID":
+                    // Social Security System (10 digits)
+                    pattern = @"^\d{10}$";
+                    break;
+
+                case "GSIS ID":
+                    // GSIS BP Number (10 to 12 digits)
+                    pattern = @"^\d{10,12}$";
+                    break;
+
+                case "TIN ID":
+                    // Tax Identification Number (9 to 12 digits including branch)
+                    pattern = @"^\d{9,12}$";
+                    break;
+
+                case "Postal ID":
+                    // New Postal ID (2 Letters + 9 Digits) OR Old (7-9 digits)
+                    pattern = @"^([A-Z]{2}\d{9}|\d{7,9})$";
+                    break;
+
+                case "PRC License":
+                    // Professional Regulation Commission (7 digits)
+                    pattern = @"^\d{7}$";
+                    break;
+
+                case "Voter’s ID / COMELEC ID":
+                    // Voter IDs are messy. We ensure it's alphanumeric and has length.
+                    pattern = @"^[A-Z0-9]{15,25}$";
+                    break;
+
+                // LOOSE VALIDATION FOR NON-STANDARDIZED IDS
+                // PWD, Senior Citizen, Student, and Company IDs vary wildly by City or School.
+                // Strategy: Just ensure they aren't empty and don't contain symbols like @#$%.
+                case "PWD ID":
+                case "Senior Citizen ID":
+                case "Student ID":
+                case "Company ID":
+                    pattern = @"^[a-zA-Z0-9]{4,20}$";
+                    break;
+
+                default:
+                    // If they pick something weird, default to alphanumeric check
+                    pattern = @"^[a-zA-Z0-9]{4,20}$";
+                    break;
+            }
+
+            // Run the validation
+            if (!Regex.IsMatch(cleanId, pattern))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateCurrentStep()
+        {
+            // STEP 0: BASIC INFO VALIDATION
+            if (_currentStep == 0)
+            {
+                // 1. Validate Name (Letters and spaces only, no numbers)
+                // Regex: ^[a-zA-Z\s]+$ means start to end only letters and whitespace
+                if (!Regex.IsMatch(_ucBasicInfo.CustomerName, @"^[a-zA-Z\s\.\-]+$"))
+                {
+                    MessageBox.Show("Invalid Name. Please use letters only.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                // 2. Validate Email
+                string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+                if (!Regex.IsMatch(_ucBasicInfo.CustomerEmail, emailPattern))
+                {
+                    MessageBox.Show("Invalid Email Address.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                // 3. Validate Phone (PH Format: 09xxxxxxxxx or +639xxxxxxxxx)
+                // Regex logic: Matches 09 followed by 9 digits OR +639 followed by 9 digits
+                string phonePattern = @"^(09|\+639)\d{9}$";
+                if (!Regex.IsMatch(_ucBasicInfo.CustomerContactNumber, phonePattern))
+                {
+                    MessageBox.Show("Invalid Phone Number. Use format: 09123456789", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            // STEP 1: ADDRESS VALIDATION
+            if (_currentStep == 1)
+            {
+                if (string.IsNullOrWhiteSpace(_ucAddressInfo.CustomerAddress))
+                {
+                    MessageBox.Show("Address cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            // STEP 2: IDENTITY VALIDATION
+            if (_currentStep == 2)
+            {
+                string selectedIdType = _ucIdentityVerification.CustomerIDType;
+                string inputIdNumber = _ucIdentityVerification.CustomerIDNumber;
+
+                if (string.IsNullOrWhiteSpace(selectedIdType))
+                {
+                    MessageBox.Show("Please select an ID Type.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (string.IsNullOrWhiteSpace(inputIdNumber))
+                {
+                    MessageBox.Show("ID Number is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                // CALL THE NEW FUNCTION
+                if (!ValidateID(selectedIdType, inputIdNumber))
+                {
+                    MessageBox.Show($"Invalid format for {selectedIdType}.\nPlease check the number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            return true; // All checks passed
+        }
+
+
 
         private void BtnPrevious_Click(object sender, EventArgs e)
         {
@@ -196,32 +364,95 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void btnRegister_Click_1(object sender, EventArgs e)
         {
-            Customers testCustomer = new Customers()
+            // 1. Final Validation Check
+            if (!ValidateCurrentStep()) return;
 
+            // 2. Admin Confirmation Dialog
+            DialogResult dr = MessageBox.Show(
+                "Are you sure you want to register this customer?\n\nPlease confirm all details are correct.",
+                "Admin Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
             {
-                CustomerCode = customerRepo.GenerateCustomerCode(),
-                FullName = _ucBasicInfo.CustomerName,
-                Address = _ucAddressInfo.CustomerAddress,
-                Email = _ucBasicInfo.CustomerEmail,
-                Phone = _ucBasicInfo.CustomerContactNumber,
-                Gender = _ucBasicInfo.CustomerGender,
-                BirthDate = _ucBasicInfo.CustomerBirthDate,
-                CivilStatus = _ucBasicInfo.CustomerCivilStatus,
-                ImagePath = "john.jpg",
-                PIN = customerRepo.GeneratePIN(),
-                EmploymentStatus = _ucIdentityVerification.CustomerEmploymentStatus,
-                EmployerName = "Elon Musk",
-                SourceOfFunds = _ucIdentityVerification.CustomerSourceOfFunds,
-                MonthlyIncomeRange = _ucIdentityVerification.CustomerMonthlyIncome,
-                IDType = _ucIdentityVerification.CustomerIDType,
-                IDNumber = _ucIdentityVerification.CustomerIDNumber,
-                IsKYCVerified = false, 
-                KYCVerifiedDate = null
-            };
+                try
+                {
+                    // 3. Prepare the object
+                    Customers testCustomer = new Customers()
+                    {
+                        CustomerCode = customerRepo.GenerateCustomerCode(),
+                        FullName = _ucBasicInfo.CustomerName, // Ensure these properties exist in your UC
+                        Address = _ucAddressInfo.CustomerAddress,
+                        Email = _ucBasicInfo.CustomerEmail,
+                        Phone = _ucBasicInfo.CustomerContactNumber,
+                        Gender = _ucBasicInfo.CustomerGender,
+                        BirthDate = _ucBasicInfo.CustomerBirthDate,
+                        CivilStatus = _ucBasicInfo.CustomerCivilStatus,
 
-            customerRepo.CreateCustomer(testCustomer);
+                        // Save the path, OR save the binary data. 
+                        // Ideally, copy the image to a specific "Images" folder in your project directory
+                        ImagePath = imagePath ?? "default.jpg",
 
-            this.Close();
+                        PIN = customerRepo.GeneratePIN(), // See Security Tip below!
+                        EmploymentStatus = _ucIdentityVerification.CustomerEmploymentStatus,
+                        EmployerName = "Elon Musk", // hardcoded? Make sure to map this to a textbox!
+                        SourceOfFunds = _ucIdentityVerification.CustomerSourceOfFunds,
+                        MonthlyIncomeRange = _ucIdentityVerification.CustomerMonthlyIncome,
+                        IDType = _ucIdentityVerification.CustomerIDType,
+                        IDNumber = _ucIdentityVerification.CustomerIDNumber,
+                        IsKYCVerified = true, // Set to true since Admin is registering them personally
+                        KYCVerifiedDate = DateTime.Now
+                    };
+
+                    // 4. Save to Database
+                    customerRepo.CreateCustomer(testCustomer);
+
+                    // 5. Success Message
+                    MessageBox.Show($"Registration Successful!\n\nCustomer Code: {testCustomer.CustomerCode}",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // 6. NOW we close the form
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    // If DB fails, do NOT close the form. Let them try again.
+                    MessageBox.Show($"System Error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void frmRegistration_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Select Customer Photo";
+                ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        imagePath = ofd.FileName;
+
+                        // SECURITY FIX: Load image without locking the file
+                        using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+                        {
+                            pbCustomerImage.Image = System.Drawing.Image.FromStream(stream);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Invalid image format or file error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

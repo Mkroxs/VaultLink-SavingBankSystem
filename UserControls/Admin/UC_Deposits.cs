@@ -41,6 +41,11 @@ namespace VaultLinkBankSystem.UserControls.Admin
             _transactionRepo = new TransactionRepository();
             _accountRepo = new AccountRepository();
             _customerRepo = new CustomerRepository();
+
+
+            cbxSelectAccount.DrawMode = DrawMode.OwnerDrawFixed;
+            cbxSelectAccount.DrawItem += cbxSelectAccount_DrawItem;
+
         }
 
         private void UC_Deposits_Load(object sender, EventArgs e)
@@ -266,15 +271,15 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 {
                     AccountID = account.AccountID,
                     AccountNumber = account.AccountNumber,
+                    AccountStatus = account.Status,   // ADD THIS
                     DisplayText = $"{account.AccountNumber} - {account.AccountType} ({account.Balance:C2})"
                 });
             }
 
             if (cbxSelectAccount.Items.Count > 0)
-            {
                 cbxSelectAccount.SelectedIndex = 0;
-            }
         }
+
 
         private void btnDeposit_Click(object sender, EventArgs e)
         {
@@ -320,9 +325,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
                 dynamic selectedItem = cbxSelectAccount.SelectedItem;
                 int accountId = selectedItem.AccountID;
-                //string accountDisplay = selectedItem.DisplayText;
                 string accountNumber = selectedItem.AccountNumber;
-
 
                 // Confirm Deposit
                 DialogResult result = MessageBox.Show(
@@ -532,30 +535,46 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void cbxSelectAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxSelectAccount.SelectedItem != null)
+            if (cbxSelectAccount.SelectedItem == null)
             {
-                try
+                lblCurrentBalance.Text = "N/A";
+                txtDepositAmount.Enabled = false;
+                btnDeposit.Enabled = false;
+                return;
+            }
+
+            try
+            {
+                dynamic selectedItem = cbxSelectAccount.SelectedItem;
+                int accountId = selectedItem.AccountID;
+
+                Account selectedAccount = _customerAccounts
+                    .FirstOrDefault(a => a.AccountID == accountId);
+
+                if (selectedAccount != null)
                 {
-                    dynamic selectedItem = cbxSelectAccount.SelectedItem;
-                    int accountId = selectedItem.AccountID;
+                    lblCurrentBalance.Text = selectedAccount.Balance.ToString("C2");
 
-                    Account selectedAccount = _customerAccounts.FirstOrDefault(a => a.AccountID == accountId);
-
-                    if (selectedAccount != null)
+                    if (selectedAccount.Status == "Closed")
                     {
-                        lblCurrentBalance.Text = selectedAccount.Balance.ToString("C2");
+                        // Disable input for closed accounts
+                        txtDepositAmount.Enabled = false;
+                        btnDeposit.Enabled = false;
+
+                        // ComboBox indicator (text becomes red)
+                        cbxSelectAccount.ForeColor = WinFormsColor.Red;
+                    }
+                    else
+                    {
                         txtDepositAmount.Enabled = true;
                         btnDeposit.Enabled = true;
+
+                        // Active = green
+                        cbxSelectAccount.ForeColor = WinFormsColor.Green;
                     }
                 }
-                catch
-                {
-                    lblCurrentBalance.Text = "N/A";
-                    txtDepositAmount.Enabled = false;
-                    btnDeposit.Enabled = false;
-                }
             }
-            else
+            catch
             {
                 lblCurrentBalance.Text = "N/A";
                 txtDepositAmount.Enabled = false;
@@ -581,5 +600,28 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
 
         }
+
+        private void cbxSelectAccount_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            dynamic item = cbxSelectAccount.Items[e.Index];
+            string displayText = item.DisplayText;
+            string status = item.AccountStatus;
+
+            e.DrawBackground();
+
+            // Choose color
+            var color = status == "Closed" ? WinFormsColor.Red : WinFormsColor.Green;
+
+            using (var brush = new System.Drawing.SolidBrush(color))
+            {
+                e.Graphics.DrawString(displayText, e.Font, brush, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+
     }
 }

@@ -252,6 +252,84 @@ namespace VaultLinkBankSystem
 
             return accounts;
         }
+
+        public decimal GetAnnualRateForAccount(int accountId)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                string query = @"
+        SELECT IR.AnnualRate
+        FROM Accounts A
+        INNER JOIN InterestRates IR ON A.InterestRateID = IR.InterestRateID
+        WHERE A.AccountID = @accountId";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@accountId", accountId);
+                    object result = cmd.ExecuteScalar();
+
+                    if (result == null)
+                        return 0;
+
+                    return Convert.ToDecimal(result) / 100;  // 3.25% → 0.0325
+                }
+            }
+        }
+
+
+
+        public bool ReactivateAccount(int accountId)
+        {
+            string query = @"UPDATE Accounts 
+                   SET Status = 'Active', 
+                       ClosedDate = NULL 
+                   WHERE AccountID = @AccountID";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@AccountID", accountId);
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error reactivating account: " + ex.Message);
+            }
+        }
+
+
+        public bool CloseAccount(int accountId)
+        {
+            string query = @"UPDATE Accounts 
+                   SET Status = 'Closed', 
+                       ClosedDate = @ClosedDate 
+                   WHERE AccountID = @AccountID";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@AccountID", accountId);
+                    cmd.Parameters.AddWithValue("@ClosedDate", DateTime.Now);
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error closing account: " + ex.Message);
+            }
+        }
     }
 }
 

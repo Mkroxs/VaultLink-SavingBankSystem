@@ -200,6 +200,7 @@
             this.btnCloseAccount.Size = new System.Drawing.Size(164, 42);
             this.btnCloseAccount.TabIndex = 11;
             this.btnCloseAccount.Text = "Close Account";
+            this.btnCloseAccount.Click += new System.EventHandler(this.btnCloseAccount_Click);
             // 
             // btnReactiveAccount
             // 
@@ -218,6 +219,7 @@
             this.btnReactiveAccount.Size = new System.Drawing.Size(164, 42);
             this.btnReactiveAccount.TabIndex = 12;
             this.btnReactiveAccount.Text = "Reactivate Account";
+            this.btnReactiveAccount.Click += new System.EventHandler(this.btnReactiveAccount_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -352,6 +354,8 @@
             this.dgvCustomerAccounts.ThemeStyle.RowsStyle.Height = 24;
             this.dgvCustomerAccounts.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvCustomerAccounts.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvCustomerAccounts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomerAccounts_CellContentClick);
+            this.dgvCustomerAccounts.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvCustomerAccounts_MouseClick);
             // 
             // grpCustomerInfo
             // 

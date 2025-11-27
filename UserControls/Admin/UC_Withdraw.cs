@@ -45,6 +45,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
             _transactionRepo = new TransactionRepository();
             _accountRepo = new AccountRepository();
             _customerRepo = new CustomerRepository();
+
+            cbxSelectAccount.DrawMode = DrawMode.OwnerDrawFixed;
+            cbxSelectAccount.DrawItem += cbxSelectAccount_DrawItem;
         }
 
         private void UC_Withdraw_Load(object sender, EventArgs e)
@@ -279,23 +282,26 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 {
                     AccountID = account.AccountID,
                     AccountNumber = account.AccountNumber,
+                    AccountStatus = account.Status,   // ADD THIS
                     DisplayText = $"{account.AccountNumber} - {account.AccountType} ({account.Balance:C2})"
                 });
             }
 
             if (cbxSelectAccount.Items.Count > 0)
-            {
                 cbxSelectAccount.SelectedIndex = 0;
-            }
+        
         }
 
-        // ============================================
-        // CONFIRM WITHDRAWAL BUTTON CLICK
-        // ============================================
+
         private void btnWthdraw_Click(object sender, EventArgs e)
         {
             try
-            {
+            { 
+              
+                
+
+
+
                 if (_selectedCustomer == null)
                 {
                     MessageBox.Show("Please search for a customer first.",
@@ -345,6 +351,16 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 int accountId = selectedItem.AccountID;
                 string accountNumber = selectedItem.AccountNumber;
 
+                if(selectedItem.Status == "Closed")
+                {
+                    MessageBox.Show("You cannot withdraw from this account,\nbecause it is currently closed!",
+                        "Validation Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+
+
+                }
                 DialogResult result = MessageBox.Show(
                     $"Are you sure you want to withdraw {amount:C2} from this account?",
                     "Confirm Withdrawal",
@@ -542,34 +558,50 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void cbxSelectAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxSelectAccount.SelectedItem != null)
-            {
-                try
-                {
-                    dynamic selectedItem = cbxSelectAccount.SelectedItem;
-                    int accountId = selectedItem.AccountID;
-
-                    Account selectedAccount = _customerAccounts.FirstOrDefault(a => a.AccountID == accountId);
-
-                    if (selectedAccount != null)
-                    {
-                        lblCurrentBalance.Text = selectedAccount.Balance.ToString("C2");
-                        txtWithdrawAmount.Enabled = true;
-                        btnWthdraw.Enabled = true;
-                    }
-                }
-                catch
-                {
-                    lblCurrentBalance.Text = "N/A";
-                    txtWithdrawAmount.Enabled = false;
-                    btnWthdraw.Enabled = false;
-                }
-            }
-            else
+            if (cbxSelectAccount.SelectedItem == null)
             {
                 lblCurrentBalance.Text = "N/A";
                 txtWithdrawAmount.Enabled = false;
-                btnWthdraw.Enabled = false;
+                btnWithdraw.Enabled = false;
+                return;
+            }
+
+            try
+            {
+                dynamic selectedItem = cbxSelectAccount.SelectedItem;
+                int accountId = selectedItem.AccountID;
+
+                Account selectedAccount = _customerAccounts
+                    .FirstOrDefault(a => a.AccountID == accountId);
+
+                if (selectedAccount != null)
+                {
+                    lblCurrentBalance.Text = selectedAccount.Balance.ToString("C2");
+
+                    if (selectedAccount.Status == "Closed")
+                    {
+                        // Disable input for closed accounts
+                        txtWithdrawAmount.Enabled = false;
+                        btnWithdraw.Enabled = false;
+
+                        // ComboBox indicator (text becomes red)
+                        cbxSelectAccount.ForeColor = WinFormsColor.Red;
+                    }
+                    else
+                    {
+                        txtWithdrawAmount.Enabled = true;
+                        btnWithdraw.Enabled = true;
+
+                        // Active = green
+                        cbxSelectAccount.ForeColor = WinFormsColor.Green;
+                    }
+                }
+            }
+            catch
+            {
+                lblCurrentBalance.Text = "N/A";
+                txtWithdrawAmount.Enabled = false;
+                btnWithdraw.Enabled = false;
             }
         }
 
@@ -587,6 +619,27 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void tbxSearchAccountNumber_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void cbxSelectAccount_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            dynamic item = cbxSelectAccount.Items[e.Index];
+            string displayText = item.DisplayText;
+            string status = item.AccountStatus;
+
+            e.DrawBackground();
+
+            // Choose color
+            var color = status == "Closed" ? WinFormsColor.Red : WinFormsColor.Green;
+
+            using (var brush = new System.Drawing.SolidBrush(color))
+            {
+                e.Graphics.DrawString(displayText, e.Font, brush, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
         }
     }
 }

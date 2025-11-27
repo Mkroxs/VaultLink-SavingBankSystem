@@ -1,20 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-using VaultLinkBankSystem.Helpers;
-
-using WinFormsColor = System.Drawing.Color;
-using WinFormsFont = System.Drawing.Font;
-using WinFormsPoint = System.Drawing.Point;
-using WinFormsSize = System.Drawing.Size;
-using WinFormsImage = System.Drawing.Image;
-using WinFormsFontStyle = System.Drawing.FontStyle;
-using WinFormsPadding = System.Windows.Forms.Padding;
-using IOPath = System.IO.Path;
-
-using iText.IO.Font.Constants;
+﻿using iText.IO.Font.Constants;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
@@ -22,7 +6,22 @@ using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using VaultLinkBankSystem.Helpers;
+using IOPath = System.IO.Path;
 using PdfColor = iText.Kernel.Colors.ColorConstants;
+using WinFormsColor = System.Drawing.Color;
+using WinFormsFont = System.Drawing.Font;
+using WinFormsFontStyle = System.Drawing.FontStyle;
+using WinFormsImage = System.Drawing.Image;
+using WinFormsPadding = System.Windows.Forms.Padding;
+using WinFormsPoint = System.Drawing.Point;
+using WinFormsSize = System.Drawing.Size;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -41,6 +40,10 @@ namespace VaultLinkBankSystem.UserControls.Admin
             _transactionRepo = new TransactionRepository();
             _accountRepo = new AccountRepository();
             _customerRepo = new CustomerRepository();
+
+
+            cbxSelectAccount.DrawMode = DrawMode.OwnerDrawFixed;
+            cbxSelectAccount.DrawItem += cbxSelectAccount_DrawItem;
         }
 
         private void UC_Transfer_Load(object sender, EventArgs e)
@@ -248,26 +251,25 @@ namespace VaultLinkBankSystem.UserControls.Admin
             PopulateAccountDropdown();
         }
 
-        private void PopulateAccountDropdown()
+        public void PopulateAccountDropdown()
         {
             cbxSelectAccount.Items.Clear();
             cbxSelectAccount.DisplayMember = "DisplayText";
             cbxSelectAccount.ValueMember = "AccountID";
 
-            foreach (var account in _customerAccounts)
+            foreach (var acc in _customerAccounts)
             {
                 cbxSelectAccount.Items.Add(new
                 {
-                    AccountID = account.AccountID,
-                    AccountNumber = account.AccountNumber,
-                    DisplayText = $"{account.AccountNumber} - {account.AccountType} ({account.Balance:C2})"
+                    AccountID = acc.AccountID,
+                    AccountNumber = acc.AccountNumber,
+                    AccountStatus = acc.Status,      // REQUIRED ✔
+                    DisplayText = $"{acc.AccountNumber} - {acc.AccountType} ({acc.Balance:C2})"
                 });
             }
 
             if (cbxSelectAccount.Items.Count > 0)
-            {
                 cbxSelectAccount.SelectedIndex = 0;
-            }
         }
 
 
@@ -509,7 +511,25 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 string senderAccountNumber = selectedItem.AccountNumber;
 
                 string recipientAccountNumber = txtRecipientNumber.Text.Trim();
+
                 var recipientAccount = _accountRepo.GetAccountByAccountNumber(recipientAccountNumber);
+
+                var senderAccount = _accountRepo.GetAccountByAccountNumber(senderAccountNumber);
+
+                if (senderAccount.Status == "Closed")
+                {
+                    MessageBox.Show("Sender account is CLOSED. Transfers are not allowed.",
+                        "Account Closed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+
+               
+
+
+
 
                 if (recipientAccount == null)
                 {
@@ -519,6 +539,18 @@ namespace VaultLinkBankSystem.UserControls.Admin
                         MessageBoxIcon.Warning);
                     return;
                 }
+
+                if (recipientAccount.Status == "Closed")
+                {
+                    MessageBox.Show("Recipient account is CLOSED. You cannot transfer to this account.",
+                        "Account Closed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+
+
 
                 if (senderAccountId == recipientAccount.AccountID)
                 {
@@ -591,6 +623,58 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void guna2Panel1_Paint(object sender, PaintEventArgs e)
         {
+        }
+
+        private void cbxSelectAccount_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            dynamic item = cbxSelectAccount.Items[e.Index];
+
+            string text = item.DisplayText;
+            string status = item.AccountStatus;
+
+            e.DrawBackground();
+
+            // Choose color based on status
+            Color color = status == "Closed" ? Color.Red : Color.Green;
+
+            using (Brush brush = new SolidBrush(color))
+            {
+                e.Graphics.DrawString(text, e.Font, brush, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        private void cbxSelectAccount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSelectAccount.SelectedItem == null) return;
+
+            dynamic selectedItem = cbxSelectAccount.SelectedItem;
+            int accountId = selectedItem.AccountID;
+
+            var account = _customerAccounts.FirstOrDefault(a => a.AccountID == accountId);
+
+            if (account == null) return;
+
+            lblCurrentBalance.Text = account.Balance.ToString("C2");
+
+            if (account.Status == "Closed")
+            {
+                // RED UI for closed accounts
+                cbxSelectAccount.ForeColor = Color.Red;
+                txtTransferAmount.Enabled = false;
+                btnConfirmTransfer.Enabled = false;
+                txtRecipientNumber.Enabled = false;
+            }
+            else
+            {
+                // GREEN UI for active accounts
+                cbxSelectAccount.ForeColor = Color.Green;
+                txtTransferAmount.Enabled = true;
+                btnConfirmTransfer.Enabled = true;
+            }
         }
     }
 }

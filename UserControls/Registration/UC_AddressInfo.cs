@@ -14,7 +14,6 @@ namespace VaultLinkBankSystem.UserControls.Registration
 {
     public partial class UC_AddressInfo : UserControl
     {
-        string address;
         public UC_AddressInfo()
         {
             InitializeComponent();

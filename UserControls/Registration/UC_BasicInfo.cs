@@ -17,6 +17,10 @@ namespace VaultLinkBankSystem.UserControls.Registration
         public UC_BasicInfo()
         {
             InitializeComponent();
+            rbtMale.Checked = true;
+
+            cbxCivilStatus.SelectedIndex = 0;
+            dtpBirthdate.MaxDate = DateTime.Now.AddYears(-18);
         }
 
         private void UC_BasicInfo_Load(object sender, EventArgs e)

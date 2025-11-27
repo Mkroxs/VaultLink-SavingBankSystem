@@ -39,6 +39,8 @@
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblCurrentBalance = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel13 = new Guna.UI2.WinForms.Guna2Panel();
             this.lblTotalBalance = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -54,7 +56,7 @@
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.txtTransferAmount = new Guna.UI2.WinForms.Guna2TextBox();
             this.lbl10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnConfirmTransfer = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel10 = new Guna.UI2.WinForms.Guna2Panel();
             this.txtRecipientNumber = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -236,6 +238,8 @@
             // guna2Panel1
             // 
             this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.guna2Panel1.Controls.Add(this.lblCurrentBalance);
+            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel8);
             this.guna2Panel1.Controls.Add(this.guna2Panel13);
             this.guna2Panel1.Controls.Add(this.guna2Panel9);
             this.guna2Panel1.Controls.Add(this.guna2Panel12);
@@ -247,6 +251,32 @@
             this.guna2Panel1.Size = new System.Drawing.Size(593, 429);
             this.guna2Panel1.TabIndex = 16;
             this.guna2Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
+            // 
+            // lblCurrentBalance
+            // 
+            this.lblCurrentBalance.AutoSize = false;
+            this.lblCurrentBalance.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentBalance.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.lblCurrentBalance.ForeColor = System.Drawing.Color.Transparent;
+            this.lblCurrentBalance.Location = new System.Drawing.Point(144, 291);
+            this.lblCurrentBalance.Margin = new System.Windows.Forms.Padding(2);
+            this.lblCurrentBalance.Name = "lblCurrentBalance";
+            this.lblCurrentBalance.Size = new System.Drawing.Size(120, 32);
+            this.lblCurrentBalance.TabIndex = 16;
+            this.lblCurrentBalance.Text = "--------";
+            // 
+            // guna2HtmlLabel8
+            // 
+            this.guna2HtmlLabel8.AutoSize = false;
+            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel8.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel8.Location = new System.Drawing.Point(6, 291);
+            this.guna2HtmlLabel8.Margin = new System.Windows.Forms.Padding(2);
+            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
+            this.guna2HtmlLabel8.Size = new System.Drawing.Size(210, 32);
+            this.guna2HtmlLabel8.TabIndex = 16;
+            this.guna2HtmlLabel8.Text = "Current Balance:";
             // 
             // guna2Panel13
             // 
@@ -386,7 +416,7 @@
             // 
             this.guna2Panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
             this.guna2Panel4.Controls.Add(this.guna2Panel2);
-            this.guna2Panel4.Controls.Add(this.guna2Button2);
+            this.guna2Panel4.Controls.Add(this.btnConfirmTransfer);
             this.guna2Panel4.Controls.Add(this.guna2Panel10);
             this.guna2Panel4.Controls.Add(this.guna2Panel11);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -446,24 +476,24 @@
             this.lbl10.TabIndex = 9;
             this.lbl10.Text = "Amount:";
             // 
-            // guna2Button2
+            // btnConfirmTransfer
             // 
-            this.guna2Button2.BorderRadius = 20;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
-            this.guna2Button2.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Location = new System.Drawing.Point(30, 358);
-            this.guna2Button2.Margin = new System.Windows.Forms.Padding(2);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(289, 39);
-            this.guna2Button2.TabIndex = 6;
-            this.guna2Button2.Text = "Confirm";
-            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
+            this.btnConfirmTransfer.BorderRadius = 20;
+            this.btnConfirmTransfer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnConfirmTransfer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnConfirmTransfer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnConfirmTransfer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnConfirmTransfer.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnConfirmTransfer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
+            this.btnConfirmTransfer.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmTransfer.ForeColor = System.Drawing.Color.White;
+            this.btnConfirmTransfer.Location = new System.Drawing.Point(30, 358);
+            this.btnConfirmTransfer.Margin = new System.Windows.Forms.Padding(2);
+            this.btnConfirmTransfer.Name = "btnConfirmTransfer";
+            this.btnConfirmTransfer.Size = new System.Drawing.Size(289, 39);
+            this.btnConfirmTransfer.TabIndex = 6;
+            this.btnConfirmTransfer.Text = "Confirm";
+            this.btnConfirmTransfer.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // guna2Panel10
             // 
@@ -542,6 +572,8 @@
             this.cbxSelectAccount.Name = "cbxSelectAccount";
             this.cbxSelectAccount.Size = new System.Drawing.Size(289, 36);
             this.cbxSelectAccount.TabIndex = 11;
+            this.cbxSelectAccount.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cbxSelectAccount_DrawItem);
+            this.cbxSelectAccount.SelectedIndexChanged += new System.EventHandler(this.cbxSelectAccount_SelectedIndexChanged);
             // 
             // guna2HtmlLabel3
             // 
@@ -614,7 +646,7 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel8;
         private System.Windows.Forms.PictureBox pbCustomerPicture;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button btnConfirmTransfer;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel10;
         private Guna.UI2.WinForms.Guna2TextBox txtRecipientNumber;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
@@ -624,5 +656,7 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Guna.UI2.WinForms.Guna2TextBox txtTransferAmount;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbl10;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblCurrentBalance;
     }
 }

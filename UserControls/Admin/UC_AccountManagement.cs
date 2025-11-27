@@ -15,6 +15,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
     {
         private AccountRepository _accountRepo;
         private CustomerRepository _customerRepo;
+        private TransactionRepository _transactionRepo;
         public UC_AccountManagement()
         {
             InitializeComponent();
@@ -166,6 +167,28 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
+        private void SetupGridStyle(DataGridView dgv)
+        {
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.MultiSelect = false;
+            dgv.BackgroundColor = Color.White;
+            dgv.GridColor =Color.FromArgb(230, 230, 230);
+            dgv.DefaultCellStyle.ForeColor = Color.Black;
+            dgv.DefaultCellStyle.BackColor = Color.White;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 249, 249);
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 62, 84);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 144, 255);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.RowHeadersVisible = false;
+            dgv.RowTemplate.Height = 28;
+            dgv.RowTemplate.DefaultCellStyle.Padding = new Padding(4, 2, 4, 2);
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -249,6 +272,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     column.Visible = allowedColumns.Contains(column.Name);
                 }
             };
+            SetupGridStyle(dgv);
+
 
 
 
@@ -420,5 +445,288 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
 
         }
+
+        private void btnCloseAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Check if an account is selected
+                if (dgvCustomerAccounts.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select an account to close.",
+                        "No Selection",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Get selected account
+                var selectedAccount = dgvCustomerAccounts.SelectedRows[0].DataBoundItem as Account;
+
+                if (selectedAccount == null)
+                {
+                    MessageBox.Show("Error getting selected account.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Check if account is already closed
+                if (selectedAccount.Status.ToLower() == "closed")
+                {
+                    MessageBox.Show("This account is already closed.",
+                        "Already Closed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Check if account has balance
+                if (selectedAccount.Balance > 0)
+                {
+                    DialogResult balanceResult = MessageBox.Show(
+                        $"⚠️ WARNING: This account has a remaining balance of {selectedAccount.Balance:C2}\n\n" +
+                        $"Closing the account with remaining balance requires:\n" +
+                        $"1. Customer withdrawal or transfer of funds\n" +
+                        $"2. Manager approval\n\n" +
+                        $"Are you sure you want to close this account?",
+                        "Account Has Balance",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (balanceResult == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
+                // Get customer info
+                var customer = _customerRepo.GetCustomerById(selectedAccount.CustomerID);
+
+                // Confirmation dialog
+                DialogResult result = MessageBox.Show(
+                    $"CLOSE ACCOUNT\n\n" +
+                    $"Customer: {customer?.FullName}\n" +
+                    $"Account Number: {selectedAccount.AccountNumber}\n" +
+                    $"Account Type: {selectedAccount.AccountType}\n" +
+                    $"Current Balance: {selectedAccount.Balance:C2}\n" +
+                    $"Date Opened: {selectedAccount.DateOpened:MMMM dd, yyyy}\n\n" +
+                    $"⚠️ This action will:\n" +
+                    $"• Set account status to 'Closed'\n" +
+                    $"• Prevent future transactions\n" +
+                    $"• Require reactivation to use again\n\n" +
+                    $"Do you want to proceed?",
+                    "Confirm Account Closure",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Close the account
+                    bool success = _accountRepo.CloseAccount(selectedAccount.AccountID);
+
+                    if (success)
+                    {
+                        MessageBox.Show(
+                            $"✅ ACCOUNT CLOSED SUCCESSFULLY\n\n" +
+                            $"Account Number: {selectedAccount.AccountNumber}\n" +
+                            $"Closed Date: {DateTime.Now:MMMM dd, yyyy HH:mm}\n" +
+                            $"Final Balance: {selectedAccount.Balance:C2}\n\n" +
+                            $"The account has been closed and can no longer be used for transactions.\n" +
+                            $"The account can be reactivated if needed.",
+                            "Account Closed",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                        // Reload accounts to show updated status
+                        LoadCustomerAccounts(selectedAccount.CustomerID);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to close account. Please try again.",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error closing account: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnReactiveAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Check if an account is selected
+                if (dgvCustomerAccounts.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select an account to reactivate.",
+                        "No Selection",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Get selected account
+                var selectedAccount = dgvCustomerAccounts.SelectedRows[0].DataBoundItem as Account;
+
+                if (selectedAccount == null)
+                {
+                    MessageBox.Show("Error getting selected account.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Check if account is already active
+                if (selectedAccount.Status.ToLower() == "active")
+                {
+                    MessageBox.Show("This account is already active.",
+                        "Already Active",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Get customer info
+                var customer = _customerRepo.GetCustomerById(selectedAccount.CustomerID);
+
+                // Confirmation dialog
+                DialogResult result = MessageBox.Show(
+                    $"REACTIVATE ACCOUNT\n\n" +
+                    $"Customer: {customer?.FullName}\n" +
+                    $"Account Number: {selectedAccount.AccountNumber}\n" +
+                    $"Account Type: {selectedAccount.AccountType}\n" +
+                    $"Current Balance: {selectedAccount.Balance:C2}\n" +
+                    $"Current Status: {selectedAccount.Status}\n\n" +
+                    $"✅ This action will:\n" +
+                    $"• Set account status to 'Active'\n" +
+                    $"• Allow transactions to resume\n" +
+                    $"• Restore full account functionality\n\n" +
+                    $"Do you want to proceed?",
+                    "Confirm Account Reactivation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Reactivate the account
+                    bool success = _accountRepo.ReactivateAccount(selectedAccount.AccountID);
+
+                    if (success)
+                    {
+                        MessageBox.Show(
+                            $"✅ ACCOUNT REACTIVATED SUCCESSFULLY\n\n" +
+                            $"Account Number: {selectedAccount.AccountNumber}\n" +
+                            $"Reactivated Date: {DateTime.Now:MMMM dd, yyyy HH:mm}\n" +
+                            $"Current Balance: {selectedAccount.Balance:C2}\n\n" +
+                            $"The account is now active and can be used for transactions.",
+                            "Account Reactivated",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                        // Reload accounts to show updated status
+                        LoadCustomerAccounts(selectedAccount.CustomerID);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to reactivate account. Please try again.",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reactivating account: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvCustomerAccounts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvCustomerAccounts_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var hitTest = dgvCustomerAccounts.HitTest(e.X, e.Y);
+
+                if (hitTest.RowIndex >= 0)
+                {
+                    dgvCustomerAccounts.ClearSelection();
+                    dgvCustomerAccounts.Rows[hitTest.RowIndex].Selected = true;
+
+                    var selectedAccount = dgvCustomerAccounts.Rows[hitTest.RowIndex].DataBoundItem as Account;
+
+                    if (selectedAccount != null)
+                    {
+                        ContextMenuStrip menu = new ContextMenuStrip();
+
+                        if (selectedAccount.Status.ToLower() == "active")
+                        {
+                            menu.Items.Add("Close Account", null, (s, ev) => btnCloseAccount_Click(s, ev));
+                        }
+                        else if (selectedAccount.Status.ToLower() == "closed")
+                        {
+                            menu.Items.Add("Reactivate Account", null, (s, ev) => btnReactiveAccount_Click(s, ev));
+                        }
+
+                        menu.Items.Add("View Transactions", null, (s, ev) => ViewAccountTransactions(selectedAccount));
+
+                        menu.Show(dgvCustomerAccounts, e.Location);
+                    }
+                }
+            }
+        }
+
+        private void ViewAccountTransactions(Account account)
+        {
+            try
+            {
+                var transactions = _transactionRepo.GetTransactionsByAccountId(account.AccountID);
+
+                // Create a simple form to display transactions
+                Form transactionForm = new Form
+                {
+                    Text = $"Transactions - {account.AccountNumber}",
+                    Size = new Size(800, 600),
+                    StartPosition = FormStartPosition.CenterParent
+                };
+
+                DataGridView dgv = new DataGridView
+                {
+                    Dock = DockStyle.Fill,
+                    DataSource = transactions,
+                    ReadOnly = true,
+                    AllowUserToAddRows = false,
+                    SelectionMode = DataGridViewSelectionMode.FullRowSelect
+                };
+
+                transactionForm.Controls.Add(dgv);
+                transactionForm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading transactions: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
