@@ -228,6 +228,7 @@
     <Compile Include="AdminRepository.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerRepository.cs" />
+    <Compile Include="DailyTransactionData.cs" />
     <Compile Include="Forms\Admin\frmAddCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,14 +271,19 @@
     <Compile Include="Forms\CustomersFolder\frmCustomerDashboard.Designer.cs">
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Forms\CustomersFolder\frmCustomerPIN.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CustomersFolder\frmCustomerPIN.Designer.cs">
       <DependentUpon>frmCustomerPIN.cs</DependentUpon>
     </Compile>
+=======
+    <Compile Include="InterestRepository.cs" />
+>>>>>>> 2c3ddf92679aff7bfe07b9b69d2ca6c89b7f5cb3
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionRepository.cs" />
+    <Compile Include="TransactionWithCustomer.cs" />
     <Compile Include="TransactionWithDetails.cs" />
     <Compile Include="UiHelpers.cs" />
     <Compile Include="UserControls\Admin\UC_AdminSidebar.cs">

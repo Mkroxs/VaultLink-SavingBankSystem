@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using CustomerModel = VaultLinkBankSystem.Customer;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -16,46 +15,75 @@ namespace VaultLinkBankSystem.UserControls.Admin
             InitializeComponent();
             _customerRepo = new CustomerRepository();
 
+           
             dgvPendingKYC.SelectionChanged += DgvPendingKYC_SelectionChanged;
             dgvPendingKYC.CellFormatting += DgvPendingKYC_CellFormatting;
 
+            
             btnVerify.Click += btnVerify_Click;
             btnReject.Click += btnReject_Click;
             btnRefresh.Click += btnRefresh_Click;
             dgvPendingKYC.DataBindingComplete += DgvPendingKYC_DataBindingComplete;
 
             LoadPendingKYC();
-        }
 
+
+        }
         private void DgvPendingKYC_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ConfigureColumns();
         }
 
+       
         private void UC_VerifyKYC_Load(object sender, EventArgs e)
         {
+
         }
 
         private void LoadPendingKYC()
         {
             try
             {
+                // Get all customers
                 var allCustomers = _customerRepo.GetAllCustomers();
+
+                // Filter only unverified customers
                 var pendingCustomers = allCustomers.Where(c => !c.IsKYCVerified).ToList();
 
+                // Bind to DataGridView
                 dgvPendingKYC.DataSource = null;
                 dgvPendingKYC.DataSource = pendingCustomers;
 
+                ConfigureColumns();
+
+                // Update pending count label
                 lblPendingCount.Text = $"Total Pending: {pendingCustomers.Count}";
                 lblPendingCount.ForeColor = pendingCustomers.Count > 0 ?
                     Color.FromArgb(231, 76, 60) : Color.FromArgb(46, 204, 113);
 
+                // Handle display based on count
                 if (pendingCustomers.Count == 0)
                 {
+                    ShowNoDataMessage();
                 }
                 else
                 {
-                    ClearDetailsPanel();
+                    // Auto-select first row after data loads
+                    if (dgvPendingKYC.Rows.Count > 0)
+                    {
+                        dgvPendingKYC.ClearSelection();
+                        dgvPendingKYC.Rows[0].Selected = true;
+
+                        // Manually trigger display of first customer
+                        Customers firstCustomer = dgvPendingKYC.Rows[0].DataBoundItem as Customers;
+                        if (firstCustomer != null)
+                        {
+                            _selectedCustomerId = firstCustomer.CustomerID;
+                            DisplayCustomerDetails(firstCustomer);
+                            btnVerify.Enabled = true;
+                            btnReject.Enabled = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -64,6 +92,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
 
         private void ConfigureColumns()
         {
@@ -74,16 +104,15 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     if (col == null) continue;
                     if (string.IsNullOrWhiteSpace(col.DataPropertyName)) continue;
                     if (string.IsNullOrWhiteSpace(col.Name))
-                        col.Name = col.DataPropertyName;
+                        col.Name = col.DataPropertyName; 
 
                     if (!ColumnExistsOnCustomer(col.DataPropertyName))
                         continue;
-
                     if (new[] {
-                        "CustomerID", "PIN","EmploymentStatus", "ImagePath", "IsKYCVerified", "KYCVerifiedDate",
-                        "Address", "Gender", "BirthDate", "CivilStatus",
-                        "EmployerName", "SourceOfFunds", "MonthlyIncomeRange", "IDType", "IDNumber"
-                    }.Contains(col.Name))
+                "CustomerID", "PIN","EmploymentStatus", "ImagePath", "IsKYCVerified", "KYCVerifiedDate",
+                "Address", "Gender", "BirthDate", "CivilStatus",
+                "EmployerName", "SourceOfFunds", "MonthlyIncomeRange", "IDType", "IDNumber"
+            }.Contains(col.Name))
                     {
                         col.Visible = false;
                         continue;
@@ -118,17 +147,18 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-        // ✅ FIXED TYPE CHECK
         private bool ColumnExistsOnCustomer(string propertyName)
         {
-            return typeof(CustomerModel).GetProperty(propertyName) != null;
+            return typeof(Customers).GetProperty(propertyName) != null;
         }
+
+
 
         private void DgvPendingKYC_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvPendingKYC.SelectedRows.Count > 0)
             {
-                CustomerModel selectedCustomer = dgvPendingKYC.SelectedRows[0].DataBoundItem as CustomerModel;
+                Customers selectedCustomer = dgvPendingKYC.SelectedRows[0].DataBoundItem as Customers;
                 if (selectedCustomer != null)
                 {
                     _selectedCustomerId = selectedCustomer.CustomerID;
@@ -147,8 +177,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-        // ✅ FIXED PARAMETER TYPE
-        private void DisplayCustomerDetails(CustomerModel customer)
+        private void DisplayCustomerDetails(Customers customer)
         {
             txtCustomerCode.Text = customer.CustomerCode;
             txtFullName.Text = customer.FullName;
@@ -191,8 +220,10 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void ShowNoDataMessage()
         {
             ClearDetailsPanel();
-            MessageBox.Show("✅ No pending KYC verifications!\n\nAll customers have been verified.",
-                "No Pending KYC", MessageBoxButtons.OK, MessageBoxIcon.Information);
+         
+            txtFullName.Text = "No pending KYC verifications";
+            txtCustomerCode.Text = "All customers verified! ✅";
+        
         }
 
         private void btnVerify_Click(object sender, EventArgs e)
@@ -206,7 +237,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             try
             {
-                CustomerModel customer = _customerRepo.GetCustomerById(_selectedCustomerId);
+                Customers customer = _customerRepo.GetCustomerById(_selectedCustomerId);
 
                 if (customer == null)
                 {
@@ -238,7 +269,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                             $"✅ KYC VERIFIED SUCCESSFULLY!\n\n" +
                             $"Customer: {customer.FullName}\n" +
                             $"Customer Code: {customer.CustomerCode}\n" +
-                            $"Verified: {DateTime.Now:MMMM dd, yyyy hh:mm tt}\n\n" +
+                            $"Verified: {DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt")}\n\n" +
                             $"The customer can now create accounts and use banking services.",
                             "Verification Complete",
                             MessageBoxButtons.OK,
@@ -273,7 +304,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             try
             {
-                CustomerModel customer = _customerRepo.GetCustomerById(_selectedCustomerId);
+                Customers customer = _customerRepo.GetCustomerById(_selectedCustomerId);
 
                 if (customer == null)
                 {
@@ -316,12 +347,26 @@ namespace VaultLinkBankSystem.UserControls.Admin
             LoadPendingKYC();
         }
 
-        // ===== EMPTY METHODS PRESERVED =====
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+        }
 
-        private void btnClose_Click(object sender, EventArgs e) { }
-        private void label1_Click(object sender, EventArgs e) { }
-        private void groupBox1_Enter(object sender, EventArgs e) { }
-        private void dgvPendingKYC_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
-        private void guna2HtmlLabel1_Click(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void dgvPendingKYC_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

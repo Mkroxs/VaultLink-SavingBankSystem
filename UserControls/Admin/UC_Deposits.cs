@@ -5,9 +5,6 @@ using System.Linq;
 using System.Windows.Forms;
 using VaultLinkBankSystem.Helpers;
 
-// ✅ ALIAS FIX
-using CustomerModel = VaultLinkBankSystem.Customer;
-
 // System.Drawing aliases (for WinForms UI)
 using WinFormsColor = System.Drawing.Color;
 using WinFormsFont = System.Drawing.Font;
@@ -36,21 +33,26 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private AccountRepository _accountRepo;
         private CustomerRepository _customerRepo;
 
-        private CustomerModel _selectedCustomer;
+        private Customers _selectedCustomer;
         private List<Account> _customerAccounts;
-
         public UC_Deposits()
         {
             InitializeComponent();
             _transactionRepo = new TransactionRepository();
             _accountRepo = new AccountRepository();
             _customerRepo = new CustomerRepository();
+
+
+            cbxSelectAccount.DrawMode = DrawMode.OwnerDrawFixed;
+            cbxSelectAccount.DrawItem += cbxSelectAccount_DrawItem;
+
         }
 
         private void UC_Deposits_Load(object sender, EventArgs e)
         {
             UiHelpers.FixGuna2TextBoxVisibility(this);
             ClearForm();
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -103,7 +105,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-        private void ShowCustomerSelectionDialog(List<CustomerModel> customers)
+
+        private void ShowCustomerSelectionDialog(List<Customers> customers)
         {
             Form selectionForm = new Form
             {
@@ -137,6 +140,17 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 {
                     column.Visible = allowedColumns.Contains(column.Name);
                 }
+
+                if (dgv.Columns.Contains("CustomerID"))
+                    dgv.Columns["CustomerID"].HeaderText = "ID";
+                if (dgv.Columns.Contains("CustomerCode"))
+                    dgv.Columns["CustomerCode"].HeaderText = "Customer Code";
+                if (dgv.Columns.Contains("FullName"))
+                    dgv.Columns["FullName"].HeaderText = "Full Name";
+                if (dgv.Columns.Contains("Email"))
+                    dgv.Columns["Email"].HeaderText = "Email";
+                if (dgv.Columns.Contains("Phone"))
+                    dgv.Columns["Phone"].HeaderText = "Phone";
             };
 
             Button btnSelect = new Button
@@ -171,7 +185,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             if (selectionForm.ShowDialog() == DialogResult.OK && dgv.SelectedRows.Count > 0)
             {
-                CustomerModel selectedCustomer = dgv.SelectedRows[0].DataBoundItem as CustomerModel;
+                Customers selectedCustomer = dgv.SelectedRows[0].DataBoundItem as Customers;
                 if (selectedCustomer != null)
                 {
                     DisplayCustomerInfo(selectedCustomer);
@@ -201,7 +215,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
             dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
         }
 
-        private void DisplayCustomerInfo(CustomerModel customer)
+
+
+        private void DisplayCustomerInfo(Customers customer)
         {
             _selectedCustomer = customer;
             _customerAccounts = _accountRepo.GetAccountsByCustomerId(_selectedCustomer.CustomerID);
@@ -241,6 +257,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
             PopulateAccountDropdown();
         }
 
+
+
         private void PopulateAccountDropdown()
         {
             cbxSelectAccount.Items.Clear();
@@ -253,20 +271,21 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 {
                     AccountID = account.AccountID,
                     AccountNumber = account.AccountNumber,
+                    AccountStatus = account.Status,   // ADD THIS
                     DisplayText = $"{account.AccountNumber} - {account.AccountType} ({account.Balance:C2})"
                 });
             }
 
             if (cbxSelectAccount.Items.Count > 0)
-            {
                 cbxSelectAccount.SelectedIndex = 0;
-            }
         }
+
 
         private void btnDeposit_Click(object sender, EventArgs e)
         {
             try
             {
+                // Validation
                 if (_selectedCustomer == null)
                 {
                     MessageBox.Show("Please search for a customer first.",
@@ -294,6 +313,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     return;
                 }
 
+                // Parse amount
                 if (!decimal.TryParse(txtDepositAmount.Text, out decimal amount))
                 {
                     MessageBox.Show("Please enter a valid amount.",
@@ -307,8 +327,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 int accountId = selectedItem.AccountID;
                 string accountNumber = selectedItem.AccountNumber;
 
+                // Confirm Deposit
                 DialogResult result = MessageBox.Show(
-                     $"Are you sure you want to deposit {amount:C2} to this account?",
+                     $"Are you sure you want to deposit {amount:C2} from this account?",
                      "Confirm Deposit",
                      MessageBoxButtons.YesNo,
                      MessageBoxIcon.Question);
@@ -317,13 +338,25 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 {
                     Transaction transaction = _transactionRepo.Deposit(accountId, amount, "Deposit");
 
+                    MessageBox.Show(
+                        $"Deposit successful!\n\n" +
+                        $"Transaction ID: {transaction.TransactionID}\n" +
+                        $"Amount: {transaction.Amount:C2}\n" +
+                        $"Previous Balance: {transaction.PreviousBalance:C2}\n" +
+                        $"New Balance: {transaction.NewBalance:C2}\n" +
+                        $"Date: {transaction.TransactionDate:g}",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    // Generate receipt
                     GenerateReceipt(
                         _selectedCustomer.FullName,
                         accountNumber,
                         amount,
                         transaction.NewBalance,
                         transaction.TransactionID,
-                        "DEPOSIT");
+                        "WITHDRAWAL");
 
                     DisplayCustomerInfo(_selectedCustomer);
                     txtDepositAmount.Clear();
@@ -331,12 +364,14 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error processing deposit: {ex.Message}",
+                MessageBox.Show($"Error processing withdrawal: {ex.Message}",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }
+
+
 
         private void ClearCustomerInfo()
         {
@@ -356,37 +391,190 @@ namespace VaultLinkBankSystem.UserControls.Admin
             ClearCustomerInfo();
         }
 
-        public void GenerateReceipt(string customerName, string accountNumber, decimal amount, decimal newBalance, int transactionId, string transactionType = "DEPOSIT")
+
+        public void GenerateReceipt(string customerName, string accountNumber, decimal amount, decimal newBalance, int transactionId, string transactionType = "WITHDRAWAL")
         {
-            // original code unchanged
+            try
+            {
+                string cleanCustomerName = System.Text.RegularExpressions.Regex.Replace(customerName, @"[^a-zA-Z0-9_]", "_");
+                string cleanAccountNumber = System.Text.RegularExpressions.Regex.Replace(accountNumber, @"[^a-zA-Z0-9_]", "_");
+                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                string fileName = $"Receipt_{cleanCustomerName}_{cleanAccountNumber}_{timestamp}.pdf";
+
+                string folder = @"D:\Programming\VaultLinkBankSystem\Transaction_Receipts\Withdraws\";
+
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
+
+                string filePath = System.IO.Path.Combine(folder, fileName);
+
+                using (PdfWriter writer = new PdfWriter(filePath))
+                using (PdfDocument pdf = new PdfDocument(writer))
+                using (Document doc = new Document(pdf, PageSize.A4))
+                {
+                    doc.SetMargins(50, 50, 50, 50);
+
+                    PdfFont boldFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+                    PdfFont regularFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+
+                    AddHeader(doc, boldFont, regularFont);
+                    AddTransactionInfo(doc, boldFont, regularFont, transactionId, transactionType);
+                    AddCustomerInfo(doc, boldFont, regularFont, customerName, accountNumber);
+                    AddTransactionSummary(doc, boldFont, regularFont, amount, newBalance, transactionType);
+                    AddFooter(doc, regularFont);
+                }
+
+                DialogResult result = MessageBox.Show(
+                    $"Receipt generated successfully!\n\nSaved at:\n{filePath}\n\nDo you want to open it now?",
+                    "Success",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
+
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(filePath) { UseShellExecute = true });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Could not open the PDF viewer automatically: " + ex.Message);
+                    }
+                }
+            }
+            catch (IOException ioEx)
+            {
+                MessageBox.Show($"File access error: {ioEx.Message}", "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        private void AddHeader(Document doc, PdfFont boldFont, PdfFont regularFont)
+        {
+            doc.Add(new Paragraph("TRANSACTION RECEIPT")
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFontSize(20)
+                .SetFont(boldFont)
+                .SetMarginBottom(5));
+
+            doc.Add(new Paragraph("VaultLink Bank")
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFontSize(14)
+                .SetFont(regularFont)
+                .SetMarginBottom(20));
+
+            doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
+        }
+
+        private void AddTransactionInfo(Document doc, PdfFont boldFont, PdfFont regularFont, int transactionId, string transactionType)
+        {
+            doc.Add(new Paragraph("TRANSACTION INFORMATION")
+                .SetFont(boldFont).SetFontSize(12).SetMarginBottom(10));
+
+            doc.Add(new Paragraph($"Transaction ID: {transactionId}").SetFont(regularFont).SetFontSize(11));
+            doc.Add(new Paragraph($"Transaction Type: {transactionType}").SetFont(regularFont).SetFontSize(11));
+            doc.Add(new Paragraph($"Date & Time: {DateTime.Now:dddd, MMMM dd, yyyy hh:mm:ss tt}")
+                .SetFont(regularFont).SetFontSize(11).SetMarginBottom(15));
+        }
+
+        private void AddCustomerInfo(Document doc, PdfFont boldFont, PdfFont regularFont, string customerName, string accountNumber)
+        {
+            doc.Add(new Paragraph("CUSTOMER INFORMATION")
+                .SetFont(boldFont).SetFontSize(12).SetMarginBottom(10));
+
+            doc.Add(new Paragraph($"Customer Name: {customerName}").SetFont(regularFont).SetFontSize(11));
+            doc.Add(new Paragraph($"Account Number: {accountNumber}")
+                .SetFont(regularFont).SetFontSize(11).SetMarginBottom(15));
+
+            doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
+        }
+
+        private void AddTransactionSummary(Document doc, PdfFont boldFont, PdfFont regularFont, decimal amount, decimal newBalance, string transactionType)
+        {
+            doc.Add(new Paragraph("TRANSACTION SUMMARY")
+                .SetFont(boldFont).SetFontSize(12).SetMarginBottom(10));
+
+            decimal previousBalance = transactionType.ToUpper() == "WITHDRAWAL"
+                ? newBalance + amount
+                : newBalance - amount;
+
+            doc.Add(new Paragraph($"Transaction Amount: {amount:C2}").SetFont(boldFont).SetFontSize(13));
+            doc.Add(new Paragraph($"Previous Balance: {previousBalance:C2}").SetFont(regularFont).SetFontSize(11));
+            doc.Add(new Paragraph($"New Balance: {newBalance:C2}")
+                .SetFont(boldFont).SetFontSize(13).SetMarginBottom(20));
+
+            doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
+        }
+
+        private void AddFooter(Document doc, PdfFont regularFont)
+        {
+            doc.Add(new Paragraph("Thank you for banking with VaultLink!")
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(regularFont).SetFontSize(10).SetMarginBottom(5));
+
+            doc.Add(new Paragraph("This is an electronic receipt and does not require a signature.")
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(regularFont).SetFontSize(8)
+                .SetFontColor(PdfColor.GRAY));
+        }
+
+
+
+
+
+
+
+
+
+
 
         private void cbxSelectAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxSelectAccount.SelectedItem != null)
+            if (cbxSelectAccount.SelectedItem == null)
             {
-                try
+                lblCurrentBalance.Text = "N/A";
+                txtDepositAmount.Enabled = false;
+                btnDeposit.Enabled = false;
+                return;
+            }
+
+            try
+            {
+                dynamic selectedItem = cbxSelectAccount.SelectedItem;
+                int accountId = selectedItem.AccountID;
+
+                Account selectedAccount = _customerAccounts
+                    .FirstOrDefault(a => a.AccountID == accountId);
+
+                if (selectedAccount != null)
                 {
-                    dynamic selectedItem = cbxSelectAccount.SelectedItem;
-                    int accountId = selectedItem.AccountID;
+                    lblCurrentBalance.Text = selectedAccount.Balance.ToString("C2");
 
-                    Account selectedAccount = _customerAccounts.FirstOrDefault(a => a.AccountID == accountId);
-
-                    if (selectedAccount != null)
+                    if (selectedAccount.Status == "Closed")
                     {
-                        lblCurrentBalance.Text = selectedAccount.Balance.ToString("C2");
+                        // Disable input for closed accounts
+                        txtDepositAmount.Enabled = false;
+                        btnDeposit.Enabled = false;
+
+                        // ComboBox indicator (text becomes red)
+                        cbxSelectAccount.ForeColor = WinFormsColor.Red;
+                    }
+                    else
+                    {
                         txtDepositAmount.Enabled = true;
                         btnDeposit.Enabled = true;
+
+                        // Active = green
+                        cbxSelectAccount.ForeColor = WinFormsColor.Green;
                     }
                 }
-                catch
-                {
-                    lblCurrentBalance.Text = "N/A";
-                    txtDepositAmount.Enabled = false;
-                    btnDeposit.Enabled = false;
-                }
             }
-            else
+            catch
             {
                 lblCurrentBalance.Text = "N/A";
                 txtDepositAmount.Enabled = false;
@@ -394,8 +582,54 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-        private void tbxAccountNumber_TextChanged(object sender, EventArgs e) { }
-        private void guna2HtmlLabel1_Click(object sender, EventArgs e) { }
-        private void guna2Panel4_Paint(object sender, PaintEventArgs e) { }
+        private void tbxAccountNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cbxSelectAccount_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            dynamic item = cbxSelectAccount.Items[e.Index];
+            string displayText = item.DisplayText;
+            string status = item.AccountStatus;
+
+            e.DrawBackground();
+
+            // Choose color
+            var color = status == "Closed" ? WinFormsColor.Red : WinFormsColor.Green;
+
+            using (var brush = new System.Drawing.SolidBrush(color))
+            {
+                e.Graphics.DrawString(displayText, e.Font, brush, e.Bounds);
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        private void tbxSearchCustomer_Click(object sender, EventArgs e)
+        {
+            tbxSearchCustomer.Clear();
+        }
+
+        private void tbxSearchCustomer_Leave(object sender, EventArgs e)
+        {
+            tbxSearchCustomer.Text = "Search Customer Name";
+        }
     }
 }
