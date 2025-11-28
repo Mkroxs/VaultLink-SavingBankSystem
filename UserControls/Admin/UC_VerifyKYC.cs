@@ -75,7 +75,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                         dgvPendingKYC.Rows[0].Selected = true;
 
                         // Manually trigger display of first customer
-                        Customers firstCustomer = dgvPendingKYC.Rows[0].DataBoundItem as Customers;
+                        VaultLinkBankSystem.Customer firstCustomer = dgvPendingKYC.Rows[0].DataBoundItem as VaultLinkBankSystem.Customer;
                         if (firstCustomer != null)
                         {
                             _selectedCustomerId = firstCustomer.CustomerID;
@@ -149,7 +149,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private bool ColumnExistsOnCustomer(string propertyName)
         {
-            return typeof(Customers).GetProperty(propertyName) != null;
+            return typeof(VaultLinkBankSystem.Customer).GetProperty(propertyName) != null;
         }
 
 
@@ -158,7 +158,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             if (dgvPendingKYC.SelectedRows.Count > 0)
             {
-                Customers selectedCustomer = dgvPendingKYC.SelectedRows[0].DataBoundItem as Customers;
+                VaultLinkBankSystem.Customer selectedCustomer = dgvPendingKYC.SelectedRows[0].DataBoundItem as VaultLinkBankSystem.Customer;
                 if (selectedCustomer != null)
                 {
                     _selectedCustomerId = selectedCustomer.CustomerID;
@@ -177,7 +177,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-        private void DisplayCustomerDetails(Customers customer)
+        private void DisplayCustomerDetails(VaultLinkBankSystem.Customer customer)
         {
             txtCustomerCode.Text = customer.CustomerCode;
             txtFullName.Text = customer.FullName;
@@ -237,7 +237,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             try
             {
-                Customers customer = _customerRepo.GetCustomerById(_selectedCustomerId);
+                VaultLinkBankSystem.Customer customer = _customerRepo.GetCustomerById(_selectedCustomerId);
 
                 if (customer == null)
                 {
@@ -304,7 +304,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             try
             {
-                Customers customer = _customerRepo.GetCustomerById(_selectedCustomerId);
+                VaultLinkBankSystem.Customer customer = _customerRepo.GetCustomerById(_selectedCustomerId);
 
                 if (customer == null)
                 {

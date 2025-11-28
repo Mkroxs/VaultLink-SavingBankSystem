@@ -2,6 +2,8 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>latest</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{81808AB8-E952-427F-B906-F09468813FF9}</ProjectGuid>
@@ -253,6 +255,12 @@
     <Compile Include="Forms\Admin\frmViewDetails.Designer.cs">
       <DependentUpon>frmViewDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CustomersFolder\frmCustomerPIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomersFolder\frmCustomerPIN.Designer.cs">
+      <DependentUpon>frmCustomerPIN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmBackground.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,16 +279,7 @@
     <Compile Include="Forms\CustomersFolder\frmCustomerDashboard.Designer.cs">
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Forms\CustomersFolder\frmCustomerPIN.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CustomersFolder\frmCustomerPIN.Designer.cs">
-      <DependentUpon>frmCustomerPIN.cs</DependentUpon>
-    </Compile>
-=======
     <Compile Include="InterestRepository.cs" />
->>>>>>> 2c3ddf92679aff7bfe07b9b69d2ca6c89b7f5cb3
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionRepository.cs" />
     <Compile Include="TransactionWithCustomer.cs" />
@@ -429,9 +428,6 @@
     <EmbeddedResource Include="Forms\CustomersFolder\frmCustomerDashboard.resx">
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CustomersFolder\frmCustomerPIN.resx">
-      <DependentUpon>frmCustomerPIN.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Admin\UC_AccountManagement.resx">
       <DependentUpon>UC_AccountManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -538,7 +534,7 @@
     <None Include="Resources\arrow_right %281%291.png" />
     <None Include="Resources\arrow_right %281%29.png" />
     <None Include="Banking.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Include="Resources\ChatGPT_Image_Oct_30__2025__07_25_46_PM-removebg-preview 1.png" />
     <None Include="Resources\eec0955fbfea82922a07c10d54b666eb8baf30c9.png" />
@@ -557,7 +553,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Banking_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <DependentUpon>Banking.mdf</DependentUpon>
     </Content>
     <None Include="Resources\back.png" />

@@ -1,10 +1,10 @@
-﻿using iText.IO.Image;
-using System;
+﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using VaultLinkBankSystem.Helpers;
 using VaultLinkBankSystem.UserControls.Registration;
+
 
 namespace VaultLinkBankSystem.Forms.Admin
 {
@@ -364,64 +364,48 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void btnRegister_Click_1(object sender, EventArgs e)
         {
-            // 1. Final Validation Check
-            if (!ValidateCurrentStep()) return;
-
-            // 2. Admin Confirmation Dialog
-            DialogResult dr = MessageBox.Show(
-                "Are you sure you want to register this customer?\n\nPlease confirm all details are correct.",
-                "Admin Confirmation",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (dr == DialogResult.Yes)
+            try
             {
-                try
+                VaultLinkBankSystem.Customer testCustomer = new VaultLinkBankSystem.Customer
                 {
-                    // 3. Prepare the object
-                    Customers testCustomer = new Customers()
-                    {
-                        CustomerCode = customerRepo.GenerateCustomerCode(),
-                        FullName = _ucBasicInfo.CustomerName, // Ensure these properties exist in your UC
-                        Address = _ucAddressInfo.CustomerAddress,
-                        Email = _ucBasicInfo.CustomerEmail,
-                        Phone = _ucBasicInfo.CustomerContactNumber,
-                        Gender = _ucBasicInfo.CustomerGender,
-                        BirthDate = _ucBasicInfo.CustomerBirthDate,
-                        CivilStatus = _ucBasicInfo.CustomerCivilStatus,
+                    CustomerCode = customerRepo.GenerateCustomerCode(),
+                    FullName = _ucBasicInfo.CustomerName,
+                    Address = _ucAddressInfo.CustomerAddress,
+                    Email = _ucBasicInfo.CustomerEmail,
+                    Phone = _ucBasicInfo.CustomerContactNumber,
+                    Gender = _ucBasicInfo.CustomerGender,
+                    BirthDate = _ucBasicInfo.CustomerBirthDate,
+                    CivilStatus = _ucBasicInfo.CustomerCivilStatus,
+                    ImagePath = imagePath ?? "john.jpg",
+                    PIN = customerRepo.GeneratePIN(),
+                    EmploymentStatus = _ucIdentityVerification.CustomerEmploymentStatus,
+                    EmployerName = "Elon Musk",
+                    SourceOfFunds = _ucIdentityVerification.CustomerSourceOfFunds,
+                    MonthlyIncomeRange = _ucIdentityVerification.CustomerMonthlyIncome,
+                    IDType = _ucIdentityVerification.CustomerIDType,
+                    IDNumber = _ucIdentityVerification.CustomerIDNumber,
+                    IsKYCVerified = false,
+                    KYCVerifiedDate = null
+                };
 
-                        // Save the path, OR save the binary data. 
-                        // Ideally, copy the image to a specific "Images" folder in your project directory
-                        ImagePath = imagePath ?? "default.jpg",
+                customerRepo.CreateCustomer(testCustomer);
 
-                        PIN = customerRepo.GeneratePIN(), // See Security Tip below!
-                        EmploymentStatus = _ucIdentityVerification.CustomerEmploymentStatus,
-                        EmployerName = "Elon Musk", // hardcoded? Make sure to map this to a textbox!
-                        SourceOfFunds = _ucIdentityVerification.CustomerSourceOfFunds,
-                        MonthlyIncomeRange = _ucIdentityVerification.CustomerMonthlyIncome,
-                        IDType = _ucIdentityVerification.CustomerIDType,
-                        IDNumber = _ucIdentityVerification.CustomerIDNumber,
-                        IsKYCVerified = true, // Set to true since Admin is registering them personally
-                        KYCVerifiedDate = DateTime.Now
-                    };
+                MessageBox.Show(
+                    $"Registration Successful!\n\nCustomer Code: {testCustomer.CustomerCode}",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
 
-                    // 4. Save to Database
-                    customerRepo.CreateCustomer(testCustomer);
-
-                    // 5. Success Message
-                    MessageBox.Show($"Registration Successful!\n\nCustomer Code: {testCustomer.CustomerCode}",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // 6. NOW we close the form
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    // If DB fails, do NOT close the form. Let them try again.
-                    MessageBox.Show($"System Error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Database Error");
             }
         }
+
+
 
         private void frmRegistration_Load_1(object sender, EventArgs e)
         {
@@ -447,7 +431,7 @@ namespace VaultLinkBankSystem.Forms.Admin
                             pbCustomerImage.Image = System.Drawing.Image.FromStream(stream);
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         MessageBox.Show("Invalid image format or file error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }

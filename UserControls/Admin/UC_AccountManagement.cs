@@ -93,7 +93,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             DisplayCustomerInfo(results[0]);
         }
 
-        private void ShowCustomerSelectionDialog(System.Collections.Generic.List<Customers> customers)
+        private void ShowCustomerSelectionDialog(System.Collections.Generic.List<VaultLinkBankSystem.Customer> customers)
         {
             Form selectionForm = new Form
             {
@@ -154,7 +154,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             if (selectionForm.ShowDialog() == DialogResult.OK && dgv.SelectedRows.Count > 0)
             {
-                Customers selectedCustomer = dgv.SelectedRows[0].DataBoundItem as Customers;
+                VaultLinkBankSystem.Customer selectedCustomer = dgv.SelectedRows[0].DataBoundItem as VaultLinkBankSystem.Customer;
                 if (selectedCustomer != null)
                 {
                     DisplayCustomerInfo(selectedCustomer);
@@ -163,7 +163,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         }
 
 
-        private void DisplayCustomerInfo(Customers customer)
+        private void DisplayCustomerInfo(VaultLinkBankSystem.Customer customer)
         {
             // Display customer details in your textboxes/labels
             txtCustomerCode.Text = customer.CustomerCode;
@@ -233,5 +233,55 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
 
         }
+        private void btnCloseAccount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReactiveAccount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvCustomerAccounts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvCustomerAccounts_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void guna2Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2Panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txbCustomerSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbCustomerSearch_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbCustomerSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
