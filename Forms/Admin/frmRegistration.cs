@@ -196,7 +196,7 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void btnRegister_Click_1(object sender, EventArgs e)
         {
-            Customers testCustomer = new Customers()
+            VaultLinkBankSystem.Customer testCustomer = new VaultLinkBankSystem.Customer()
 
             {
                 CustomerCode = customerRepo.GenerateCustomerCode(),

@@ -28,7 +28,7 @@ namespace VaultLinkBankSystem.Forms.Admin
             try
             {
                 string gender = rbtMale.Checked ? "Male" : "Female";
-                Customers newCustomer = new Customers()
+                VaultLinkBankSystem.Customer newCustomer = new VaultLinkBankSystem.Customer()
                 {
                     CustomerCode = customerRepo.GenerateCustomerCode(),
                     FullName = txtFullName.Text,

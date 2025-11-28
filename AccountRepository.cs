@@ -22,7 +22,7 @@ namespace VaultLinkBankSystem
         {
             // Check if customer exists and has verified KYC
             CustomerRepository customerRepo = new CustomerRepository();
-            Customers customer = customerRepo.GetCustomerById(customerId);
+            Customer customer = customerRepo.GetCustomerById(customerId);
 
             if (customer == null)
             {

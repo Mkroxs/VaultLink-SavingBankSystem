@@ -219,6 +219,7 @@
             this.iconPassword.Size = new System.Drawing.Size(43, 42);
             this.iconPassword.TabIndex = 2;
             this.iconPassword.TabStop = false;
+            this.iconPassword.Click += new System.EventHandler(this.iconPassword_Click);
             this.iconPassword.MouseClick += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseClick);
             // 
             // tbxPassword

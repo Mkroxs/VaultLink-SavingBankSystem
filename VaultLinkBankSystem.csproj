@@ -226,7 +226,7 @@
     <Compile Include="AccountWithCustomer.cs" />
     <Compile Include="Admin.cs" />
     <Compile Include="AdminRepository.cs" />
-    <Compile Include="Customercs.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="CustomerRepository.cs" />
     <Compile Include="Forms\Admin\frmAddCustomer.cs">
       <SubType>Form</SubType>
@@ -252,11 +252,29 @@
     <Compile Include="Forms\Admin\frmViewDetails.Designer.cs">
       <DependentUpon>frmViewDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmBackground.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBackground.Designer.cs">
+      <DependentUpon>frmBackground.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomersFolder\frmCustomerChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomersFolder\frmCustomerChangePassword.Designer.cs">
+      <DependentUpon>frmCustomerChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CustomersFolder\frmCustomerDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CustomersFolder\frmCustomerDashboard.Designer.cs">
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomersFolder\frmCustomerPIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomersFolder\frmCustomerPIN.Designer.cs">
+      <DependentUpon>frmCustomerPIN.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionRepository.cs" />
@@ -348,11 +366,23 @@
     <Compile Include="UserControls\Customers\UC_CustomerDashboard.Designer.cs">
       <DependentUpon>UC_CustomerDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Customers\UC_CustomerSidebar.cs">
+    <Compile Include="UserControls\Customers\UC_CustomerMySavings.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\Customers\UC_CustomerSidebar.Designer.cs">
-      <DependentUpon>UC_CustomerSidebar.cs</DependentUpon>
+    <Compile Include="UserControls\Customers\UC_CustomerMySavings.Designer.cs">
+      <DependentUpon>UC_CustomerMySavings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Customers\UC_CustomerProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Customers\UC_CustomerProfile.Designer.cs">
+      <DependentUpon>UC_CustomerProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Customers\UC_CustomerTransactionHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Customers\UC_CustomerTransactionHistory.Designer.cs">
+      <DependentUpon>UC_CustomerTransactionHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Registration\UC_AddressInfo.cs">
       <SubType>UserControl</SubType>
@@ -384,8 +414,17 @@
     <EmbeddedResource Include="Forms\Admin\frmViewDetails.resx">
       <DependentUpon>frmViewDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBackground.resx">
+      <DependentUpon>frmBackground.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomersFolder\frmCustomerChangePassword.resx">
+      <DependentUpon>frmCustomerChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomersFolder\frmCustomerDashboard.resx">
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomersFolder\frmCustomerPIN.resx">
+      <DependentUpon>frmCustomerPIN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Admin\UC_AccountManagement.resx">
       <DependentUpon>UC_AccountManagement.cs</DependentUpon>
@@ -439,8 +478,14 @@
     <EmbeddedResource Include="UserControls\Customers\UC_CustomerDashboard.resx">
       <DependentUpon>UC_CustomerDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\Customers\UC_CustomerSidebar.resx">
-      <DependentUpon>UC_CustomerSidebar.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\Customers\UC_CustomerMySavings.resx">
+      <DependentUpon>UC_CustomerMySavings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Customers\UC_CustomerProfile.resx">
+      <DependentUpon>UC_CustomerProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Customers\UC_CustomerTransactionHistory.resx">
+      <DependentUpon>UC_CustomerTransactionHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Registration\UC_AddressInfo.resx">
       <DependentUpon>UC_AddressInfo.cs</DependentUpon>
@@ -489,10 +534,6 @@
     <None Include="Banking.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Banking_log.ldf">
-      <DependentUpon>Banking.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\ChatGPT_Image_Oct_30__2025__07_25_46_PM-removebg-preview 1.png" />
     <None Include="Resources\eec0955fbfea82922a07c10d54b666eb8baf30c9.png" />
   </ItemGroup>
@@ -507,6 +548,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Banking_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Banking.mdf</DependentUpon>
+    </Content>
+    <None Include="Resources\back.png" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\account1.png" />
+    <None Include="Resources\history.png" />
+    <None Include="Resources\piggy-bank %281%29.png" />
+    <None Include="Resources\piggy-bank.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

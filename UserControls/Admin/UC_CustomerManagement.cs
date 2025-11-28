@@ -11,15 +11,17 @@ using System.Windows.Forms;
 using VaultLinkBankSystem.Forms.Admin;
 using static Syncfusion.Windows.Forms.TabBar;
 
+// ✅ ALIAS FIX
+using CustomerModel = VaultLinkBankSystem.Customer;
+
 namespace VaultLinkBankSystem.UserControls.Admin
 {
     public partial class UC_CustomerManagement : UserControl
     {
         private CustomerRepository _customerRepo;
         private int _selectedCustomerId = 0;
-        private List<Customers> _allCustomers;
-        private List<Customers> customers = new List<Customers>();
-
+        private List<CustomerModel> _allCustomers;
+        private List<CustomerModel> customers = new List<CustomerModel>();
 
         private Forms.Admin.frmViewDetails _preloadedViewDetails;
 
@@ -28,7 +30,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             InitializeComponent();
 
             _customerRepo = new CustomerRepository();
-            _allCustomers = new List<Customers>();
+            _allCustomers = new List<CustomerModel>();
 
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -40,12 +42,10 @@ namespace VaultLinkBankSystem.UserControls.Admin
             this.dvgListOfCustomers.SelectionChanged += DvgListOfCustomers_SelectionChanged;
             this.dvgListOfCustomers.CellClick += DvgListOfCustomers_CellClick;
 
-
             try
             {
-                Customers selectedCustomer;
-
-                selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customers;
+                CustomerModel selectedCustomer;
+                selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as CustomerModel;
 
                 _preloadedViewDetails = new Forms.Admin.frmViewDetails(selectedCustomer);
 
@@ -59,58 +59,27 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
                 this.Disposed += (s, e) =>
                 {
-                    // Clean up _preloadedViewDetails when the control is disposed.
                     try { _preloadedViewDetails?.Dispose(); } catch { }
                 };
-
             }
             catch
             {
                 _preloadedViewDetails = null;
             }
-
         }
-
-
-        
-
-
-
-
 
         private void LoadData()
         {
             try
             {
                 _allCustomers = _customerRepo.GetAllCustomers();
-
                 dvgListOfCustomers.DataSource = _allCustomers;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading customer data: {ex.Message}");
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private void SetupGridStyle()
         {
@@ -119,17 +88,17 @@ namespace VaultLinkBankSystem.UserControls.Admin
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv.MultiSelect = false;
 
-            dgv.BackgroundColor = Color.White;                       
-            dgv.GridColor = Color.FromArgb(230, 230, 230);           
-            dgv.DefaultCellStyle.ForeColor = Color.Black;            
-            dgv.DefaultCellStyle.BackColor = Color.White;            
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 249, 249); 
+            dgv.BackgroundColor = Color.White;
+            dgv.GridColor = Color.FromArgb(230, 230, 230);
+            dgv.DefaultCellStyle.ForeColor = Color.Black;
+            dgv.DefaultCellStyle.BackColor = Color.White;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 249, 249);
 
-            dgv.EnableHeadersVisualStyles = false; 
+            dgv.EnableHeadersVisualStyles = false;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 62, 84);
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 144, 255); 
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 144, 255);
             dgv.DefaultCellStyle.SelectionForeColor = Color.White;
 
             dgv.RowHeadersVisible = false;
@@ -161,7 +130,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             Form parentForm = this.FindForm();
@@ -181,14 +149,13 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private void guna2DataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dvgListOfCustomers.SelectedRows.Count > 0)
             {
-                Customers selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customers;
+                CustomerModel selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as CustomerModel;
 
                 if (selectedCustomer != null)
                 {
@@ -203,7 +170,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void guna2DataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private void BuildColumns()
@@ -255,11 +221,11 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             string[] hiddenColumns =
             {
-        "CustomerID", "PIN", "ImagePath", "IsKYCVerified", "KYCVerifiedDate",
-        "Address", "Gender", "BirthDate", "CivilStatus",
-        "EmployerName", "SourceOfFunds", "MonthlyIncomeRange",
-        "IDType", "IDNumber"
-    };
+                "CustomerID", "PIN", "ImagePath", "IsKYCVerified", "KYCVerifiedDate",
+                "Address", "Gender", "BirthDate", "CivilStatus",
+                "EmployerName", "SourceOfFunds", "MonthlyIncomeRange",
+                "IDType", "IDNumber"
+            };
 
             foreach (string colName in hiddenColumns)
             {
@@ -280,7 +246,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 return;
             }
 
-            Customers selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customers;
+            CustomerModel selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as CustomerModel;
 
             if (selectedCustomer == null)
             {
@@ -300,21 +266,19 @@ namespace VaultLinkBankSystem.UserControls.Admin
             {
                 string searchTerm = txbCustomerSearch.Text.Trim();
 
-                // If empty → reload full data
                 if (string.IsNullOrEmpty(searchTerm))
                 {
                     dvgListOfCustomers.DataSource = _allCustomers;
                     return;
                 }
 
-                // Search through already-loaded customers
                 var foundCustomers = _allCustomers
                     .Where(c =>
-    (c.CustomerCode != null && c.CustomerCode.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0) ||
-    (c.FullName != null && c.FullName.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0) ||
-    (c.Email != null && c.Email.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0) ||
-    (c.Phone != null && c.Phone.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0)
-)
+                        (c.CustomerCode != null && c.CustomerCode.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                        (c.FullName != null && c.FullName.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                        (c.Email != null && c.Email.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                        (c.Phone != null && c.Phone.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0)
+                    )
                     .ToList();
 
                 dvgListOfCustomers.DataSource = foundCustomers;
@@ -330,40 +294,29 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 MessageBox.Show($"Error during search: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
-    
-}
-
-
-
-
+        }
 
         private void dvgListOfCustomers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-
         }
 
         private void UC_CustomerManagement_Load_1(object sender, EventArgs e)
         {
             BuildColumns();
             LoadData();
-
         }
 
         private void btnVerification_Click(object sender, EventArgs e)
         {
-
-
         }
 
         private void txbCustomerSearch_TextChanged(object sender, EventArgs e)
         {
-
             string keyword = txbCustomerSearch.Text.Trim().ToLower();
 
             if (string.IsNullOrEmpty(keyword))
             {
-                dvgListOfCustomers.DataSource = _allCustomers; // reset
+                dvgListOfCustomers.DataSource = _allCustomers;
                 return;
             }
 
@@ -378,7 +331,5 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             dvgListOfCustomers.DataSource = filtered;
         }
-
-       
     }
 }
