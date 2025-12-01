@@ -17,8 +17,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
     {
         private CustomerRepository _customerRepo;
         private int _selectedCustomerId = 0;
-        private List<Customers> _allCustomers;
-        private List<Customers> customers = new List<Customers>();
+        private List<VaultLinkBankSystem.Customer> _allCustomers;
+        private List<VaultLinkBankSystem.Customer> customers = new List<VaultLinkBankSystem.Customer>();
 
 
         private Forms.Admin.frmViewDetails _preloadedViewDetails;
@@ -28,7 +28,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             InitializeComponent();
 
             _customerRepo = new CustomerRepository();
-            _allCustomers = new List<Customers>();
+            _allCustomers = new List<VaultLinkBankSystem.Customer>();
 
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -43,9 +43,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
             try
             {
-                Customers selectedCustomer;
+                VaultLinkBankSystem.Customer selectedCustomer;
 
-                selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customers;
+                selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as VaultLinkBankSystem.Customer;
 
                 _preloadedViewDetails = new Forms.Admin.frmViewDetails(selectedCustomer);
 
@@ -188,7 +188,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             if (dvgListOfCustomers.SelectedRows.Count > 0)
             {
-                Customers selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customers;
+                VaultLinkBankSystem.Customer selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as VaultLinkBankSystem.Customer;
 
                 if (selectedCustomer != null)
                 {
@@ -280,7 +280,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 return;
             }
 
-            Customers selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as Customers;
+            VaultLinkBankSystem.Customer selectedCustomer = dvgListOfCustomers.SelectedRows[0].DataBoundItem as VaultLinkBankSystem.Customer;
 
             if (selectedCustomer == null)
             {
@@ -307,7 +307,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     return;
                 }
 
-                // Search through already-loaded customers
+                // Search through already-loaded VaultLinkBankSystem.Customer
                 var foundCustomers = _allCustomers
                     .Where(c =>
     (c.CustomerCode != null && c.CustomerCode.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0) ||

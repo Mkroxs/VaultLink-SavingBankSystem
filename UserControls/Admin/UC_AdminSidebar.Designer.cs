@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
             this.btnReports = new Guna.UI2.WinForms.Guna2Button();
-            this.btnSettings = new Guna.UI2.WinForms.Guna2Button();
             this.btnInterestComputation = new Guna.UI2.WinForms.Guna2Button();
             this.btnTransfer = new Guna.UI2.WinForms.Guna2Button();
             this.btnDeposit = new Guna.UI2.WinForms.Guna2Button();
@@ -92,27 +91,6 @@
             this.btnReports.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
             this.btnReports.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnReports_MouseClick);
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.BackColor = System.Drawing.Color.Transparent;
-            this.btnSettings.BorderColor = System.Drawing.Color.Transparent;
-            this.btnSettings.BorderThickness = 2;
-            this.btnSettings.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSettings.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSettings.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSettings.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSettings.FillColor = System.Drawing.Color.Transparent;
-            this.btnSettings.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold);
-            this.btnSettings.ForeColor = System.Drawing.Color.White;
-            this.btnSettings.Location = new System.Drawing.Point(3, 598);
-            this.btnSettings.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(336, 60);
-            this.btnSettings.TabIndex = 15;
-            this.btnSettings.Text = "Settings";
-            this.btnSettings.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // btnInterestComputation
             // 
@@ -310,7 +288,6 @@
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.btnLogout, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.btnReports, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.btnInterestComputation, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.btnVerifyKYC, 0, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -394,7 +371,6 @@
         private Guna.UI2.WinForms.Guna2Button btnAccountManagement;
         private Guna.UI2.WinForms.Guna2Button btnCustomerManagement;
         private Guna.UI2.WinForms.Guna2Button btnLogout;
-        private Guna.UI2.WinForms.Guna2Button btnSettings;
         private Guna.UI2.WinForms.Guna2Button btnReports;
         private Guna.UI2.WinForms.Guna2Button btnInterestComputation;
         private Guna.UI2.WinForms.Guna2Button btnTransfer;

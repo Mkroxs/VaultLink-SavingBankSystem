@@ -10,13 +10,13 @@ namespace VaultLinkBankSystem.Forms.Admin
 {
     public partial class frmViewDetails : Form
     {
-        private Customers _customer;
+        private VaultLinkBankSystem.Customer _customer;
 
         private CustomerRepository _customerRepo;
 
         private bool _isEditing;
 
-        public frmViewDetails(Customers customer)
+        public frmViewDetails(VaultLinkBankSystem.Customer customer)
         {
             InitializeComponent();
             _customerRepo = new CustomerRepository();

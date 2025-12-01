@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VaultLinkBankSystem
 {
-    public class Customers
+    public class Customer
     {
         public int CustomerID { get; set; }
         public string CustomerCode { get; set; }

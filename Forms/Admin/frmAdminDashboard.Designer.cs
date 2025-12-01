@@ -100,7 +100,7 @@
             this.panelMain.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.panelMain.Location = new System.Drawing.Point(420, 254);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Padding = new System.Windows.Forms.Padding(30, 30, 50, 70);
+            this.panelMain.Padding = new System.Windows.Forms.Padding(30, 10, 50, 10);
             this.panelMain.Size = new System.Drawing.Size(710, 476);
             this.panelMain.TabIndex = 15;
             // 
