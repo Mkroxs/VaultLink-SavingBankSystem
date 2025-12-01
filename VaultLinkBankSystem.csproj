@@ -267,6 +267,12 @@
     <Compile Include="Forms\frmBackground.Designer.cs">
       <DependentUpon>frmBackground.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmLoadingScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLoadingScreen.Designer.cs">
+      <DependentUpon>frmLoadingScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CustomersFolder\frmCustomerChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -419,8 +425,14 @@
     <EmbeddedResource Include="Forms\Admin\frmViewDetails.resx">
       <DependentUpon>frmViewDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomersFolder\frmCustomerPIN.resx">
+      <DependentUpon>frmCustomerPIN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmBackground.resx">
       <DependentUpon>frmBackground.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLoadingScreen.resx">
+      <DependentUpon>frmLoadingScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomersFolder\frmCustomerChangePassword.resx">
       <DependentUpon>frmCustomerChangePassword.cs</DependentUpon>
@@ -556,6 +568,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <DependentUpon>Banking.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Untitled design.png" />
     <None Include="Resources\back.png" />
     <None Include="Resources\logout.png" />
     <None Include="Resources\account1.png" />

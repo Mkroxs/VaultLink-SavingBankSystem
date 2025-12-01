@@ -15,8 +15,10 @@
 
         #region Windows Form Designer generated code
 
+
         private void InitializeComponent()
         {
+
             this.components = new System.ComponentModel.Container();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panelMain = new Guna.UI2.WinForms.Guna2Panel();
@@ -50,7 +52,7 @@
             this.panelMain.Location = new System.Drawing.Point(20, 192);
             this.panelMain.Name = "panelMain";
             this.panelMain.Padding = new System.Windows.Forms.Padding(30, 30, 50, 5);
-            this.panelMain.Size = new System.Drawing.Size(1560, 788);
+            this.panelMain.Size = new System.Drawing.Size(1660, 788);
             this.panelMain.TabIndex = 18;
             // 
             // panelTopbar
@@ -68,14 +70,14 @@
             this.panelTopbar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.panelTopbar.Location = new System.Drawing.Point(20, 20);
             this.panelTopbar.Name = "panelTopbar";
-            this.panelTopbar.Size = new System.Drawing.Size(1560, 172);
+            this.panelTopbar.Size = new System.Drawing.Size(1660, 172);
             this.panelTopbar.TabIndex = 16;
             // 
             // guna2Panel1
             // 
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel1);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.guna2Panel1.Location = new System.Drawing.Point(986, 0);
+            this.guna2Panel1.Location = new System.Drawing.Point(1086, 0);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Padding = new System.Windows.Forms.Padding(40, 50, 40, 40);
             this.guna2Panel1.Size = new System.Drawing.Size(574, 172);
@@ -130,7 +132,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1600, 1000);
+            this.ClientSize = new System.Drawing.Size(1700, 1000);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelTopbar);
             this.DoubleBuffered = true;

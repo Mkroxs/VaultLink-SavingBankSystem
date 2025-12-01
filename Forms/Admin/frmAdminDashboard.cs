@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using VaultLinkBankSystem.UserControls.Admin;
 using VaultLinkBankSystem.Helpers;
+using VaultLinkBankSystem.Forms;
 
 namespace VaultLinkBankSystem.Forms.Admin
 {
@@ -24,9 +25,13 @@ namespace VaultLinkBankSystem.Forms.Admin
         {
             InitializeComponent();
 
-            this.SetStyle(System.Windows.Forms.ControlStyles.AllPaintingInWmPaint
-                        | System.Windows.Forms.ControlStyles.UserPaint
-                        | System.Windows.Forms.ControlStyles.OptimizedDoubleBuffer, true);
+            frmLoadingScreen.Instance.ShowOverlay();
+
+            this.SetStyle(
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.UserPaint |
+                ControlStyles.OptimizedDoubleBuffer, true);
+
             this.UpdateStyles();
 
             UiHelpers.EnableDoubleBufferingRecursive(this);
@@ -40,8 +45,17 @@ namespace VaultLinkBankSystem.Forms.Admin
             UiHelpers.TryEnableComposited(this);
 
             CreateAndPreloadUserControls();
+            UiHelpers.ForceRender(_ucDashboard);
+            UiHelpers.ForceRender(_ucCustomerManagement);
+            UiHelpers.ForceRender(_ucAccountManagement);
+            UiHelpers.ForceRender(_ucWithdraw);
+            UiHelpers.ForceRender(_ucDeposits);
+            UiHelpers.ForceRender(_ucTransfer);
+            UiHelpers.ForceRender(_ucReports);
+            UiHelpers.ForceRender(_ucVerifyKYC);
+            UiHelpers.ForceRender(_ucInterestComputation);
 
-            UiHelpers.ShowPage(panelMain, _ucDashboard, ref _currentPage);
+            _currentPage = UiHelpers.ShowPage(panelMain, _ucDashboard, _currentPage);
         }
 
         private void CreateAndPreloadUserControls()
@@ -68,7 +82,6 @@ namespace VaultLinkBankSystem.Forms.Admin
             UiHelpers.EnableDoubleBufferingRecursive(_ucVerifyKYC);
             UiHelpers.EnableDoubleBufferingRecursive(_ucInterestComputation);
 
-            // Set Dock = Fill for all user controls so they respect the panel's padding
             _sidebar.Dock = DockStyle.Fill;
             _ucDashboard.Dock = DockStyle.Fill;
             _ucCustomerManagement.Dock = DockStyle.Fill;
@@ -81,7 +94,8 @@ namespace VaultLinkBankSystem.Forms.Admin
             _ucInterestComputation.Dock = DockStyle.Fill;
 
             UiHelpers.PreloadPages(panelSidebar, _sidebar);
-            UiHelpers.PreloadPages(panelMain,
+            UiHelpers.PreloadPages(
+                panelMain,
                 _ucDashboard,
                 _ucCustomerManagement,
                 _ucAccountManagement,
@@ -95,23 +109,20 @@ namespace VaultLinkBankSystem.Forms.Admin
 
             _sidebar.Visible = true;
 
-            // Wire up sidebar navigation events
-            _sidebar.DashboardClicked += (s, e) => UiHelpers.ShowPage(panelMain, _ucDashboard, ref _currentPage);
-            _sidebar.CustomerManagementClicked += (s, e) => UiHelpers.ShowPage(panelMain, _ucCustomerManagement, ref _currentPage);
-            _sidebar.AccountManagementClicked += (s, e) => UiHelpers.ShowPage(panelMain, _ucAccountManagement, ref _currentPage);
-            _sidebar.WithdrawClicked += (s, e) => UiHelpers.ShowPage(panelMain, _ucWithdraw, ref _currentPage);
-            _sidebar.DepositClicked += (s, e) => UiHelpers.ShowPage(panelMain, _ucDeposits, ref _currentPage);
-            _sidebar.TransferClicked += (s, e) => UiHelpers.ShowPage(panelMain, _ucTransfer, ref _currentPage);
-            _sidebar.ReportsClicked += (s, e) => UiHelpers.ShowPage(panelMain, _ucReports, ref _currentPage);
-            _sidebar.VerifyKYCClicked += (s, e) => UiHelpers.ShowPage(panelMain, _ucVerifyKYC, ref _currentPage);
-            _sidebar.InterestComputationClicked += (s, e) => UiHelpers.ShowPage(panelMain, _ucInterestComputation, ref _currentPage);
+            _sidebar.DashboardClicked += (s, e) => _currentPage = UiHelpers.ShowPage(panelMain, _ucDashboard, _currentPage);
+            _sidebar.CustomerManagementClicked += (s, e) => _currentPage = UiHelpers.ShowPage(panelMain, _ucCustomerManagement, _currentPage);
+            _sidebar.AccountManagementClicked += (s, e) => _currentPage = UiHelpers.ShowPage(panelMain, _ucAccountManagement, _currentPage);
+            _sidebar.WithdrawClicked += (s, e) => _currentPage = UiHelpers.ShowPage(panelMain, _ucWithdraw, _currentPage);
+            _sidebar.DepositClicked += (s, e) => _currentPage = UiHelpers.ShowPage(panelMain, _ucDeposits, _currentPage);
+            _sidebar.TransferClicked += (s, e) => _currentPage = UiHelpers.ShowPage(panelMain, _ucTransfer, _currentPage);
+            _sidebar.ReportsClicked += (s, e) => _currentPage = UiHelpers.ShowPage(panelMain, _ucReports, _currentPage);
+            _sidebar.VerifyKYCClicked += (s, e) => _currentPage = UiHelpers.ShowPage(panelMain, _ucVerifyKYC, _currentPage);
+            _sidebar.InterestComputationClicked += (s, e) => _currentPage = UiHelpers.ShowPage(panelMain, _ucInterestComputation, _currentPage);
         }
 
         public void ShowPage(UserControl page)
         {
-            UiHelpers.ShowPage(panelMain, page, ref _currentPage);
+            _currentPage = UiHelpers.ShowPage(panelMain, page, _currentPage);
         }
-
-
     }
 }

@@ -30,6 +30,13 @@
         {
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnChangePin = new FontAwesome.Sharp.IconButton();
+            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnChangePassword = new FontAwesome.Sharp.IconButton();
             this.tbxStreetName = new Guna.UI2.WinForms.Guna2TextBox();
             this.tbxBarangay = new Guna.UI2.WinForms.Guna2TextBox();
             this.tbxContactNumber = new Guna.UI2.WinForms.Guna2TextBox();
@@ -53,33 +60,26 @@
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnBackToDashboard = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.lblFullName = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.pbCustomerPicture = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
             this.lblRegisteredDate = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel17 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.btnChangePin = new FontAwesome.Sharp.IconButton();
-            this.btnChangePassword = new FontAwesome.Sharp.IconButton();
-            this.pbCustomerPicture = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnBackToDashboard = new Guna.UI2.WinForms.Guna2Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.guna2Panel7.SuspendLayout();
             this.guna2Panel8.SuspendLayout();
+            this.guna2Panel3.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
             this.guna2Panel5.SuspendLayout();
-            this.guna2Panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCustomerPicture)).BeginInit();
-            this.guna2Panel3.SuspendLayout();
+            this.guna2Panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2Panel7
@@ -140,6 +140,118 @@
             this.guna2Panel8.Size = new System.Drawing.Size(1086, 753);
             this.guna2Panel8.TabIndex = 1;
             this.guna2Panel8.UseTransparentBackground = true;
+            // 
+            // btnChangePin
+            // 
+            this.btnChangePin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
+            this.btnChangePin.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangePin.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnChangePin.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnChangePin.IconColor = System.Drawing.Color.Black;
+            this.btnChangePin.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnChangePin.Location = new System.Drawing.Point(814, 164);
+            this.btnChangePin.Name = "btnChangePin";
+            this.btnChangePin.Size = new System.Drawing.Size(242, 62);
+            this.btnChangePin.TabIndex = 61;
+            this.btnChangePin.Text = "Change PIN";
+            this.btnChangePin.UseVisualStyleBackColor = false;
+            this.btnChangePin.Click += new System.EventHandler(this.iconButton2_Click);
+            // 
+            // guna2TextBox1
+            // 
+            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.guna2TextBox1.DefaultText = "*********";
+            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox1.Enabled = false;
+            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.guna2TextBox1.ForeColor = System.Drawing.Color.Black;
+            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox1.Location = new System.Drawing.Point(768, 75);
+            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.guna2TextBox1.Name = "guna2TextBox1";
+            this.guna2TextBox1.PlaceholderText = "";
+            this.guna2TextBox1.SelectedText = "";
+            this.guna2TextBox1.Size = new System.Drawing.Size(293, 33);
+            this.guna2TextBox1.TabIndex = 59;
+            this.guna2TextBox1.TextOffset = new System.Drawing.Point(0, -4);
+            // 
+            // guna2TextBox2
+            // 
+            this.guna2TextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.guna2TextBox2.DefaultText = "******";
+            this.guna2TextBox2.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.guna2TextBox2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.guna2TextBox2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox2.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox2.Enabled = false;
+            this.guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox2.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.guna2TextBox2.ForeColor = System.Drawing.Color.Black;
+            this.guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox2.Location = new System.Drawing.Point(768, 120);
+            this.guna2TextBox2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.guna2TextBox2.Name = "guna2TextBox2";
+            this.guna2TextBox2.PlaceholderText = "";
+            this.guna2TextBox2.SelectedText = "";
+            this.guna2TextBox2.Size = new System.Drawing.Size(293, 33);
+            this.guna2TextBox2.TabIndex = 60;
+            this.guna2TextBox2.TextOffset = new System.Drawing.Point(0, -4);
+            // 
+            // guna2HtmlLabel2
+            // 
+            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(554, 74);
+            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
+            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(106, 33);
+            this.guna2HtmlLabel2.TabIndex = 58;
+            this.guna2HtmlLabel2.Text = "Password:";
+            // 
+            // guna2HtmlLabel5
+            // 
+            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(554, 119);
+            this.guna2HtmlLabel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
+            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(45, 33);
+            this.guna2HtmlLabel5.TabIndex = 57;
+            this.guna2HtmlLabel5.Text = "PIN:";
+            // 
+            // guna2HtmlLabel1
+            // 
+            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Malgun Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(552, 26);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
+            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(215, 39);
+            this.guna2HtmlLabel1.TabIndex = 56;
+            this.guna2HtmlLabel1.Text = "Security Settings";
+            // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
+            this.btnChangePassword.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangePassword.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnChangePassword.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnChangePassword.IconColor = System.Drawing.Color.Black;
+            this.btnChangePassword.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnChangePassword.Location = new System.Drawing.Point(562, 164);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(242, 62);
+            this.btnChangePassword.TabIndex = 53;
+            this.btnChangePassword.Text = "Change Password";
+            this.btnChangePassword.UseVisualStyleBackColor = false;
+            this.btnChangePassword.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // tbxStreetName
             // 
@@ -517,6 +629,38 @@
             this.guna2HtmlLabel4.TabIndex = 16;
             this.guna2HtmlLabel4.Text = "Date of Birth:";
             // 
+            // guna2Panel3
+            // 
+            this.guna2Panel3.Controls.Add(this.btnBackToDashboard);
+            this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.guna2Panel3.Location = new System.Drawing.Point(17, 622);
+            this.guna2Panel3.Name = "guna2Panel3";
+            this.guna2Panel3.Padding = new System.Windows.Forms.Padding(15);
+            this.guna2Panel3.Size = new System.Drawing.Size(1052, 114);
+            this.guna2Panel3.TabIndex = 62;
+            // 
+            // btnBackToDashboard
+            // 
+            this.btnBackToDashboard.Animated = true;
+            this.btnBackToDashboard.BorderRadius = 20;
+            this.btnBackToDashboard.CustomImages.Image = global::VaultLinkBankSystem.Properties.Resources.back;
+            this.btnBackToDashboard.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnBackToDashboard.CustomImages.ImageSize = new System.Drawing.Size(60, 60);
+            this.btnBackToDashboard.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnBackToDashboard.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnBackToDashboard.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnBackToDashboard.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnBackToDashboard.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnBackToDashboard.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
+            this.btnBackToDashboard.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBackToDashboard.ForeColor = System.Drawing.Color.White;
+            this.btnBackToDashboard.Location = new System.Drawing.Point(606, 15);
+            this.btnBackToDashboard.Name = "btnBackToDashboard";
+            this.btnBackToDashboard.Size = new System.Drawing.Size(431, 84);
+            this.btnBackToDashboard.TabIndex = 28;
+            this.btnBackToDashboard.Text = "Back to Dashboard";
+            this.btnBackToDashboard.Click += new System.EventHandler(this.btnBackToDashboard_Click);
+            // 
             // guna2Panel2
             // 
             this.guna2Panel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
@@ -538,7 +682,7 @@
             // 
             this.guna2Panel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel4.Controls.Add(this.guna2Panel5);
-            this.guna2Panel4.Controls.Add(this.guna2HtmlLabel14);
+            this.guna2Panel4.Controls.Add(this.label1);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel4.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -551,11 +695,11 @@
             this.guna2Panel5.Controls.Add(this.lblFullName);
             this.guna2Panel5.Controls.Add(this.pbCustomerPicture);
             this.guna2Panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Panel5.Location = new System.Drawing.Point(0, 60);
+            this.guna2Panel5.Location = new System.Drawing.Point(0, 86);
             this.guna2Panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel5.Name = "guna2Panel5";
             this.guna2Panel5.Padding = new System.Windows.Forms.Padding(91, 90, 91, 50);
-            this.guna2Panel5.Size = new System.Drawing.Size(419, 612);
+            this.guna2Panel5.Size = new System.Drawing.Size(419, 586);
             this.guna2Panel5.TabIndex = 6;
             // 
             // lblFullName
@@ -570,20 +714,17 @@
             this.lblFullName.TabIndex = 15;
             this.lblFullName.Text = "John Melbern Andaya";
             // 
-            // guna2HtmlLabel14
+            // pbCustomerPicture
             // 
-            this.guna2HtmlLabel14.AutoSize = false;
-            this.guna2HtmlLabel14.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2HtmlLabel14.Font = new System.Drawing.Font("Malgun Gothic", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel14.ForeColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel14.Location = new System.Drawing.Point(0, 0);
-            this.guna2HtmlLabel14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.guna2HtmlLabel14.Name = "guna2HtmlLabel14";
-            this.guna2HtmlLabel14.Size = new System.Drawing.Size(419, 60);
-            this.guna2HtmlLabel14.TabIndex = 4;
-            this.guna2HtmlLabel14.Text = "My Profile";
-            this.guna2HtmlLabel14.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.pbCustomerPicture.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pbCustomerPicture.BorderRadius = 17;
+            this.pbCustomerPicture.ImageRotate = 0F;
+            this.pbCustomerPicture.Location = new System.Drawing.Point(116, 7);
+            this.pbCustomerPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbCustomerPicture.Name = "pbCustomerPicture";
+            this.pbCustomerPicture.Size = new System.Drawing.Size(188, 180);
+            this.pbCustomerPicture.TabIndex = 5;
+            this.pbCustomerPicture.TabStop = false;
             // 
             // guna2Panel6
             // 
@@ -642,161 +783,17 @@
             this.guna2Panel1.TabIndex = 0;
             this.guna2Panel1.UseTransparentBackground = true;
             // 
-            // guna2HtmlLabel1
+            // label1
             // 
-            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Malgun Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(552, 26);
-            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
-            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(215, 39);
-            this.guna2HtmlLabel1.TabIndex = 56;
-            this.guna2HtmlLabel1.Text = "Security Settings";
-            // 
-            // guna2TextBox1
-            // 
-            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox1.DefaultText = "*********";
-            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.Enabled = false;
-            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
-            this.guna2TextBox1.ForeColor = System.Drawing.Color.Black;
-            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Location = new System.Drawing.Point(768, 75);
-            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.guna2TextBox1.Name = "guna2TextBox1";
-            this.guna2TextBox1.PlaceholderText = "";
-            this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(293, 33);
-            this.guna2TextBox1.TabIndex = 59;
-            this.guna2TextBox1.TextOffset = new System.Drawing.Point(0, -4);
-            // 
-            // guna2TextBox2
-            // 
-            this.guna2TextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox2.DefaultText = "******";
-            this.guna2TextBox2.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox2.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox2.Enabled = false;
-            this.guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox2.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
-            this.guna2TextBox2.ForeColor = System.Drawing.Color.Black;
-            this.guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox2.Location = new System.Drawing.Point(768, 120);
-            this.guna2TextBox2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.guna2TextBox2.Name = "guna2TextBox2";
-            this.guna2TextBox2.PlaceholderText = "";
-            this.guna2TextBox2.SelectedText = "";
-            this.guna2TextBox2.Size = new System.Drawing.Size(293, 33);
-            this.guna2TextBox2.TabIndex = 60;
-            this.guna2TextBox2.TextOffset = new System.Drawing.Point(0, -4);
-            // 
-            // guna2HtmlLabel2
-            // 
-            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(554, 74);
-            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
-            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(106, 33);
-            this.guna2HtmlLabel2.TabIndex = 58;
-            this.guna2HtmlLabel2.Text = "Password:";
-            // 
-            // guna2HtmlLabel5
-            // 
-            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(554, 119);
-            this.guna2HtmlLabel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
-            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(45, 33);
-            this.guna2HtmlLabel5.TabIndex = 57;
-            this.guna2HtmlLabel5.Text = "PIN:";
-            // 
-            // btnChangePin
-            // 
-            this.btnChangePin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
-            this.btnChangePin.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangePin.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnChangePin.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnChangePin.IconColor = System.Drawing.Color.Black;
-            this.btnChangePin.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnChangePin.Location = new System.Drawing.Point(814, 164);
-            this.btnChangePin.Name = "btnChangePin";
-            this.btnChangePin.Size = new System.Drawing.Size(242, 62);
-            this.btnChangePin.TabIndex = 61;
-            this.btnChangePin.Text = "Change PIN";
-            this.btnChangePin.UseVisualStyleBackColor = false;
-            this.btnChangePin.Click += new System.EventHandler(this.iconButton2_Click);
-            // 
-            // btnChangePassword
-            // 
-            this.btnChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
-            this.btnChangePassword.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangePassword.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnChangePassword.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnChangePassword.IconColor = System.Drawing.Color.Black;
-            this.btnChangePassword.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnChangePassword.Location = new System.Drawing.Point(562, 164);
-            this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(242, 62);
-            this.btnChangePassword.TabIndex = 53;
-            this.btnChangePassword.Text = "Change Password";
-            this.btnChangePassword.UseVisualStyleBackColor = false;
-            this.btnChangePassword.Click += new System.EventHandler(this.iconButton1_Click);
-            // 
-            // pbCustomerPicture
-            // 
-            this.pbCustomerPicture.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pbCustomerPicture.BorderRadius = 17;
-            this.pbCustomerPicture.ImageRotate = 0F;
-            this.pbCustomerPicture.Location = new System.Drawing.Point(116, 7);
-            this.pbCustomerPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pbCustomerPicture.Name = "pbCustomerPicture";
-            this.pbCustomerPicture.Size = new System.Drawing.Size(188, 180);
-            this.pbCustomerPicture.TabIndex = 5;
-            this.pbCustomerPicture.TabStop = false;
-            // 
-            // guna2Panel3
-            // 
-            this.guna2Panel3.Controls.Add(this.btnBackToDashboard);
-            this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2Panel3.Location = new System.Drawing.Point(17, 622);
-            this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Padding = new System.Windows.Forms.Padding(15);
-            this.guna2Panel3.Size = new System.Drawing.Size(1052, 114);
-            this.guna2Panel3.TabIndex = 62;
-            // 
-            // btnBackToDashboard
-            // 
-            this.btnBackToDashboard.Animated = true;
-            this.btnBackToDashboard.BorderRadius = 20;
-            this.btnBackToDashboard.CustomImages.Image = global::VaultLinkBankSystem.Properties.Resources.back;
-            this.btnBackToDashboard.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnBackToDashboard.CustomImages.ImageSize = new System.Drawing.Size(60, 60);
-            this.btnBackToDashboard.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnBackToDashboard.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnBackToDashboard.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnBackToDashboard.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnBackToDashboard.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnBackToDashboard.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
-            this.btnBackToDashboard.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBackToDashboard.ForeColor = System.Drawing.Color.White;
-            this.btnBackToDashboard.Location = new System.Drawing.Point(606, 15);
-            this.btnBackToDashboard.Name = "btnBackToDashboard";
-            this.btnBackToDashboard.Size = new System.Drawing.Size(431, 84);
-            this.btnBackToDashboard.TabIndex = 28;
-            this.btnBackToDashboard.Text = "Back to Dashboard";
-            this.btnBackToDashboard.Click += new System.EventHandler(this.btnBackToDashboard_Click);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Malgun Gothic", 22.2F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(419, 86);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "My Profile";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // UC_CustomerProfile
             // 
@@ -810,13 +807,13 @@
             this.guna2Panel7.ResumeLayout(false);
             this.guna2Panel8.ResumeLayout(false);
             this.guna2Panel8.PerformLayout();
+            this.guna2Panel3.ResumeLayout(false);
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel4.ResumeLayout(false);
             this.guna2Panel5.ResumeLayout(false);
             this.guna2Panel5.PerformLayout();
-            this.guna2Panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbCustomerPicture)).EndInit();
-            this.guna2Panel3.ResumeLayout(false);
+            this.guna2Panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -853,7 +850,6 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblFullName;
         private Guna.UI2.WinForms.Guna2PictureBox pbCustomerPicture;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel14;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblRegisteredDate;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel17;
@@ -867,5 +863,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2Button btnBackToDashboard;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using VaultLinkBankSystem.Helpers;
 using VaultLinkBankSystem.UserControls.Customer;
 using VaultLinkBankSystem.UserControls.Customers;
+using VaultLinkBankSystem.Forms;
 
 namespace VaultLinkBankSystem.Forms.Customer
 {
@@ -17,6 +18,8 @@ namespace VaultLinkBankSystem.Forms.Customer
         public frmCustomerDashboard()
         {
             InitializeComponent();
+
+            frmLoadingScreen.Instance.ShowOverlay();
 
             this.WindowState = FormWindowState.Normal;
             this.WindowState = FormWindowState.Minimized;
@@ -36,7 +39,13 @@ namespace VaultLinkBankSystem.Forms.Customer
         {
             CreateAndPreloadUserControls();
 
-            UiHelpers.ShowPage(panelMain, _ucDashboard, ref _currentPage);
+            UiHelpers.ForceRender(_ucDashboard);
+            UiHelpers.ForceRender(_ucMySavings);
+            UiHelpers.ForceRender(_ucTransactionHistory);
+            UiHelpers.ForceRender(_ucProfile);
+
+            _currentPage = UiHelpers.ShowPage(panelMain, _ucDashboard, _currentPage);
+
             UiHelpers.FixGuna2TextBoxVisibility(this);
 
             panelMain.PerformLayout();
@@ -52,13 +61,15 @@ namespace VaultLinkBankSystem.Forms.Customer
             _ucTransactionHistory = new UC_CustomerTransactionHistory();
             _ucProfile = new UC_CustomerProfile();
 
-            UiHelpers.PreloadPages(panelMain,
+            UiHelpers.PreloadPages(
+                panelMain,
                 _ucDashboard,
                 _ucMySavings,
                 _ucTransactionHistory,
                 _ucProfile
             );
         }
+
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
@@ -68,22 +79,22 @@ namespace VaultLinkBankSystem.Forms.Customer
 
         public void ShowMySavings()
         {
-            UiHelpers.ShowPage(panelMain, _ucMySavings, ref _currentPage);
+            _currentPage = UiHelpers.ShowPage(panelMain, _ucMySavings, _currentPage);
         }
 
         public void ShowDashboard()
         {
-            UiHelpers.ShowPage(panelMain, _ucDashboard, ref _currentPage);
+            _currentPage = UiHelpers.ShowPage(panelMain, _ucDashboard, _currentPage);
         }
 
         public void ShowTransactionHistory()
         {
-            UiHelpers.ShowPage(panelMain, _ucTransactionHistory, ref _currentPage);
+            _currentPage = UiHelpers.ShowPage(panelMain, _ucTransactionHistory, _currentPage);
         }
 
         public void ShowProfile()
         {
-            UiHelpers.ShowPage(panelMain, _ucProfile, ref _currentPage);
+            _currentPage = UiHelpers.ShowPage(panelMain, _ucProfile, _currentPage);
         }
     }
 }

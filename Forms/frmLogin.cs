@@ -12,25 +12,116 @@ namespace VaultLinkBankSystem
     public partial class frmLogin : Form
     {
         private AdminRepository adminRepo;
-        private frmBackground _bgForm;
 
         public frmLogin()
         {
             InitializeComponent();
+
             adminRepo = new AdminRepository();
 
-            _bgForm = new frmBackground();
-            _bgForm.Show();
-            _bgForm.TopMost = false;
-            _bgForm.SendToBack();
+            frmBackground bg = new frmBackground();
+            bg.Show();
+            bg.SendToBack();
+
+            if (frmLoadingScreen.Instance == null)
+            {
+                // Create single loading screen
+                new frmLoadingScreen().Show();
+                frmLoadingScreen.Instance.SendToBack();
+            }
+            else
+            {
+                frmLoadingScreen.Instance.Show();
+                frmLoadingScreen.Instance.SendToBack();
+            }
         }
 
-        private void iconPictureBox2_MouseClick(object sender, MouseEventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            string username = tbxUsername.Text;
+            string password = tbxPassword.Text;
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please enter both username and password.", "Validation Error");
+                return;
+            }
+
+            try
+            {
+                Admin admin = adminRepo.Login(username, password);
+
+                if (admin != null)
+                {
+                    frmLoadingScreen.Instance.ShowOverlay();
+
+                    frmAdminDashboard dashboard = new frmAdminDashboard();
+                    dashboard.Show();
+                    this.Hide();
+
+                    return;
+                }
+
+                if (username == "customer" && password == "customer123")
+                {
+                    this.Hide();
+
+                    frmCustomerPIN pinForm = new frmCustomerPIN();
+                    pinForm.StartPosition = FormStartPosition.CenterScreen;
+
+                    if (pinForm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        frmLoadingScreen.Instance.ShowOverlay();
+
+                        frmCustomerDashboard dashboard = new frmCustomerDashboard();
+                        dashboard.StartPosition = FormStartPosition.CenterScreen;
+                        dashboard.Show();
+
+                        ForceBringToFront(dashboard);
+                    }
+                    else
+                    {
+                        this.Show();
+                    }
+
+                    return;
+                }
+
+                MessageBox.Show("Invalid username or password.", "Login Failed");
+                tbxUsername.Clear();
+                tbxPassword.Clear();
+            }
+            catch
+            {
+                MessageBox.Show("An unexpected error occurred.", "Error");
+            }
+        }
+
+        public void ShowLoginForm()
+        {
+            tbxUsername.Clear();
+            tbxPassword.Clear();
+            this.Show();
+        }
+
+        public void ExitApplication()
         {
             Application.Exit();
         }
 
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void lblUsername_Click(object sender, EventArgs e)
+        {
+        }
+
         private void iconPictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void iconPassword_Click(object sender, EventArgs e)
         {
             if (iconPassword.IconChar == FontAwesome.Sharp.IconChar.EyeSlash)
             {
@@ -48,105 +139,17 @@ namespace VaultLinkBankSystem
             }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        public void HideLogin()
-        {
-            this.Hide();
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            string username = tbxUsername.Text;
-            string password = tbxPassword.Text;
-
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            {
-                MessageBox.Show(
-                    "Please enter both username and password.",
-                    "Validation Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                Admin admin = adminRepo.Login(username, password);
-
-                if (admin != null)
-                {
-                    frmAdminDashboard dashboard = new frmAdminDashboard();
-                    dashboard.Show();
-                    this.Hide();
-                }
-
-                else if (username == "customer" && password == "customer123")
-                {
-                    this.Hide();
-
-                    frmCustomerPIN pinForm = new frmCustomerPIN();
-                    pinForm.StartPosition = FormStartPosition.CenterScreen;
-
-                    if (pinForm.ShowDialog(this) == DialogResult.OK)
-                    {
-                        frmCustomerDashboard dashboard = new frmCustomerDashboard();
-
-                        dashboard.StartPosition = FormStartPosition.CenterScreen;
-                        dashboard.Show();
-
-                        ForceBringToFront(dashboard);
-                    }
-                    else
-                    {
-                        this.Show();
-                    }
-                }
-
-                else
-                {
-                    MessageBox.Show(
-                        "Invalid username or password.",
-                        "Login Failed",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-
-                    tbxUsername.Clear();
-                    tbxPassword.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    $"An error occurred: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        public void ShowLoginForm()
-        {
-            this.tbxUsername.Clear();
-            this.tbxPassword.Clear();
-            this.Show();
-        }
-
-        public void ExitApplication()
-        {
-            Application.Exit();
-        }
-
-        private void lblUsername_Click(object sender, EventArgs e)
-        {
-        }
 
         private void iconPictureBox2_Click(object sender, EventArgs e)
         {
             ExitApplication();
         }
+
+        private void iconPictureBox2_MouseClick(object sender, MouseEventArgs e)
+        {
+            Application.Exit();
+        }
+
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
 
@@ -164,11 +167,6 @@ namespace VaultLinkBankSystem
             form.Activate();
             form.BringToFront();
             form.Focus();
-        }
-
-        private void iconPassword_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

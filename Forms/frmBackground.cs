@@ -15,8 +15,6 @@ namespace VaultLinkBankSystem.Forms
         public frmBackground()
         {
             InitializeComponent();
-            this.TopMost = false;
-
         }
     }
 }

@@ -52,20 +52,21 @@
             this.guna2GradientPanel1.ShadowDecoration.BorderRadius = 5;
             this.guna2GradientPanel1.ShadowDecoration.Depth = 50;
             this.guna2GradientPanel1.Size = new System.Drawing.Size(800, 450);
-            this.guna2GradientPanel1.TabIndex = 0;
+            this.guna2GradientPanel1.TabIndex = 1;
             // 
             // frmBackground
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(40)))), ((int)(((byte)(50)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
             this.Controls.Add(this.guna2GradientPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmBackground";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Background";
+            this.Text = "frmBackground";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 

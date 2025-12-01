@@ -34,27 +34,127 @@ namespace VaultLinkBankSystem.Helpers
             container.ResumeLayout(false);
         }
 
-        public static void ShowPage(Panel container, UserControl toShow, ref UserControl currentPage)
+        public static UserControl ShowPage(Panel container, UserControl toShow, UserControl currentPage)
         {
-            if (container == null || toShow == null) return;
-            if (currentPage == toShow) return;
+            if (container == null || toShow == null) return currentPage;
+            if (currentPage == toShow) return currentPage;
 
-            container.SuspendLayout();
+            toShow.Dock = DockStyle.Fill;
 
-            if (currentPage != null)
+            if (currentPage == null)
             {
-                currentPage.Visible = false;
+                if (!container.Controls.Contains(toShow))
+                {
+                    container.SuspendLayout();
+                    container.Controls.Add(toShow);
+                    container.ResumeLayout(false);
+                }
+                toShow.Visible = true;
+                toShow.BringToFront();
+                return toShow;
             }
 
-            toShow.Visible = true;
-            toShow.BringToFront();
+            bool addedTemporarily = false;
+            if (!container.Controls.Contains(toShow))
+            {
+                container.Controls.Add(toShow);
+                addedTemporarily = true;
+            }
 
-            container.ResumeLayout(false);
+            try
+            {
+                container.SuspendLayout();
+                try
+                {
+                    if (container.Controls.Contains(currentPage))
+                        currentPage.Visible = false;
+                }
+                catch { }
 
-            currentPage = toShow;
+                if (!container.Controls.Contains(toShow))
+                    container.Controls.Add(toShow);
+
+                toShow.Visible = true;
+                toShow.BringToFront();
+                container.Refresh();
+            }
+            finally
+            {
+                try { container.ResumeLayout(false); } catch { }
+            }
+
+            if (container.Controls.Contains(currentPage) && currentPage != toShow)
+            {
+                try { container.Controls.Remove(currentPage); } catch { }
+            }
+
+            try
+            {
+                if (addedTemporarily && !container.Controls.Contains(toShow))
+                    container.Controls.Add(toShow);
+            }
+            catch { }
+
+            return toShow;
         }
 
-       
+        private static Bitmap CaptureControlBitmap(Control ctl, Size targetSize)
+        {
+            if (ctl == null)
+                return new Bitmap(Math.Max(1, targetSize.Width), Math.Max(1, targetSize.Height));
+
+            try
+            {
+                ctl.CreateControl();
+                ctl.SuspendLayout();
+                ctl.Size = targetSize;
+                ctl.PerformLayout();
+            }
+            catch { }
+            finally
+            {
+                try { ctl.ResumeLayout(false); } catch { }
+            }
+
+            Bitmap bmp = new Bitmap(Math.Max(1, targetSize.Width), Math.Max(1, targetSize.Height));
+            try
+            {
+                ctl.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+            }
+            catch
+            {
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    try { g.Clear(ctl.BackColor); } catch { g.Clear(SystemColors.Control); }
+                }
+            }
+            return bmp;
+        }
+
+        private static Bitmap SetImageOpacity(Bitmap original, float opacity)
+        {
+            if (original == null) return null;
+            opacity = Math.Max(0f, Math.Min(1f, opacity));
+            Bitmap bmp = new Bitmap(original.Width, original.Height);
+            try
+            {
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    System.Drawing.Imaging.ImageAttributes ia = new System.Drawing.Imaging.ImageAttributes();
+                    System.Drawing.Imaging.ColorMatrix cm = new System.Drawing.Imaging.ColorMatrix();
+                    cm.Matrix33 = opacity;
+                    ia.SetColorMatrix(cm, System.Drawing.Imaging.ColorMatrixFlag.Default, System.Drawing.Imaging.ColorAdjustType.Bitmap);
+                    g.DrawImage(original, new Rectangle(0, 0, bmp.Width, bmp.Height),
+                        0, 0, original.Width, original.Height, GraphicsUnit.Pixel, ia);
+                }
+            }
+            catch
+            {
+                try { return (Bitmap)original.Clone(); } catch { return bmp; }
+            }
+            return bmp;
+        }
+
         public static void EnableDoubleBufferingRecursive(Control c)
         {
             if (c == null) return;
@@ -66,121 +166,95 @@ namespace VaultLinkBankSystem.Helpers
             }
             catch { }
 
-           
             try
             {
                 var controlType = c.GetType();
-                var winFormsAssembly = typeof(System.Windows.Forms.Control).Assembly;
-
+                var winFormsAssembly = typeof(Control).Assembly;
                 bool isWinFormsControl = controlType.Assembly == winFormsAssembly;
-
                 if (isWinFormsControl)
                 {
-                    
-                    var skipTypes = new[]
+                    var skip = new[]
                     {
-                "ComboBox",
-                "DateTimePicker",
-                "DataGridView",
-                "ListBox",
-                "CheckedListBox",
-                "RichTextBox",
-                "DomainUpDown",
-                "NumericUpDown",
-                "MonthCalendar",
-                "MenuStrip",
-                "StatusStrip",
-                "ToolStrip",
-                "TrackBar"
-            };
+                        "ComboBox","DateTimePicker","DataGridView","ListBox","CheckedListBox",
+                        "RichTextBox","DomainUpDown","NumericUpDown","MonthCalendar",
+                        "MenuStrip","StatusStrip","ToolStrip","TrackBar"
+                    };
 
-                    if (Array.IndexOf(skipTypes, controlType.Name) < 0)
+                    if (Array.IndexOf(skip, controlType.Name) < 0)
                     {
                         var setStyle = controlType.GetMethod("SetStyle", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                        setStyle?.Invoke(c, new object[] {
-                    (System.Windows.Forms.ControlStyles)(
-                        System.Windows.Forms.ControlStyles.OptimizedDoubleBuffer
-                        | System.Windows.Forms.ControlStyles.AllPaintingInWmPaint
-                        | System.Windows.Forms.ControlStyles.UserPaint),
-                    true
-                });
+                        setStyle?.Invoke(c, new object[]
+                        {
+                            ControlStyles.OptimizedDoubleBuffer |
+                            ControlStyles.AllPaintingInWmPaint |
+                            ControlStyles.UserPaint,
+                            true
+                        });
 
-                        var updateStyles = controlType.GetMethod("UpdateStyles", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                        updateStyles?.Invoke(c, null);
+                        var update = controlType.GetMethod("UpdateStyles", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                        update?.Invoke(c, null);
                     }
                 }
             }
-            catch
-            {
-                
-            }
+            catch { }
 
-          
             foreach (Control child in c.Controls)
-            {
                 EnableDoubleBufferingRecursive(child);
-            }
         }
 
-        
         public static void TryEnableComposited(Form f)
         {
             if (f == null) return;
             try
             {
-                var handle = f.Handle; 
+                var handle = f.Handle;
                 int ex = GetWindowLong(handle, GWL_EXSTYLE);
                 SetWindowLong(handle, GWL_EXSTYLE, ex | WS_EX_COMPOSITED);
             }
-            catch
-            {
-                
-            }
+            catch { }
         }
 
-        
         public static void FixGuna2TextBoxVisibility(Control container)
         {
             if (container == null) return;
-
-            foreach (Control control in GetAllControls(container))
+            foreach (Control c in GetAllControls(container))
             {
-               
-                if (control.GetType().Name == "Guna2TextBox")
+                if (c.GetType().Name == "Guna2TextBox")
                 {
                     try
                     {
-                        
-                        control.ForeColor = Color.Black;
-
-                       
-                        var fillColorProp = control.GetType().GetProperty("FillColor", BindingFlags.Public | BindingFlags.Instance);
-                        if (fillColorProp != null)
+                        c.ForeColor = Color.Black;
+                        var fill = c.GetType().GetProperty("FillColor", BindingFlags.Public | BindingFlags.Instance);
+                        if (fill != null)
                         {
-                            Color fillColor = (Color)fillColorProp.GetValue(control, null);
-                            
-                            int luminance = (int)(fillColor.R * 0.299 + fillColor.G * 0.587 + fillColor.B * 0.114);
-                            control.ForeColor = luminance > 128 ? Color.Black : Color.White;
+                            Color fc = (Color)fill.GetValue(c, null);
+                            int lum = (int)(fc.R * 0.299 + fc.G * 0.587 + fc.B * 0.114);
+                            c.ForeColor = lum > 128 ? Color.Black : Color.White;
                         }
-
-                        control.Refresh();
+                        c.Refresh();
                     }
-                    catch {  }
+                    catch { }
                 }
             }
         }
 
-      
         private static System.Collections.Generic.IEnumerable<Control> GetAllControls(Control container)
         {
-            foreach (Control control in container.Controls)
+            foreach (Control c in container.Controls)
             {
-                yield return control;
-                foreach (Control child in GetAllControls(control))
-                {
+                yield return c;
+                foreach (Control child in GetAllControls(c))
                     yield return child;
-                }
             }
         }
+        public static void ForceRender(UserControl uc)
+        {
+            uc.Visible = true;
+            uc.CreateControl();
+            uc.PerformLayout();
+            uc.Refresh();
+            uc.Visible = false;
+        }
+
     }
 }

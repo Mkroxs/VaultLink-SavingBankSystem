@@ -229,6 +229,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.ClientSize = new System.Drawing.Size(645, 349);
+            this.ControlBox = false;
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.tbxCivilStatus);
             this.Controls.Add(this.tbxGender);
@@ -239,6 +240,8 @@
             this.Controls.Add(this.guna2HtmlLabel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmCustomerChangePassword";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "frmCustomerChangePassword";
             this.Load += new System.EventHandler(this.frmCustomerChangePassword_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
