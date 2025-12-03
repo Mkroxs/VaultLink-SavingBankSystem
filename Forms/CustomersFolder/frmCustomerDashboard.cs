@@ -15,9 +15,13 @@ namespace VaultLinkBankSystem.Forms.Customer
         private UC_CustomerProfile _ucProfile;
         private UserControl _currentPage;
 
-        public frmCustomerDashboard()
+        private VaultLinkBankSystem.Customer _loggedInCustomer;
+
+
+        public frmCustomerDashboard(VaultLinkBankSystem.Customer customer)
         {
             InitializeComponent();
+            _loggedInCustomer = customer;
 
             frmLoadingScreen.Instance.ShowOverlay();
 
@@ -33,6 +37,8 @@ namespace VaultLinkBankSystem.Forms.Customer
 
             UiHelpers.EnableDoubleBufferingRecursive(this);
             UiHelpers.TryEnableComposited(this);
+
+            guna2HtmlLabel1.Text = $"Welcome, {_loggedInCustomer.FullName}!";
         }
 
         private void frmCustomerDashboard_Load(object sender, EventArgs e)
@@ -56,10 +62,10 @@ namespace VaultLinkBankSystem.Forms.Customer
 
         private void CreateAndPreloadUserControls()
         {
-            _ucDashboard = new UC_CustomerDashboard();
-            _ucMySavings = new UC_CustomerMySavings();
-            _ucTransactionHistory = new UC_CustomerTransactionHistory();
-            _ucProfile = new UC_CustomerProfile();
+            _ucDashboard = new UC_CustomerDashboard(_loggedInCustomer);
+            _ucMySavings = new UC_CustomerMySavings(_loggedInCustomer);
+            _ucTransactionHistory = new UC_CustomerTransactionHistory(_loggedInCustomer);
+            _ucProfile = new UC_CustomerProfile(_loggedInCustomer);
 
             UiHelpers.PreloadPages(
                 panelMain,
@@ -95,6 +101,16 @@ namespace VaultLinkBankSystem.Forms.Customer
         public void ShowProfile()
         {
             _currentPage = UiHelpers.ShowPage(panelMain, _ucProfile, _currentPage);
+        }
+
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

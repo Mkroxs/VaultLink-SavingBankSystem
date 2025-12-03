@@ -351,16 +351,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 int accountId = selectedItem.AccountID;
                 string accountNumber = selectedItem.AccountNumber;
 
-                if(selectedItem.Status == "Closed")
-                {
-                    MessageBox.Show("You cannot withdraw from this account,\nbecause it is currently closed!",
-                        "Validation Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-
-
-                }
+                
                 DialogResult result = MessageBox.Show(
                     $"Are you sure you want to withdraw {amount:C2} from this account?",
                     "Confirm Withdrawal",
@@ -369,7 +360,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
                 if (result == DialogResult.Yes)
                 {
-                    Transaction transaction = _transactionRepo.Withdraw(accountId, amount, "ATM Withdrawal");
+                    Transaction transaction = _transactionRepo.Withdraw(accountId, amount, "Withdrawal");
 
                     MessageBox.Show(
                         $"Withdrawal successful!\n\n" +
@@ -649,7 +640,11 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void tbxSearchCustomer_Leave(object sender, EventArgs e)
         {
-            tbxSearchCustomer.Text = "Search Customer Name";
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

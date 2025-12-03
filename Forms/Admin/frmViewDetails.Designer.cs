@@ -653,6 +653,7 @@
             this.pbCustomerPicture.Size = new System.Drawing.Size(141, 146);
             this.pbCustomerPicture.TabIndex = 5;
             this.pbCustomerPicture.TabStop = false;
+            this.pbCustomerPicture.Click += new System.EventHandler(this.pbCustomerPicture_Click);
             // 
             // guna2HtmlLabel14
             // 

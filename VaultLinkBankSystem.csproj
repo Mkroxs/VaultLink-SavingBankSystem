@@ -286,8 +286,10 @@
       <DependentUpon>frmCustomerDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="InterestRepository.cs" />
+    <Compile Include="PasswordHashHelper.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionRepository.cs" />
+    <Compile Include="TransactionWithAccount.cs" />
     <Compile Include="TransactionWithCustomer.cs" />
     <Compile Include="TransactionWithDetails.cs" />
     <Compile Include="UiHelpers.cs" />

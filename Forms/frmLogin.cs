@@ -6,18 +6,21 @@ using VaultLinkBankSystem.Forms;
 using VaultLinkBankSystem.Forms.Admin;
 using VaultLinkBankSystem.Forms.Customer;
 using VaultLinkBankSystem.Forms.CustomersFolder;
+using static Syncfusion.Windows.Forms.TabBar;
 
 namespace VaultLinkBankSystem
 {
+
     public partial class frmLogin : Form
     {
         private AdminRepository adminRepo;
-
+        private CustomerRepository _customerRepo;
         public frmLogin()
         {
             InitializeComponent();
-
             adminRepo = new AdminRepository();
+            _customerRepo = new CustomerRepository();
+
 
             frmBackground bg = new frmBackground();
             bg.Show();
@@ -38,17 +41,19 @@ namespace VaultLinkBankSystem
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = tbxUsername.Text;
-            string password = tbxPassword.Text;
+            string username = tbxUsername.Text.Trim();
+            string password = tbxPassword.Text.Trim();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Please enter both username and password.", "Validation Error");
+                MessageBox.Show("Please enter both email/username and password.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
+                // TRY ADMIN LOGIN FIRST
                 Admin admin = adminRepo.Login(username, password);
 
                 if (admin != null)
@@ -58,42 +63,48 @@ namespace VaultLinkBankSystem
                     frmAdminDashboard dashboard = new frmAdminDashboard();
                     dashboard.Show();
                     this.Hide();
-
                     return;
                 }
 
-                if (username == "customer" && password == "customer123")
+                // TRY CUSTOMER LOGIN (Email + Password)
+                Customer customer = _customerRepo.KioskPasswordLogin(username, password);
+
+                if (customer != null)
                 {
                     this.Hide();
 
-                    frmCustomerPIN pinForm = new frmCustomerPIN();
+                    // Check if first-time login (PIN not set)
+                    bool isFirstTime = _customerRepo.IsFirstTimeLogin(customer.CustomerID);
+
+                    // Show PIN screen
+                    frmCustomerPIN pinForm = new frmCustomerPIN(customer, isFirstTime);
                     pinForm.StartPosition = FormStartPosition.CenterScreen;
 
                     if (pinForm.ShowDialog(this) == DialogResult.OK)
                     {
                         frmLoadingScreen.Instance.ShowOverlay();
 
-                        frmCustomerDashboard dashboard = new frmCustomerDashboard();
+                        frmCustomerDashboard dashboard = new frmCustomerDashboard(customer);
                         dashboard.StartPosition = FormStartPosition.CenterScreen;
                         dashboard.Show();
 
                         ForceBringToFront(dashboard);
                     }
-                    else
-                    {
-                        this.Show();
-                    }
 
                     return;
                 }
 
-                MessageBox.Show("Invalid username or password.", "Login Failed");
-                tbxUsername.Clear();
+                // NEITHER ADMIN NOR CUSTOMER
+                MessageBox.Show("Invalid email or password.", "Login Failed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tbxPassword.Clear();
+                tbxPassword.Focus();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("An unexpected error occurred.", "Error");
+                MessageBox.Show($"Login error: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Show();
             }
         }
 

@@ -18,7 +18,6 @@
 
         private void InitializeComponent()
         {
-
             this.components = new System.ComponentModel.Container();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panelMain = new Guna.UI2.WinForms.Guna2Panel();
@@ -49,10 +48,11 @@
             this.panelMain.CustomizableEdges.TopRight = false;
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.panelMain.Location = new System.Drawing.Point(20, 192);
+            this.panelMain.Location = new System.Drawing.Point(16, 154);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(2);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Padding = new System.Windows.Forms.Padding(30, 30, 50, 5);
-            this.panelMain.Size = new System.Drawing.Size(1660, 788);
+            this.panelMain.Padding = new System.Windows.Forms.Padding(24, 24, 40, 4);
+            this.panelMain.Size = new System.Drawing.Size(1328, 630);
             this.panelMain.TabIndex = 18;
             // 
             // panelTopbar
@@ -68,19 +68,21 @@
             this.panelTopbar.CustomizableEdges.BottomRight = false;
             this.panelTopbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTopbar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.panelTopbar.Location = new System.Drawing.Point(20, 20);
+            this.panelTopbar.Location = new System.Drawing.Point(16, 16);
+            this.panelTopbar.Margin = new System.Windows.Forms.Padding(2);
             this.panelTopbar.Name = "panelTopbar";
-            this.panelTopbar.Size = new System.Drawing.Size(1660, 172);
+            this.panelTopbar.Size = new System.Drawing.Size(1328, 138);
             this.panelTopbar.TabIndex = 16;
             // 
             // guna2Panel1
             // 
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel1);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.guna2Panel1.Location = new System.Drawing.Point(1086, 0);
+            this.guna2Panel1.Location = new System.Drawing.Point(869, 0);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(40, 50, 40, 40);
-            this.guna2Panel1.Size = new System.Drawing.Size(574, 172);
+            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(32, 40, 32, 32);
+            this.guna2Panel1.Size = new System.Drawing.Size(459, 138);
             this.guna2Panel1.TabIndex = 21;
             // 
             // guna2HtmlLabel1
@@ -90,21 +92,24 @@
             this.guna2HtmlLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Malgun Gothic", 24F, System.Drawing.FontStyle.Bold);
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(40, 50);
-            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(32, 40);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(494, 82);
+            this.guna2HtmlLabel1.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(395, 66);
             this.guna2HtmlLabel1.TabIndex = 20;
-            this.guna2HtmlLabel1.Text = "Welcome, John Melbern!";
+            this.guna2HtmlLabel1.Text = "lblNameOfCustomer";
+            this.guna2HtmlLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.guna2HtmlLabel1.Click += new System.EventHandler(this.guna2HtmlLabel1_Click);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.iconPictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(456, 172);
+            this.panel1.Size = new System.Drawing.Size(365, 138);
             this.panel1.TabIndex = 14;
             // 
             // iconPictureBox1
@@ -119,26 +124,29 @@
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ButtonFace;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 362;
-            this.iconPictureBox1.Location = new System.Drawing.Point(-38, -80);
+            this.iconPictureBox1.IconSize = 290;
+            this.iconPictureBox1.Location = new System.Drawing.Point(-30, -64);
+            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(524, 362);
+            this.iconPictureBox1.Size = new System.Drawing.Size(419, 290);
             this.iconPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.iconPictureBox1.TabIndex = 13;
             this.iconPictureBox1.TabStop = false;
+            this.iconPictureBox1.Click += new System.EventHandler(this.iconPictureBox1_Click);
             // 
             // frmCustomerDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1700, 1000);
+            this.ClientSize = new System.Drawing.Size(1360, 800);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelTopbar);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmCustomerDashboard";
-            this.Padding = new System.Windows.Forms.Padding(20);
+            this.Padding = new System.Windows.Forms.Padding(16);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCustomerDashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;

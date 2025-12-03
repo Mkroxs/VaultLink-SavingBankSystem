@@ -31,7 +31,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         }
         private void DgvPendingKYC_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            ConfigureColumns();
+            ApplyGridStyle();
         }
 
        
@@ -54,7 +54,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 dgvPendingKYC.DataSource = null;
                 dgvPendingKYC.DataSource = pendingCustomers;
 
-                ConfigureColumns();
 
                 // Update pending count label
                 lblPendingCount.Text = $"Total Pending: {pendingCustomers.Count}";
@@ -84,7 +83,13 @@ namespace VaultLinkBankSystem.UserControls.Admin
                             btnReject.Enabled = true;
                         }
                     }
+
                 }
+               
+
+                ForceColumns();
+
+
             }
             catch (Exception ex)
             {
@@ -93,59 +98,79 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
         }
 
-        
-
-        private void ConfigureColumns()
+        private void ForceColumns()
         {
-            try
-            {
-                foreach (DataGridViewColumn col in dgvPendingKYC.Columns)
-                {
-                    if (col == null) continue;
-                    if (string.IsNullOrWhiteSpace(col.DataPropertyName)) continue;
-                    if (string.IsNullOrWhiteSpace(col.Name))
-                        col.Name = col.DataPropertyName; 
+            if (dgvPendingKYC.Columns.Count == 0) return;
 
-                    if (!ColumnExistsOnCustomer(col.DataPropertyName))
-                        continue;
-                    if (new[] {
-                "CustomerID", "PIN","EmploymentStatus", "ImagePath", "IsKYCVerified", "KYCVerifiedDate",
-                "Address", "Gender", "BirthDate", "CivilStatus",
-                "EmployerName", "SourceOfFunds", "MonthlyIncomeRange", "IDType", "IDNumber"
-            }.Contains(col.Name))
-                    {
-                        col.Visible = false;
-                        continue;
-                    }
-
-                    switch (col.Name)
-                    {
-                        case "CustomerCode":
-                            col.HeaderText = "Code";
-                            col.Width = 100;
-                            break;
-                        case "FullName":
-                            col.HeaderText = "Full Name";
-                            break;
-                        case "Email":
-                            col.HeaderText = "Email";
-                            break;
-                        case "Phone":
-                            col.HeaderText = "Phone";
-                            break;
-                        case "CreatedAt":
-                            col.HeaderText = "Registered";
-                            col.DefaultCellStyle.Format = "MM/dd/yyyy";
-                            col.Width = 100;
-                            break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Column config error: " + ex.Message);
-            }
+            dgvPendingKYC.Columns["CustomerCode"].HeaderText = "Code";
+            dgvPendingKYC.Columns["FullName"].HeaderText = "Full Name";
+            dgvPendingKYC.Columns["Email"].HeaderText = "Email";
+            dgvPendingKYC.Columns["Phone"].HeaderText = "Phone";
+            dgvPendingKYC.Columns["CreatedAt"].HeaderText = "CreatedAt";
         }
+
+
+
+
+        private void ApplyGridStyle()
+        {
+            var dgv = dgvPendingKYC;
+
+            dgv.BackgroundColor = Color.White;
+            dgv.BorderStyle = BorderStyle.None;
+
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 62, 84);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+
+            dgv.DefaultCellStyle.BackColor = Color.White;
+            dgv.DefaultCellStyle.ForeColor = Color.Black;
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 248, 252);
+
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.RowHeadersVisible = false;
+
+            dgv.RowTemplate.Height = 30;
+
+            dgv.GridColor = Color.FromArgb(230, 230, 230);
+        }
+
+
+        private void SetupGridStyle(DataGridView dgv)
+        {
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.MultiSelect = false;
+
+            dgv.BackgroundColor = Color.White;
+            dgv.GridColor = Color.FromArgb(230, 230, 230);
+
+            dgv.DefaultCellStyle.ForeColor = Color.Black;
+            dgv.DefaultCellStyle.BackColor = Color.White;
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 249, 249);
+
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 62, 84);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
+
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 144, 255);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv.RowHeadersVisible = false;
+            dgv.RowTemplate.Height = 28;
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            dgv.RowTemplate.DefaultCellStyle.Padding = new Padding(4, 2, 4, 2);
+        }
+
 
         private bool ColumnExistsOnCustomer(string propertyName)
         {
@@ -171,9 +196,12 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void DgvPendingKYC_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.RowIndex % 2 == 0)
+            if (!dgvPendingKYC.Rows[e.RowIndex].Selected)
             {
-                dgvPendingKYC.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+                if (e.RowIndex % 2 == 0)
+                    dgvPendingKYC.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(249, 249, 249);
+                else
+                    dgvPendingKYC.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
             }
         }
 

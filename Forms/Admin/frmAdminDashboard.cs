@@ -124,5 +124,10 @@ namespace VaultLinkBankSystem.Forms.Admin
         {
             _currentPage = UiHelpers.ShowPage(panelMain, page, _currentPage);
         }
+
+        private void panelTopbar_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

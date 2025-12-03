@@ -326,7 +326,7 @@ namespace VaultLinkBankSystem.Forms.Admin
                     BirthDate = _ucBasicInfo.CustomerBirthDate,
                     CivilStatus = _ucBasicInfo.CustomerCivilStatus,
                     ImagePath = imagePath ?? "john.jpg",
-                    PIN = customerRepo.GeneratePIN(),
+                    
                     EmploymentStatus = _ucIdentityVerification.CustomerEmploymentStatus,
                     EmployerName = "Elon Musk",
                     SourceOfFunds = _ucIdentityVerification.CustomerSourceOfFunds,
@@ -337,7 +337,10 @@ namespace VaultLinkBankSystem.Forms.Admin
                     KYCVerifiedDate = null
                 };
 
-                customerRepo.CreateCustomer(testCustomer);
+                string customerPassword = testCustomer.PasswordHash = txtPassword.Text;
+
+
+                customerRepo.CreateCustomer(testCustomer,customerPassword);
 
                 MessageBox.Show(
                     $"Registration Successful!\n\nCustomer Code: {testCustomer.CustomerCode}",

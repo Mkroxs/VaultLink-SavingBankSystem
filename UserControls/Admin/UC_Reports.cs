@@ -20,7 +20,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
         public UC_Reports()
         {
             InitializeComponent();
-            LoadReportGrid();
 
             _transactionRepo = new TransactionRepository();
             _accountRepo = new AccountRepository();
@@ -31,7 +30,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
         }
         private void UC_Reports_Load(object sender, EventArgs e)
         {
-            LoadReportGrid();
         }
 
 
@@ -217,28 +215,23 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     return;
                 }
 
-                // Start with all transactions
                 var filtered = _allTransactions.AsEnumerable();
 
-                // Filter by transaction type
                 string selectedType = cmbTransactionType.SelectedItem?.ToString();
                 if (!string.IsNullOrEmpty(selectedType) && selectedType != "All Transactions")
                 {
                     filtered = filtered.Where(t => t.TransactionType == selectedType);
                 }
 
-                // Filter by date range
                 DateTime dateFrom = dtpDateFrom.Value.Date;
-                DateTime dateTo = dtpDateTo.Value.Date.AddDays(1).AddSeconds(-1); // End of day
+                DateTime dateTo = dtpDateTo.Value.Date.AddDays(1).AddSeconds(-1); 
 
                 filtered = filtered.Where(t => t.TransactionDate >= dateFrom && t.TransactionDate <= dateTo);
 
                 var filteredList = filtered.ToList();
 
-                // Display results
                 DisplayTransactions(filteredList);
 
-                // Update summary
                 UpdateSummary(filteredList);
             }
             catch (Exception ex)
@@ -267,7 +260,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 );
             }
 
-            // Show message if no results   
             if (transactions.Count == 0)
             {
                 MessageBox.Show("No transactions found matching the selected filters.",
@@ -291,7 +283,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 .Where(t => t.TransactionType == "Transfer Out")
                 .Sum(t => t.Amount);
 
-            // Update labels (adjust control names to match your UI)
             lblTotalDeposits.Text = totalDeposits.ToString("C2");
             lblTotalWithdrawals.Text = totalWithdrawals.ToString("C2");
             lblTotalTransfers.Text = totalTransfers.ToString("C2");
@@ -329,61 +320,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
 
 
-        public void LoadReportGrid()
-        {
-
-            /*guna2DataGridView1.Columns.Clear();
-            guna2DataGridView1.Rows.Clear();
-
-          
-            guna2DataGridView1.AutoGenerateColumns = false;
-            guna2DataGridView1.RowHeadersVisible = false;
-            guna2DataGridView1.AllowUserToAddRows = false;
-            guna2DataGridView1.AllowUserToResizeRows = false;
-            guna2DataGridView1.ReadOnly = true;
-            
-            guna2DataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 40, 70);
-            guna2DataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            guna2DataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            guna2DataGridView1.EnableHeadersVisualStyles = false;
-
-            guna2DataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            guna2DataGridView1.DefaultCellStyle.ForeColor = Color.Black;
-            guna2DataGridView1.DefaultCellStyle.BackColor = Color.White;
-            guna2DataGridView1.DefaultCellStyle.SelectionBackColor = Color.White;
-            guna2DataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
-
-            guna2DataGridView1.GridColor = Color.LightGray;
-            guna2DataGridView1.BorderStyle = BorderStyle.None;
-
-            guna2DataGridView1.DefaultCellStyle.SelectionBackColor = Color.White;
-            guna2DataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
-
-            guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.White;
-            guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
-            guna2DataGridView1.RowHeadersDefaultCellStyle.SelectionBackColor = Color.White;
-            guna2DataGridView1.RowHeadersDefaultCellStyle.SelectionForeColor = Color.Black;
-
-            guna2DataGridView1.EnableHeadersVisualStyles = false;
-
-
-            guna2DataGridView1.Columns.Add("TransactionID", "Transaction ID");
-            guna2DataGridView1.Columns.Add("AccountNumber", "Account Number");
-            guna2DataGridView1.Columns.Add("CustomerCode", "Customer");
-            guna2DataGridView1.Columns.Add("TransactionType", "Transaction Type");
-            guna2DataGridView1.Columns.Add("Amount", "Amount");
-            guna2DataGridView1.Columns.Add("Date", "Date");
-            guna2DataGridView1.Columns.Add("Status", "Status");
-            guna2DataGridView1.Columns.Add("Remarks", "Remarks");
-
-            foreach (DataGridViewColumn col in guna2DataGridView1.Columns)
-                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            guna2DataGridView1.Rows.Add("TX1001", "ACC2025-0001", "0001", "Withdraw", "₱2,000", "01/01/2025", "Completed", "Teller");
-            guna2DataGridView1.Rows.Add("TX1002", "ACC2025-0001", "0001", "Deposit", "₱5,000", "01/02/2025", "Completed", "Teller");
-            guna2DataGridView1.Rows.Add("TX1003", "ACC2025-0002", "0002", "Transfer", "₱1,500", "01/04/2025", "Pending", "Transfer to 0003");
-        }*/
-        }
+        
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -404,7 +341,59 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         }
 
-        
+        private void btnSaveCSV_Click(object sender, EventArgs e)
+        {
+            if (guna2DataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("No data to export.", "Export CSV", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "CSV File (*.csv)|*.csv";
+                sfd.FileName = $"TransactionReport_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.csv";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        StringBuilder csv = new StringBuilder();
+
+                        // HEADER
+                        for (int i = 0; i < guna2DataGridView1.Columns.Count; i++)
+                        {
+                            csv.Append(guna2DataGridView1.Columns[i].HeaderText);
+                            if (i < guna2DataGridView1.Columns.Count - 1)
+                                csv.Append(",");
+                        }
+                        csv.AppendLine();
+
+                        // ROWS
+                        foreach (DataGridViewRow row in guna2DataGridView1.Rows)
+                        {
+                            for (int i = 0; i < row.Cells.Count; i++)
+                            {
+                                var value = row.Cells[i].Value?.ToString().Replace(",", " "); // Avoid breaking CSV
+                                csv.Append(value);
+
+                                if (i < row.Cells.Count - 1)
+                                    csv.Append(",");
+                            }
+                            csv.AppendLine();
+                        }
+
+                        System.IO.File.WriteAllText(sfd.FileName, csv.ToString(), Encoding.UTF8);
+
+                        MessageBox.Show("CSV saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error saving CSV: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 
 }

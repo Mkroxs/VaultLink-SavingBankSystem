@@ -629,7 +629,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void tbxSearchCustomer_Leave(object sender, EventArgs e)
         {
-            tbxSearchCustomer.Text = "Search Customer Name";
+
         }
     }
 }

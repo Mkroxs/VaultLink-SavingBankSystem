@@ -690,7 +690,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void txtSearchCustomerName_Leave(object sender, EventArgs e)
         {
-            txtSearchCustomerName.Text = "Seach Customer Name";
+           
         }
     }
 }

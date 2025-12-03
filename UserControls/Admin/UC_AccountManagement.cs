@@ -30,7 +30,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             UiHelpers.FixGuna2TextBoxVisibility(this);
             LoadVerifiedCustomers();
-            SetupGridStyle();
+            SetupGridStyle(dgvCustomerAccounts);
         }
 
         private void LoadVerifiedCustomers()
@@ -51,7 +51,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv.MultiSelect = false;
             dgv.BackgroundColor = Color.White;
-            dgv.GridColor =Color.FromArgb(230, 230, 230);
+            dgv.GridColor = Color.FromArgb(230, 230, 230);
             dgv.DefaultCellStyle.ForeColor = Color.Black;
             dgv.DefaultCellStyle.BackColor = Color.White;
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 249, 249);
@@ -60,7 +60,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
             dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 144, 255);
-            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.DefaultCellStyle.SelectionForeColor =  Color.White;
             dgv.RowHeadersVisible = false;
             dgv.RowTemplate.Height = 28;
             dgv.RowTemplate.DefaultCellStyle.Padding = new Padding(4, 2, 4, 2);
@@ -90,6 +90,15 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 return;
             }
 
+
+            if(results.Count > 1)
+            {
+                ShowCustomerSelectionDialog(results);
+                return;
+            }
+
+
+
             DisplayCustomerInfo(results[0]);
         }
 
@@ -116,7 +125,14 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 MultiSelect = false,
                 AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+
+
+                //Styling
+
             };
+
+
+            SetupGridStyle(dgv);
 
             // FIX: apply column filtering after binding completes
             dgv.DataBindingComplete += (s, ev) =>
@@ -217,17 +233,16 @@ namespace VaultLinkBankSystem.UserControls.Admin
             {
                 dgvCustomerAccounts.Columns["AccountID"].Visible = false;
                 dgvCustomerAccounts.Columns["CustomerID"].Visible = false;
+
+                dgvCustomerAccounts.Columns["Status"].Visible = true;
+                if (dgvCustomerAccounts.Columns.Contains("ClosedDate"))
+                    dgvCustomerAccounts.Columns["ClosedDate"].Visible = true;
             }
 
             lblAccountCount.Text = $"Total Accounts: {accounts.Count}";
         }
 
-        private void SetupGridStyle()
-        {
-            dgvCustomerAccounts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCustomerAccounts.MultiSelect = false;
-            dgvCustomerAccounts.RowHeadersVisible = false;
-        }
+        
 
         private void txtCustomerEmail_TextChanged(object sender, EventArgs e)
         {
@@ -235,12 +250,86 @@ namespace VaultLinkBankSystem.UserControls.Admin
         }
         private void btnCloseAccount_Click(object sender, EventArgs e)
         {
+            if (dgvCustomerAccounts.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an account first.");
+                return;
+            }
 
+            int accountId = Convert.ToInt32(dgvCustomerAccounts.SelectedRows[0].Cells["AccountID"].Value);
+            string status = dgvCustomerAccounts.SelectedRows[0].Cells["Status"].Value.ToString();
+
+            if (status == "Closed")
+            {
+                MessageBox.Show("This account is already closed.");
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                "Are you sure you want to CLOSE this account?",
+                "Confirm Close Account",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+            {
+                bool success = _accountRepo.CloseAccount(accountId);
+
+                if (success)
+                {
+                    MessageBox.Show("Account has been successfully CLOSED.");
+
+                    // Reload accounts
+                    int customerId = (int)txtCustomerCode.Tag;
+                    LoadCustomerAccounts(customerId);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to close account.");
+                }
+            }
         }
 
         private void btnReactiveAccount_Click(object sender, EventArgs e)
         {
+            if (dgvCustomerAccounts.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an account first.");
+                return;
+            }
 
+            int accountId = Convert.ToInt32(dgvCustomerAccounts.SelectedRows[0].Cells["AccountID"].Value);
+            string status = dgvCustomerAccounts.SelectedRows[0].Cells["Status"].Value.ToString();
+
+            if (status == "Active")
+            {
+                MessageBox.Show("This account is already active.");
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                "Do you want to REACTIVATE this account?",
+                "Confirm Reactivation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                bool success = _accountRepo.ReactivateAccount(accountId);
+
+                if (success)
+                {
+                    MessageBox.Show("Account has been successfully REACTIVATED.");
+
+                    // Reload accounts
+                    int customerId = (int)txtCustomerCode.Tag;
+                    LoadCustomerAccounts(customerId);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to reactivate account.");
+                }
+            }
         }
 
         private void dgvCustomerAccounts_CellContentClick(object sender, DataGridViewCellEventArgs e)

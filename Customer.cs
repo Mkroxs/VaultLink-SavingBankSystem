@@ -18,7 +18,11 @@ namespace VaultLinkBankSystem
         public DateTime? BirthDate { get; set; }
         public string CivilStatus { get; set; }
         public string ImagePath { get; set; }
-        public string PIN { get; set; }
+
+        //Security
+        public string PasswordHash { get; set; }
+        public string PINHash { get; set; }
+
 
         // KYC Information (Now part of customer)
         public string EmploymentStatus { get; set; }

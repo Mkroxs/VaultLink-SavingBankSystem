@@ -40,7 +40,7 @@ namespace VaultLinkBankSystem
                 CivilStatus = "Single",
                 ImagePath = "images/john.png"
             };
-            int num = customerRepository.CreateCustomer(newCustomer);
+           /* int num = customerRepository.CreateCustomer(newCustomer);
             if (num > 0)
             {
                 MessageBox.Show("Customer created successfully!");
@@ -48,7 +48,7 @@ namespace VaultLinkBankSystem
             else
             {
                 MessageBox.Show("Failed to create customer.");
-            }
+            }*/
         }
 
         private void button2_Click(object sender, EventArgs e)

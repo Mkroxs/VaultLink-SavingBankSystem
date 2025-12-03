@@ -6,22 +6,45 @@ namespace VaultLinkBankSystem.Forms.CustomersFolder
 {
     public partial class frmCustomerPIN : Form
     {
-        private string savedOldPin = "123456";
+        private CustomerRepository _customerRepo;
+        private VaultLinkBankSystem.Customer _loggedInCustomer;
+
         private string newPinInput = "";
-        private bool isEnteringOldPin = true;
+        private string oldPinVerified = ""; // Track if old PIN was verified
+        private bool isFirstTimeLogin;
         private bool isConfirmStage = false;
+        private bool isChangingPin = false;
 
         private Point nextPosition = new Point(310, 284);
         private Point confirmPosition = new Point(390, 284);
 
-        public frmCustomerPIN()
+        public frmCustomerPIN(VaultLinkBankSystem.Customer customer, bool firstTimeLogin)
         {
             InitializeComponent();
+
+            _customerRepo = new CustomerRepository();
+            _loggedInCustomer = customer;
+            isFirstTimeLogin = firstTimeLogin;
 
             this.Load += frmCustomerPIN_Load;
             txtHiddenPin.TextChanged += TxtHiddenPin_TextChanged;
             txtHiddenPin.KeyPress += TxtHiddenPin_KeyPress;
+            btnConfirm.Click += btnConfirm_Click_1;
+            btnGoBack.Click += btnGoBack_Click;
+        }
 
+        public frmCustomerPIN(VaultLinkBankSystem.Customer customer)
+        {
+            InitializeComponent();
+
+            _customerRepo = new CustomerRepository();
+            _loggedInCustomer = customer;
+            isFirstTimeLogin = false;
+            isChangingPin = true;
+
+            this.Load += frmCustomerPIN_Load;
+            txtHiddenPin.TextChanged += TxtHiddenPin_TextChanged;
+            txtHiddenPin.KeyPress += TxtHiddenPin_KeyPress;
             btnConfirm.Click += btnConfirm_Click_1;
             btnGoBack.Click += btnGoBack_Click;
         }
@@ -39,7 +62,22 @@ namespace VaultLinkBankSystem.Forms.CustomersFolder
             this.KeyPreview = true;
             this.ActiveControl = txtHiddenPin;
 
-            lblPinTitle.Text = "Enter Current PIN:";
+            if (isFirstTimeLogin)
+            {
+                iconPictureBox2.Visible = false;
+                lblPinTitle.Text = "Create Your 6-Digit PIN:";
+            }
+            else if (isChangingPin)
+            {
+                iconPictureBox2.Visible = true;
+                lblPinTitle.Text = "Enter Current PIN:";
+            }
+            else
+            {
+                lblPinTitle.Text = "Enter Your PIN:";
+                iconPictureBox2.Visible = true;
+            }
+
             UpdateButtonPosition();
         }
 
@@ -119,58 +157,149 @@ namespace VaultLinkBankSystem.Forms.CustomersFolder
 
         private void btnConfirm_Click_1(object sender, EventArgs e)
         {
-            if (isEnteringOldPin)
+            if (txtHiddenPin.Text.Length < 6)
             {
-                if (txtHiddenPin.Text.Length < 6)
-                {
-                    MessageBox.Show("Please enter your current 6-digit PIN.");
-                    return;
-                }
-
-                if (txtHiddenPin.Text != savedOldPin)
-                {
-                    MessageBox.Show("Incorrect current PIN.");
-                    txtHiddenPin.Clear();
-                    ResetCircles();
-                    return;
-                }
-
-                isEnteringOldPin = false;
-                lblPinTitle.Text = "Enter New PIN:";
-                txtHiddenPin.Clear();
-                ResetCircles();
+                MessageBox.Show("Please enter a 6-digit PIN.", "Incomplete PIN",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!isConfirmStage)
+            try
             {
-                if (txtHiddenPin.Text.Length < 6)
+                // ========== FIRST-TIME LOGIN: Create new PIN ==========
+                if (isFirstTimeLogin)
                 {
-                    MessageBox.Show("Please enter a 6-digit PIN.");
-                    return;
+                    if (!isConfirmStage)
+                    {
+                        newPinInput = txtHiddenPin.Text;
+                        txtHiddenPin.Clear();
+                        ResetCircles();
+
+                        isConfirmStage = true;
+                        lblPinTitle.Text = "Confirm Your PIN:";
+                        UpdateButtonPosition();
+                        return;
+                    }
+                    else
+                    {
+                        if (txtHiddenPin.Text == newPinInput)
+                        {
+                            bool success = _customerRepo.SetCustomerPIN(_loggedInCustomer.CustomerID, newPinInput);
+
+                            if (success)
+                            {
+                                MessageBox.Show("PIN created successfully!", "Success",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.DialogResult = DialogResult.OK;
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to save PIN. Please try again.", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("PINs do not match. Please try again.", "Mismatch",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            txtHiddenPin.Clear();
+                            ResetCircles();
+                        }
+                    }
                 }
+                // ========== CHANGING PIN: 3-stage process ==========
+                else if (isChangingPin)
+                {
+                    // STAGE 1: Verify current PIN
+                    if (string.IsNullOrEmpty(oldPinVerified))
+                    {
+                        bool isValid = _customerRepo.VerifyCustomerPIN(_loggedInCustomer.CustomerID, txtHiddenPin.Text);
 
-                newPinInput = txtHiddenPin.Text;
-                txtHiddenPin.Clear();
-                ResetCircles();
+                        if (isValid)
+                        {
+                            oldPinVerified = txtHiddenPin.Text;
+                            txtHiddenPin.Clear();
+                            ResetCircles();
+                            lblPinTitle.Text = "Enter New PIN:";
+                            return;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Current PIN is incorrect.", "Invalid PIN",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtHiddenPin.Clear();
+                            ResetCircles();
+                            return;
+                        }
+                    }
 
-                isConfirmStage = true;
-                lblPinTitle.Text = "Confirm New PIN:";
-                UpdateButtonPosition();
-                return;
+                    // STAGE 2: Enter new PIN
+                    if (!isConfirmStage)
+                    {
+                        newPinInput = txtHiddenPin.Text;
+                        txtHiddenPin.Clear();
+                        ResetCircles();
+
+                        isConfirmStage = true;
+                        lblPinTitle.Text = "Confirm New PIN:";
+                        UpdateButtonPosition();
+                        return;
+                    }
+
+                    // STAGE 3: Confirm new PIN
+                    if (isConfirmStage)
+                    {
+                        if (txtHiddenPin.Text != newPinInput)
+                        {
+                            MessageBox.Show("PINs do not match. Please try again.", "Mismatch",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            txtHiddenPin.Clear();
+                            ResetCircles();
+                            return;
+                        }
+
+                        bool success = _customerRepo.UpdateCustomerPIN(_loggedInCustomer.CustomerID,
+                                                                       oldPIN: oldPinVerified,
+                                                                       newPIN: newPinInput);
+
+                        if (success)
+                        {
+                            MessageBox.Show("PIN changed successfully!", "Success",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to update PIN.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                // ========== NORMAL LOGIN: Verify PIN ==========
+                else
+                {
+                    bool isValid = _customerRepo.VerifyCustomerPIN(_loggedInCustomer.CustomerID, txtHiddenPin.Text);
+
+                    if (isValid)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect PIN. Please try again.", "Invalid PIN",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtHiddenPin.Clear();
+                        ResetCircles();
+                    }
+                }
             }
-
-            if (txtHiddenPin.Text == newPinInput)
+            catch (Exception ex)
             {
-                MessageBox.Show("PIN successfully updated!");
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("PIN does not match.");
-                txtHiddenPin.Clear();
-                ResetCircles();
+                MessageBox.Show($"Error: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             txtHiddenPin.Focus();
@@ -181,25 +310,39 @@ namespace VaultLinkBankSystem.Forms.CustomersFolder
             if (isConfirmStage)
             {
                 isConfirmStage = false;
-                lblPinTitle.Text = "Enter New PIN:";
-                newPinInput = "";
-            }
-            else
-            {
-                isEnteringOldPin = true;
-                lblPinTitle.Text = "Enter Current PIN:";
-            }
 
-            txtHiddenPin.Clear();
-            ResetCircles();
-            UpdateButtonPosition();
-            txtHiddenPin.Focus();
+                if (isFirstTimeLogin)
+                {
+                    lblPinTitle.Text = "Create Your 6-Digit PIN:";
+                }
+                else if (isChangingPin)
+                {
+                    lblPinTitle.Text = "Enter New PIN:";
+                }
+
+                newPinInput = "";
+                txtHiddenPin.Clear();
+                ResetCircles();
+                UpdateButtonPosition();
+                txtHiddenPin.Focus();
+            }
         }
 
         private void iconPictureBox2_Click(object sender, EventArgs e)
         {
-            //if first time login hide this iconPictureBox2
-            this.Hide();
+            if (!isFirstTimeLogin)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
+
+        private void frmCustomerPIN_Load_1(object sender, EventArgs e)
+        {
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
         }
     }
 }

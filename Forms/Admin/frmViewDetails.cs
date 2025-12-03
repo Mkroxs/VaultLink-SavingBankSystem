@@ -166,6 +166,13 @@ namespace VaultLinkBankSystem.Forms.Admin
                     lblKYCStatus.ForeColor = Color.Green;
                 }
 
+                
+
+
+
+
+
+
                 lblCustomerCode.Text = _customer.CustomerCode;
                 lblFullName.Text = _customer.FullName;
 
@@ -231,6 +238,11 @@ namespace VaultLinkBankSystem.Forms.Admin
 
 
             }
+        }
+
+        private void pbCustomerPicture_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
