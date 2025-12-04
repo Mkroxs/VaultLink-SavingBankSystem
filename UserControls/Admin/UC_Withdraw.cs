@@ -646,5 +646,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
 
         }
+
+        private void lblTotalBalance_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

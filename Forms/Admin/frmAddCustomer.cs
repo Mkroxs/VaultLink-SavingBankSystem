@@ -40,7 +40,6 @@ namespace VaultLinkBankSystem.Forms.Admin
                     CivilStatus = cmbCivilStatus.SelectedItem.ToString(),
                     ImagePath = "john.png",
                     EmploymentStatus = cmbEmploymentStatus.SelectedItem.ToString(),
-                    EmployerName = txtEmployerName.Text,
                     SourceOfFunds = cmbSourceOfFunds.Text,
                     MonthlyIncomeRange = cmbMonthlyIncomeRange.SelectedItem.ToString(),
 

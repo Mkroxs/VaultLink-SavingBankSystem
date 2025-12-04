@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using VaultLinkBankSystem.Helpers;
 
 namespace VaultLinkBankSystem
@@ -26,17 +27,17 @@ namespace VaultLinkBankSystem
         public int CreateCustomer(Customer customer, string plainPassword)
         {
             string query = @"INSERT INTO Customers (
-                CustomerCode, FullName, Address, Email, Phone, Gender, BirthDate, CivilStatus, ImagePath, 
-                PasswordHash, PINHash,
-                EmploymentStatus, EmployerName, SourceOfFunds, MonthlyIncomeRange, IDType, IDNumber,
-                IsKYCVerified, KYCVerifiedDate, CreatedAt
-            )
-            VALUES (
-                @CustomerCode, @FullName, @Address, @Email, @Phone, @Gender, @BirthDate, @CivilStatus, @ImagePath, 
-                @PasswordHash, @PINHash,
-                @EmploymentStatus, @EmployerName, @SourceOfFunds, @MonthlyIncomeRange, @IDType, @IDNumber,
-                @IsKYCVerified, @KYCVerifiedDate, @CreatedAt
-            );
+    CustomerCode, FullName, Address, Email, Phone, Gender, BirthDate, CivilStatus, ImagePath,
+    PasswordHash, PINHash,
+    EmploymentStatus, SourceOfFunds, MonthlyIncomeRange, IDType, IDNumber,
+    IsKYCVerified, KYCVerifiedDate, CreatedAt
+)
+VALUES (
+    @CustomerCode, @FullName, @Address, @Email, @Phone, @Gender, @BirthDate, @CivilStatus, @ImagePath,
+    @PasswordHash, @PINHash,
+    @EmploymentStatus, @SourceOfFunds, @MonthlyIncomeRange, @IDType, @IDNumber,
+    @IsKYCVerified, @KYCVerifiedDate, @CreatedAt
+);
             SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
             try
@@ -64,7 +65,6 @@ namespace VaultLinkBankSystem
                     cmd.Parameters.AddWithValue("@PINHash", DBNull.Value);
 
                     cmd.Parameters.AddWithValue("@EmploymentStatus", customer.EmploymentStatus ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@EmployerName", customer.EmployerName ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@SourceOfFunds", customer.SourceOfFunds ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@MonthlyIncomeRange", customer.MonthlyIncomeRange ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@IDType", customer.IDType ?? (object)DBNull.Value);
@@ -357,22 +357,21 @@ namespace VaultLinkBankSystem
         // ============================================
         public bool UpdateCustomer(Customer customer)
         {
-            string query = @"UPDATE Customers 
-                           SET FullName = @FullName, 
-                               Address = @Address, 
-                               Email = @Email, 
-                               Phone = @Phone, 
-                               Gender = @Gender, 
-                               BirthDate = @BirthDate, 
-                               CivilStatus = @CivilStatus,
-                               ImagePath = @ImagePath,
-                               EmploymentStatus = @EmploymentStatus,
-                               EmployerName = @EmployerName,
-                               SourceOfFunds = @SourceOfFunds,
-                               MonthlyIncomeRange = @MonthlyIncomeRange,
-                               IDType = @IDType,
-                               IDNumber = @IDNumber
-                           WHERE CustomerID = @CustomerID";
+            string query = @"UPDATE Customers
+                            SET FullName = @FullName,
+                            Address = @Address,
+                            Email = @Email,
+                            Phone = @Phone,
+                            Gender = @Gender,
+                            BirthDate = @BirthDate,
+                            CivilStatus = @CivilStatus,
+                            ImagePath = @ImagePath,
+                            EmploymentStatus = @EmploymentStatus,
+                            SourceOfFunds = @SourceOfFunds,
+                            MonthlyIncomeRange = @MonthlyIncomeRange,
+                            IDType = @IDType,
+                            IDNumber = @IDNumber
+                            WHERE CustomerID = @CustomerID";
 
             try
             {
@@ -389,7 +388,6 @@ namespace VaultLinkBankSystem
                     cmd.Parameters.AddWithValue("@CivilStatus", customer.CivilStatus ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@ImagePath", customer.ImagePath ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@EmploymentStatus", customer.EmploymentStatus ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@EmployerName", customer.EmployerName ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@SourceOfFunds", customer.SourceOfFunds ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@MonthlyIncomeRange", customer.MonthlyIncomeRange ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@IDType", customer.IDType ?? (object)DBNull.Value);
@@ -441,7 +439,7 @@ namespace VaultLinkBankSystem
         public string GenerateCustomerCode()
         {
             string prefix = "CUST";
-            string query = "SELECT MAX(CustomerID) FROM Customers";
+            string query = "SELECT MAX(CustomerCode) FROM Customers";
 
             try
             {
@@ -450,8 +448,17 @@ namespace VaultLinkBankSystem
                 {
                     conn.Open();
                     object result = cmd.ExecuteScalar();
-                    int nextId = (result != DBNull.Value && result != null) ? Convert.ToInt32(result) + 1 : 1;
-                    return $"{prefix}{nextId:D6}";
+
+                    int nextNumber = 1;
+
+                    if (result != DBNull.Value && result != null)
+                    {
+                        string lastCode = result.ToString();  
+                        string numberPart = lastCode.Substring(4);
+                        nextNumber = int.Parse(numberPart) + 1;
+                    }
+
+                    return $"{prefix}{nextNumber:D6}";
                 }
             }
             catch (Exception ex)
@@ -459,6 +466,212 @@ namespace VaultLinkBankSystem
                 throw new Exception("Error generating customer code: " + ex.Message);
             }
         }
+
+
+
+
+
+
+
+        public string ResetCustomerPassword(int customerId)
+        {
+            try
+            {
+                // Generate random 8-character temporary password
+                string tempPassword = GenerateTemporaryPassword();
+
+                // Hash it
+                string hashedPassword = PasswordHashHelper.HashPassword(tempPassword);
+
+                string query = @"UPDATE Customers 
+                       SET PasswordHash = @PasswordHash,
+                           MustChangePassword = 1
+                       WHERE CustomerID = @CustomerID";
+
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CustomerID", customerId);
+                    cmd.Parameters.AddWithValue("@PasswordHash", hashedPassword);
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        return tempPassword; // Return plain text for admin to give to customer
+                    }
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error resetting password: " + ex.Message);
+            }
+        }
+
+
+
+
+        public string ResetCustomerPIN(int customerId)
+        {
+            try
+            {
+                // Generate random 6-digit PIN
+                string tempPIN = GenerateTemporaryPIN();
+
+                // Hash it
+                string hashedPIN = PasswordHashHelper.HashPIN(tempPIN);
+
+                string query = @"UPDATE Customers 
+                       SET PINHash = @PINHash,
+                           MustChangePIN = 1
+                       WHERE CustomerID = @CustomerID";
+
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CustomerID", customerId);
+                    cmd.Parameters.AddWithValue("@PINHash", hashedPIN);
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        return tempPIN; // Return plain text for admin to give to customer
+                    }
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error resetting PIN: " + ex.Message);
+            }
+        }
+
+
+
+
+        private string GenerateTemporaryPassword()
+        {
+            const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // Exclude ambiguous characters
+            Random random = new Random();
+            return new string(Enumerable.Range(0, 8)
+                .Select(_ => chars[random.Next(chars.Length)])
+                .ToArray());
+        }
+
+
+        private string GenerateTemporaryPIN()
+        {
+            Random random = new Random();
+            return random.Next(100000, 999999).ToString(); // 6-digit PIN
+        }
+
+        public bool MustChangePassword(int customerId)
+        {
+            string query = "SELECT MustChangePassword FROM Customers WHERE CustomerID = @CustomerID";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CustomerID", customerId);
+
+                    conn.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    return result != null && result != DBNull.Value && (bool)result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error checking password change requirement: " + ex.Message);
+            }
+        }
+
+        public bool MustChangePIN(int customerId)
+        {
+            string query = "SELECT MustChangePIN FROM Customers WHERE CustomerID = @CustomerID";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CustomerID", customerId);
+
+                    conn.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    return result != null && result != DBNull.Value && (bool)result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error checking PIN change requirement: " + ex.Message);
+            }
+        }
+
+
+        public bool ClearMustChangePassword(int customerId)
+        {
+            string query = "UPDATE Customers SET MustChangePassword = 0 WHERE CustomerID = @CustomerID";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CustomerID", customerId);
+
+                    conn.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error clearing password change flag: " + ex.Message);
+            }
+        }
+
+        public bool ClearMustChangePIN(int customerId)
+        {
+            string query = "UPDATE Customers SET MustChangePIN = 0 WHERE CustomerID = @CustomerID";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CustomerID", customerId);
+
+                    conn.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error clearing PIN change flag: " + ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // ============================================
         // SEARCH CUSTOMERS
@@ -548,7 +761,6 @@ namespace VaultLinkBankSystem
                 PasswordHash = reader["PasswordHash"] != DBNull.Value ? reader["PasswordHash"].ToString() : null,
                 PINHash = reader["PINHash"] != DBNull.Value ? reader["PINHash"].ToString() : null,
                 EmploymentStatus = reader["EmploymentStatus"] != DBNull.Value ? reader["EmploymentStatus"].ToString() : null,
-                EmployerName = reader["EmployerName"] != DBNull.Value ? reader["EmployerName"].ToString() : null,
                 SourceOfFunds = reader["SourceOfFunds"] != DBNull.Value ? reader["SourceOfFunds"].ToString() : null,
                 MonthlyIncomeRange = reader["MonthlyIncomeRange"] != DBNull.Value ? reader["MonthlyIncomeRange"].ToString() : null,
                 IDType = reader["IDType"] != DBNull.Value ? reader["IDType"].ToString() : null,

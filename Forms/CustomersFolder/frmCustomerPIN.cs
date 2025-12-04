@@ -188,7 +188,10 @@ namespace VaultLinkBankSystem.Forms.CustomersFolder
 
                             if (success)
                             {
-                                MessageBox.Show("PIN created successfully!", "Success",
+                                // Clear the must change flag
+                                _customerRepo.ClearMustChangePIN(_loggedInCustomer.CustomerID);
+
+                                MessageBox.Show("PIN changed successfully!", "Success",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 this.DialogResult = DialogResult.OK;
                                 this.Close();

@@ -1,4 +1,5 @@
 ﻿using FontAwesome.Sharp;
+using Org.BouncyCastle.Pqc.Crypto.Lms;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private Panel overlayPanel;
         private IconPictureBox editIcon;
+        private string _newImagePath = null;
 
         public frmViewDetails(VaultLinkBankSystem.Customer customer)
         {
@@ -23,6 +25,8 @@ namespace VaultLinkBankSystem.Forms.Admin
             _customerRepo = new CustomerRepository();
             _isEditing = false;
             _customer = customer;
+
+            this.Tag = customer.CustomerID;
 
             overlayPanel = new Panel
             {
@@ -173,24 +177,15 @@ namespace VaultLinkBankSystem.Forms.Admin
                     editIcon.Enabled = true;
                     overlayPanel.Visible = false;
 
-                    try
-                    {
-                        iconEdit.IconChar = IconChar.Save;
-                        iconEdit.IconColor = Color.FromArgb(20, 140, 20);
-                        btnResetPassword.Enabled = true;
-                        btnResetPIN.Enabled = true;
-                    }
-                    catch { }
+                    iconEdit.IconChar = IconChar.Save;
+                    iconEdit.IconColor = Color.FromArgb(20, 140, 20);
+                    btnResetPassword.Enabled = true;
+                    btnResetPIN.Enabled = true;
 
                     return;
                 }
 
-                if (Tag == null)
-                {
-                    MessageBox.Show("Customer identifier not available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
+                // SAVE MODE
                 if (!int.TryParse(Tag.ToString(), out int customerId))
                 {
                     MessageBox.Show("Invalid customer identifier.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -204,6 +199,20 @@ namespace VaultLinkBankSystem.Forms.Admin
                     return;
                 }
 
+                // Validate required fields
+                if (string.IsNullOrWhiteSpace(tbxContactNumber.Text))
+                {
+                    MessageBox.Show("Contact number is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(tbxEmailAddress.Text))
+                {
+                    MessageBox.Show("Email address is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Update customer object
                 customer.CivilStatus = tbxCivilStatus.Text?.Trim();
                 customer.Gender = tbxGender.Text?.Trim();
 
@@ -225,35 +234,43 @@ namespace VaultLinkBankSystem.Forms.Admin
 
                 customer.Address = string.Join(", ", addressParts);
 
+                // Update image path if new image was selected
+                if (!string.IsNullOrEmpty(_newImagePath))
+                {
+                    customer.ImagePath = _newImagePath;
+                }
+
                 bool updated = _customerRepo.UpdateCustomer(customer);
 
                 if (updated)
                 {
-                    MessageBox.Show("Customer details saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Customer details saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     _isEditing = false;
+                    _newImagePath = null;
                     disableTextBox();
 
                     overlayPanel.Enabled = false;
                     editIcon.Enabled = false;
                     overlayPanel.Visible = false;
 
-                    try
-                    {
-                        iconEdit.IconChar = IconChar.Edit;
-                        iconEdit.IconColor = Color.DimGray;
-                        btnResetPassword.Enabled = false;
-                        btnResetPIN.Enabled = false;
-                    }
-                    catch { }
+                    iconEdit.IconChar = IconChar.Edit;
+                    iconEdit.IconColor = Color.DimGray;
+                    btnResetPassword.Enabled = false;
+                    btnResetPIN.Enabled = false;
+
+                    // Refresh customer data
+                    _customer = customer;
                 }
                 else
                 {
-                    MessageBox.Show("No changes were saved.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No changes were made.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving customer details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -331,6 +348,10 @@ namespace VaultLinkBankSystem.Forms.Admin
 
                 lblRegisteredDate.Text = _customer.CreatedAt.ToString("MMMM dd, yyyy");
             }
+
+            // Initially disable reset buttons
+            btnResetPassword.Enabled = false;
+            btnResetPIN.Enabled = false;
         }
 
         private void pbCustomerPicture_Click(object sender, EventArgs e)
@@ -339,12 +360,202 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void btnResetPassword_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var result = MessageBox.Show(
+                    $"Are you sure you want to reset the password for {_customer.FullName}?\n\n" +
+                    "A temporary password will be generated and displayed.",
+                    "Confirm Password Reset",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
+                if (result == DialogResult.Yes)
+                {
+                    string tempPassword = _customerRepo.ResetCustomerPassword(_customer.CustomerID);
+
+                    if (!string.IsNullOrEmpty(tempPassword))
+                    {
+                        // Show temporary password to admin
+                        var passwordForm = new Form
+                        {
+                            Text = "Temporary Password",
+                            Width = 450,
+                            Height = 250,
+                            StartPosition = FormStartPosition.CenterParent,
+                            FormBorderStyle = FormBorderStyle.FixedDialog,
+                            MaximizeBox = false,
+                            MinimizeBox = false
+                        };
+
+                        var lblMessage = new Label
+                        {
+                            Text = $"Temporary password for {_customer.FullName}:",
+                            Location = new Point(20, 20),
+                            AutoSize = true,
+                            Font = new Font("Segoe UI", 10)
+                        };
+
+                        var txtPassword = new TextBox
+                        {
+                            Text = tempPassword,
+                            Location = new Point(20, 50),
+                            Width = 390,
+                            Font = new Font("Consolas", 14, FontStyle.Bold),
+                            ReadOnly = true,
+                            TextAlign = HorizontalAlignment.Center
+                        };
+
+                        var lblNote = new Label
+                        {
+                            Text = "⚠ Please write this down. The customer must change it on first login.",
+                            Location = new Point(20, 90),
+                            Width = 390,
+                            Font = new Font("Segoe UI", 9),
+                            ForeColor = Color.DarkRed
+                        };
+
+                        var btnCopy = new Button
+                        {
+                            Text = "Copy to Clipboard",
+                            Location = new Point(90, 140),
+                            Width = 120,
+                            Height = 35
+                        };
+
+                        var btnClose = new Button
+                        {
+                            Text = "Close",
+                            Location = new Point(220, 140),
+                            Width = 120,
+                            Height = 35
+                        };
+
+                        btnCopy.Click += (s, ev) =>
+                        {
+                            Clipboard.SetText(tempPassword);
+                            MessageBox.Show("Password copied to clipboard!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        };
+
+                        btnClose.Click += (s, ev) => passwordForm.Close();
+
+                        passwordForm.Controls.Add(lblMessage);
+                        passwordForm.Controls.Add(txtPassword);
+                        passwordForm.Controls.Add(lblNote);
+                        passwordForm.Controls.Add(btnCopy);
+                        passwordForm.Controls.Add(btnClose);
+
+                        passwordForm.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to reset password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error resetting password: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnResetPIN_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var result = MessageBox.Show(
+                    $"Are you sure you want to reset the PIN for {_customer.FullName}?\n\n" +
+                    "A temporary 6-digit PIN will be generated and displayed.",
+                    "Confirm PIN Reset",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
+                if (result == DialogResult.Yes)
+                {
+                    string tempPIN = _customerRepo.ResetCustomerPIN(_customer.CustomerID);
+
+                    if (!string.IsNullOrEmpty(tempPIN))
+                    {
+                        // Show temporary PIN to admin
+                        var pinForm = new Form
+                        {
+                            Text = "Temporary PIN",
+                            Width = 450,
+                            Height = 250,
+                            StartPosition = FormStartPosition.CenterParent,
+                            FormBorderStyle = FormBorderStyle.FixedDialog,
+                            MaximizeBox = false,
+                            MinimizeBox = false
+                        };
+
+                        var lblMessage = new Label
+                        {
+                            Text = $"Temporary PIN for {_customer.FullName}:",
+                            Location = new Point(20, 20),
+                            AutoSize = true,
+                            Font = new Font("Segoe UI", 10)
+                        };
+
+                        var txtPIN = new TextBox
+                        {
+                            Text = tempPIN,
+                            Location = new Point(20, 50),
+                            Width = 390,
+                            Font = new Font("Consolas", 24, FontStyle.Bold),
+                            ReadOnly = true,
+                            TextAlign = HorizontalAlignment.Center
+                        };
+
+                        var lblNote = new Label
+                        {
+                            Text = "⚠ Please write this down. The customer must change it on first kiosk login.",
+                            Location = new Point(20, 100),
+                            Width = 390,
+                            Font = new Font("Segoe UI", 9),
+                            ForeColor = Color.DarkRed
+                        };
+
+                        var btnCopy = new Button
+                        {
+                            Text = "Copy to Clipboard",
+                            Location = new Point(90, 150),
+                            Width = 120,
+                            Height = 35
+                        };
+
+                        var btnClose = new Button
+                        {
+                            Text = "Close",
+                            Location = new Point(220, 150),
+                            Width = 120,
+                            Height = 35
+                        };
+
+                        btnCopy.Click += (s, ev) =>
+                        {
+                            Clipboard.SetText(tempPIN);
+                            MessageBox.Show("PIN copied to clipboard!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        };
+
+                        btnClose.Click += (s, ev) => pinForm.Close();
+
+                        pinForm.Controls.Add(lblMessage);
+                        pinForm.Controls.Add(txtPIN);
+                        pinForm.Controls.Add(lblNote);
+                        pinForm.Controls.Add(btnCopy);
+                        pinForm.Controls.Add(btnClose);
+
+                        pinForm.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to reset PIN.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error resetting PIN: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
