@@ -26,7 +26,7 @@ namespace VaultLinkBankSystem
 
         // KYC Information (Now part of customer)
         public string EmploymentStatus { get; set; }
-        public string EmployerName { get; set; }
+        //public string EmployerName { get; set; }
         public string SourceOfFunds { get; set; }
         public string MonthlyIncomeRange { get; set; }
         public string IDType { get; set; }

@@ -313,6 +313,7 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void btnRegister_Click_1(object sender, EventArgs e)
         {
+            string customerPassword;
             try
             {
                 VaultLinkBankSystem.Customer testCustomer = new VaultLinkBankSystem.Customer
@@ -327,8 +328,10 @@ namespace VaultLinkBankSystem.Forms.Admin
                     CivilStatus = _ucBasicInfo.CustomerCivilStatus,
                     ImagePath = imagePath ?? "john.jpg",
                     
+
+
+
                     EmploymentStatus = _ucIdentityVerification.CustomerEmploymentStatus,
-                    EmployerName = "Elon Musk",
                     SourceOfFunds = _ucIdentityVerification.CustomerSourceOfFunds,
                     MonthlyIncomeRange = _ucIdentityVerification.CustomerMonthlyIncome,
                     IDType = _ucIdentityVerification.CustomerIDType,
@@ -337,8 +340,7 @@ namespace VaultLinkBankSystem.Forms.Admin
                     KYCVerifiedDate = null
                 };
 
-                string customerPassword = testCustomer.PasswordHash = txtPassword.Text;
-
+                customerPassword = $"VL{testCustomer.CustomerCode.Substring(4)}-{testCustomer.BirthDate:yyyyMMdd}";
 
                 customerRepo.CreateCustomer(testCustomer,customerPassword);
 
@@ -359,7 +361,7 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void frmRegistration_Load_1(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)

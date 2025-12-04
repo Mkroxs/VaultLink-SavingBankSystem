@@ -64,6 +64,7 @@ namespace VaultLinkBankSystem.Forms.CustomersFolder
 
                 if (result)
                 {
+                    _customerRepo.ClearMustChangePassword(_currentCustomer.CustomerID);
                     MessageBox.Show("Password updated successfully.", "Success",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();

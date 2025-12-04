@@ -60,7 +60,7 @@ namespace VaultLinkBankSystem.UserControls.Customer
             cbxSelectAccount.FocusedState.ForeColor = Color.White;
             cbxSelectAccount.ForeColor = Color.White;
             cbxSelectAccount.FillColor = Color.FromArgb(20, 55, 90);
-
+            s
             foreach (var account in _customerAccounts)
             {
                 cbxSelectAccount.Items.Add(new
@@ -241,6 +241,15 @@ namespace VaultLinkBankSystem.UserControls.Customer
         }
 
         private void showAccountNumber_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblBalance_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void guna2HtmlLabel1_Click_1(object sender, EventArgs e)
         {
 
         }

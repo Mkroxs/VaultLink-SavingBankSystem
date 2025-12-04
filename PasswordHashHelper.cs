@@ -1,110 +1,67 @@
 ﻿using System;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace VaultLinkBankSystem.Helpers
 {
-    
     public static class PasswordHashHelper
     {
-        
-        public static string HashPassword(string input)
+        // 16-byte salt + 32-byte SHA-256 hash = 48 bytes → 64 Base64 characters
+        private const int SaltSize = 16;
+        private const int HashSize = 32;        // SHA-256
+        private const int Iterations = 310000;    // Banking-standard in 2025
+
+        public static string HashPassword(string password)
         {
-            if (string.IsNullOrEmpty(input))
-                throw new ArgumentNullException("Input cannot be null or empty");
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Password cannot be empty.");
 
-            // Create SHA256 hash
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                
-                string saltedInput = input + "VaultLink2025"; 
+            byte[] salt = new byte[SaltSize];
+            using (var rng = RandomNumberGenerator.Create())
+                rng.GetBytes(salt);
 
-                byte[] bytes = Encoding.UTF8.GetBytes(saltedInput);
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA256);
+            byte[] hash = pbkdf2.GetBytes(HashSize);
 
-                byte[] hash = sha256.ComputeHash(bytes);
+            byte[] result = new byte[SaltSize + HashSize];
+            Array.Copy(salt, 0, result, 0, SaltSize);
+            Array.Copy(hash, 0, result, SaltSize, HashSize);
 
-                StringBuilder result = new StringBuilder();
-                foreach (byte b in hash)
-                {
-                    result.Append(b.ToString("x2")); // x2 = lowercase hex
-                }
-
-                return result.ToString();
-            }
+            return Convert.ToBase64String(result); // Always 64 characters
         }
 
-       
-        public static bool VerifyPassword(string input, string storedHash)
+        public static bool VerifyPassword(string password, string storedHashBase64)
         {
-            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(storedHash))
+            if (string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(storedHashBase64))
                 return false;
 
-            // Hash the input
-            string inputHash = HashPassword(input);
+            byte[] buffer;
+            try { buffer = Convert.FromBase64String(storedHashBase64); }
+            catch { return false; }
 
-            // Compare with stored hash
-            return inputHash.Equals(storedHash, StringComparison.OrdinalIgnoreCase);
+            if (buffer.Length != SaltSize + HashSize) return false;
+
+            byte[] salt = new byte[SaltSize];
+            Array.Copy(buffer, 0, salt, 0, SaltSize);
+
+            byte[] storedHash = new byte[HashSize];
+            Array.Copy(buffer, SaltSize, storedHash, 0, HashSize);
+
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA256);
+            byte[] testHash = pbkdf2.GetBytes(HashSize);
+
+            return SlowEquals(storedHash, testHash);
         }
 
-       
-        public static string HashPIN(string pin)
+        private static bool SlowEquals(byte[] a, byte[] b)
         {
-            // Validate PIN format
-            if (string.IsNullOrEmpty(pin))
-                throw new ArgumentException("PIN cannot be null or empty");
-
-            if (pin.Length != 6)
-                throw new ArgumentException("PIN must be exactly 6 digits");
-
-            if (!int.TryParse(pin, out _))
-                throw new ArgumentException("PIN must contain only numbers");
-
-            return HashPassword(pin);
+            uint diff = (uint)a.Length ^ (uint)b.Length;
+            for (int i = 0; i < a.Length && i < b.Length; i++)
+                diff |= (uint)(a[i] ^ b[i]);
+            return diff == 0;
         }
 
-       
-        public static bool VerifyPIN(string pin, string storedHash)
-        {
-            return VerifyPassword(pin, storedHash);
-        }
-
-       
-        public static string GenerateRandomPIN()
-        {
-            Random random = new Random();
-            return random.Next(100000, 999999).ToString();
-        }
+        // Reuse for PINs (6-digit PINs are just short passwords)
+        public static string HashPIN(string pin) => HashPassword(pin);
+        public static bool VerifyPIN(string pin, string storedHash) => VerifyPassword(pin, storedHash);
     }
 }
-
-/* 
- * HOW IT WORKS:
- * 
- * 1. HASHING:
- *    - Takes plain text (password/PIN)
- *    - Adds a salt (extra text for security)
- *    - Uses SHA256 algorithm to create one-way hash
- *    - Returns 64-character hex string
- *    - CANNOT be reversed to get original text
- * 
- * 2. VERIFICATION:
- *    - Takes user input (plain text)
- *    - Hashes it the same way
- *    - Compares with stored hash
- *    - If they match, password is correct
- * 
- * 3. SECURITY:
- *    - Even if database is stolen, passwords are safe
- *    - Same input always produces same hash
- *    - Different inputs produce completely different hashes
- *    - Adding salt prevents rainbow table attacks
- * 
- * EXAMPLE:
- * Input: "123456"
- * Salt added: "123456VaultLink2025"
- * Hash: "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
- * 
- * The hash is stored in database.
- * During login, user enters "123456", it gets hashed again,
- * and compared with stored hash.
- */

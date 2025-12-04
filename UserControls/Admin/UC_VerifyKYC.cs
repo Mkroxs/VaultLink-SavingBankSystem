@@ -216,7 +216,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
             txtBirthDate.Text = customer.BirthDate?.ToString("MMMM dd, yyyy") ?? "N/A";
             txtCivilStatus.Text = customer.CivilStatus ?? "N/A";
             txtEmployment.Text = customer.EmploymentStatus ?? "N/A";
-            txtEmployer.Text = customer.EmployerName ?? "N/A";
             txtSourceOfFunds.Text = customer.SourceOfFunds ?? "N/A";
             txtIncome.Text = customer.MonthlyIncomeRange ?? "N/A";
             txtIDType.Text = customer.IDType ?? "N/A";
