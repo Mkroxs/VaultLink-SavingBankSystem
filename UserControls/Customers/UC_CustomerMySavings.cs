@@ -60,7 +60,7 @@ namespace VaultLinkBankSystem.UserControls.Customer
             cbxSelectAccount.FocusedState.ForeColor = Color.White;
             cbxSelectAccount.ForeColor = Color.White;
             cbxSelectAccount.FillColor = Color.FromArgb(20, 55, 90);
-            s
+            
             foreach (var account in _customerAccounts)
             {
                 cbxSelectAccount.Items.Add(new
