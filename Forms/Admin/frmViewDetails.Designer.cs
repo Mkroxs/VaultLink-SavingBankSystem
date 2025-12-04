@@ -34,6 +34,9 @@
             this.guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
+            this.tbxDateOfBirth = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.tbxGender = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.tbxCivilStatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.iconEdit = new FontAwesome.Sharp.IconPictureBox();
             this.tbxStreetName = new Guna.UI2.WinForms.Guna2TextBox();
             this.tbxBarangay = new Guna.UI2.WinForms.Guna2TextBox();
@@ -41,11 +44,8 @@
             this.tbxCity = new Guna.UI2.WinForms.Guna2TextBox();
             this.tbxEmailAddress = new Guna.UI2.WinForms.Guna2TextBox();
             this.tbxProvince = new Guna.UI2.WinForms.Guna2TextBox();
-            this.tbxCivilStatus = new Guna.UI2.WinForms.Guna2TextBox();
             this.tbxZipCode = new Guna.UI2.WinForms.Guna2TextBox();
-            this.tbxGender = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel12 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.tbxDateOfBirth = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel32 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel31 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -61,14 +61,16 @@
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblRegisteredDate = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblCustomerCode = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel17 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblFullName = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblKYCStatus = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pbCustomerPicture = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2HtmlLabel14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
-            this.lblRegisteredDate = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel17 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnResetPassword = new Guna.UI2.WinForms.Guna2Button();
+            this.btnResetPIN = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             this.guna2Panel7.SuspendLayout();
@@ -94,7 +96,7 @@
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(11, 310);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(13, 318);
             this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(179, 39);
@@ -107,7 +109,7 @@
             this.guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel10.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel10.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel10.Location = new System.Drawing.Point(11, 266);
+            this.guna2HtmlLabel10.Location = new System.Drawing.Point(13, 274);
             this.guna2HtmlLabel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
             this.guna2HtmlLabel10.Size = new System.Drawing.Size(195, 39);
@@ -123,7 +125,7 @@
             this.guna2Panel7.Location = new System.Drawing.Point(20, 20);
             this.guna2Panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel7.Name = "guna2Panel7";
-            this.guna2Panel7.Size = new System.Drawing.Size(1093, 685);
+            this.guna2Panel7.Size = new System.Drawing.Size(1161, 685);
             this.guna2Panel7.TabIndex = 24;
             // 
             // guna2Panel8
@@ -131,6 +133,9 @@
             this.guna2Panel8.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel8.BorderRadius = 40;
             this.guna2Panel8.BorderThickness = 600;
+            this.guna2Panel8.Controls.Add(this.tbxDateOfBirth);
+            this.guna2Panel8.Controls.Add(this.tbxGender);
+            this.guna2Panel8.Controls.Add(this.tbxCivilStatus);
             this.guna2Panel8.Controls.Add(this.iconEdit);
             this.guna2Panel8.Controls.Add(this.tbxStreetName);
             this.guna2Panel8.Controls.Add(this.tbxBarangay);
@@ -138,11 +143,8 @@
             this.guna2Panel8.Controls.Add(this.tbxCity);
             this.guna2Panel8.Controls.Add(this.tbxEmailAddress);
             this.guna2Panel8.Controls.Add(this.tbxProvince);
-            this.guna2Panel8.Controls.Add(this.tbxCivilStatus);
             this.guna2Panel8.Controls.Add(this.tbxZipCode);
-            this.guna2Panel8.Controls.Add(this.tbxGender);
             this.guna2Panel8.Controls.Add(this.guna2HtmlLabel12);
-            this.guna2Panel8.Controls.Add(this.tbxDateOfBirth);
             this.guna2Panel8.Controls.Add(this.guna2HtmlLabel32);
             this.guna2Panel8.Controls.Add(this.guna2HtmlLabel11);
             this.guna2Panel8.Controls.Add(this.guna2HtmlLabel31);
@@ -158,14 +160,78 @@
             this.guna2Panel8.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.guna2Panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel8.FillColor = System.Drawing.Color.White;
-            this.guna2Panel8.Location = new System.Drawing.Point(419, 0);
+            this.guna2Panel8.Location = new System.Drawing.Point(444, 0);
             this.guna2Panel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel8.Name = "guna2Panel8";
-            this.guna2Panel8.Padding = new System.Windows.Forms.Padding(17, 17, 17, 17);
-            this.guna2Panel8.Size = new System.Drawing.Size(674, 685);
+            this.guna2Panel8.Padding = new System.Windows.Forms.Padding(17);
+            this.guna2Panel8.Size = new System.Drawing.Size(717, 685);
             this.guna2Panel8.TabIndex = 1;
             this.guna2Panel8.UseTransparentBackground = true;
             this.guna2Panel8.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel8_Paint);
+            // 
+            // tbxDateOfBirth
+            // 
+            this.tbxDateOfBirth.BackColor = System.Drawing.Color.White;
+            this.tbxDateOfBirth.BorderColor = System.Drawing.Color.Silver;
+            this.tbxDateOfBirth.BorderRadius = 15;
+            this.tbxDateOfBirth.BorderThickness = 1;
+            this.tbxDateOfBirth.Checked = true;
+            this.tbxDateOfBirth.Enabled = false;
+            this.tbxDateOfBirth.FillColor = System.Drawing.Color.White;
+            this.tbxDateOfBirth.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxDateOfBirth.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.tbxDateOfBirth.Location = new System.Drawing.Point(234, 171);
+            this.tbxDateOfBirth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxDateOfBirth.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.tbxDateOfBirth.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.tbxDateOfBirth.Name = "tbxDateOfBirth";
+            this.tbxDateOfBirth.Size = new System.Drawing.Size(403, 36);
+            this.tbxDateOfBirth.TabIndex = 55;
+            this.tbxDateOfBirth.Value = new System.DateTime(2025, 11, 16, 18, 58, 10, 130);
+            // 
+            // tbxGender
+            // 
+            this.tbxGender.BackColor = System.Drawing.Color.White;
+            this.tbxGender.BorderColor = System.Drawing.Color.LightGray;
+            this.tbxGender.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.tbxGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tbxGender.Enabled = false;
+            this.tbxGender.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxGender.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxGender.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.tbxGender.ForeColor = System.Drawing.Color.Black;
+            this.tbxGender.ItemHeight = 30;
+            this.tbxGender.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.tbxGender.Location = new System.Drawing.Point(234, 126);
+            this.tbxGender.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxGender.Name = "tbxGender";
+            this.tbxGender.Size = new System.Drawing.Size(403, 36);
+            this.tbxGender.TabIndex = 54;
+            // 
+            // tbxCivilStatus
+            // 
+            this.tbxCivilStatus.BackColor = System.Drawing.Color.White;
+            this.tbxCivilStatus.BorderColor = System.Drawing.Color.LightGray;
+            this.tbxCivilStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.tbxCivilStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tbxCivilStatus.Enabled = false;
+            this.tbxCivilStatus.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxCivilStatus.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tbxCivilStatus.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
+            this.tbxCivilStatus.ForeColor = System.Drawing.Color.Black;
+            this.tbxCivilStatus.ItemHeight = 30;
+            this.tbxCivilStatus.Items.AddRange(new object[] {
+            "Single",
+            "Married",
+            "Widow",
+            "Widower"});
+            this.tbxCivilStatus.Location = new System.Drawing.Point(234, 82);
+            this.tbxCivilStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxCivilStatus.Name = "tbxCivilStatus";
+            this.tbxCivilStatus.Size = new System.Drawing.Size(403, 36);
+            this.tbxCivilStatus.TabIndex = 53;
             // 
             // iconEdit
             // 
@@ -185,6 +251,7 @@
             // 
             // tbxStreetName
             // 
+            this.tbxStreetName.BorderColor = System.Drawing.Color.LightGray;
             this.tbxStreetName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbxStreetName.DefaultText = "-----";
             this.tbxStreetName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -203,10 +270,10 @@
             this.tbxStreetName.SelectedText = "";
             this.tbxStreetName.Size = new System.Drawing.Size(403, 33);
             this.tbxStreetName.TabIndex = 48;
-            this.tbxStreetName.TextOffset = new System.Drawing.Point(0, -4);
             // 
             // tbxBarangay
             // 
+            this.tbxBarangay.BorderColor = System.Drawing.Color.LightGray;
             this.tbxBarangay.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbxBarangay.DefaultText = "-----";
             this.tbxBarangay.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -225,10 +292,10 @@
             this.tbxBarangay.SelectedText = "";
             this.tbxBarangay.Size = new System.Drawing.Size(403, 33);
             this.tbxBarangay.TabIndex = 49;
-            this.tbxBarangay.TextOffset = new System.Drawing.Point(0, -4);
             // 
             // tbxContactNumber
             // 
+            this.tbxContactNumber.BorderColor = System.Drawing.Color.LightGray;
             this.tbxContactNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbxContactNumber.DefaultText = "-----";
             this.tbxContactNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -247,10 +314,10 @@
             this.tbxContactNumber.SelectedText = "";
             this.tbxContactNumber.Size = new System.Drawing.Size(403, 33);
             this.tbxContactNumber.TabIndex = 48;
-            this.tbxContactNumber.TextOffset = new System.Drawing.Point(0, -4);
             // 
             // tbxCity
             // 
+            this.tbxCity.BorderColor = System.Drawing.Color.LightGray;
             this.tbxCity.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbxCity.DefaultText = "-----";
             this.tbxCity.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -269,10 +336,10 @@
             this.tbxCity.SelectedText = "";
             this.tbxCity.Size = new System.Drawing.Size(403, 33);
             this.tbxCity.TabIndex = 50;
-            this.tbxCity.TextOffset = new System.Drawing.Point(0, -4);
             // 
             // tbxEmailAddress
             // 
+            this.tbxEmailAddress.BorderColor = System.Drawing.Color.LightGray;
             this.tbxEmailAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbxEmailAddress.DefaultText = "-----";
             this.tbxEmailAddress.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -291,10 +358,10 @@
             this.tbxEmailAddress.SelectedText = "";
             this.tbxEmailAddress.Size = new System.Drawing.Size(403, 33);
             this.tbxEmailAddress.TabIndex = 49;
-            this.tbxEmailAddress.TextOffset = new System.Drawing.Point(0, -4);
             // 
             // tbxProvince
             // 
+            this.tbxProvince.BorderColor = System.Drawing.Color.LightGray;
             this.tbxProvince.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbxProvince.DefaultText = "-----";
             this.tbxProvince.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -313,32 +380,10 @@
             this.tbxProvince.SelectedText = "";
             this.tbxProvince.Size = new System.Drawing.Size(403, 33);
             this.tbxProvince.TabIndex = 51;
-            this.tbxProvince.TextOffset = new System.Drawing.Point(0, -4);
-            // 
-            // tbxCivilStatus
-            // 
-            this.tbxCivilStatus.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxCivilStatus.DefaultText = "-----";
-            this.tbxCivilStatus.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxCivilStatus.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxCivilStatus.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxCivilStatus.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxCivilStatus.Enabled = false;
-            this.tbxCivilStatus.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxCivilStatus.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
-            this.tbxCivilStatus.ForeColor = System.Drawing.Color.Black;
-            this.tbxCivilStatus.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxCivilStatus.Location = new System.Drawing.Point(235, 82);
-            this.tbxCivilStatus.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.tbxCivilStatus.Name = "tbxCivilStatus";
-            this.tbxCivilStatus.PlaceholderText = "";
-            this.tbxCivilStatus.SelectedText = "";
-            this.tbxCivilStatus.Size = new System.Drawing.Size(403, 33);
-            this.tbxCivilStatus.TabIndex = 47;
-            this.tbxCivilStatus.TextOffset = new System.Drawing.Point(0, -4);
             // 
             // tbxZipCode
             // 
+            this.tbxZipCode.BorderColor = System.Drawing.Color.LightGray;
             this.tbxZipCode.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbxZipCode.DefaultText = "-----";
             this.tbxZipCode.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -357,29 +402,6 @@
             this.tbxZipCode.SelectedText = "";
             this.tbxZipCode.Size = new System.Drawing.Size(403, 33);
             this.tbxZipCode.TabIndex = 52;
-            this.tbxZipCode.TextOffset = new System.Drawing.Point(0, -4);
-            // 
-            // tbxGender
-            // 
-            this.tbxGender.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxGender.DefaultText = "-----";
-            this.tbxGender.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxGender.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxGender.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxGender.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxGender.Enabled = false;
-            this.tbxGender.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxGender.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
-            this.tbxGender.ForeColor = System.Drawing.Color.Black;
-            this.tbxGender.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxGender.Location = new System.Drawing.Point(235, 127);
-            this.tbxGender.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.tbxGender.Name = "tbxGender";
-            this.tbxGender.PlaceholderText = "";
-            this.tbxGender.SelectedText = "";
-            this.tbxGender.Size = new System.Drawing.Size(403, 33);
-            this.tbxGender.TabIndex = 48;
-            this.tbxGender.TextOffset = new System.Drawing.Point(0, -4);
             // 
             // guna2HtmlLabel12
             // 
@@ -392,28 +414,6 @@
             this.guna2HtmlLabel12.Size = new System.Drawing.Size(267, 39);
             this.guna2HtmlLabel12.TabIndex = 51;
             this.guna2HtmlLabel12.Text = "Address Information";
-            // 
-            // tbxDateOfBirth
-            // 
-            this.tbxDateOfBirth.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxDateOfBirth.DefaultText = "-----";
-            this.tbxDateOfBirth.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tbxDateOfBirth.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tbxDateOfBirth.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxDateOfBirth.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tbxDateOfBirth.Enabled = false;
-            this.tbxDateOfBirth.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxDateOfBirth.Font = new System.Drawing.Font("Malgun Gothic", 13.8F);
-            this.tbxDateOfBirth.ForeColor = System.Drawing.Color.Black;
-            this.tbxDateOfBirth.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbxDateOfBirth.Location = new System.Drawing.Point(235, 172);
-            this.tbxDateOfBirth.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.tbxDateOfBirth.Name = "tbxDateOfBirth";
-            this.tbxDateOfBirth.PlaceholderText = "";
-            this.tbxDateOfBirth.SelectedText = "";
-            this.tbxDateOfBirth.Size = new System.Drawing.Size(403, 33);
-            this.tbxDateOfBirth.TabIndex = 49;
-            this.tbxDateOfBirth.TextOffset = new System.Drawing.Point(0, -4);
             // 
             // guna2HtmlLabel32
             // 
@@ -573,7 +573,7 @@
             this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(419, 685);
+            this.guna2Panel2.Size = new System.Drawing.Size(444, 685);
             this.guna2Panel2.TabIndex = 1;
             // 
             // guna2Panel4
@@ -585,12 +585,14 @@
             this.guna2Panel4.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.Size = new System.Drawing.Size(419, 604);
+            this.guna2Panel4.Size = new System.Drawing.Size(444, 600);
             this.guna2Panel4.TabIndex = 16;
             // 
             // guna2Panel5
             // 
+            this.guna2Panel5.Controls.Add(this.lblRegisteredDate);
             this.guna2Panel5.Controls.Add(this.lblCustomerCode);
+            this.guna2Panel5.Controls.Add(this.guna2HtmlLabel17);
             this.guna2Panel5.Controls.Add(this.lblFullName);
             this.guna2Panel5.Controls.Add(this.lblKYCStatus);
             this.guna2Panel5.Controls.Add(this.guna2HtmlLabel1);
@@ -601,8 +603,21 @@
             this.guna2Panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel5.Name = "guna2Panel5";
             this.guna2Panel5.Padding = new System.Windows.Forms.Padding(91, 90, 91, 50);
-            this.guna2Panel5.Size = new System.Drawing.Size(419, 544);
+            this.guna2Panel5.Size = new System.Drawing.Size(444, 540);
             this.guna2Panel5.TabIndex = 6;
+            // 
+            // lblRegisteredDate
+            // 
+            this.lblRegisteredDate.AutoSize = false;
+            this.lblRegisteredDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblRegisteredDate.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegisteredDate.ForeColor = System.Drawing.Color.White;
+            this.lblRegisteredDate.Location = new System.Drawing.Point(176, 498);
+            this.lblRegisteredDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblRegisteredDate.Name = "lblRegisteredDate";
+            this.lblRegisteredDate.Size = new System.Drawing.Size(234, 38);
+            this.lblRegisteredDate.TabIndex = 26;
+            this.lblRegisteredDate.Text = "------";
             // 
             // lblCustomerCode
             // 
@@ -610,24 +625,39 @@
             this.lblCustomerCode.BackColor = System.Drawing.Color.Transparent;
             this.lblCustomerCode.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCustomerCode.ForeColor = System.Drawing.Color.White;
-            this.lblCustomerCode.Location = new System.Drawing.Point(211, 308);
+            this.lblCustomerCode.Location = new System.Drawing.Point(213, 316);
             this.lblCustomerCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblCustomerCode.Name = "lblCustomerCode";
-            this.lblCustomerCode.Size = new System.Drawing.Size(195, 39);
+            this.lblCustomerCode.Size = new System.Drawing.Size(221, 39);
             this.lblCustomerCode.TabIndex = 25;
             this.lblCustomerCode.Text = "------";
             // 
+            // guna2HtmlLabel17
+            // 
+            this.guna2HtmlLabel17.AutoSize = false;
+            this.guna2HtmlLabel17.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel17.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel17.ForeColor = System.Drawing.Color.White;
+            this.guna2HtmlLabel17.Location = new System.Drawing.Point(8, 498);
+            this.guna2HtmlLabel17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2HtmlLabel17.Name = "guna2HtmlLabel17";
+            this.guna2HtmlLabel17.Size = new System.Drawing.Size(162, 40);
+            this.guna2HtmlLabel17.TabIndex = 40;
+            this.guna2HtmlLabel17.Text = "Registered On:";
+            // 
             // lblFullName
             // 
+            this.lblFullName.AutoSize = false;
             this.lblFullName.BackColor = System.Drawing.Color.Transparent;
-            this.lblFullName.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFullName.Font = new System.Drawing.Font("Malgun Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFullName.ForeColor = System.Drawing.Color.White;
-            this.lblFullName.Location = new System.Drawing.Point(53, 194);
+            this.lblFullName.Location = new System.Drawing.Point(4, 200);
             this.lblFullName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(87, 43);
+            this.lblFullName.Size = new System.Drawing.Size(434, 43);
             this.lblFullName.TabIndex = 15;
-            this.lblFullName.Text = "-------";
+            this.lblFullName.Text = "--------------------------";
+            this.lblFullName.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblKYCStatus
             // 
@@ -635,10 +665,10 @@
             this.lblKYCStatus.BackColor = System.Drawing.Color.Transparent;
             this.lblKYCStatus.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKYCStatus.ForeColor = System.Drawing.Color.White;
-            this.lblKYCStatus.Location = new System.Drawing.Point(211, 266);
+            this.lblKYCStatus.Location = new System.Drawing.Point(213, 274);
             this.lblKYCStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblKYCStatus.Name = "lblKYCStatus";
-            this.lblKYCStatus.Size = new System.Drawing.Size(195, 39);
+            this.lblKYCStatus.Size = new System.Drawing.Size(217, 39);
             this.lblKYCStatus.TabIndex = 23;
             this.lblKYCStatus.Text = "------";
             // 
@@ -647,10 +677,10 @@
             this.pbCustomerPicture.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pbCustomerPicture.BorderRadius = 17;
             this.pbCustomerPicture.ImageRotate = 0F;
-            this.pbCustomerPicture.Location = new System.Drawing.Point(116, 7);
+            this.pbCustomerPicture.Location = new System.Drawing.Point(129, 6);
             this.pbCustomerPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbCustomerPicture.Name = "pbCustomerPicture";
-            this.pbCustomerPicture.Size = new System.Drawing.Size(188, 180);
+            this.pbCustomerPicture.Size = new System.Drawing.Size(194, 186);
             this.pbCustomerPicture.TabIndex = 5;
             this.pbCustomerPicture.TabStop = false;
             this.pbCustomerPicture.Click += new System.EventHandler(this.pbCustomerPicture_Click);
@@ -665,7 +695,7 @@
             this.guna2HtmlLabel14.Location = new System.Drawing.Point(0, 0);
             this.guna2HtmlLabel14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel14.Name = "guna2HtmlLabel14";
-            this.guna2HtmlLabel14.Size = new System.Drawing.Size(419, 60);
+            this.guna2HtmlLabel14.Size = new System.Drawing.Size(444, 60);
             this.guna2HtmlLabel14.TabIndex = 4;
             this.guna2HtmlLabel14.Text = "Customer Details";
             this.guna2HtmlLabel14.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
@@ -673,43 +703,55 @@
             // guna2Panel6
             // 
             this.guna2Panel6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Panel6.Controls.Add(this.lblRegisteredDate);
-            this.guna2Panel6.Controls.Add(this.guna2HtmlLabel17);
+            this.guna2Panel6.Controls.Add(this.btnResetPassword);
+            this.guna2Panel6.Controls.Add(this.btnResetPIN);
             this.guna2Panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2Panel6.Location = new System.Drawing.Point(0, 604);
+            this.guna2Panel6.Location = new System.Drawing.Point(0, 600);
             this.guna2Panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel6.Name = "guna2Panel6";
             this.guna2Panel6.Padding = new System.Windows.Forms.Padding(11, 0, 11, 10);
-            this.guna2Panel6.Size = new System.Drawing.Size(419, 81);
+            this.guna2Panel6.Size = new System.Drawing.Size(444, 85);
             this.guna2Panel6.TabIndex = 23;
             // 
-            // lblRegisteredDate
+            // btnResetPassword
             // 
-            this.lblRegisteredDate.AutoSize = false;
-            this.lblRegisteredDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblRegisteredDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRegisteredDate.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegisteredDate.ForeColor = System.Drawing.Color.White;
-            this.lblRegisteredDate.Location = new System.Drawing.Point(182, 0);
-            this.lblRegisteredDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lblRegisteredDate.Name = "lblRegisteredDate";
-            this.lblRegisteredDate.Size = new System.Drawing.Size(226, 71);
-            this.lblRegisteredDate.TabIndex = 26;
-            this.lblRegisteredDate.Text = "------";
+            this.btnResetPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.btnResetPassword.BorderRadius = 20;
+            this.btnResetPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnResetPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnResetPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnResetPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnResetPassword.Enabled = false;
+            this.btnResetPassword.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
+            this.btnResetPassword.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetPassword.ForeColor = System.Drawing.Color.White;
+            this.btnResetPassword.Location = new System.Drawing.Point(240, 20);
+            this.btnResetPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnResetPassword.Name = "btnResetPassword";
+            this.btnResetPassword.Size = new System.Drawing.Size(170, 48);
+            this.btnResetPassword.TabIndex = 9;
+            this.btnResetPassword.Text = "Reset Password";
+            this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
             // 
-            // guna2HtmlLabel17
+            // btnResetPIN
             // 
-            this.guna2HtmlLabel17.AutoSize = false;
-            this.guna2HtmlLabel17.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel17.Dock = System.Windows.Forms.DockStyle.Left;
-            this.guna2HtmlLabel17.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel17.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel17.Location = new System.Drawing.Point(11, 0);
-            this.guna2HtmlLabel17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.guna2HtmlLabel17.Name = "guna2HtmlLabel17";
-            this.guna2HtmlLabel17.Size = new System.Drawing.Size(171, 71);
-            this.guna2HtmlLabel17.TabIndex = 40;
-            this.guna2HtmlLabel17.Text = "Registered On:";
+            this.btnResetPIN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
+            this.btnResetPIN.BorderRadius = 20;
+            this.btnResetPIN.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnResetPIN.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnResetPIN.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnResetPIN.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnResetPIN.Enabled = false;
+            this.btnResetPIN.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
+            this.btnResetPIN.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetPIN.ForeColor = System.Drawing.Color.White;
+            this.btnResetPIN.Location = new System.Drawing.Point(44, 20);
+            this.btnResetPIN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnResetPIN.Name = "btnResetPIN";
+            this.btnResetPIN.Size = new System.Drawing.Size(170, 48);
+            this.btnResetPIN.TabIndex = 8;
+            this.btnResetPIN.Text = "Reset PIN";
+            this.btnResetPIN.Click += new System.EventHandler(this.btnResetPIN_Click);
             // 
             // guna2Panel1
             // 
@@ -723,7 +765,7 @@
             this.guna2Panel1.Location = new System.Drawing.Point(45, -7);
             this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(719, 696);
+            this.guna2Panel1.Size = new System.Drawing.Size(787, 696);
             this.guna2Panel1.TabIndex = 0;
             this.guna2Panel1.UseTransparentBackground = true;
             // 
@@ -735,7 +777,7 @@
             this.iconPictureBox2.IconColor = System.Drawing.Color.Silver;
             this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Regular;
             this.iconPictureBox2.IconSize = 24;
-            this.iconPictureBox2.Location = new System.Drawing.Point(1108, 1);
+            this.iconPictureBox2.Location = new System.Drawing.Point(1174, 2);
             this.iconPictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconPictureBox2.Name = "iconPictureBox2";
             this.iconPictureBox2.Size = new System.Drawing.Size(24, 25);
@@ -748,13 +790,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.ClientSize = new System.Drawing.Size(1133, 725);
+            this.ClientSize = new System.Drawing.Size(1201, 725);
             this.Controls.Add(this.iconPictureBox2);
             this.Controls.Add(this.guna2Panel7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmViewDetails";
-            this.Padding = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.Padding = new System.Windows.Forms.Padding(20);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmViewDetails";
             this.Load += new System.EventHandler(this.frmViewDetails_Load);
@@ -765,7 +807,6 @@
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel4.ResumeLayout(false);
             this.guna2Panel5.ResumeLayout(false);
-            this.guna2Panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCustomerPicture)).EndInit();
             this.guna2Panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
@@ -802,7 +843,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblKYCStatus;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblRegisteredDate;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
-        private Guna.UI2.WinForms.Guna2TextBox tbxCivilStatus;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel12;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
@@ -813,8 +853,11 @@
         private Guna.UI2.WinForms.Guna2TextBox tbxEmailAddress;
         private Guna.UI2.WinForms.Guna2TextBox tbxProvince;
         private Guna.UI2.WinForms.Guna2TextBox tbxZipCode;
-        private Guna.UI2.WinForms.Guna2TextBox tbxGender;
-        private Guna.UI2.WinForms.Guna2TextBox tbxDateOfBirth;
         private FontAwesome.Sharp.IconPictureBox iconEdit;
+        private Guna.UI2.WinForms.Guna2Button btnResetPassword;
+        private Guna.UI2.WinForms.Guna2Button btnResetPIN;
+        private Guna.UI2.WinForms.Guna2ComboBox tbxGender;
+        private Guna.UI2.WinForms.Guna2ComboBox tbxCivilStatus;
+        private Guna.UI2.WinForms.Guna2DateTimePicker tbxDateOfBirth;
     }
 }

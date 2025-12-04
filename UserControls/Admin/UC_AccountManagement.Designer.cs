@@ -373,9 +373,9 @@
             this.grpCustomerInfo.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpCustomerInfo.ForeColor = System.Drawing.SystemColors.MenuBar;
             this.grpCustomerInfo.Location = new System.Drawing.Point(626, 4);
-            this.grpCustomerInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpCustomerInfo.Margin = new System.Windows.Forms.Padding(4);
             this.grpCustomerInfo.Name = "grpCustomerInfo";
-            this.grpCustomerInfo.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpCustomerInfo.Padding = new System.Windows.Forms.Padding(4);
             this.grpCustomerInfo.Size = new System.Drawing.Size(614, 352);
             this.grpCustomerInfo.TabIndex = 12;
             this.grpCustomerInfo.TabStop = false;

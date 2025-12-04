@@ -123,6 +123,7 @@ namespace VaultLinkBankSystem.UserControls.Customers
                 lblRegisteredDate.Text = _currentCustomer.CreatedAt.ToString("MMMM dd, yyyy");
 
                 lblFullName.Text = _currentCustomer.FullName;
+                
                 tbxCivilStatus.Text = _currentCustomer.CivilStatus;
                 tbxDateOfBirth.Text = _currentCustomer.BirthDate.HasValue
                     ? _currentCustomer.BirthDate.Value.ToString("MMMM dd, yyyy")

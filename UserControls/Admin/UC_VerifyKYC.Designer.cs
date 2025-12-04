@@ -237,7 +237,7 @@
             this.guna2Panel1.Location = new System.Drawing.Point(3, 2);
             this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(5);
             this.guna2Panel1.Size = new System.Drawing.Size(319, 64);
             this.guna2Panel1.TabIndex = 12;
             // 
@@ -291,7 +291,7 @@
             this.guna2ShadowPanel4.Location = new System.Drawing.Point(0, 43);
             this.guna2ShadowPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2ShadowPanel4.Name = "guna2ShadowPanel4";
-            this.guna2ShadowPanel4.Padding = new System.Windows.Forms.Padding(16, 16, 16, 16);
+            this.guna2ShadowPanel4.Padding = new System.Windows.Forms.Padding(16);
             this.guna2ShadowPanel4.Radius = 15;
             this.guna2ShadowPanel4.ShadowColor = System.Drawing.Color.Transparent;
             this.guna2ShadowPanel4.ShadowDepth = 0;
@@ -302,11 +302,14 @@
             // 
             this.dgvPendingKYC.AllowUserToAddRows = false;
             this.dgvPendingKYC.AllowUserToDeleteRows = false;
-            this.dgvPendingKYC.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPendingKYC.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvPendingKYC.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvPendingKYC.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
+            this.dgvPendingKYC.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPendingKYC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPendingKYC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPendingKYC.Location = new System.Drawing.Point(16, 16);
-            this.dgvPendingKYC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvPendingKYC.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPendingKYC.MultiSelect = false;
             this.dgvPendingKYC.Name = "dgvPendingKYC";
             this.dgvPendingKYC.ReadOnly = true;
@@ -326,7 +329,7 @@
             this.guna2HtmlLabel8.Location = new System.Drawing.Point(0, 0);
             this.guna2HtmlLabel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(267, 43);
+            this.guna2HtmlLabel8.Size = new System.Drawing.Size(616, 43);
             this.guna2HtmlLabel8.TabIndex = 6;
             this.guna2HtmlLabel8.Text = "Pending Customers";
             // 
@@ -350,7 +353,7 @@
             this.guna2ShadowPanel5.Location = new System.Drawing.Point(0, 43);
             this.guna2ShadowPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2ShadowPanel5.Name = "guna2ShadowPanel5";
-            this.guna2ShadowPanel5.Padding = new System.Windows.Forms.Padding(16, 16, 16, 16);
+            this.guna2ShadowPanel5.Padding = new System.Windows.Forms.Padding(16);
             this.guna2ShadowPanel5.Radius = 15;
             this.guna2ShadowPanel5.ShadowColor = System.Drawing.Color.Transparent;
             this.guna2ShadowPanel5.ShadowDepth = 0;
@@ -385,9 +388,9 @@
             this.groupBox1.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBox1.Location = new System.Drawing.Point(16, 16);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(584, 472);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
@@ -841,7 +844,7 @@
             this.guna2HtmlLabel10.Location = new System.Drawing.Point(0, 0);
             this.guna2HtmlLabel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            this.guna2HtmlLabel10.Size = new System.Drawing.Size(235, 43);
+            this.guna2HtmlLabel10.Size = new System.Drawing.Size(616, 43);
             this.guna2HtmlLabel10.TabIndex = 7;
             this.guna2HtmlLabel10.Text = "Customer Details";
             // 

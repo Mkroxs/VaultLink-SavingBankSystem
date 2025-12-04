@@ -174,7 +174,6 @@ namespace VaultLinkBankSystem.UserControls.Customer
         {
             DisplayCustomerInfo();
 
-            // Hide balance initially
             if (lblBalance.Text != null)
             {
                 lblBalance.Tag = lblBalance.Text;
@@ -183,7 +182,6 @@ namespace VaultLinkBankSystem.UserControls.Customer
                 showBalance.IconSize = 46;
             }
 
-            // Hide account number initially
             if (lblAccountNumber.Text != null)
             {
                 lblAccountNumber.Tag = lblAccountNumber.Text;
@@ -207,6 +205,11 @@ namespace VaultLinkBankSystem.UserControls.Customer
             DisplaySelectedAccount();
         }
 
+        private void cbxSelectAccount_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            DisplaySelectedAccount();
+        }
+
         private void lblAccountNumber_Click(object sender, EventArgs e)
         {
 
@@ -223,6 +226,21 @@ namespace VaultLinkBankSystem.UserControls.Customer
         }
 
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBackToDashboard_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showBalance_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showAccountNumber_Click_1(object sender, EventArgs e)
         {
 
         }
