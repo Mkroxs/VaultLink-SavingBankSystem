@@ -24,9 +24,6 @@ namespace VaultLinkBankSystem.UserControls.Customer
             _currentCustomer = currentCustomer;
 
             _accountRepo = new AccountRepository();
-            
-
-
         }
 
         private void guna2HtmlLabel8_Click(object sender, EventArgs e)
@@ -64,13 +61,12 @@ namespace VaultLinkBankSystem.UserControls.Customer
             cbxSelectAccount.ForeColor = Color.White;
             cbxSelectAccount.FillColor = Color.FromArgb(20, 55, 90);
 
-
             foreach (var account in _customerAccounts)
             {
                 cbxSelectAccount.Items.Add(new
                 {
                     AccountID = account.AccountID,
-                    Account = account, // diri e store ang full object
+                    Account = account,
                     DisplayText = $"{account.AccountNumber} - {account.AccountType} ({account.Balance:C2})"
                 });
             }
@@ -79,7 +75,6 @@ namespace VaultLinkBankSystem.UserControls.Customer
                 cbxSelectAccount.SelectedIndex = 0;
         }
 
-
         private void showBalance_Click(object sender, EventArgs e)
         {
             if (lblBalance.Tag == null)
@@ -87,26 +82,20 @@ namespace VaultLinkBankSystem.UserControls.Customer
 
             string original = lblBalance.Tag.ToString();
 
-
             if (showBalance.IconChar == FontAwesome.Sharp.IconChar.EyeSlash)
             {
                 showBalance.IconChar = FontAwesome.Sharp.IconChar.Eye;
                 showBalance.IconSize = 45;
-                string mask = new string('*', original.Length);
-                lblBalance.Text = mask;
-
+                lblBalance.Text = original;
             }
             else
             {
-
-                lblBalance.Text = original;
+                string mask = new string('*', original.Length);
+                lblBalance.Text = mask;
                 showBalance.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
                 showBalance.IconSize = 46;
-                
             }
         }
-
-
 
         private void DisplayCustomerInfo()
         {
@@ -132,11 +121,9 @@ namespace VaultLinkBankSystem.UserControls.Customer
             dynamic selected = cbxSelectAccount.SelectedItem;
             Account account = selected.Account;
 
-            
             lblAccountNumber.Text = account.AccountNumber;
             lblBalance.Text = account.Balance.ToString("C2");
-*/
-            
+
             if (account.Status == "Active")
             {
                 lblAccountStatus.ForeColor = Color.Green;
@@ -153,18 +140,7 @@ namespace VaultLinkBankSystem.UserControls.Customer
                 lblDateLabel.Text = "Date Closed";
                 lblDateValue.Text = account.ClosedDate?.ToString("MM/dd/yyyy") ?? "N/A";
             }
-
-            
         }
-
-
-
-
-
-
-
-
-
 
         private void showAccountNumber_Click(object sender, EventArgs e)
         {
@@ -175,21 +151,19 @@ namespace VaultLinkBankSystem.UserControls.Customer
 
             if (showAccountNumber.IconChar == FontAwesome.Sharp.IconChar.EyeSlash)
             {
-
-                if (original.Length > 4)
-                {
-                    string lastFour = original.Substring(original.Length - 4);
-                    string mask = new string('*', original.Length - 4);
-                    lblAccountNumber.Text = mask + lastFour;
-                }
+                lblAccountNumber.Text = original;
 
                 showAccountNumber.IconChar = FontAwesome.Sharp.IconChar.Eye;
                 showAccountNumber.IconSize = 45;
             }
             else
             {
-                lblAccountNumber.Text = original;
-
+                if (original.Length > 4)
+                {
+                    string lastFour = original.Substring(original.Length - 4);
+                    string mask = new string('*', original.Length - 4);
+                    lblAccountNumber.Text = mask + lastFour;
+                }
 
                 showAccountNumber.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
                 showAccountNumber.IconSize = 46;
@@ -200,12 +174,37 @@ namespace VaultLinkBankSystem.UserControls.Customer
         {
             DisplayCustomerInfo();
 
+            // Hide balance initially
+            if (lblBalance.Text != null)
+            {
+                lblBalance.Tag = lblBalance.Text;
+                lblBalance.Text = new string('*', lblBalance.Text.Length);
+                showBalance.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+                showBalance.IconSize = 46;
+            }
+
+            // Hide account number initially
+            if (lblAccountNumber.Text != null)
+            {
+                lblAccountNumber.Tag = lblAccountNumber.Text;
+
+                string original = lblAccountNumber.Tag.ToString();
+
+                if (original.Length > 4)
+                {
+                    string lastFour = original.Substring(original.Length - 4);
+                    string mask = new string('*', original.Length - 4);
+                    lblAccountNumber.Text = mask + lastFour;
+                }
+
+                showAccountNumber.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+                showAccountNumber.IconSize = 46;
+            }
         }
 
         private void cbxSelectAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplaySelectedAccount();
-
         }
 
         private void lblAccountNumber_Click(object sender, EventArgs e)
