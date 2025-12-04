@@ -91,7 +91,7 @@
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold);
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(4, 4);
-            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(247, 34);
             this.guna2HtmlLabel1.TabIndex = 0;
@@ -104,7 +104,7 @@
             this.guna2ShadowPanel1.Controls.Add(this.guna2HtmlLabel2);
             this.guna2ShadowPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.guna2ShadowPanel1.Location = new System.Drawing.Point(2, 2);
-            this.guna2ShadowPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ShadowPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             this.guna2ShadowPanel1.Radius = 15;
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Transparent;
@@ -118,7 +118,7 @@
             this.lblTotalBalance.Font = new System.Drawing.Font("Malgun Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalBalance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblTotalBalance.Location = new System.Drawing.Point(27, 39);
-            this.lblTotalBalance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblTotalBalance.Margin = new System.Windows.Forms.Padding(2);
             this.lblTotalBalance.Name = "lblTotalBalance";
             this.lblTotalBalance.Size = new System.Drawing.Size(152, 32);
             this.lblTotalBalance.TabIndex = 3;
@@ -130,7 +130,7 @@
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(20, 11);
-            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             this.guna2HtmlLabel2.Size = new System.Drawing.Size(118, 27);
             this.guna2HtmlLabel2.TabIndex = 2;
@@ -143,7 +143,7 @@
             this.guna2ShadowPanel2.Controls.Add(this.guna2HtmlLabel4);
             this.guna2ShadowPanel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.guna2ShadowPanel2.Location = new System.Drawing.Point(277, 2);
-            this.guna2ShadowPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ShadowPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2ShadowPanel2.Name = "guna2ShadowPanel2";
             this.guna2ShadowPanel2.Radius = 15;
             this.guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Transparent;
@@ -157,7 +157,7 @@
             this.lblTotalUsers.Font = new System.Drawing.Font("Malgun Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblTotalUsers.Location = new System.Drawing.Point(24, 39);
-            this.lblTotalUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblTotalUsers.Margin = new System.Windows.Forms.Padding(2);
             this.lblTotalUsers.Name = "lblTotalUsers";
             this.lblTotalUsers.Size = new System.Drawing.Size(61, 32);
             this.lblTotalUsers.TabIndex = 3;
@@ -169,7 +169,7 @@
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.guna2HtmlLabel4.Location = new System.Drawing.Point(20, 11);
-            this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             this.guna2HtmlLabel4.Size = new System.Drawing.Size(98, 27);
             this.guna2HtmlLabel4.TabIndex = 2;
@@ -182,7 +182,7 @@
             this.guna2ShadowPanel3.Controls.Add(this.guna2HtmlLabel6);
             this.guna2ShadowPanel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.guna2ShadowPanel3.Location = new System.Drawing.Point(551, 2);
-            this.guna2ShadowPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ShadowPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2ShadowPanel3.Name = "guna2ShadowPanel3";
             this.guna2ShadowPanel3.Radius = 15;
             this.guna2ShadowPanel3.ShadowColor = System.Drawing.Color.Transparent;
@@ -196,7 +196,7 @@
             this.lblNewAccounts.Font = new System.Drawing.Font("Malgun Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewAccounts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblNewAccounts.Location = new System.Drawing.Point(24, 39);
-            this.lblNewAccounts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblNewAccounts.Margin = new System.Windows.Forms.Padding(2);
             this.lblNewAccounts.Name = "lblNewAccounts";
             this.lblNewAccounts.Size = new System.Drawing.Size(29, 32);
             this.lblNewAccounts.TabIndex = 3;
@@ -208,7 +208,7 @@
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.guna2HtmlLabel6.Location = new System.Drawing.Point(20, 11);
-            this.guna2HtmlLabel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel6.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             this.guna2HtmlLabel6.Size = new System.Drawing.Size(126, 27);
             this.guna2HtmlLabel6.TabIndex = 2;
@@ -221,7 +221,7 @@
             this.guna2HtmlLabel7.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold);
             this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.guna2HtmlLabel7.Location = new System.Drawing.Point(0, 0);
-            this.guna2HtmlLabel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel7.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
             this.guna2HtmlLabel7.Size = new System.Drawing.Size(233, 34);
             this.guna2HtmlLabel7.TabIndex = 6;
@@ -234,7 +234,7 @@
             this.guna2HtmlLabel8.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold);
             this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.White;
             this.guna2HtmlLabel8.Location = new System.Drawing.Point(0, 0);
-            this.guna2HtmlLabel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel8.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
             this.guna2HtmlLabel8.Size = new System.Drawing.Size(250, 34);
             this.guna2HtmlLabel8.TabIndex = 7;
@@ -247,7 +247,7 @@
             this.guna2ShadowPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2ShadowPanel4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.guna2ShadowPanel4.Location = new System.Drawing.Point(0, 34);
-            this.guna2ShadowPanel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ShadowPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.guna2ShadowPanel4.Name = "guna2ShadowPanel4";
             this.guna2ShadowPanel4.Padding = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.guna2ShadowPanel4.Radius = 15;
@@ -291,7 +291,7 @@
             this.dgvRecentTransactions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRecentTransactions.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvRecentTransactions.Location = new System.Drawing.Point(12, 13);
-            this.dgvRecentTransactions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvRecentTransactions.Margin = new System.Windows.Forms.Padding(2);
             this.dgvRecentTransactions.Name = "dgvRecentTransactions";
             this.dgvRecentTransactions.RowHeadersVisible = false;
             this.dgvRecentTransactions.RowHeadersWidth = 51;
@@ -354,7 +354,7 @@
             this.guna2ShadowPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2ShadowPanel5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.guna2ShadowPanel5.Location = new System.Drawing.Point(0, 34);
-            this.guna2ShadowPanel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ShadowPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.guna2ShadowPanel5.Name = "guna2ShadowPanel5";
             this.guna2ShadowPanel5.Padding = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.guna2ShadowPanel5.Radius = 15;
@@ -374,7 +374,7 @@
             legend1.Name = "Legend1";
             this.chartWithdrawals.Legends.Add(legend1);
             this.chartWithdrawals.Location = new System.Drawing.Point(12, 13);
-            this.chartWithdrawals.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chartWithdrawals.Margin = new System.Windows.Forms.Padding(2);
             this.chartWithdrawals.Name = "chartWithdrawals";
             this.chartWithdrawals.RightToLeft = System.Windows.Forms.RightToLeft.No;
             series1.ChartArea = "ChartArea1";
@@ -393,7 +393,7 @@
             this.guna2HtmlLabel9.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold);
             this.guna2HtmlLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.guna2HtmlLabel9.Location = new System.Drawing.Point(0, 0);
-            this.guna2HtmlLabel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel9.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel9.Name = "guna2HtmlLabel9";
             this.guna2HtmlLabel9.Size = new System.Drawing.Size(151, 34);
             this.guna2HtmlLabel9.TabIndex = 10;
@@ -407,7 +407,7 @@
             this.guna2ShadowPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2ShadowPanel6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.guna2ShadowPanel6.Location = new System.Drawing.Point(0, 0);
-            this.guna2ShadowPanel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ShadowPanel6.Margin = new System.Windows.Forms.Padding(2);
             this.guna2ShadowPanel6.Name = "guna2ShadowPanel6";
             this.guna2ShadowPanel6.Padding = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.guna2ShadowPanel6.Radius = 15;
@@ -438,7 +438,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(19, 16);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
@@ -456,7 +456,7 @@
             this.guna2Panel4.Controls.Add(this.guna2HtmlLabel9);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel4.Location = new System.Drawing.Point(2, 434);
-            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.Size = new System.Drawing.Size(950, 99);
             this.guna2Panel4.TabIndex = 17;
@@ -467,7 +467,7 @@
             this.guna2Panel5.Controls.Add(this.guna2ShadowPanel6);
             this.guna2Panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel5.Location = new System.Drawing.Point(0, 34);
-            this.guna2Panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel5.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel5.Name = "guna2Panel5";
             this.guna2Panel5.Size = new System.Drawing.Size(950, 65);
             this.guna2Panel5.TabIndex = 16;
@@ -480,7 +480,7 @@
             this.flowLayoutPanel1.Controls.Add(this.guna2ShadowPanel3);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 48);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(950, 88);
             this.flowLayoutPanel1.TabIndex = 12;
@@ -489,9 +489,9 @@
             // 
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel1);
             this.guna2Panel1.Location = new System.Drawing.Point(2, 2);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(4);
             this.guna2Panel1.Size = new System.Drawing.Size(239, 42);
             this.guna2Panel1.TabIndex = 12;
             // 
@@ -504,7 +504,7 @@
             this.tableLayoutPanel2.Controls.Add(this.guna2Panel3, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 140);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -519,7 +519,7 @@
             this.guna2Panel2.Controls.Add(this.guna2HtmlLabel7);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel2.Location = new System.Drawing.Point(2, 2);
-            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(471, 286);
             this.guna2Panel2.TabIndex = 12;
@@ -530,7 +530,7 @@
             this.guna2Panel3.Controls.Add(this.guna2HtmlLabel8);
             this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel3.Location = new System.Drawing.Point(477, 2);
-            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Size = new System.Drawing.Size(471, 286);
             this.guna2Panel3.TabIndex = 13;
@@ -541,7 +541,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UC_AdminDashboard";
             this.Padding = new System.Windows.Forms.Padding(19, 16, 15, 16);
             this.Size = new System.Drawing.Size(988, 567);

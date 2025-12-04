@@ -258,7 +258,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
         "CustomerID", "PIN", "ImagePath", "IsKYCVerified", "KYCVerifiedDate",
         "Address", "Gender", "BirthDate", "CivilStatus",
         "EmployerName", "SourceOfFunds", "MonthlyIncomeRange",
-        "IDType", "IDNumber"
+        "IDType", "IDNumber", "PasswordHash", "PINHash"
     };
 
             foreach (string colName in hiddenColumns)
@@ -387,6 +387,11 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void txbCustomerSearch_Leave(object sender, EventArgs e)
         {
             txbCustomerSearch.Text = "Search";
+        }
+
+        private void guna2Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

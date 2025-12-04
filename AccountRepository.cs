@@ -330,6 +330,64 @@ namespace VaultLinkBankSystem
                 throw new Exception("Error closing account: " + ex.Message);
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //---------------------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------------
+
+
+        public Account GetAccountById(int accountId)
+        {
+            string query = "SELECT * FROM Accounts WHERE AccountID = @AccountID";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@AccountID", accountId);
+
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Account
+                            {
+                                AccountID = (int)reader["AccountID"],
+                                CustomerID = (int)reader["CustomerID"],
+                                AccountNumber = reader["AccountNumber"].ToString(),
+                                AccountType = reader["AccountType"].ToString(),
+                                Balance = (decimal)reader["Balance"],
+                                InterestRateID = reader["InterestRateID"] != DBNull.Value ? (int?)reader["InterestRateID"] : null,
+                                Status = reader["Status"].ToString(),
+                                DateOpened = (DateTime)reader["DateOpened"],
+                                ClosedDate = reader["ClosedDate"] != DBNull.Value ? (DateTime?)reader["ClosedDate"] : null
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting account: " + ex.Message);
+            }
+
+            return null;
+        }
     }
 }
 

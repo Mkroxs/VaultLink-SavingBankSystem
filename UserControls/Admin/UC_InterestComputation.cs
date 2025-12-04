@@ -116,7 +116,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 DefaultCellStyle = new DataGridViewCellStyle
                 {
                     Alignment = DataGridViewContentAlignment.MiddleRight,
-                    Format = "C2"
                 }
             });
 
@@ -146,6 +145,21 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     Font = new Font("Segoe UI", 9, FontStyle.Bold)
                 }
             });
+            dvgListOfCustomers.CellFormatting += DvgListOfCustomers_CellFormatting;
+        }
+
+        private void DvgListOfCustomers_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            string[] moneyColumns = { "CurrentBalance", "InterestAmount", "NewBalance" };
+
+            if (moneyColumns.Contains(dvgListOfCustomers.Columns[e.ColumnIndex].Name))
+            {
+                if (e.Value != null && decimal.TryParse(e.Value.ToString(), out decimal amount))
+                {
+                    e.Value = "₱" + amount.ToString("#,##0.00");
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
         private void LoadAccountsPreview()
