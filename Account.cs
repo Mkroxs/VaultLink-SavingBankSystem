@@ -17,5 +17,9 @@ namespace VaultLinkBankSystem
         public string Status { get; set; }
         public DateTime DateOpened { get; set; }
         public DateTime? ClosedDate { get; set; }
+
+
+        public decimal? InterestEarned { get; set; }
+
     }
 }

@@ -159,10 +159,12 @@ namespace VaultLinkBankSystem.UserControls.Customers
 
                 foreach (var t in recent)
                 {
+                    var account = allAccounts.FirstOrDefault(a => a.AccountID == t.AccountID);
+
                     dgvRecentTransactions.Rows.Add(
-                        t.TransactionID,
+                        account?.AccountNumber ?? "Unknown Account",
                         t.TransactionType,
-                        t.Amount.ToString("N2"),
+                        "₱" + t.Amount.ToString("#,##0.00"),
                         t.TransactionDate.ToString("MM/dd/yyyy hh:mm tt")
                     );
                 }
@@ -186,6 +188,11 @@ namespace VaultLinkBankSystem.UserControls.Customers
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2ShadowPanel4_Paint(object sender, PaintEventArgs e)
         {
 
         }

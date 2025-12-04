@@ -62,7 +62,7 @@
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold);
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(4, 4);
-            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(271, 34);
             this.guna2HtmlLabel1.TabIndex = 1;
@@ -72,9 +72,9 @@
             // 
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel1);
             this.guna2Panel1.Location = new System.Drawing.Point(2, 2);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(4);
             this.guna2Panel1.Size = new System.Drawing.Size(267, 48);
             this.guna2Panel1.TabIndex = 2;
             // 
@@ -90,7 +90,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Location = new System.Drawing.Point(819, 8);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(104, 42);
             this.btnSearch.TabIndex = 4;
@@ -103,18 +103,19 @@
             this.guna2Panel2.Controls.Add(this.guna2Panel3);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel2.Location = new System.Drawing.Point(2, 58);
-            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.guna2Panel2.Padding = new System.Windows.Forms.Padding(8);
             this.guna2Panel2.Size = new System.Drawing.Size(982, 58);
             this.guna2Panel2.TabIndex = 5;
+            this.guna2Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel2_Paint);
             // 
             // guna2Panel3
             // 
             this.guna2Panel3.Controls.Add(this.txbCustomerSearch);
             this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel3.Location = new System.Drawing.Point(8, 8);
-            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Padding = new System.Windows.Forms.Padding(0, 0, 11, 0);
             this.guna2Panel3.Size = new System.Drawing.Size(811, 42);
@@ -159,7 +160,7 @@
             this.guna2Button1.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
             this.guna2Button1.Location = new System.Drawing.Point(152, 2);
-            this.guna2Button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(146, 41);
             this.guna2Button1.TabIndex = 6;
@@ -178,7 +179,7 @@
             this.btnViewDetail.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewDetail.ForeColor = System.Drawing.Color.White;
             this.btnViewDetail.Location = new System.Drawing.Point(2, 2);
-            this.btnViewDetail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnViewDetail.Margin = new System.Windows.Forms.Padding(2);
             this.btnViewDetail.Name = "btnViewDetail";
             this.btnViewDetail.Size = new System.Drawing.Size(146, 41);
             this.btnViewDetail.TabIndex = 7;
@@ -192,7 +193,7 @@
             this.flowLayoutPanel1.Controls.Add(this.guna2Button1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(273, 2);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(707, 45);
             this.flowLayoutPanel1.TabIndex = 9;
@@ -229,7 +230,7 @@
             this.dvgListOfCustomers.EnableHeadersVisualStyles = true;
             this.dvgListOfCustomers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.dvgListOfCustomers.Location = new System.Drawing.Point(8, 8);
-            this.dvgListOfCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dvgListOfCustomers.Margin = new System.Windows.Forms.Padding(2);
             this.dvgListOfCustomers.Name = "dvgListOfCustomers";
             this.dvgListOfCustomers.ReadOnly = true;
             this.dvgListOfCustomers.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -280,7 +281,7 @@
             this.tableLayoutPanel1.Controls.Add(this.guna2Panel2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(19, 16);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -298,9 +299,9 @@
             this.guna2Panel4.Controls.Add(this.dvgListOfCustomers);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel4.Location = new System.Drawing.Point(2, 120);
-            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.guna2Panel4.Padding = new System.Windows.Forms.Padding(8);
             this.guna2Panel4.Size = new System.Drawing.Size(982, 351);
             this.guna2Panel4.TabIndex = 12;
             // 
@@ -314,7 +315,7 @@
             this.tableLayoutPanel2.Controls.Add(this.guna2Panel1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -327,7 +328,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UC_CustomerManagement";
             this.Padding = new System.Windows.Forms.Padding(19, 16, 15, 16);
             this.Size = new System.Drawing.Size(1015, 502);
