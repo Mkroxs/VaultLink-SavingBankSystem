@@ -51,7 +51,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void UC_Deposits_Load(object sender, EventArgs e)
         {
             UiHelpers.FixGuna2TextBoxVisibility(this);
-            ClearForm();
 
         }
 
@@ -629,7 +628,23 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void tbxSearchCustomer_Leave(object sender, EventArgs e)
         {
+            if (tbxSearchCustomer.Text.Trim() == "")
+            {
+                tbxSearchCustomer.Text = "Search Customer";
+            }
+        }
 
+        private void txtDepositAmount_Leave(object sender, EventArgs e)
+        {
+            if (txtDepositAmount.Text.Trim() == "")
+            {
+                txtDepositAmount.Text = "Amount";
+            }
+        }
+
+        private void txtDepositAmount_Click(object sender, EventArgs e)
+        {
+            txtDepositAmount.Clear();
         }
     }
 }

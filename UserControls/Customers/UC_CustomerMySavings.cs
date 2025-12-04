@@ -183,7 +183,7 @@ namespace VaultLinkBankSystem.UserControls.Customer
                 if (transactions == null || transactions.Count == 0)
                 {
                     // No transactions yet - show zeros
-                    lblNetSavings.Text = "₱0.00";
+                    lblNetSavings1.Text = "₱0.00";
                     lblDeposited.Text = "₱0.00";
                     lblWithdrawn.Text = "₱0.00";
                     lblInterestEarned.Text = "₱0.00";
@@ -229,7 +229,7 @@ namespace VaultLinkBankSystem.UserControls.Customer
                 // ---------------------------------------------------------
                 // DISPLAY VALUES
                 // ---------------------------------------------------------
-                lblNetSavings.Text = netSavings.ToString("C2");
+                lblNetSavings1.Text = netSavings.ToString("C2");
                 lblDeposited.Text = totalDeposits.ToString("C2");
                 lblWithdrawn.Text = totalWithdrawals.ToString("C2");
 
@@ -237,9 +237,9 @@ namespace VaultLinkBankSystem.UserControls.Customer
                 lblInterestEarned.Text = totalInterestEarned.ToString("C2");
 
                 if (netSavings >= 0)
-                    lblNetSavings.ForeColor = Color.Green;
+                    lblNetSavings1.ForeColor = Color.Green;
                 else
-                    lblNetSavings.ForeColor = Color.Red;
+                    lblNetSavings1.ForeColor = Color.Red;
             }
             catch (Exception ex)
             {

@@ -49,7 +49,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void UC_Transfer_Load(object sender, EventArgs e)
         {
             UiHelpers.FixGuna2TextBoxVisibility(this);
-            ClearForm();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -690,12 +689,23 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void txtSearchCustomerName_Leave(object sender, EventArgs e)
         {
-           
+            if (txtSearchCustomerName.Text.Trim() == "")
+            {
+                txtSearchCustomerName.Text = "Amount";
+            }
         }
 
         private void lblTotalBalance_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtRecipientNumber_Leave(object sender, EventArgs e)
+        {
+            if (txtRecipientNumber.Text.Trim() == "")
+            {
+                txtRecipientNumber.Text = "Amount";
+            }
         }
     }
 }

@@ -725,7 +725,7 @@
             this.btnResetPassword.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.btnResetPassword.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResetPassword.ForeColor = System.Drawing.Color.White;
-            this.btnResetPassword.Location = new System.Drawing.Point(240, 20);
+            this.btnResetPassword.Location = new System.Drawing.Point(232, 22);
             this.btnResetPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnResetPassword.Name = "btnResetPassword";
             this.btnResetPassword.Size = new System.Drawing.Size(170, 48);
@@ -745,7 +745,7 @@
             this.btnResetPIN.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.btnResetPIN.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResetPIN.ForeColor = System.Drawing.Color.White;
-            this.btnResetPIN.Location = new System.Drawing.Point(44, 20);
+            this.btnResetPIN.Location = new System.Drawing.Point(58, 22);
             this.btnResetPIN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnResetPIN.Name = "btnResetPIN";
             this.btnResetPIN.Size = new System.Drawing.Size(170, 48);
