@@ -34,10 +34,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
-            this.lblSelectedMonth = new System.Windows.Forms.Label();
-            this.lblInterestRate = new System.Windows.Forms.Label();
-            this.lblTotalInterest = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblAccountCount = new System.Windows.Forms.Label();
+            this.lblTotalInterest = new System.Windows.Forms.Label();
+            this.lblInterestRate = new System.Windows.Forms.Label();
+            this.lblSelectedMonth = new System.Windows.Forms.Label();
             this.btnComputeInterest = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -52,9 +53,9 @@
             this.chkApplyToAll = new Guna.UI2.WinForms.Guna2CheckBox();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.dvgListOfCustomers = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2Panel7.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
             this.guna2Panel6.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -63,7 +64,6 @@
             this.guna2Panel5.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgListOfCustomers)).BeginInit();
-            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -97,33 +97,33 @@
             this.guna2Panel7.Location = new System.Drawing.Point(3, 599);
             this.guna2Panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel7.Name = "guna2Panel7";
-            this.guna2Panel7.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.guna2Panel7.Padding = new System.Windows.Forms.Padding(5);
             this.guna2Panel7.Size = new System.Drawing.Size(1253, 62);
             this.guna2Panel7.TabIndex = 7;
             // 
-            // lblSelectedMonth
+            // flowLayoutPanel2
             // 
-            this.lblSelectedMonth.AutoSize = true;
-            this.lblSelectedMonth.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold);
-            this.lblSelectedMonth.ForeColor = System.Drawing.SystemColors.Window;
-            this.lblSelectedMonth.Location = new System.Drawing.Point(118, 0);
-            this.lblSelectedMonth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSelectedMonth.Name = "lblSelectedMonth";
-            this.lblSelectedMonth.Size = new System.Drawing.Size(30, 23);
-            this.lblSelectedMonth.TabIndex = 17;
-            this.lblSelectedMonth.Text = ".....";
+            this.flowLayoutPanel2.Controls.Add(this.lblAccountCount);
+            this.flowLayoutPanel2.Controls.Add(this.lblTotalInterest);
+            this.flowLayoutPanel2.Controls.Add(this.lblInterestRate);
+            this.flowLayoutPanel2.Controls.Add(this.lblSelectedMonth);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(5, 5);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(888, 53);
+            this.flowLayoutPanel2.TabIndex = 18;
             // 
-            // lblInterestRate
+            // lblAccountCount
             // 
-            this.lblInterestRate.AutoSize = true;
-            this.lblInterestRate.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold);
-            this.lblInterestRate.ForeColor = System.Drawing.SystemColors.Window;
-            this.lblInterestRate.Location = new System.Drawing.Point(80, 0);
-            this.lblInterestRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblInterestRate.Name = "lblInterestRate";
-            this.lblInterestRate.Size = new System.Drawing.Size(30, 23);
-            this.lblInterestRate.TabIndex = 16;
-            this.lblInterestRate.Text = ".....";
+            this.lblAccountCount.AutoSize = true;
+            this.lblAccountCount.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblAccountCount.ForeColor = System.Drawing.SystemColors.Window;
+            this.lblAccountCount.Location = new System.Drawing.Point(4, 0);
+            this.lblAccountCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAccountCount.Name = "lblAccountCount";
+            this.lblAccountCount.Size = new System.Drawing.Size(30, 23);
+            this.lblAccountCount.TabIndex = 14;
+            this.lblAccountCount.Text = ".....";
             // 
             // lblTotalInterest
             // 
@@ -137,17 +137,29 @@
             this.lblTotalInterest.TabIndex = 15;
             this.lblTotalInterest.Text = ".....";
             // 
-            // lblAccountCount
+            // lblInterestRate
             // 
-            this.lblAccountCount.AutoSize = true;
-            this.lblAccountCount.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold);
-            this.lblAccountCount.ForeColor = System.Drawing.SystemColors.Window;
-            this.lblAccountCount.Location = new System.Drawing.Point(4, 0);
-            this.lblAccountCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAccountCount.Name = "lblAccountCount";
-            this.lblAccountCount.Size = new System.Drawing.Size(30, 23);
-            this.lblAccountCount.TabIndex = 14;
-            this.lblAccountCount.Text = ".....";
+            this.lblInterestRate.AutoSize = true;
+            this.lblInterestRate.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblInterestRate.ForeColor = System.Drawing.SystemColors.Window;
+            this.lblInterestRate.Location = new System.Drawing.Point(80, 0);
+            this.lblInterestRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInterestRate.Name = "lblInterestRate";
+            this.lblInterestRate.Size = new System.Drawing.Size(30, 23);
+            this.lblInterestRate.TabIndex = 16;
+            this.lblInterestRate.Text = ".....";
+            // 
+            // lblSelectedMonth
+            // 
+            this.lblSelectedMonth.AutoSize = true;
+            this.lblSelectedMonth.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblSelectedMonth.ForeColor = System.Drawing.SystemColors.Window;
+            this.lblSelectedMonth.Location = new System.Drawing.Point(118, 0);
+            this.lblSelectedMonth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSelectedMonth.Name = "lblSelectedMonth";
+            this.lblSelectedMonth.Size = new System.Drawing.Size(30, 23);
+            this.lblSelectedMonth.TabIndex = 17;
+            this.lblSelectedMonth.Text = ".....";
             // 
             // btnComputeInterest
             // 
@@ -189,7 +201,7 @@
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(0, 2);
             this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(1366, 27);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(105, 27);
             this.guna2HtmlLabel2.TabIndex = 1;
             this.guna2HtmlLabel2.Text = "Select Date:";
             // 
@@ -256,7 +268,7 @@
             this.guna2Panel1.Location = new System.Drawing.Point(3, 2);
             this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(5);
             this.guna2Panel1.Size = new System.Drawing.Size(356, 59);
             this.guna2Panel1.TabIndex = 2;
             // 
@@ -404,18 +416,6 @@
             this.dvgListOfCustomers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dvgListOfCustomers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.lblAccountCount);
-            this.flowLayoutPanel2.Controls.Add(this.lblTotalInterest);
-            this.flowLayoutPanel2.Controls.Add(this.lblInterestRate);
-            this.flowLayoutPanel2.Controls.Add(this.lblSelectedMonth);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(5, 5);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(888, 53);
-            this.flowLayoutPanel2.TabIndex = 18;
-            // 
             // UC_InterestComputation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -430,6 +430,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.guna2Panel7.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.guna2Panel3.ResumeLayout(false);
             this.guna2Panel3.PerformLayout();
             this.guna2Panel6.ResumeLayout(false);
@@ -442,8 +444,6 @@
             this.guna2Panel5.PerformLayout();
             this.guna2Panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgListOfCustomers)).EndInit();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }

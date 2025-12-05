@@ -53,7 +53,6 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void UC_Withdraw_Load(object sender, EventArgs e)
         {
             UiHelpers.FixGuna2TextBoxVisibility(this);
-            ClearForm();
         }
 
         // ============================================
@@ -640,6 +639,10 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void tbxSearchCustomer_Leave(object sender, EventArgs e)
         {
+            if (tbxSearchCustomer.Text.Trim() == "")
+            {
+                tbxSearchCustomer.Text = "Amount";
+            }
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -649,6 +652,19 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void lblTotalBalance_Click(object sender, EventArgs e)
         {
+        }
+
+        private void txtWithdrawAmount_Click(object sender, EventArgs e)
+        {
+            txtWithdrawAmount.Clear();
+        }
+
+        private void txtWithdrawAmount_Leave(object sender, EventArgs e)
+        {
+            if (txtWithdrawAmount.Text.Trim() == "")
+            {
+                txtWithdrawAmount.Text = "Amount";
+            }
         }
     }
 }

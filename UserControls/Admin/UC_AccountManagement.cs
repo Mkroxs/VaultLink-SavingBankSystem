@@ -31,6 +31,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             UiHelpers.FixGuna2TextBoxVisibility(this);
             LoadVerifiedCustomers();
             SetupGridStyle(dgvCustomerAccounts);
+            ClearCustomerInfo();
         }
 
         private void LoadVerifiedCustomers()
@@ -359,7 +360,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void txbCustomerSearch_Click(object sender, EventArgs e)
         {
-
+            txbCustomerSearch.Clear();
         }
 
         private void txbCustomerSearch_Leave(object sender, EventArgs e)
