@@ -73,6 +73,7 @@ namespace VaultLinkBankSystem.UserControls.Customers
             cbxTransactionType.Items.Add("Withdrawal");
             cbxTransactionType.Items.Add("Transfer In");
             cbxTransactionType.Items.Add("Transfer Out");
+            cbxTransactionType.Items.Add("Interest Added");
 
             cbxTransactionType.SelectedIndex = 0;
         }
