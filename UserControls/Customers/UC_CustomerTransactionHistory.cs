@@ -239,5 +239,10 @@ namespace VaultLinkBankSystem.UserControls.Customers
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
+
+        private void dgvHistoryTransactions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
