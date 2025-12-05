@@ -69,29 +69,29 @@
             this.tableLayoutPanel1.Controls.Add(this.guna2HtmlLabel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.dgvHistoryTransactions, 0, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(25, 25);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(19, 20);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1504, 752);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1128, 612);
             this.tableLayoutPanel1.TabIndex = 24;
             // 
             // guna2Panel7
             // 
             this.guna2Panel7.Controls.Add(this.guna2Panel4);
             this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Panel7.Location = new System.Drawing.Point(3, 629);
-            this.guna2Panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Panel7.Location = new System.Drawing.Point(2, 512);
+            this.guna2Panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel7.Name = "guna2Panel7";
-            this.guna2Panel7.Size = new System.Drawing.Size(1498, 121);
+            this.guna2Panel7.Size = new System.Drawing.Size(1124, 98);
             this.guna2Panel7.TabIndex = 28;
             // 
             // guna2Panel4
@@ -99,10 +99,10 @@
             this.guna2Panel4.Controls.Add(this.btnProfile);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.guna2Panel4.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.guna2Panel4.Size = new System.Drawing.Size(1498, 121);
+            this.guna2Panel4.Padding = new System.Windows.Forms.Padding(11, 12, 11, 12);
+            this.guna2Panel4.Size = new System.Drawing.Size(1124, 98);
             this.guna2Panel4.TabIndex = 31;
             // 
             // btnProfile
@@ -120,10 +120,10 @@
             this.btnProfile.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.btnProfile.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProfile.ForeColor = System.Drawing.Color.White;
-            this.btnProfile.Location = new System.Drawing.Point(976, 15);
-            this.btnProfile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProfile.Location = new System.Drawing.Point(733, 12);
+            this.btnProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnProfile.Name = "btnProfile";
-            this.btnProfile.Size = new System.Drawing.Size(507, 91);
+            this.btnProfile.Size = new System.Drawing.Size(380, 74);
             this.btnProfile.TabIndex = 28;
             this.btnProfile.Text = "Back to Dashboard";
             // 
@@ -132,10 +132,10 @@
             this.guna2Panel6.Controls.Add(this.guna2Panel2);
             this.guna2Panel6.Controls.Add(this.guna2Panel1);
             this.guna2Panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Panel6.Location = new System.Drawing.Point(3, 58);
-            this.guna2Panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Panel6.Location = new System.Drawing.Point(2, 49);
+            this.guna2Panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel6.Name = "guna2Panel6";
-            this.guna2Panel6.Size = new System.Drawing.Size(1498, 44);
+            this.guna2Panel6.Size = new System.Drawing.Size(1124, 35);
             this.guna2Panel6.TabIndex = 24;
             // 
             // guna2Panel2
@@ -143,11 +143,11 @@
             this.guna2Panel2.Controls.Add(this.cbxTransactionType);
             this.guna2Panel2.Controls.Add(this.guna2HtmlLabel3);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.guna2Panel2.Location = new System.Drawing.Point(498, 0);
-            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Panel2.Location = new System.Drawing.Point(374, 0);
+            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.guna2Panel2.Size = new System.Drawing.Size(448, 44);
+            this.guna2Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 11, 0);
+            this.guna2Panel2.Size = new System.Drawing.Size(336, 35);
             this.guna2Panel2.TabIndex = 21;
             // 
             // cbxTransactionType
@@ -165,10 +165,10 @@
             "Withdraw",
             "Deposit",
             "Transfer"});
-            this.cbxTransactionType.Location = new System.Drawing.Point(145, 0);
-            this.cbxTransactionType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxTransactionType.Location = new System.Drawing.Point(111, 0);
+            this.cbxTransactionType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxTransactionType.Name = "cbxTransactionType";
-            this.cbxTransactionType.Size = new System.Drawing.Size(288, 36);
+            this.cbxTransactionType.Size = new System.Drawing.Size(214, 36);
             this.cbxTransactionType.TabIndex = 13;
             this.cbxTransactionType.SelectedIndexChanged += new System.EventHandler(this.cbxTransactionType_SelectedIndexChanged);
             // 
@@ -179,9 +179,9 @@
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel3.Location = new System.Drawing.Point(0, 0);
-            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(145, 44);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(111, 35);
             this.guna2HtmlLabel3.TabIndex = 12;
             this.guna2HtmlLabel3.Text = "Transaction Type:";
             // 
@@ -191,10 +191,10 @@
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel2);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.guna2Panel1.Size = new System.Drawing.Size(498, 44);
+            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(0, 0, 11, 0);
+            this.guna2Panel1.Size = new System.Drawing.Size(374, 35);
             this.guna2Panel1.TabIndex = 20;
             // 
             // cbxSelectAccount
@@ -208,10 +208,10 @@
             this.cbxSelectAccount.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cbxSelectAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbxSelectAccount.ItemHeight = 30;
-            this.cbxSelectAccount.Location = new System.Drawing.Point(150, 0);
-            this.cbxSelectAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxSelectAccount.Location = new System.Drawing.Point(115, 0);
+            this.cbxSelectAccount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxSelectAccount.Name = "cbxSelectAccount";
-            this.cbxSelectAccount.Size = new System.Drawing.Size(333, 36);
+            this.cbxSelectAccount.Size = new System.Drawing.Size(248, 36);
             this.cbxSelectAccount.TabIndex = 13;
             this.cbxSelectAccount.SelectedIndexChanged += new System.EventHandler(this.cbxSelectAccount_SelectedIndexChanged);
             // 
@@ -222,9 +222,9 @@
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(0, 0);
-            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(150, 26);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(115, 35);
             this.guna2HtmlLabel2.TabIndex = 12;
             this.guna2HtmlLabel2.Text = "Selected Account:";
             // 
@@ -233,10 +233,10 @@
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Malgun Gothic", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(3, 2);
-            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(2, 2);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(348, 52);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(283, 43);
             this.guna2HtmlLabel1.TabIndex = 3;
             this.guna2HtmlLabel1.Text = "Transaction History";
             // 
@@ -277,8 +277,8 @@
             this.dgvHistoryTransactions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvHistoryTransactions.EnableHeadersVisualStyles = true;
             this.dgvHistoryTransactions.GridColor = System.Drawing.Color.White;
-            this.dgvHistoryTransactions.Location = new System.Drawing.Point(3, 106);
-            this.dgvHistoryTransactions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvHistoryTransactions.Location = new System.Drawing.Point(2, 88);
+            this.dgvHistoryTransactions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvHistoryTransactions.Name = "dgvHistoryTransactions";
             this.dgvHistoryTransactions.ReadOnly = true;
             this.dgvHistoryTransactions.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -294,7 +294,7 @@
             this.dgvHistoryTransactions.RowHeadersVisible = false;
             this.dgvHistoryTransactions.RowHeadersWidth = 51;
             this.dgvHistoryTransactions.RowTemplate.Height = 24;
-            this.dgvHistoryTransactions.Size = new System.Drawing.Size(1498, 519);
+            this.dgvHistoryTransactions.Size = new System.Drawing.Size(1124, 420);
             this.dgvHistoryTransactions.TabIndex = 22;
             this.dgvHistoryTransactions.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvHistoryTransactions.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -317,6 +317,7 @@
             this.dgvHistoryTransactions.ThemeStyle.RowsStyle.Height = 24;
             this.dgvHistoryTransactions.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvHistoryTransactions.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvHistoryTransactions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistoryTransactions_CellContentClick);
             // 
             // Column1
             // 
@@ -362,14 +363,14 @@
             // 
             // UC_CustomerTransactionHistory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "UC_CustomerTransactionHistory";
-            this.Padding = new System.Windows.Forms.Padding(25, 25, 25, 25);
-            this.Size = new System.Drawing.Size(1554, 802);
+            this.Padding = new System.Windows.Forms.Padding(19, 20, 19, 20);
+            this.Size = new System.Drawing.Size(1166, 652);
             this.Load += new System.EventHandler(this.UC_CustomerTransactionHistory_Load_1);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

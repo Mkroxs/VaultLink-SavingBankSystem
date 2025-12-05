@@ -43,6 +43,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             cmbTransactionType.Items.Add("Withdrawal");
             cmbTransactionType.Items.Add("Transfer Out");
             cmbTransactionType.Items.Add("Transfer In");
+            cmbTransactionType.Items.Add("Interest Added");
             cmbTransactionType.SelectedIndex = 0;
 
             // Set default date range (last 30 days)

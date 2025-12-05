@@ -263,6 +263,11 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         }
 
+
+
+
+
+
         private void chkApplyToAll_CheckedChanged(object sender, EventArgs e)
         {
             LoadAccountsPreview();
@@ -344,8 +349,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
                         if (account != null && interestAmount > 0)
                         {
-                            // Create deposit transaction for interest
-                            _transactionRepo.Deposit(
+                            // Create deposit transaction for interest with "Interest Added" type
+                            _transactionRepo.AddInterest(
                                 account.AccountID,
                                 interestAmount,
                                 $"Monthly Interest - {dtpSelectMonth.Value:MMMM yyyy}");

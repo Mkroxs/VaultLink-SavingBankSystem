@@ -513,7 +513,91 @@ namespace VaultLinkBankSystem
         }
 
 
+        // ============================================
+        // ADD INTEREST (Special Deposit Type)
+        // ============================================
+        public Transaction AddInterest(int accountId, decimal amount, string remarks = "")
+        {
+            if (amount <= 0)
+            {
+                throw new Exception("Interest amount must be greater than zero.");
+            }
 
+            // Get current account balance
+            decimal currentBalance = GetAccountBalance(accountId);
+
+            // Calculate new balance
+            decimal newBalance = currentBalance + amount;
+
+            // Create transaction record with "Interest Added" type
+            Transaction transaction = new Transaction
+            {
+                AccountID = accountId,
+                TransactionDate = DateTime.Now,
+                TransactionType = "Interest Added", // Special type for interest
+                Amount = amount,
+                PreviousBalance = currentBalance,
+                NewBalance = newBalance,
+                Remarks = string.IsNullOrEmpty(remarks) ? "Interest Added" : remarks
+            };
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    // Start transaction for data consistency
+                    using (SqlTransaction sqlTransaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            // 1. Insert transaction record
+                            string insertQuery = @"INSERT INTO Transactions (AccountID, TransactionDate, TransactionType, Amount, PreviousBalance, NewBalance, Remarks)
+                                         VALUES (@AccountID, @TransactionDate, @TransactionType, @Amount, @PreviousBalance, @NewBalance, @Remarks);
+                                         SELECT CAST(SCOPE_IDENTITY() AS INT);";
+
+                            using (SqlCommand cmd = new SqlCommand(insertQuery, conn, sqlTransaction))
+                            {
+                                cmd.Parameters.AddWithValue("@AccountID", transaction.AccountID);
+                                cmd.Parameters.AddWithValue("@TransactionDate", transaction.TransactionDate);
+                                cmd.Parameters.AddWithValue("@TransactionType", transaction.TransactionType);
+                                cmd.Parameters.AddWithValue("@Amount", transaction.Amount);
+                                cmd.Parameters.AddWithValue("@PreviousBalance", transaction.PreviousBalance);
+                                cmd.Parameters.AddWithValue("@NewBalance", transaction.NewBalance);
+                                cmd.Parameters.AddWithValue("@Remarks", transaction.Remarks);
+
+                                transaction.TransactionID = (int)cmd.ExecuteScalar();
+                            }
+
+                            // 2. Update account balance
+                            string updateQuery = "UPDATE Accounts SET Balance = @NewBalance WHERE AccountID = @AccountID";
+
+                            using (SqlCommand cmd = new SqlCommand(updateQuery, conn, sqlTransaction))
+                            {
+                                cmd.Parameters.AddWithValue("@NewBalance", newBalance);
+                                cmd.Parameters.AddWithValue("@AccountID", accountId);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // Commit transaction
+                            sqlTransaction.Commit();
+
+                            return transaction;
+                        }
+                        catch (Exception)
+                        {
+                            sqlTransaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding interest: " + ex.Message);
+            }
+        }
 
 
         private Transaction MapTransactionFromReader(SqlDataReader reader)
