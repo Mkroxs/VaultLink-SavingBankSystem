@@ -17,7 +17,7 @@ namespace VaultLinkBankSystem
     {
         private AdminRepository adminRepo;
         private CustomerRepository _customerRepo;
-        
+
 
         public frmLogin()
         {
@@ -28,13 +28,19 @@ namespace VaultLinkBankSystem
             EnableEnterKeyToClick(tbxUsername, btnLogin);
             EnableEnterKeyToClick(tbxPassword, btnLogin);
 
-            frmBackground bg = new frmBackground();
-            bg.Show();
-            bg.SendToBack();
+            if (frmBackground.Instance == null)
+            {
+                new frmBackground().Show();
+                frmBackground.Instance.SendToBack();
+            }
+            else
+            {
+                frmBackground.Instance.Show();
+                frmBackground.Instance.SendToBack();
+            }
 
             if (frmLoadingScreen.Instance == null)
             {
-                // Create single loading screen
                 new frmLoadingScreen().Show();
                 frmLoadingScreen.Instance.SendToBack();
             }
@@ -44,6 +50,7 @@ namespace VaultLinkBankSystem
                 frmLoadingScreen.Instance.SendToBack();
             }
         }
+
 
 
 

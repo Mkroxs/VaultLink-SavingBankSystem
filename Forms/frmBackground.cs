@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 namespace VaultLinkBankSystem.Forms
 {
+
     public partial class frmBackground : Form
     {
+        public static frmBackground Instance;
         public frmBackground()
         {
             InitializeComponent();
+            Instance = this;
         }
     }
 }
