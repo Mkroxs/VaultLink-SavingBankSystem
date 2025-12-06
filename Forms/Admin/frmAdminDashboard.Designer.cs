@@ -53,10 +53,10 @@
             this.panelTopbar.CustomizableEdges.BottomRight = false;
             this.panelTopbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTopbar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.panelTopbar.Location = new System.Drawing.Point(56, 56);
-            this.panelTopbar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTopbar.Location = new System.Drawing.Point(70, 70);
+            this.panelTopbar.Margin = new System.Windows.Forms.Padding(2);
             this.panelTopbar.Name = "panelTopbar";
-            this.panelTopbar.Size = new System.Drawing.Size(848, 147);
+            this.panelTopbar.Size = new System.Drawing.Size(1060, 184);
             this.panelTopbar.TabIndex = 14;
             this.panelTopbar.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTopbar_Paint);
             // 
@@ -65,9 +65,9 @@
             this.panel1.Controls.Add(this.iconPictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(365, 147);
+            this.panel1.Size = new System.Drawing.Size(456, 184);
             this.panel1.TabIndex = 14;
             // 
             // iconPictureBox1
@@ -82,11 +82,11 @@
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ButtonFace;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 299;
-            this.iconPictureBox1.Location = new System.Drawing.Point(-30, -64);
-            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconPictureBox1.IconSize = 374;
+            this.iconPictureBox1.Location = new System.Drawing.Point(-38, -80);
+            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(419, 299);
+            this.iconPictureBox1.Size = new System.Drawing.Size(524, 374);
             this.iconPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.iconPictureBox1.TabIndex = 13;
             this.iconPictureBox1.TabStop = false;
@@ -102,11 +102,11 @@
             this.panelMain.CustomizableEdges.TopRight = false;
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.panelMain.Location = new System.Drawing.Point(336, 203);
-            this.panelMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelMain.Location = new System.Drawing.Point(420, 254);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(2);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Padding = new System.Windows.Forms.Padding(24, 8, 40, 8);
-            this.panelMain.Size = new System.Drawing.Size(568, 381);
+            this.panelMain.Padding = new System.Windows.Forms.Padding(25, 5, 45, 10);
+            this.panelMain.Size = new System.Drawing.Size(710, 476);
             this.panelMain.TabIndex = 15;
             // 
             // panelSidebar
@@ -121,10 +121,10 @@
             this.panelSidebar.CustomizableEdges.TopRight = false;
             this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSidebar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.panelSidebar.Location = new System.Drawing.Point(56, 203);
-            this.panelSidebar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelSidebar.Location = new System.Drawing.Point(70, 254);
+            this.panelSidebar.Margin = new System.Windows.Forms.Padding(2);
             this.panelSidebar.Name = "panelSidebar";
-            this.panelSidebar.Size = new System.Drawing.Size(280, 381);
+            this.panelSidebar.Size = new System.Drawing.Size(350, 476);
             this.panelSidebar.TabIndex = 15;
             // 
             // guna2BorderlessForm1
@@ -136,27 +136,27 @@
             // guna2Panel1
             // 
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.guna2Panel1.Location = new System.Drawing.Point(336, 203);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel1.Location = new System.Drawing.Point(420, 254);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(8, 381);
+            this.guna2Panel1.Size = new System.Drawing.Size(10, 476);
             this.guna2Panel1.TabIndex = 0;
             // 
             // frmAdminDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(30)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(960, 640);
+            this.ClientSize = new System.Drawing.Size(1200, 800);
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelSidebar);
             this.Controls.Add(this.panelTopbar);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmAdminDashboard";
-            this.Padding = new System.Windows.Forms.Padding(56, 56, 56, 56);
+            this.Padding = new System.Windows.Forms.Padding(70, 70, 70, 70);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAdminDashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

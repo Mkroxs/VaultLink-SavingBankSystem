@@ -199,7 +199,7 @@
             this.tbxStreetName.PlaceholderText = "";
             this.tbxStreetName.SelectedText = "";
             this.tbxStreetName.Size = new System.Drawing.Size(430, 36);
-            this.tbxStreetName.TabIndex = 14;
+            this.tbxStreetName.TabIndex = 0;
             // 
             // guna2Panel12
             // 
@@ -246,7 +246,7 @@
             this.tbxBarangay.PlaceholderText = "";
             this.tbxBarangay.SelectedText = "";
             this.tbxBarangay.Size = new System.Drawing.Size(430, 36);
-            this.tbxBarangay.TabIndex = 15;
+            this.tbxBarangay.TabIndex = 1;
             // 
             // guna2Panel11
             // 
@@ -293,7 +293,7 @@
             this.tbxCity.PlaceholderText = "";
             this.tbxCity.SelectedText = "";
             this.tbxCity.Size = new System.Drawing.Size(430, 36);
-            this.tbxCity.TabIndex = 15;
+            this.tbxCity.TabIndex = 2;
             // 
             // guna2Panel13
             // 
@@ -340,7 +340,9 @@
             this.tbxZipCode.PlaceholderText = "";
             this.tbxZipCode.SelectedText = "";
             this.tbxZipCode.Size = new System.Drawing.Size(430, 36);
-            this.tbxZipCode.TabIndex = 14;
+            this.tbxZipCode.TabIndex = 3;
+            this.tbxZipCode.TextChanged += new System.EventHandler(this.tbxZipCode_TextChanged);
+            this.tbxZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxZipCode_KeyPress);
             // 
             // guna2Panel10
             // 
@@ -387,7 +389,7 @@
             this.tbxProvince.PlaceholderText = "";
             this.tbxProvince.SelectedText = "";
             this.tbxProvince.Size = new System.Drawing.Size(430, 36);
-            this.tbxProvince.TabIndex = 14;
+            this.tbxProvince.TabIndex = 4;
             // 
             // guna2HtmlLabel2
             // 

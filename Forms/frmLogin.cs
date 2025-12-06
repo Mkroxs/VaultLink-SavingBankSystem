@@ -1,4 +1,5 @@
-﻿using iText.Layout.Properties;
+﻿using Guna.UI2.WinForms;
+using iText.Layout.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -6,6 +7,7 @@ using VaultLinkBankSystem.Forms;
 using VaultLinkBankSystem.Forms.Admin;
 using VaultLinkBankSystem.Forms.Customer;
 using VaultLinkBankSystem.Forms.CustomersFolder;
+using VaultLinkBankSystem.Helpers;
 using static Syncfusion.Windows.Forms.TabBar;
 
 namespace VaultLinkBankSystem
@@ -15,12 +17,16 @@ namespace VaultLinkBankSystem
     {
         private AdminRepository adminRepo;
         private CustomerRepository _customerRepo;
+        
+
         public frmLogin()
         {
             InitializeComponent();
             adminRepo = new AdminRepository();
             _customerRepo = new CustomerRepository();
 
+            EnableEnterKeyToClick(tbxUsername, btnLogin);
+            EnableEnterKeyToClick(tbxPassword, btnLogin);
 
             frmBackground bg = new frmBackground();
             bg.Show();
@@ -38,6 +44,28 @@ namespace VaultLinkBankSystem
                 frmLoadingScreen.Instance.SendToBack();
             }
         }
+
+
+
+        public void EnableEnterKeyToClick(Guna2TextBox textBox, Guna2Button button)
+        {
+            textBox.KeyDown += (sender, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true; // Prevent the beep
+                    button.PerformClick();     // Trigger the button click
+
+                    //EnableEnterKeyToClick(tbxUsername, btnLogin);
+                    //EnableEnterKeyToClick(tbxPassword, btnLogin);
+                }
+            };
+        }
+
+
+
+
+
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -178,6 +206,22 @@ namespace VaultLinkBankSystem
             form.Activate();
             form.BringToFront();
             form.Focus();
+        }
+
+        private void btnLogin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void btnLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void tbxPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+
         }
     }
 }

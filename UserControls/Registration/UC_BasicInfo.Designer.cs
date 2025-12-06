@@ -195,7 +195,7 @@
             this.guna2HtmlLabel3.Location = new System.Drawing.Point(0, 21);
             this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(59, 27);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(429, 27);
             this.guna2HtmlLabel3.TabIndex = 8;
             this.guna2HtmlLabel3.Text = "Name:";
             this.guna2HtmlLabel3.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
@@ -230,7 +230,7 @@
             this.tbxName.PlaceholderText = "";
             this.tbxName.SelectedText = "";
             this.tbxName.Size = new System.Drawing.Size(429, 36);
-            this.tbxName.TabIndex = 31;
+            this.tbxName.TabIndex = 0;
             this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
             // 
             // guna2Panel10
@@ -252,7 +252,7 @@
             this.guna2HtmlLabel4.Location = new System.Drawing.Point(0, 21);
             this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(55, 27);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(429, 27);
             this.guna2HtmlLabel4.TabIndex = 8;
             this.guna2HtmlLabel4.Text = "Email:";
             this.guna2HtmlLabel4.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
@@ -280,7 +280,7 @@
             this.tbxEmail.PlaceholderText = "";
             this.tbxEmail.SelectedText = "";
             this.tbxEmail.Size = new System.Drawing.Size(429, 36);
-            this.tbxEmail.TabIndex = 14;
+            this.tbxEmail.TabIndex = 1;
             // 
             // guna2Panel11
             // 
@@ -301,7 +301,7 @@
             this.guna2HtmlLabel5.Location = new System.Drawing.Point(0, 21);
             this.guna2HtmlLabel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(87, 27);
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(429, 27);
             this.guna2HtmlLabel5.TabIndex = 8;
             this.guna2HtmlLabel5.Text = "Birthdate:";
             this.guna2HtmlLabel5.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
@@ -319,7 +319,7 @@
             this.dtpBirthdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpBirthdate.Name = "dtpBirthdate";
             this.dtpBirthdate.Size = new System.Drawing.Size(429, 36);
-            this.dtpBirthdate.TabIndex = 9;
+            this.dtpBirthdate.TabIndex = 2;
             this.dtpBirthdate.Value = new System.DateTime(2025, 11, 18, 0, 24, 16, 633);
             // 
             // guna2Panel12
@@ -341,7 +341,7 @@
             this.guna2HtmlLabel6.Location = new System.Drawing.Point(0, 24);
             this.guna2HtmlLabel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(103, 27);
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(431, 27);
             this.guna2HtmlLabel6.TabIndex = 8;
             this.guna2HtmlLabel6.Text = "Civil Status:";
             this.guna2HtmlLabel6.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
@@ -363,7 +363,7 @@
             this.cbxCivilStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxCivilStatus.Name = "cbxCivilStatus";
             this.cbxCivilStatus.Size = new System.Drawing.Size(431, 33);
-            this.cbxCivilStatus.TabIndex = 36;
+            this.cbxCivilStatus.TabIndex = 3;
             // 
             // guna2Panel13
             // 
@@ -384,7 +384,7 @@
             this.guna2HtmlLabel7.Location = new System.Drawing.Point(0, 21);
             this.guna2HtmlLabel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(150, 27);
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(429, 27);
             this.guna2HtmlLabel7.TabIndex = 8;
             this.guna2HtmlLabel7.Text = "Contact Number:";
             this.guna2HtmlLabel7.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
@@ -412,7 +412,9 @@
             this.tbxContactNumber.PlaceholderText = "";
             this.tbxContactNumber.SelectedText = "";
             this.tbxContactNumber.Size = new System.Drawing.Size(429, 36);
-            this.tbxContactNumber.TabIndex = 14;
+            this.tbxContactNumber.TabIndex = 4;
+            this.tbxContactNumber.TextChanged += new System.EventHandler(this.tbxContactNumber_TextChanged);
+            this.tbxContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxContactNumber_KeyPress);
             // 
             // guna2Panel14
             // 
@@ -439,7 +441,7 @@
             this.rbtFemale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtFemale.Name = "rbtFemale";
             this.rbtFemale.Size = new System.Drawing.Size(93, 27);
-            this.rbtFemale.TabIndex = 16;
+            this.rbtFemale.TabIndex = 6;
             this.rbtFemale.Text = "Female";
             this.rbtFemale.UncheckedState.BorderColor = System.Drawing.Color.Black;
             this.rbtFemale.UncheckedState.BorderThickness = 1;
@@ -460,7 +462,7 @@
             this.rbtMale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtMale.Name = "rbtMale";
             this.rbtMale.Size = new System.Drawing.Size(74, 27);
-            this.rbtMale.TabIndex = 15;
+            this.rbtMale.TabIndex = 5;
             this.rbtMale.Text = "Male";
             this.rbtMale.UncheckedState.BorderColor = System.Drawing.Color.Black;
             this.rbtMale.UncheckedState.BorderThickness = 1;
@@ -477,7 +479,7 @@
             this.guna2HtmlLabel8.Location = new System.Drawing.Point(0, 0);
             this.guna2HtmlLabel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(70, 27);
+            this.guna2HtmlLabel8.Size = new System.Drawing.Size(429, 27);
             this.guna2HtmlLabel8.TabIndex = 8;
             this.guna2HtmlLabel8.Text = "Gender:";
             this.guna2HtmlLabel8.TextAlignment = System.Drawing.ContentAlignment.TopCenter;

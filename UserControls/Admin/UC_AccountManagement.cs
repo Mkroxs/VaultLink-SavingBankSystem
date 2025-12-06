@@ -32,7 +32,34 @@ namespace VaultLinkBankSystem.UserControls.Admin
             LoadVerifiedCustomers();
             SetupGridStyle(dgvCustomerAccounts);
             ClearCustomerInfo();
+            txtInitialDeposit.PlaceholderText = "Enter amount";
+
+            txtInitialDeposit.Enabled = false;
+            btnCreateAccount.Enabled = false;
+            btnCloseAccount.Enabled = false;
+            btnReactiveAccount.Enabled = false;
+
         }
+
+        
+
+        private void ClearCustomerInfo()
+        {
+            txtCustomerCode.Text = "";
+            txtCustomerName.Text = "";
+            txtCustomerEmail.Text = "";
+            txtCustomerPhoneNumber.Text = "";
+            txtCustomerCode.Tag = null;
+
+            dgvCustomerAccounts.DataSource = null;
+            lblAccountCount.Text = "Total Accounts: 0";
+
+            txtInitialDeposit.Enabled = false;
+            btnCreateAccount.Enabled = false;
+            btnCloseAccount.Enabled = false;
+            btnReactiveAccount.Enabled = false;
+        }
+
 
         private void LoadVerifiedCustomers()
         {
@@ -182,26 +209,21 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void DisplayCustomerInfo(VaultLinkBankSystem.Customer customer)
         {
-            // Display customer details in your textboxes/labels
             txtCustomerCode.Text = customer.CustomerCode;
             txtCustomerName.Text = customer.FullName;
             txtCustomerEmail.Text = customer.Email ?? "N/A";
             txtCustomerPhoneNumber.Text = customer.Phone ?? "N/A";
 
             txtCustomerCode.Tag = customer.CustomerID;
+
+            // ENABLE controls when customer is selected
+            txtInitialDeposit.Enabled = true;
+            btnCreateAccount.Enabled = true;
+
+            btnCloseAccount.Enabled = false;      // Enabled only after clicking an account row
+            btnReactiveAccount.Enabled = false;   // Same thing
+
             LoadCustomerAccounts(customer.CustomerID);
-        }
-
-        private void ClearCustomerInfo()
-        {
-            txtCustomerCode.Text = "";
-            txtCustomerName.Text = "";
-            txtCustomerEmail.Text = "";
-            txtCustomerPhoneNumber.Text = "";
-            txtCustomerCode.Tag = null;
-
-            dgvCustomerAccounts.DataSource = null;
-            lblAccountCount.Text = "Total Accounts: 0";
         }
 
         private void btnCreateAccount_Click(object sender, EventArgs e)
@@ -212,18 +234,33 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(txtInitialDeposit.Text))
+            {
+                MessageBox.Show("Amount is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (!decimal.TryParse(txtInitialDeposit.Text, out decimal amount))
             {
-                MessageBox.Show("Invalid deposit");
+                MessageBox.Show("Invalid deposit.");
+                return;
+            }
+
+            // Minimum initial deposit rule
+            if (amount < 500)
+            {
+                MessageBox.Show("Minimum initial deposit is ₱500.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             int customerId = (int)txtCustomerCode.Tag;
+
             _accountRepo.CreateAccount(customerId, amount, "Savings");
 
             LoadCustomerAccounts(customerId);
             txtInitialDeposit.Text = "";
         }
+
 
         private void LoadCustomerAccounts(int customerId)
         {
@@ -371,6 +408,104 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void txbCustomerSearch_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private bool _formatting = false;
+
+        private void txtInitialDeposit_TextChanged(object sender, EventArgs e)
+        {
+            if (_formatting) return;
+
+            string text = txtInitialDeposit.Text;
+
+            // Allow empty
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                txtInitialDeposit.BorderColor = Color.Red;
+                return;
+            }
+
+            // Save cursor position
+            int cursor = txtInitialDeposit.SelectionStart;
+
+            // Split integer and decimal parts
+            string[] parts = text.Split('.');
+
+            string intPart = parts[0].Replace(",", "");
+
+            // Validate integer part only
+            if (!decimal.TryParse(intPart == "" ? "0" : intPart, out decimal intValue))
+            {
+                txtInitialDeposit.BorderColor = Color.Red;
+                return;
+            }
+
+            _formatting = true;
+
+            // Reformat integer part with commas
+            string formattedInt = string.Format("{0:N0}", intValue);
+
+            // Rebuild final text
+            string finalText = formattedInt;
+
+            // Add decimal part back
+            if (parts.Length > 1)
+                finalText += "." + parts[1];
+
+            txtInitialDeposit.Text = finalText;
+
+            // Fix cursor position intelligently
+            txtInitialDeposit.SelectionStart = Math.Min(cursor + (finalText.Length - text.Length), finalText.Length);
+
+            _formatting = false;
+
+            // Validate min deposit (500)
+            if (decimal.TryParse(finalText, out decimal amount))
+            {
+                txtInitialDeposit.BorderColor = amount < 500 ? Color.Red : Color.FromArgb(76, 175, 80);
+            }
+        }
+
+
+
+
+
+        private void txtInitialDeposit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Allow digits
+            if (char.IsDigit(e.KeyChar))
+                return;
+
+            // Allow one decimal point
+            if (e.KeyChar == '.' && !txtInitialDeposit.Text.Contains("."))
+                return;
+
+            // Otherwise block
+            e.Handled = true;
+        }
+
+
+        private void txtInitialDeposit_Leave(object sender, EventArgs e)
+        {
+            string raw = txtInitialDeposit.Text.Replace(",", "");
+
+            if (decimal.TryParse(raw, out decimal num))
+            {
+                txtInitialDeposit.Text = num.ToString("N2");
+            }
+        }
+
+        private void dgvCustomerAccounts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            string status = dgvCustomerAccounts.Rows[e.RowIndex].Cells["Status"].Value.ToString();
+
+            btnCloseAccount.Enabled = status == "Active";
+            btnReactiveAccount.Enabled = status == "Closed";
         }
 
     }

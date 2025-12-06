@@ -134,6 +134,7 @@
             this.btnConfirm.TabIndex = 29;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            this.btnConfirm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnConfirm_KeyDown);
             // 
             // flowLayoutPanel1
             // 
@@ -304,13 +305,15 @@
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.guna2HtmlLabel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmCustomerPIN";
-            this.Padding = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.Padding = new System.Windows.Forms.Padding(20);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "frmCustomerPIN";
             this.Load += new System.EventHandler(this.frmCustomerPIN_Load_1);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCustomerPIN_KeyDown);
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);

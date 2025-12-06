@@ -249,7 +249,7 @@
             this.guna2ShadowPanel4.Location = new System.Drawing.Point(0, 43);
             this.guna2ShadowPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2ShadowPanel4.Name = "guna2ShadowPanel4";
-            this.guna2ShadowPanel4.Padding = new System.Windows.Forms.Padding(16, 16, 16, 16);
+            this.guna2ShadowPanel4.Padding = new System.Windows.Forms.Padding(16);
             this.guna2ShadowPanel4.Radius = 15;
             this.guna2ShadowPanel4.ShadowColor = System.Drawing.Color.Transparent;
             this.guna2ShadowPanel4.ShadowDepth = 0;
@@ -356,7 +356,7 @@
             this.guna2ShadowPanel5.Location = new System.Drawing.Point(0, 43);
             this.guna2ShadowPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2ShadowPanel5.Name = "guna2ShadowPanel5";
-            this.guna2ShadowPanel5.Padding = new System.Windows.Forms.Padding(16, 16, 16, 16);
+            this.guna2ShadowPanel5.Padding = new System.Windows.Forms.Padding(16);
             this.guna2ShadowPanel5.Radius = 15;
             this.guna2ShadowPanel5.ShadowColor = System.Drawing.Color.Transparent;
             this.guna2ShadowPanel5.ShadowDepth = 0;
@@ -409,7 +409,7 @@
             this.guna2ShadowPanel6.Location = new System.Drawing.Point(0, 0);
             this.guna2ShadowPanel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2ShadowPanel6.Name = "guna2ShadowPanel6";
-            this.guna2ShadowPanel6.Padding = new System.Windows.Forms.Padding(16, 16, 16, 16);
+            this.guna2ShadowPanel6.Padding = new System.Windows.Forms.Padding(16);
             this.guna2ShadowPanel6.Radius = 15;
             this.guna2ShadowPanel6.ShadowColor = System.Drawing.Color.Transparent;
             this.guna2ShadowPanel6.ShadowDepth = 0;
@@ -424,7 +424,7 @@
             this.lstNotifications.FormattingEnabled = true;
             this.lstNotifications.ItemHeight = 20;
             this.lstNotifications.Location = new System.Drawing.Point(16, 16);
-            this.lstNotifications.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstNotifications.Margin = new System.Windows.Forms.Padding(4);
             this.lstNotifications.Name = "lstNotifications";
             this.lstNotifications.Size = new System.Drawing.Size(1234, 47);
             this.lstNotifications.TabIndex = 1;
@@ -492,7 +492,7 @@
             this.guna2Panel1.Location = new System.Drawing.Point(3, 2);
             this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(5);
             this.guna2Panel1.Size = new System.Drawing.Size(319, 52);
             this.guna2Panel1.TabIndex = 12;
             // 

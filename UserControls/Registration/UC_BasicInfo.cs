@@ -71,5 +71,43 @@ namespace VaultLinkBankSystem.UserControls.Registration
         {
 
         }
+
+        private void tbxContactNumber_TextChanged(object sender, EventArgs e)
+        {
+            string contact = tbxContactNumber.Text;
+
+            if (!string.IsNullOrEmpty(contact) && contact.StartsWith("+"))
+            {
+                tbxContactNumber.MaxLength = 13; // +639XXXXXXXXX
+            }
+            else
+            {
+                tbxContactNumber.MaxLength = 11; // 09XXXXXXXXX
+            }
+        }
+
+        private void tbxContactNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow Backspace and other controls
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Allow only one leading +
+            if (e.KeyChar == '+')
+            {
+                // Reject + if already typed OR cursor not at first position
+                if (tbxContactNumber.Text.Contains("+") || tbxContactNumber.SelectionStart != 0)
+                    e.Handled = true;
+
+                return;
+            }
+
+            // Digits only
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }

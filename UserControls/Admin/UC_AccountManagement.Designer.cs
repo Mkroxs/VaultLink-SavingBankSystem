@@ -198,7 +198,7 @@
             this.btnCloseAccount.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.btnCloseAccount.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseAccount.ForeColor = System.Drawing.Color.White;
-            this.btnCloseAccount.Location = new System.Drawing.Point(453, 2);
+            this.btnCloseAccount.Location = new System.Drawing.Point(228, 2);
             this.btnCloseAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCloseAccount.Name = "btnCloseAccount";
             this.btnCloseAccount.Size = new System.Drawing.Size(219, 52);
@@ -217,7 +217,7 @@
             this.btnReactiveAccount.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(55)))), ((int)(((byte)(90)))));
             this.btnReactiveAccount.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReactiveAccount.ForeColor = System.Drawing.Color.White;
-            this.btnReactiveAccount.Location = new System.Drawing.Point(228, 2);
+            this.btnReactiveAccount.Location = new System.Drawing.Point(453, 2);
             this.btnReactiveAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReactiveAccount.Name = "btnReactiveAccount";
             this.btnReactiveAccount.Size = new System.Drawing.Size(219, 52);
@@ -369,6 +369,7 @@
             this.dgvCustomerAccounts.ThemeStyle.RowsStyle.Height = 24;
             this.dgvCustomerAccounts.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvCustomerAccounts.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvCustomerAccounts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomerAccounts_CellClick);
             this.dgvCustomerAccounts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomerAccounts_CellContentClick);
             this.dgvCustomerAccounts.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvCustomerAccounts_MouseClick);
             // 
@@ -488,8 +489,8 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnCreateAccount);
-            this.flowLayoutPanel1.Controls.Add(this.btnReactiveAccount);
             this.flowLayoutPanel1.Controls.Add(this.btnCloseAccount);
+            this.flowLayoutPanel1.Controls.Add(this.btnReactiveAccount);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 642);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -513,7 +514,7 @@
             // 
             this.txtInitialDeposit.BorderRadius = 13;
             this.txtInitialDeposit.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtInitialDeposit.DefaultText = "100000";
+            this.txtInitialDeposit.DefaultText = "";
             this.txtInitialDeposit.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtInitialDeposit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtInitialDeposit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -527,8 +528,11 @@
             this.txtInitialDeposit.Name = "txtInitialDeposit";
             this.txtInitialDeposit.PlaceholderText = "";
             this.txtInitialDeposit.SelectedText = "";
-            this.txtInitialDeposit.Size = new System.Drawing.Size(177, 36);
+            this.txtInitialDeposit.Size = new System.Drawing.Size(223, 36);
             this.txtInitialDeposit.TabIndex = 8;
+            this.txtInitialDeposit.TextChanged += new System.EventHandler(this.txtInitialDeposit_TextChanged);
+            this.txtInitialDeposit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInitialDeposit_KeyPress);
+            this.txtInitialDeposit.Leave += new System.EventHandler(this.txtInitialDeposit_Leave);
             // 
             // UC_AccountManagement
             // 

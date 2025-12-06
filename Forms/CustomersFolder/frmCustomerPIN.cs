@@ -191,7 +191,7 @@ namespace VaultLinkBankSystem.Forms.CustomersFolder
                                 // Clear the must change flag
                                 _customerRepo.ClearMustChangePIN(_loggedInCustomer.CustomerID);
 
-                                MessageBox.Show("PIN changed successfully!", "Success",
+                                MessageBox.Show("PIN created successfully!", "Success",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 this.DialogResult = DialogResult.OK;
                                 this.Close();
@@ -346,6 +346,24 @@ namespace VaultLinkBankSystem.Forms.CustomersFolder
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnConfirm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the 'ding' sound
+                btnConfirm.PerformClick();    // Trigger the button click
+            }
+        }
+
+        private void frmCustomerPIN_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnConfirm.PerformClick();  
+                e.Handled = true;
+            }
         }
     }
 }

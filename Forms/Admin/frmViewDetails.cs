@@ -3,8 +3,10 @@ using Org.BouncyCastle.Pqc.Crypto.Lms;
 using System;
 using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using VaultLinkBankSystem;
+using VaultLinkBankSystem.UserControls.Registration;
 using static Syncfusion.Windows.Forms.TabBar;
 
 namespace VaultLinkBankSystem.Forms.Admin
@@ -148,6 +150,8 @@ namespace VaultLinkBankSystem.Forms.Admin
             tbxCity.Enabled = true;
             tbxProvince.Enabled = true;
             tbxZipCode.Enabled = true;
+            tbxDateOfBirth.MaxDate = DateTime.Today.AddYears(-18);
+
         }
 
         private void disableTextBox()
@@ -179,11 +183,15 @@ namespace VaultLinkBankSystem.Forms.Admin
 
                     iconEdit.IconChar = IconChar.Save;
                     iconEdit.IconColor = Color.FromArgb(20, 140, 20);
+
                     btnResetPassword.Enabled = true;
-                    btnResetPIN.Enabled = true;
+
+                    bool firstTimeLogin = _customerRepo.IsFirstTimeLogin(_customer.CustomerID);
+                    btnResetPIN.Enabled = !firstTimeLogin; // Enable ONLY if customer already has a PIN
 
                     return;
                 }
+
 
                 // SAVE MODE
                 if (!int.TryParse(Tag.ToString(), out int customerId))
@@ -239,6 +247,22 @@ namespace VaultLinkBankSystem.Forms.Admin
                 {
                     customer.ImagePath = _newImagePath;
                 }
+
+
+                string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+                if (!Regex.IsMatch(tbxEmailAddress.Text, emailPattern))
+                {
+                    MessageBox.Show("Invalid Email Address.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                string phonePattern = @"^(09|\+639)\d{9}$";
+                if (!Regex.IsMatch(tbxContactNumber.Text, phonePattern))
+                {
+                    MessageBox.Show("Invalid Phone Number. Use format: 09123456789", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+
 
                 bool updated = _customerRepo.UpdateCustomer(customer);
 
@@ -297,6 +321,7 @@ namespace VaultLinkBankSystem.Forms.Admin
                 tbxDateOfBirth.Text = _customer.BirthDate.HasValue
                     ? _customer.BirthDate.Value.ToString("MMMM dd, yyyy")
                     : "N/A";
+                tbxDateOfBirth.MaxDate = DateTime.Today.AddYears(-18);
 
                 tbxContactNumber.Text = _customer.Phone;
                 tbxEmailAddress.Text = _customer.Email;
@@ -371,85 +396,91 @@ namespace VaultLinkBankSystem.Forms.Admin
 
                 if (result == DialogResult.Yes)
                 {
-                    string tempPassword = _customerRepo.ResetCustomerPassword(_customer.CustomerID);
+                    string idNumberPart = _customer.CustomerID.ToString().PadLeft(4, '0');
 
-                    if (!string.IsNullOrEmpty(tempPassword))
-                    {
-                        // Show temporary password to admin
-                        var passwordForm = new Form
-                        {
-                            Text = "Temporary Password",
-                            Width = 450,
-                            Height = 250,
-                            StartPosition = FormStartPosition.CenterParent,
-                            FormBorderStyle = FormBorderStyle.FixedDialog,
-                            MaximizeBox = false,
-                            MinimizeBox = false
-                        };
+                    string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                    Random rnd = new Random();
+                    string randomPart = new string(Enumerable.Repeat(chars, 5)
+                        .Select(s => s[rnd.Next(s.Length)]).ToArray());
 
-                        var lblMessage = new Label
-                        {
-                            Text = $"Temporary password for {_customer.FullName}:",
-                            Location = new Point(20, 20),
-                            AutoSize = true,
-                            Font = new Font("Segoe UI", 10)
-                        };
+                    string tempPassword = idNumberPart + randomPart;
 
-                        var txtPassword = new TextBox
-                        {
-                            Text = tempPassword,
-                            Location = new Point(20, 50),
-                            Width = 390,
-                            Font = new Font("Consolas", 14, FontStyle.Bold),
-                            ReadOnly = true,
-                            TextAlign = HorizontalAlignment.Center
-                        };
-
-                        var lblNote = new Label
-                        {
-                            Text = "⚠ Please write this down. The customer must change it on first login.",
-                            Location = new Point(20, 90),
-                            Width = 390,
-                            Font = new Font("Segoe UI", 9),
-                            ForeColor = Color.DarkRed
-                        };
-
-                        var btnCopy = new Button
-                        {
-                            Text = "Copy to Clipboard",
-                            Location = new Point(90, 140),
-                            Width = 120,
-                            Height = 35
-                        };
-
-                        var btnClose = new Button
-                        {
-                            Text = "Close",
-                            Location = new Point(220, 140),
-                            Width = 120,
-                            Height = 35
-                        };
-
-                        btnCopy.Click += (s, ev) =>
-                        {
-                            Clipboard.SetText(tempPassword);
-                            MessageBox.Show("Password copied to clipboard!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        };
-
-                        btnClose.Click += (s, ev) => passwordForm.Close();
-
-                        passwordForm.Controls.Add(lblMessage);
-                        passwordForm.Controls.Add(txtPassword);
-                        passwordForm.Controls.Add(lblNote);
-                        passwordForm.Controls.Add(btnCopy);
-                        passwordForm.Controls.Add(btnClose);
-
-                        passwordForm.ShowDialog();
-                    }
-                    else
+                    bool updated = _customerRepo.UpdateCustomerPassword(_customer.CustomerID, tempPassword);
+                    if (!updated)
                     {
                         MessageBox.Show("Failed to reset password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
+
+                    var passwordForm = new Form
+                    {
+                        Text = "Temporary Password",
+                        Width = 450,
+                        Height = 250,
+                        StartPosition = FormStartPosition.CenterParent,
+                        FormBorderStyle = FormBorderStyle.FixedDialog,
+                        MaximizeBox = false,
+                        MinimizeBox = false
+                    };
+
+                    var lblMessage = new Label
+                    {
+                        Text = $"Temporary password for {_customer.FullName}:",
+                        Location = new Point(20, 20),
+                        AutoSize = true,
+                        Font = new Font("Segoe UI", 10)
+                    };
+
+                    var txtPassword = new TextBox
+                    {
+                        Text = tempPassword,
+                        Location = new Point(20, 50),
+                        Width = 390,
+                        Font = new Font("Consolas", 14, FontStyle.Bold),
+                        ReadOnly = true,
+                        TextAlign = HorizontalAlignment.Center
+                    };
+
+                    var lblNote = new Label
+                    {
+                        Text = "⚠ Please write this down. The customer must change it on first login.",
+                        Location = new Point(20, 90),
+                        Width = 390,
+                        Font = new Font("Segoe UI", 9),
+                        ForeColor = Color.DarkRed
+                    };
+
+                    var btnCopy = new Button
+                    {
+                        Text = "Copy to Clipboard",
+                        Location = new Point(90, 140),
+                        Width = 120,
+                        Height = 35
+                    };
+
+                    var btnClose = new Button
+                    {
+                        Text = "Close",
+                        Location = new Point(220, 140),
+                        Width = 120,
+                        Height = 35
+                    };
+
+                    btnCopy.Click += (s, ev) =>
+                    {
+                        Clipboard.SetText(tempPassword);
+                        MessageBox.Show("Password copied to clipboard!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    };
+
+                    btnClose.Click += (s, ev) => passwordForm.Close();
+
+                    passwordForm.Controls.Add(lblMessage);
+                    passwordForm.Controls.Add(txtPassword);
+                    passwordForm.Controls.Add(lblNote);
+                    passwordForm.Controls.Add(btnCopy);
+                    passwordForm.Controls.Add(btnClose);
+
+                    passwordForm.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -457,6 +488,7 @@ namespace VaultLinkBankSystem.Forms.Admin
                 MessageBox.Show($"Error resetting password: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnResetPIN_Click(object sender, EventArgs e)
         {
@@ -555,6 +587,33 @@ namespace VaultLinkBankSystem.Forms.Admin
             catch (Exception ex)
             {
                 MessageBox.Show($"Error resetting PIN: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tbxContactNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '+')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '+' && tbxContactNumber.Text.Contains("+"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbxContactNumber_TextChanged(object sender, EventArgs e)
+        {
+            string contact = tbxContactNumber.Text;
+
+            if (!string.IsNullOrEmpty(contact) && contact.StartsWith("+"))
+            {
+                tbxContactNumber.MaxLength = 13; // With + sign
+            }
+            else
+            {
+                tbxContactNumber.MaxLength = 11; // Without + sign
             }
         }
     }

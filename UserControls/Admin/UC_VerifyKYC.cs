@@ -255,69 +255,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void btnVerify_Click(object sender, EventArgs e)
         {
-            if (_selectedCustomerId == 0)
-            {
-                MessageBox.Show("Please select a customer first.", "No Selection",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                VaultLinkBankSystem.Customer customer = _customerRepo.GetCustomerById(_selectedCustomerId);
-
-                if (customer == null)
-                {
-                    MessageBox.Show("Customer not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                DialogResult result = MessageBox.Show(
-                    $"Are you sure you want to VERIFY the KYC for:\n\n" +
-                    $"Customer: {customer.FullName}\n" +
-                    $"Email: {customer.Email}\n" +
-                    $"ID: {customer.IDType} - {customer.IDNumber}\n\n" +
-                    $"This will allow the customer to:\n" +
-                    $"✓ Create savings accounts\n" +
-                    $"✓ Login to kiosk\n" +
-                    $"✓ Use all banking services",
-                    "Confirm KYC Verification",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-
-                if (result == DialogResult.Yes)
-                {
-                    bool success = _customerRepo.VerifyKYC(_selectedCustomerId);
-
-                    if (success)
-                    {
-                        MessageBox.Show(
-                            $"✅ KYC VERIFIED SUCCESSFULLY!\n\n" +
-                            $"Customer: {customer.FullName}\n" +
-                            $"Customer Code: {customer.CustomerCode}\n" +
-                            $"Verified: {DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt")}\n\n" +
-                            $"The customer can now create accounts and use banking services.",
-                            "Verification Complete",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information
-                        );
-
-                        _selectedCustomerId = 0;
-                        LoadPendingKYC();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to verify KYC. Please try again.", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error verifying KYC: {ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
         private void btnReject_Click(object sender, EventArgs e)
@@ -394,6 +332,74 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnVerify_Click_1(object sender, EventArgs e)
+        {
+            if (_selectedCustomerId == 0)
+            {
+                MessageBox.Show("Please select a customer first.", "No Selection",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                VaultLinkBankSystem.Customer customer = _customerRepo.GetCustomerById(_selectedCustomerId);
+
+                if (customer == null)
+                {
+                    MessageBox.Show("Customer not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                DialogResult result = MessageBox.Show(
+                    $"Are you sure you want to VERIFY the KYC for:\n\n" +
+                    $"Customer: {customer.FullName}\n" +
+                    $"Email: {customer.Email}\n" +
+                    $"ID: {customer.IDType} - {customer.IDNumber}\n\n" +
+                    $"This will allow the customer to:\n" +
+                    $"✓ Create savings accounts\n" +
+                    $"✓ Login to kiosk\n" +
+                    $"✓ Use all banking services",
+                    "Confirm KYC Verification",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    bool success = _customerRepo.VerifyKYC(_selectedCustomerId);
+                    string customerPassword = $"VL{customer.CustomerCode.Substring(4)}-{customer.BirthDate:yyyyMMdd}";
+                    if (success)
+                    {
+                        MessageBox.Show(
+                            $"✅ KYC VERIFIED SUCCESSFULLY!\n\n" +
+                            $"Customer: {customer.FullName}\n" +
+                            $"Customer Code: {customer.CustomerCode}\n" +
+                            $"Customer Password: {customerPassword}\n" +
+                            $"Verified: {DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt")}\n\n" +
+                            $"The customer can now create accounts and use banking services.",
+                            "Verification Complete",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+
+                        _selectedCustomerId = 0;
+                        LoadPendingKYC();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to verify KYC. Please try again.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error verifying KYC: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

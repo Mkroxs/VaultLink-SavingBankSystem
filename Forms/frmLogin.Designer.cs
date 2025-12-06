@@ -204,6 +204,8 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "LOGIN";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnLogin_KeyDown);
+            this.btnLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnLogin_KeyPress);
             // 
             // iconPassword
             // 
@@ -255,6 +257,7 @@
             this.tbxPassword.Size = new System.Drawing.Size(267, 54);
             this.tbxPassword.TabIndex = 1;
             this.tbxPassword.TextOffset = new System.Drawing.Point(0, 3);
+            this.tbxPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxPassword_KeyDown);
             // 
             // tbxUsername
             // 

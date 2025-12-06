@@ -221,7 +221,7 @@
             this.cbxIdType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxIdType.Name = "cbxIdType";
             this.cbxIdType.Size = new System.Drawing.Size(429, 33);
-            this.cbxIdType.TabIndex = 32;
+            this.cbxIdType.TabIndex = 0;
             // 
             // guna2Panel3
             // 
@@ -270,7 +270,7 @@
             this.tbxIdNumber.PlaceholderText = "";
             this.tbxIdNumber.SelectedText = "";
             this.tbxIdNumber.Size = new System.Drawing.Size(429, 39);
-            this.tbxIdNumber.TabIndex = 14;
+            this.tbxIdNumber.TabIndex = 1;
             // 
             // guna2Panel9
             // 
@@ -317,7 +317,7 @@
             this.cbxEmploymentStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxEmploymentStatus.Name = "cbxEmploymentStatus";
             this.cbxEmploymentStatus.Size = new System.Drawing.Size(429, 33);
-            this.cbxEmploymentStatus.TabIndex = 33;
+            this.cbxEmploymentStatus.TabIndex = 2;
             // 
             // guna2Panel1
             // 
@@ -368,7 +368,7 @@
             this.cbxSourceOfFunds.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxSourceOfFunds.Name = "cbxSourceOfFunds";
             this.cbxSourceOfFunds.Size = new System.Drawing.Size(429, 33);
-            this.cbxSourceOfFunds.TabIndex = 34;
+            this.cbxSourceOfFunds.TabIndex = 3;
             // 
             // guna2Panel2
             // 
@@ -416,7 +416,7 @@
             this.cbxMonthlyIncomeRange.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxMonthlyIncomeRange.Name = "cbxMonthlyIncomeRange";
             this.cbxMonthlyIncomeRange.Size = new System.Drawing.Size(429, 33);
-            this.cbxMonthlyIncomeRange.TabIndex = 35;
+            this.cbxMonthlyIncomeRange.TabIndex = 4;
             // 
             // guna2HtmlLabel2
             // 

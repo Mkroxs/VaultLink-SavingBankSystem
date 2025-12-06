@@ -236,6 +236,7 @@
             // iconEdit
             // 
             this.iconEdit.BackColor = System.Drawing.Color.Transparent;
+            this.iconEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconEdit.ForeColor = System.Drawing.Color.DimGray;
             this.iconEdit.IconChar = FontAwesome.Sharp.IconChar.Edit;
             this.iconEdit.IconColor = System.Drawing.Color.DimGray;
@@ -314,6 +315,8 @@
             this.tbxContactNumber.SelectedText = "";
             this.tbxContactNumber.Size = new System.Drawing.Size(403, 33);
             this.tbxContactNumber.TabIndex = 48;
+            this.tbxContactNumber.TextChanged += new System.EventHandler(this.tbxContactNumber_TextChanged);
+            this.tbxContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxContactNumber_KeyPress);
             // 
             // tbxCity
             // 

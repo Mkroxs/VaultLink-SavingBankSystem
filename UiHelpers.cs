@@ -256,5 +256,19 @@ namespace VaultLinkBankSystem.Helpers
             uc.Visible = false;
         }
 
+
+        public static void EnableEnterKeyToClick(TextBox textBox, Button button)
+        {
+            textBox.KeyDown += (sender, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true; // Prevent the beep
+                    button.PerformClick();     // Trigger the button click
+                }
+            };
+        }
     }
+
+
 }

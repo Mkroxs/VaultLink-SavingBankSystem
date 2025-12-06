@@ -29,7 +29,6 @@ namespace VaultLinkBankSystem.Forms.CustomersFolder
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Hide();
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -82,6 +81,59 @@ namespace VaultLinkBankSystem.Forms.CustomersFolder
             txtConfirmPassword.Clear();
             txtNewPassword.Clear();
             txtPreviousPassword.Clear();
+        }
+
+        private void btnConfirm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the 'ding' sound
+                btnConfirm.PerformClick();    // Trigger the button click
+            }
+        }
+
+        private void txtNewPassword_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void iconPictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+        private void TogglePassword(Guna.UI2.WinForms.Guna2TextBox textbox, FontAwesome.Sharp.IconPictureBox iconButton)
+        {
+            if (textbox.PasswordChar == '*')
+            {
+                // SHOW PASSWORD
+                textbox.PasswordChar = '\0';  // removes masking
+                iconButton.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            }
+            else
+            {
+                // HIDE PASSWORD
+                textbox.PasswordChar = '*';
+                iconButton.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+            }
+        }
+
+
+        private void showPrevPass_Click(object sender, EventArgs e)
+        {
+            TogglePassword(txtPreviousPassword, showPrevPass);
+
+        }
+
+        private void showNewPass_Click(object sender, EventArgs e)
+        {
+            TogglePassword(txtNewPassword, showNewPass);
+
+
+        }
+
+        private void showConfirmPass_Click(object sender, EventArgs e)
+        {
+            TogglePassword(txtConfirmPassword, showConfirmPass);
         }
     }
 }

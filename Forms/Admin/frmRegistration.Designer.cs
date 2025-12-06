@@ -43,7 +43,6 @@
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
-            this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnBrowse = new Guna.UI2.WinForms.Guna2Button();
             this.pbCustomerImage = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -100,6 +99,7 @@
             this.guna2Panel8.Size = new System.Drawing.Size(776, 828);
             this.guna2Panel8.TabIndex = 1;
             this.guna2Panel8.UseTransparentBackground = true;
+            this.guna2Panel8.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel8_Paint);
             // 
             // guna2Panel9
             // 
@@ -148,6 +148,8 @@
             this.btnNext.Size = new System.Drawing.Size(116, 35);
             this.btnNext.TabIndex = 28;
             this.btnNext.Text = "Next";
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click_1);
+            this.btnNext.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnNext_KeyDown);
             // 
             // btnRegister
             // 
@@ -167,6 +169,7 @@
             this.btnRegister.TabIndex = 30;
             this.btnRegister.Text = "Register";
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click_1);
+            this.btnRegister.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnRegister_KeyDown);
             // 
             // guna2HtmlLabel2
             // 
@@ -236,7 +239,6 @@
             // 
             // guna2Panel5
             // 
-            this.guna2Panel5.Controls.Add(this.txtPassword);
             this.guna2Panel5.Controls.Add(this.btnBrowse);
             this.guna2Panel5.Controls.Add(this.pbCustomerImage);
             this.guna2Panel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -246,14 +248,6 @@
             this.guna2Panel5.Padding = new System.Windows.Forms.Padding(91, 90, 91, 50);
             this.guna2Panel5.Size = new System.Drawing.Size(419, 376);
             this.guna2Panel5.TabIndex = 6;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(95, 322);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(228, 22);
-            this.txtPassword.TabIndex = 36;
             // 
             // btnBrowse
             // 
@@ -383,19 +377,20 @@
             this.Controls.Add(this.iconPictureBox2);
             this.Controls.Add(this.guna2Panel7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmRegistration";
             this.Padding = new System.Windows.Forms.Padding(40, 39, 40, 39);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRegistration";
             this.Load += new System.EventHandler(this.frmRegistration_Load_1);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmRegistration_KeyDown);
             this.guna2Panel7.ResumeLayout(false);
             this.guna2Panel8.ResumeLayout(false);
             this.guna2Panel9.ResumeLayout(false);
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel4.ResumeLayout(false);
             this.guna2Panel5.ResumeLayout(false);
-            this.guna2Panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCustomerImage)).EndInit();
             this.guna2Panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
@@ -428,6 +423,5 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
-        private System.Windows.Forms.TextBox txtPassword;
     }
 }

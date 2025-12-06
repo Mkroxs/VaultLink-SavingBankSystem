@@ -210,43 +210,61 @@ namespace VaultLinkBankSystem.Forms.Admin
                     return false;
                 }
 
+                if (customerRepo.IsEmailExists(_ucBasicInfo.CustomerEmail))
+                {
+                    MessageBox.Show("This email is already registered. Please use a different email.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
                 string phonePattern = @"^(09|\+639)\d{9}$";
                 if (!Regex.IsMatch(_ucBasicInfo.CustomerContactNumber, phonePattern))
                 {
-                    MessageBox.Show("Invalid Phone Number. Use format: 09123456789", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Invalid Phone Number. Use format: 09123456789 or +639123456789", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
 
             if (_currentStep == 1)
             {
-                if (string.IsNullOrWhiteSpace(_ucAddressInfo.CustomerAddress))
+                if (string.IsNullOrWhiteSpace(_ucAddressInfo.Street) ||
+                    string.IsNullOrWhiteSpace(_ucAddressInfo.Barangay) ||
+                    string.IsNullOrWhiteSpace(_ucAddressInfo.City) ||
+                    string.IsNullOrWhiteSpace(_ucAddressInfo.Province) ||
+                    string.IsNullOrWhiteSpace(_ucAddressInfo.ZipCode))
                 {
-                    MessageBox.Show("Address cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("All address fields must be filled out.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
 
             if (_currentStep == 2)
             {
-                string selectedIdType = _ucIdentityVerification.CustomerIDType;
-                string inputIdNumber = _ucIdentityVerification.CustomerIDNumber;
+                if (string.IsNullOrWhiteSpace(_ucIdentityVerification.CustomerEmploymentStatus) ||
+                    string.IsNullOrWhiteSpace(_ucIdentityVerification.CustomerSourceOfFunds) ||
+                    string.IsNullOrWhiteSpace(_ucIdentityVerification.CustomerMonthlyIncome))
+                {
+                    MessageBox.Show("All employment and financial fields must be completed.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
 
-                if (string.IsNullOrWhiteSpace(selectedIdType))
+                string idType = _ucIdentityVerification.CustomerIDType;
+                string idNumber = _ucIdentityVerification.CustomerIDNumber;
+
+                if (string.IsNullOrWhiteSpace(idType))
                 {
                     MessageBox.Show("Please select an ID Type.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
-                if (string.IsNullOrWhiteSpace(inputIdNumber))
+                if (string.IsNullOrWhiteSpace(idNumber))
                 {
                     MessageBox.Show("ID Number is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
-                if (!ValidateID(selectedIdType, inputIdNumber))
+                if (!ValidateID(idType, idNumber))
                 {
-                    MessageBox.Show($"Invalid format for {selectedIdType}. Please check the number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Invalid ID Number format.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
@@ -313,6 +331,37 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void btnRegister_Click_1(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(_ucAddressInfo.Street) ||
+                string.IsNullOrWhiteSpace(_ucAddressInfo.Barangay) ||
+                string.IsNullOrWhiteSpace(_ucAddressInfo.City) ||
+                string.IsNullOrWhiteSpace(_ucAddressInfo.Province) ||
+                string.IsNullOrWhiteSpace(_ucAddressInfo.ZipCode))
+            {
+                MessageBox.Show("Address information is incomplete. Please fill out all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(_ucIdentityVerification.CustomerEmploymentStatus) ||
+                string.IsNullOrWhiteSpace(_ucIdentityVerification.CustomerSourceOfFunds) ||
+                string.IsNullOrWhiteSpace(_ucIdentityVerification.CustomerMonthlyIncome))
+            {
+                MessageBox.Show("Employment and verification details are incomplete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(_ucIdentityVerification.CustomerIDType) ||
+                string.IsNullOrWhiteSpace(_ucIdentityVerification.CustomerIDNumber))
+            {
+                MessageBox.Show("ID details are incomplete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!ValidateID(_ucIdentityVerification.CustomerIDType, _ucIdentityVerification.CustomerIDNumber))
+            {
+                MessageBox.Show("Invalid ID format.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string customerPassword;
             try
             {
@@ -327,10 +376,6 @@ namespace VaultLinkBankSystem.Forms.Admin
                     BirthDate = _ucBasicInfo.CustomerBirthDate,
                     CivilStatus = _ucBasicInfo.CustomerCivilStatus,
                     ImagePath = imagePath ?? "john.jpg",
-                    
-
-
-
                     EmploymentStatus = _ucIdentityVerification.CustomerEmploymentStatus,
                     SourceOfFunds = _ucIdentityVerification.CustomerSourceOfFunds,
                     MonthlyIncomeRange = _ucIdentityVerification.CustomerMonthlyIncome,
@@ -342,14 +387,9 @@ namespace VaultLinkBankSystem.Forms.Admin
 
                 customerPassword = $"VL{testCustomer.CustomerCode.Substring(4)}-{testCustomer.BirthDate:yyyyMMdd}";
 
-                customerRepo.CreateCustomer(testCustomer,customerPassword);
+                customerRepo.CreateCustomer(testCustomer, customerPassword);
 
-                MessageBox.Show(
-                    $"Registration Successful!\n\nCustomer Code: {testCustomer.CustomerCode}",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                MessageBox.Show($"Registration Successful!\n\nCustomer Code: {testCustomer.CustomerCode}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Close();
             }
@@ -361,7 +401,7 @@ namespace VaultLinkBankSystem.Forms.Admin
 
         private void frmRegistration_Load_1(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -386,6 +426,48 @@ namespace VaultLinkBankSystem.Forms.Admin
                     {
                         MessageBox.Show("Invalid image format or file error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                }
+            }
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNext_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void btnRegister_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void btnNext_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Panel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void frmRegistration_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (btnRegister.Visible == true)
+                {
+                    e.SuppressKeyPress = true;
+                    btnRegister.PerformClick();
+                }
+                else if (btnNext.Visible == true)
+                {
+                    e.SuppressKeyPress = true;
+                    btnNext.PerformClick();
                 }
             }
         }

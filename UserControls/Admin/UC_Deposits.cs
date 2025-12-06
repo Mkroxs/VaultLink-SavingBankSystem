@@ -24,6 +24,7 @@ using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using PdfColor = iText.Kernel.Colors.ColorConstants;
+using System.Windows.Media;
 
 namespace VaultLinkBankSystem.UserControls.Admin
 {
@@ -35,6 +36,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private VaultLinkBankSystem.Customer _selectedCustomer;
         private List<Account> _customerAccounts;
+
+
+        private decimal accountBalance;
         public UC_Deposits()
         {
             InitializeComponent();
@@ -51,8 +55,16 @@ namespace VaultLinkBankSystem.UserControls.Admin
         private void UC_Deposits_Load(object sender, EventArgs e)
         {
             UiHelpers.FixGuna2TextBoxVisibility(this);
+            UpdateAccountDropdownState();
 
         }
+        private void UpdateAccountDropdownState()
+        {
+            cbxSelectAccount.Enabled = (_selectedCustomer != null &&
+                                        _customerAccounts != null &&
+                                        _customerAccounts.Count > 0);
+        }
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -235,7 +247,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
             lblName.Text = _selectedCustomer.FullName;
 
             decimal totalBalance = _customerAccounts.Sum(a => a.Balance);
-            lblTotalBalance.Text = totalBalance.ToString("C2");
+            lblTotalBalance.Text = $"₱{totalBalance:N2}";
 
             if (!string.IsNullOrEmpty(_selectedCustomer.ImagePath) && File.Exists(_selectedCustomer.ImagePath))
             {
@@ -254,12 +266,18 @@ namespace VaultLinkBankSystem.UserControls.Admin
             }
 
             PopulateAccountDropdown();
+            UpdateAccountDropdownState();
+
         }
 
 
 
         private void PopulateAccountDropdown()
         {
+
+           
+
+
             cbxSelectAccount.Items.Clear();
             cbxSelectAccount.DisplayMember = "DisplayText";
             cbxSelectAccount.ValueMember = "AccountID";
@@ -271,7 +289,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     AccountID = account.AccountID,
                     AccountNumber = account.AccountNumber,
                     AccountStatus = account.Status,   // ADD THIS
-                    DisplayText = $"{account.AccountNumber} - {account.AccountType} ({account.Balance:C2})"
+                    DisplayText = $"{account.AccountNumber} - {account.AccountType} (₱{account.Balance:N2}))"
                 });
             }
 
@@ -322,27 +340,33 @@ namespace VaultLinkBankSystem.UserControls.Admin
                     return;
                 }
 
+
                 dynamic selectedItem = cbxSelectAccount.SelectedItem;
                 int accountId = selectedItem.AccountID;
                 string accountNumber = selectedItem.AccountNumber;
 
+
+
                 // Confirm Deposit
                 DialogResult result = MessageBox.Show(
-                     $"Are you sure you want to deposit {amount:C2} from this account?",
+                     $"Are you sure you want to deposit ₱{amount:N2} from this account?",
                      "Confirm Deposit",
                      MessageBoxButtons.YesNo,
                      MessageBoxIcon.Question);
 
+
+
                 if (result == DialogResult.Yes)
                 {
+
                     Transaction transaction = _transactionRepo.Deposit(accountId, amount, "Deposit");
 
                     MessageBox.Show(
                         $"Deposit successful!\n\n" +
                         $"Transaction ID: {transaction.TransactionID}\n" +
-                        $"Amount: {transaction.Amount:C2}\n" +
-                        $"Previous Balance: {transaction.PreviousBalance:C2}\n" +
-                        $"New Balance: {transaction.NewBalance:C2}\n" +
+                        $"Amount: ₱{transaction.Amount:N2}\n" +
+                        $"Previous Balance: ₱{transaction.PreviousBalance:N2}\n" +
+                        $"New Balance: ₱{transaction.NewBalance:N2}" +
                         $"Date: {transaction.TransactionDate:g}",
                         "Success",
                         MessageBoxButtons.OK,
@@ -381,6 +405,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
             pbCustomerPicture.Image = null;
             _selectedCustomer = null;
             _customerAccounts = null;
+            cbxSelectAccount.Enabled = false;
+
         }
 
         private void ClearForm()
@@ -502,9 +528,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 ? newBalance + amount
                 : newBalance - amount;
 
-            doc.Add(new Paragraph($"Transaction Amount: {amount:C2}").SetFont(boldFont).SetFontSize(13));
-            doc.Add(new Paragraph($"Previous Balance: {previousBalance:C2}").SetFont(regularFont).SetFontSize(11));
-            doc.Add(new Paragraph($"New Balance: {newBalance:C2}")
+            doc.Add(new Paragraph($"Transaction Amount: ₱{amount:N2}").SetFont(boldFont).SetFontSize(13));
+            doc.Add(new Paragraph($"Previous Balance: ₱{previousBalance:N2}").SetFont(regularFont).SetFontSize(11));
+            doc.Add(new Paragraph($"New Balance: ₱{newBalance:N2}")
                 .SetFont(boldFont).SetFontSize(13).SetMarginBottom(20));
 
             doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
@@ -534,6 +560,10 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void cbxSelectAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            
+
+
             if (cbxSelectAccount.SelectedItem == null)
             {
                 lblCurrentBalance.Text = "N/A";
@@ -550,26 +580,64 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 Account selectedAccount = _customerAccounts
                     .FirstOrDefault(a => a.AccountID == accountId);
 
-                if (selectedAccount != null)
+                if (selectedAccount == null)
                 {
-                    lblCurrentBalance.Text = selectedAccount.Balance.ToString("C2");
+                    lblCurrentBalance.Text = "N/A";
+                    txtDepositAmount.Enabled = false;
+                    btnDeposit.Enabled = false;
+                    return;
+                }
 
-                    if (selectedAccount.Status == "Closed")
+                accountBalance = selectedAccount.Balance;
+                lblCurrentBalance.Text = $"₱{selectedAccount.Balance:N2}";
+
+                // Compute maximum allowed deposit safely
+                decimal maxAllowedDeposit = 100000m - selectedAccount.Balance;
+                if (maxAllowedDeposit < 0) maxAllowedDeposit = 0;
+
+                // Check if user already typed something numeric
+                decimal typedAmount = 0;
+                if (decimal.TryParse(txtDepositAmount.Text.Replace(",", ""), out decimal parsed))
+                    typedAmount = parsed;
+
+                bool isClosed = selectedAccount.Status == "Closed";
+                bool reachedMaxBalance = selectedAccount.Balance >= 100000m;
+                bool exceedingIfTyped = typedAmount > maxAllowedDeposit;
+
+                if (isClosed || reachedMaxBalance || exceedingIfTyped)
+                {
+                    // Make field read-only
+                    txtDepositAmount.Enabled = false;
+                    btnDeposit.Enabled = false;
+
+                    cbxSelectAccount.ForeColor = WinFormsColor.Red;
+
+                    if (isClosed)
                     {
-                        // Disable input for closed accounts
-                        txtDepositAmount.Enabled = false;
-                        btnDeposit.Enabled = false;
-
-                        // ComboBox indicator (text becomes red)
-                        cbxSelectAccount.ForeColor = WinFormsColor.Red;
+                        txtDepositAmount.Text = "Account is closed";
+                        txtDepositAmount.ForeColor = WinFormsColor.DarkRed;
                     }
                     else
                     {
-                        txtDepositAmount.Enabled = true;
-                        btnDeposit.Enabled = true;
+                        txtDepositAmount.Text = "Maximum balance reached!";
+                        txtDepositAmount.ForeColor = WinFormsColor.DarkRed;
+                    }
+                }
+                else
+                {
+                    // Account is open and deposit still allowed
+                    txtDepositAmount.Enabled = true;
+                    btnDeposit.Enabled = true;
+                    cbxSelectAccount.ForeColor = WinFormsColor.Green;
 
-                        // Active = green
-                        cbxSelectAccount.ForeColor = WinFormsColor.Green;
+                    // Only reset placeholder if field is empty or invalid text
+                    if (string.IsNullOrWhiteSpace(txtDepositAmount.Text) ||
+                        txtDepositAmount.Text == "Amount" ||
+                        txtDepositAmount.Text == "Account is closed" ||
+                        txtDepositAmount.Text == "Maximum balance reached!")
+                    {
+                        txtDepositAmount.Text = "Amount";
+                        txtDepositAmount.ForeColor = WinFormsColor.Gray;
                     }
                 }
             }
@@ -583,12 +651,12 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void tbxAccountNumber_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
-        
 
-        
+
+
 
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
         {
@@ -646,5 +714,141 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             txtDepositAmount.Clear();
         }
+
+        private void txtDepositAmount_TextChanged(object sender, EventArgs e)
+        {
+            // Prevent recursion
+            txtDepositAmount.TextChanged -= txtDepositAmount_TextChanged;
+
+            try
+            {
+                string text = txtDepositAmount.Text ?? "";
+                int cursor = txtDepositAmount.SelectionStart;
+
+                // Ignore placeholder
+                if (text == "Amount")
+                {
+                    txtDepositAmount.TextChanged += txtDepositAmount_TextChanged;
+                    return;
+                }
+
+                // Remove commas
+                string raw = text.Replace(",", "").Trim();
+
+                // If field becomes empty, wipe it safely
+                if (raw == "")
+                {
+                    txtDepositAmount.Text = "";
+                    txtDepositAmount.SelectionStart = 0;
+                    txtDepositAmount.TextChanged += txtDepositAmount_TextChanged;
+                    return;
+                }
+
+                // Build filtered numeric text (digits + one dot)
+                bool hasDot = false;
+                List<char> valid = new List<char>();
+
+                foreach (char c in raw)
+                {
+                    if (char.IsDigit(c))
+                    {
+                        valid.Add(c);
+                    }
+                    else if (c == '.' && !hasDot)
+                    {
+                        hasDot = true;
+                        valid.Add(c);
+                    }
+                }
+
+                string filtered = new string(valid.ToArray());
+
+                // Disallow decimal as the first char
+                if (filtered.StartsWith("."))
+                    filtered = filtered.TrimStart('.');
+
+                if (filtered == "")
+                {
+                    txtDepositAmount.Text = "";
+                    txtDepositAmount.SelectionStart = 0;
+                    txtDepositAmount.TextChanged += txtDepositAmount_TextChanged;
+                    return;
+                }
+
+                // Limit decimal places to 2
+                if (filtered.Contains("."))
+                {
+                    int dotIndex = filtered.IndexOf('.');
+                    string whole = filtered.Substring(0, dotIndex);
+                    string dec = filtered.Substring(dotIndex + 1);
+
+                    if (dec.Length > 2)
+                        dec = dec.Substring(0, 2);
+
+                    filtered = whole + "." + dec;
+                }
+
+                // Parse safely
+                if (!decimal.TryParse(filtered, out decimal amount))
+                {
+                    txtDepositAmount.TextChanged += txtDepositAmount_TextChanged;
+                    return;
+                }
+
+                // --- MAX ACCOUNT BALANCE CHECK ---
+                decimal newBalance = accountBalance + amount;
+                if (newBalance > 100000m)
+                {
+                    decimal maxAllowedDeposit = 100000m - accountBalance;
+                    if (maxAllowedDeposit < 0) maxAllowedDeposit = 0;
+
+                    MessageBox.Show(
+                        $"Deposit exceeds the allowed limit.\n" +
+                        $"You can only deposit up to ₱{maxAllowedDeposit:N2}.",
+                        "Limit Reached",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    // Force textbox to allowable max
+                    txtDepositAmount.Text = maxAllowedDeposit.ToString("N2").TrimEnd('0').TrimEnd('.');
+                    txtDepositAmount.SelectionStart = txtDepositAmount.Text.Length;
+                    txtDepositAmount.TextChanged += txtDepositAmount_TextChanged;
+                    return;
+                }
+
+                // Format with commas (keep decimals)
+                string formatted;
+                if (filtered.Contains("."))
+                {
+                    int dotIndex = filtered.IndexOf('.');
+                    string whole = filtered.Substring(0, dotIndex);
+                    string dec = filtered.Substring(dotIndex + 1);
+
+                    if (whole == "")
+                        whole = "0";
+
+                    long wholeNumber = long.Parse(whole);
+                    formatted = string.Format("{0:N0}", wholeNumber) + "." + dec;
+                }
+                else
+                {
+                    formatted = string.Format("{0:N0}", long.Parse(filtered));
+                }
+
+                // Recalculate cursor
+                int newCursor = formatted.Length - (text.Length - cursor);
+                if (newCursor < 0) newCursor = 0;
+                if (newCursor > formatted.Length) newCursor = formatted.Length;
+
+                txtDepositAmount.Text = formatted;
+                txtDepositAmount.SelectionStart = newCursor;
+            }
+            finally
+            {
+                txtDepositAmount.TextChanged += txtDepositAmount_TextChanged;
+            }
+        }
     }
 }
+

@@ -128,7 +128,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 DefaultCellStyle = new DataGridViewCellStyle
                 {
                     Alignment = DataGridViewContentAlignment.MiddleRight,
-                    Format = "C2"
+                    Format = "₱#,##0.00"
                 }
             });
 
@@ -284,9 +284,10 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 .Where(t => t.TransactionType == "Transfer Out")
                 .Sum(t => t.Amount);
 
-            lblTotalDeposits.Text = totalDeposits.ToString("C2");
-            lblTotalWithdrawals.Text = totalWithdrawals.ToString("C2");
-            lblTotalTransfers.Text = totalTransfers.ToString("C2");
+            lblTotalDeposits.Text = $"₱{totalDeposits:N2}";
+            lblTotalWithdrawals.Text = $"₱{totalWithdrawals:N2}";
+            lblTotalTransfers.Text = $"₱{totalTransfers:N2}";
+
         }
 
 

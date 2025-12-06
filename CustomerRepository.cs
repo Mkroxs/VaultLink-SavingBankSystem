@@ -16,14 +16,6 @@ namespace VaultLinkBankSystem
             _connectionString = ConfigurationManager.ConnectionStrings["BankingDB"].ConnectionString;
         }
 
-        // ============================================
-        // CREATE CUSTOMER WITH PASSWORD
-        // ============================================
-        /// <summary>
-        /// Creates a new customer with hashed password
-        /// Password is set during registration by customer
-        /// PIN is NULL - customer sets it on first kiosk login
-        /// </summary>
         public int CreateCustomer(Customer customer, string plainPassword)
         {
             string query = @"INSERT INTO Customers (
@@ -42,7 +34,6 @@ VALUES (
 
             try
             {
-                // Hash the password
                 string hashedPassword = PasswordHashHelper.HashPassword(plainPassword);
 
                 using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -57,13 +48,8 @@ VALUES (
                     cmd.Parameters.AddWithValue("@BirthDate", customer.BirthDate ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@CivilStatus", customer.CivilStatus ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@ImagePath", customer.ImagePath ?? (object)DBNull.Value);
-
-                    // Store hashed password
                     cmd.Parameters.AddWithValue("@PasswordHash", hashedPassword);
-
-                    // PIN is NULL initially - customer sets it on first kiosk login
                     cmd.Parameters.AddWithValue("@PINHash", DBNull.Value);
-
                     cmd.Parameters.AddWithValue("@EmploymentStatus", customer.EmploymentStatus ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@SourceOfFunds", customer.SourceOfFunds ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@MonthlyIncomeRange", customer.MonthlyIncomeRange ?? (object)DBNull.Value);
@@ -84,13 +70,20 @@ VALUES (
             }
         }
 
-        // ============================================
-        // KIOSK LOGIN - STEP 1: PASSWORD VERIFICATION
-        // ============================================
-        /// <summary>
-        /// First authentication: Verifies email and password
-        /// Returns customer if password correct, null if not
-        /// </summary>
+        public bool IsEmailExists(string email)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("SELECT COUNT(1) FROM Customers WHERE Email = @Email", connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
         public Customer KioskPasswordLogin(string email, string password)
         {
             string query = "SELECT * FROM Customers WHERE Email = @Email";
@@ -109,13 +102,11 @@ VALUES (
                         {
                             var customer = MapCustomerFromReader(reader);
 
-                            // Check if account is KYC verified
                             if (!customer.IsKYCVerified)
                             {
                                 throw new Exception("Account not verified. Please contact administrator.");
                             }
 
-                            // Verify password
                             if (PasswordHashHelper.VerifyPassword(password, customer.PasswordHash))
                             {
                                 return customer;
@@ -129,16 +120,9 @@ VALUES (
                 throw new Exception("Error during login: " + ex.Message);
             }
 
-            return null; // Invalid email or password
+            return null;
         }
 
-        // ============================================
-        // CHECK IF FIRST TIME LOGIN
-        // ============================================
-        /// <summary>
-        /// Checks if customer needs to set up PIN (first time login)
-        /// Returns true if PIN needs to be set
-        /// </summary>
         public bool IsFirstTimeLogin(int customerId)
         {
             string query = "SELECT PINHash FROM Customers WHERE CustomerID = @CustomerID";
@@ -152,8 +136,6 @@ VALUES (
 
                     conn.Open();
                     object result = cmd.ExecuteScalar();
-
-                    // If PINHash is NULL or empty, it's first time login
                     return result == null || result == DBNull.Value || string.IsNullOrEmpty(result.ToString());
                 }
             }
@@ -163,12 +145,6 @@ VALUES (
             }
         }
 
-        // ============================================
-        // SET PIN - FIRST TIME
-        // ============================================
-        /// <summary>
-        /// Sets PIN for first time login
-        /// </summary>
         public bool SetCustomerPIN(int customerId, string pin)
         {
             string query = @"UPDATE Customers 
@@ -196,13 +172,6 @@ VALUES (
             }
         }
 
-        // ============================================
-        // VERIFY PIN - SUBSEQUENT LOGINS
-        // ============================================
-        /// <summary>
-        /// Verifies PIN for subsequent logins
-        /// Used after password is verified
-        /// </summary>
         public bool VerifyCustomerPIN(int customerId, string pin)
         {
             string query = "SELECT PINHash FROM Customers WHERE CustomerID = @CustomerID";
@@ -219,7 +188,7 @@ VALUES (
 
                     if (result == null || result == DBNull.Value || string.IsNullOrEmpty(result.ToString()))
                     {
-                        return false; // No PIN set
+                        return false;
                     }
 
                     string storedHash = result.ToString();
@@ -232,24 +201,15 @@ VALUES (
             }
         }
 
-        // ============================================
-        // UPDATE PIN (Change PIN)
-        // ============================================
-        /// <summary>
-        /// Updates customer's PIN
-        /// Verifies old PIN before setting new one
-        /// </summary>
         public bool UpdateCustomerPIN(int customerId, string oldPIN, string newPIN)
         {
             try
             {
-                // Verify old PIN
                 if (!VerifyCustomerPIN(customerId, oldPIN))
                 {
                     throw new Exception("Current PIN is incorrect");
                 }
 
-                // Hash new PIN
                 string newHashedPIN = PasswordHashHelper.HashPIN(newPIN);
 
                 string query = @"UPDATE Customers 
@@ -273,30 +233,20 @@ VALUES (
             }
         }
 
-        // ============================================
-        // UPDATE PASSWORD
-        // ============================================
-        /// <summary>
-        /// Updates customer's password
-        /// Verifies old password before setting new one
-        /// </summary>
         public bool UpdateCustomerPassword(int customerId, string oldPassword, string newPassword)
         {
             try
             {
-                // Get customer
                 var customer = GetCustomerById(customerId);
 
                 if (customer == null)
                     throw new Exception("Customer not found");
 
-                // Verify old password
                 if (!PasswordHashHelper.VerifyPassword(oldPassword, customer.PasswordHash))
                 {
                     throw new Exception("Current password is incorrect");
                 }
 
-                // Hash new password
                 string newHashedPassword = PasswordHashHelper.HashPassword(newPassword);
 
                 string query = @"UPDATE Customers 
@@ -320,9 +270,33 @@ VALUES (
             }
         }
 
-        // ============================================
-        // GET CUSTOMER BY ID
-        // ============================================
+        public bool UpdateCustomerPassword(int customerId, string newPassword)
+        {
+            try
+            {
+                string newHashedPassword = PasswordHashHelper.HashPassword(newPassword);
+
+                string query = @"UPDATE Customers 
+                                 SET PasswordHash = @PasswordHash,
+                                     MustChangePassword = 1
+                                 WHERE CustomerID = @CustomerID";
+
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CustomerID", customerId);
+                    cmd.Parameters.AddWithValue("@PasswordHash", newHashedPassword);
+
+                    conn.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error resetting password: " + ex.Message);
+            }
+        }
+
         public Customer GetCustomerById(int customerId)
         {
             string query = "SELECT * FROM Customers WHERE CustomerID = @CustomerID";
@@ -352,9 +326,6 @@ VALUES (
             return null;
         }
 
-        // ============================================
-        // UPDATE CUSTOMER
-        // ============================================
         public bool UpdateCustomer(Customer customer)
         {
             string query = @"UPDATE Customers
@@ -404,9 +375,6 @@ VALUES (
             }
         }
 
-        // ============================================
-        // VERIFY KYC
-        // ============================================
         public bool VerifyKYC(int customerId)
         {
             string query = @"UPDATE Customers 
@@ -433,9 +401,6 @@ VALUES (
             }
         }
 
-        // ============================================
-        // GENERATE CUSTOMER CODE
-        // ============================================
         public string GenerateCustomerCode()
         {
             string prefix = "CUST";
@@ -453,7 +418,7 @@ VALUES (
 
                     if (result != DBNull.Value && result != null)
                     {
-                        string lastCode = result.ToString();  
+                        string lastCode = result.ToString();
                         string numberPart = lastCode.Substring(4);
                         nextNumber = int.Parse(numberPart) + 1;
                     }
@@ -467,20 +432,11 @@ VALUES (
             }
         }
 
-
-
-
-
-
-
         public string ResetCustomerPassword(int customerId)
         {
             try
             {
-                // Generate random 8-character temporary password
                 string tempPassword = GenerateTemporaryPassword();
-
-                // Hash it
                 string hashedPassword = PasswordHashHelper.HashPassword(tempPassword);
 
                 string query = @"UPDATE Customers 
@@ -499,7 +455,7 @@ VALUES (
 
                     if (rowsAffected > 0)
                     {
-                        return tempPassword; // Return plain text for admin to give to customer
+                        return tempPassword;
                     }
                 }
 
@@ -511,17 +467,11 @@ VALUES (
             }
         }
 
-
-
-
         public string ResetCustomerPIN(int customerId)
         {
             try
             {
-                // Generate random 6-digit PIN
                 string tempPIN = GenerateTemporaryPIN();
-
-                // Hash it
                 string hashedPIN = PasswordHashHelper.HashPIN(tempPIN);
 
                 string query = @"UPDATE Customers 
@@ -540,7 +490,7 @@ VALUES (
 
                     if (rowsAffected > 0)
                     {
-                        return tempPIN; // Return plain text for admin to give to customer
+                        return tempPIN;
                     }
                 }
 
@@ -552,23 +502,19 @@ VALUES (
             }
         }
 
-
-
-
         private string GenerateTemporaryPassword()
         {
-            const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // Exclude ambiguous characters
+            const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
             Random random = new Random();
             return new string(Enumerable.Range(0, 8)
                 .Select(_ => chars[random.Next(chars.Length)])
                 .ToArray());
         }
 
-
         private string GenerateTemporaryPIN()
         {
             Random random = new Random();
-            return random.Next(100000, 999999).ToString(); // 6-digit PIN
+            return random.Next(100000, 999999).ToString();
         }
 
         public bool MustChangePassword(int customerId)
@@ -617,7 +563,6 @@ VALUES (
             }
         }
 
-
         public bool ClearMustChangePassword(int customerId)
         {
             string query = "UPDATE Customers SET MustChangePassword = 0 WHERE CustomerID = @CustomerID";
@@ -660,22 +605,6 @@ VALUES (
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // ============================================
-        // SEARCH CUSTOMERS
-        // ============================================
         public List<Customer> SearchCustomers(string searchText)
         {
             List<Customer> customers = new List<Customer>();
@@ -710,9 +639,6 @@ VALUES (
             return customers;
         }
 
-        // ============================================
-        // GET ALL CUSTOMERS
-        // ============================================
         public List<Customer> GetAllCustomers()
         {
             List<Customer> customers = new List<Customer>();
@@ -741,9 +667,6 @@ VALUES (
             return customers;
         }
 
-        // ============================================
-        // MAP CUSTOMER FROM READER
-        // ============================================
         private Customer MapCustomerFromReader(SqlDataReader reader)
         {
             return new Customer

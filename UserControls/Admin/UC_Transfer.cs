@@ -27,23 +27,40 @@ namespace VaultLinkBankSystem.UserControls.Admin
 {
     public partial class UC_Transfer : UserControl
     {
+        private decimal _senderBalance = 0;
+
         private TransactionRepository _transactionRepo;
         private AccountRepository _accountRepo;
         private CustomerRepository _customerRepo;
+
         private VaultLinkBankSystem.Customer _selectedCustomer;
         private List<Account> _customerAccounts;
 
         public UC_Transfer()
         {
             InitializeComponent();
+            txtTransferAmount.TextChanged += txtTransferAmount_TextChanged;
 
             _transactionRepo = new TransactionRepository();
             _accountRepo = new AccountRepository();
             _customerRepo = new CustomerRepository();
 
-
+            // ComboBox draw mode
             cbxSelectAccount.DrawMode = DrawMode.OwnerDrawFixed;
             cbxSelectAccount.DrawItem += cbxSelectAccount_DrawItem;
+
+            // manually register handlers (same as designer)
+            btnSearch.Click += btnSearch_Click;
+            btnConfirmTransfer.Click += btnConfirmTransfer_Click;
+            cbxSelectAccount.SelectedIndexChanged += cbxSelectAccount_SelectedIndexChanged;
+
+            txtSearchCustomerName.Click += txtSearchCustomerName_Click;
+            txtSearchCustomerName.Leave += txtSearchCustomerName_Leave;
+
+            txtRecipientNumber.Click += txtRecipientNumber_Click;
+            txtRecipientNumber.Leave += txtRecipientNumber_Leave;
+
+            txtTransferAmount.Click += txtTransferAmount_Click;
         }
 
         private void UC_Transfer_Load(object sender, EventArgs e)
@@ -51,6 +68,9 @@ namespace VaultLinkBankSystem.UserControls.Admin
             UiHelpers.FixGuna2TextBoxVisibility(this);
         }
 
+        // ---------------------------------------------------
+        // SEARCH CUSTOMER
+        // ---------------------------------------------------
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -59,202 +79,125 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
                 if (string.IsNullOrEmpty(searchTerm))
                 {
-                    MessageBox.Show("Please enter a customer code or name to search.",
-                        "Validation",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
+                    MessageBox.Show("Please enter a customer name or code.",
+                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                var allCustomers = _customerRepo.GetAllCustomers();
-                var foundCustomers = allCustomers
-                    .Where(c => c.IsKYCVerified &&
-                                (c.CustomerCode.ToLower().Contains(searchTerm.ToLower()) ||
-                                 c.FullName.ToLower().Contains(searchTerm.ToLower())))
-                    .ToList();
+                var all = _customerRepo.GetAllCustomers();
+                var found = all.Where(c =>
+                    c.IsKYCVerified &&
+                    (c.CustomerCode.ToLower().Contains(searchTerm.ToLower())
+                    || c.FullName.ToLower().Contains(searchTerm.ToLower()))
+                ).ToList();
 
-                if (foundCustomers.Count == 0)
+                if (found.Count == 0)
                 {
-                    MessageBox.Show($"No verified customer found matching '{searchTerm}'.",
-                        "Not Found",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                    MessageBox.Show("No verified customer found.",
+                        "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearCustomerInfo();
                     return;
                 }
 
-                if (foundCustomers.Count == 1)
+                if (found.Count == 1)
                 {
-                    DisplayCustomerInfo(foundCustomers[0]);
+                    DisplayCustomerInfo(found[0]);
                 }
                 else
                 {
-                    ShowCustomerSelectionDialog(foundCustomers);
+                    ShowCustomerSelectionDialog(found);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error searching customer: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show("Error searching customer: " + ex.Message);
             }
         }
 
         private void ShowCustomerSelectionDialog(List<VaultLinkBankSystem.Customer> customers)
         {
-            Form selectionForm = new Form
+            Form frm = new Form
             {
                 Text = "Select Customer",
-                Size = new WinFormsSize(700, 450),
+                Size = new Size(700, 450),
                 StartPosition = FormStartPosition.CenterParent,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                MaximizeBox = false,
-                MinimizeBox = false
+                FormBorderStyle = FormBorderStyle.FixedDialog
             };
 
             DataGridView dgv = new DataGridView
             {
-                Location = new WinFormsPoint(10, 10),
-                Size = new WinFormsSize(665, 350),
                 DataSource = customers,
-                AllowUserToAddRows = false,
-                AllowUserToDeleteRows = false,
+                Location = new WinFormsPoint(10, 10),
+                Size = new Size(665, 350),
                 ReadOnly = true,
-                SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                MultiSelect = false,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                SelectionMode = DataGridViewSelectionMode.FullRowSelect
             };
 
             SetupGridStyle(dgv);
 
-            dgv.DataBindingComplete += (s, ev) =>
+            dgv.DataBindingComplete += (s, e) =>
             {
-                string[] allowedColumns = { "CustomerID", "CustomerCode", "FullName", "Email", "Phone" };
-                foreach (DataGridViewColumn column in dgv.Columns)
-                {
-                    column.Visible = allowedColumns.Contains(column.Name);
-                }
-
-                if (dgv.Columns.Contains("CustomerID"))
-                    dgv.Columns["CustomerID"].HeaderText = "ID";
-                if (dgv.Columns.Contains("CustomerCode"))
-                    dgv.Columns["CustomerCode"].HeaderText = "Customer Code";
-                if (dgv.Columns.Contains("FullName"))
-                    dgv.Columns["FullName"].HeaderText = "Full Name";
-                if (dgv.Columns.Contains("Email"))
-                    dgv.Columns["Email"].HeaderText = "Email";
-                if (dgv.Columns.Contains("Phone"))
-                    dgv.Columns["Phone"].HeaderText = "Phone";
+                string[] allowed = { "CustomerID", "CustomerCode", "FullName", "Email", "Phone" };
+                foreach (DataGridViewColumn col in dgv.Columns)
+                    col.Visible = allowed.Contains(col.Name);
             };
 
             Button btnSelect = new Button
             {
                 Text = "Select Customer",
-                Location = new WinFormsPoint(475, 375),
-                Size = new WinFormsSize(120, 35),
                 DialogResult = DialogResult.OK,
-                BackColor = WinFormsColor.FromArgb(30, 144, 255),
-                ForeColor = WinFormsColor.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new WinFormsFont("Segoe UI", 9, WinFormsFontStyle.Bold)
+                Location = new WinFormsPoint(480, 365),
+                Size = new Size(120, 35)
             };
-            btnSelect.FlatAppearance.BorderSize = 0;
 
-            Button btnCancel = new Button
+            frm.Controls.Add(dgv);
+            frm.Controls.Add(btnSelect);
+
+            if (frm.ShowDialog() == DialogResult.OK && dgv.SelectedRows.Count > 0)
             {
-                Text = "Cancel",
-                Location = new WinFormsPoint(605, 375),
-                Size = new WinFormsSize(70, 35),
-                DialogResult = DialogResult.Cancel,
-                BackColor = WinFormsColor.FromArgb(200, 200, 200),
-                ForeColor = WinFormsColor.Black,
-                FlatStyle = FlatStyle.Flat,
-                Font = new WinFormsFont("Segoe UI", 9)
-            };
-            btnCancel.FlatAppearance.BorderSize = 0;
-
-            selectionForm.Controls.Add(dgv);
-            selectionForm.Controls.Add(btnSelect);
-            selectionForm.Controls.Add(btnCancel);
-
-            if (selectionForm.ShowDialog() == DialogResult.OK && dgv.SelectedRows.Count > 0)
-            {
-                VaultLinkBankSystem.Customer selectedCustomer = dgv.SelectedRows[0].DataBoundItem as VaultLinkBankSystem.Customer;
-                if (selectedCustomer != null)
-                {
-                    DisplayCustomerInfo(selectedCustomer);
-                }
+                DisplayCustomerInfo(dgv.SelectedRows[0].DataBoundItem as VaultLinkBankSystem.Customer);
             }
         }
 
         private void SetupGridStyle(DataGridView dgv)
         {
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.MultiSelect = false;
-            dgv.BackgroundColor = WinFormsColor.White;
-            dgv.GridColor = WinFormsColor.FromArgb(230, 230, 230);
-            dgv.DefaultCellStyle.ForeColor = WinFormsColor.Black;
-            dgv.DefaultCellStyle.BackColor = WinFormsColor.White;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = WinFormsColor.FromArgb(249, 249, 249);
             dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = WinFormsColor.FromArgb(42, 62, 84);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = WinFormsColor.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new WinFormsFont(dgv.Font, WinFormsFontStyle.Bold);
-            dgv.DefaultCellStyle.SelectionBackColor = WinFormsColor.FromArgb(30, 144, 255);
-            dgv.DefaultCellStyle.SelectionForeColor = WinFormsColor.White;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 62, 84);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.RowHeadersVisible = false;
-            dgv.RowTemplate.Height = 28;
-            dgv.RowTemplate.DefaultCellStyle.Padding = new WinFormsPadding(4, 2, 4, 2);
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
         }
 
+        // ---------------------------------------------------
+        // DISPLAY CUSTOMER DETAILS
+        // ---------------------------------------------------
         private void DisplayCustomerInfo(VaultLinkBankSystem.Customer customer)
         {
             _selectedCustomer = customer;
-            _customerAccounts = _accountRepo.GetAccountsByCustomerId(_selectedCustomer.CustomerID);
+            _customerAccounts = _accountRepo.GetAccountsByCustomerId(customer.CustomerID);
 
-            if (_customerAccounts == null || _customerAccounts.Count == 0)
+            if (_customerAccounts.Count == 0)
             {
-                MessageBox.Show("This customer has no accounts.",
-                    "No Accounts",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show("This customer has no accounts.");
                 ClearCustomerInfo();
                 return;
             }
 
-            lblCustomerID.Text = _selectedCustomer.CustomerID.ToString();
-            lblName.Text = _selectedCustomer.FullName;
+            lblCustomerID.Text = customer.CustomerID.ToString();
+            lblName.Text = customer.FullName;
+            lblTotalBalance.Text = "₱" + _customerAccounts.Sum(x => x.Balance).ToString("N2");
 
-            decimal totalBalance = _customerAccounts.Sum(a => a.Balance);
-            lblTotalBalance.Text = totalBalance.ToString("C2");
-
-            if (!string.IsNullOrEmpty(_selectedCustomer.ImagePath) && File.Exists(_selectedCustomer.ImagePath))
-            {
-                try
-                {
-                    pbCustomerPicture.Image = WinFormsImage.FromFile(_selectedCustomer.ImagePath);
-                }
-                catch
-                {
-                    pbCustomerPicture.Image = null;
-                }
-            }
+            if (!string.IsNullOrEmpty(customer.ImagePath) && File.Exists(customer.ImagePath))
+                pbCustomerPicture.Image = WinFormsImage.FromFile(customer.ImagePath);
             else
-            {
                 pbCustomerPicture.Image = null;
-            }
 
             PopulateAccountDropdown();
         }
 
-        public void PopulateAccountDropdown()
+        private void PopulateAccountDropdown()
         {
             cbxSelectAccount.Items.Clear();
-            cbxSelectAccount.DisplayMember = "DisplayText";
-            cbxSelectAccount.ValueMember = "AccountID";
 
             foreach (var acc in _customerAccounts)
             {
@@ -262,8 +205,8 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 {
                     AccountID = acc.AccountID,
                     AccountNumber = acc.AccountNumber,
-                    AccountStatus = acc.Status,      // REQUIRED ✔
-                    DisplayText = $"{acc.AccountNumber} - {acc.AccountType} ({acc.Balance:C2})"
+                    AccountStatus = acc.Status,
+                    DisplayText = $"{acc.AccountNumber} - {acc.AccountType} (₱{acc.Balance:N2})"
                 });
             }
 
@@ -271,12 +214,279 @@ namespace VaultLinkBankSystem.UserControls.Admin
                 cbxSelectAccount.SelectedIndex = 0;
         }
 
-
-        private void btnConfirm_Click(object sender, EventArgs e)
+        // ---------------------------------------------------
+        // ACCOUNT DROPDOWN COLOR + BALANCE
+        // ---------------------------------------------------
+        private void cbxSelectAccount_DrawItem(object sender, DrawItemEventArgs e)
         {
-            
+            if (e.Index < 0) return;
+
+            dynamic item = cbxSelectAccount.Items[e.Index];
+
+            string text = item.DisplayText;
+            string status = item.AccountStatus;
+
+            e.DrawBackground();
+
+            Color color = status == "Closed" ? Color.Red : Color.Green;
+
+            using (Brush b = new SolidBrush(color))
+                e.Graphics.DrawString(text, e.Font, b, e.Bounds);
+
+            e.DrawFocusRectangle();
         }
 
+        private void cbxSelectAccount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSelectAccount.SelectedItem == null) return;
+
+            dynamic selected = cbxSelectAccount.SelectedItem;
+            int id = selected.AccountID;
+
+            var acc = _customerAccounts.FirstOrDefault(a => a.AccountID == id);
+
+            lblCurrentBalance.Text = "₱" + acc.Balance.ToString("N2");
+
+            _senderBalance = acc.Balance; // <-- IMPORTANT
+
+            if (acc.Status == "Closed")
+            {
+                cbxSelectAccount.ForeColor = Color.Red;
+                txtTransferAmount.Enabled = false;
+                txtRecipientNumber.Enabled = false;
+                btnConfirmTransfer.Enabled = false;
+            }
+            else
+            {
+                cbxSelectAccount.ForeColor = Color.Green;
+                txtTransferAmount.Enabled = true;
+                txtRecipientNumber.Enabled = true;
+                btnConfirmTransfer.Enabled = true;
+            }
+        }
+
+        // ============================================
+        // FORMATTER WITH TRANSFER LIMIT CHECK
+        // ============================================
+        private void FormatTransferAmount(Guna.UI2.WinForms.Guna2TextBox textbox, EventHandler handler)
+        {
+            textbox.TextChanged -= handler;
+
+            try
+            {
+                string text = textbox.Text ?? "";
+                int cursor = textbox.SelectionStart;
+
+                if (text == "Amount")
+                {
+                    textbox.TextChanged += handler;
+                    return;
+                }
+
+                string raw = text.Replace(",", "").Trim();
+
+                if (raw == "")
+                {
+                    textbox.Text = "";
+                    textbox.SelectionStart = 0;
+                    textbox.TextChanged += handler;
+                    return;
+                }
+
+                bool hasDot = false;
+                List<char> valid = new List<char>();
+
+                foreach (char c in raw)
+                {
+                    if (char.IsDigit(c))
+                        valid.Add(c);
+                    else if (c == '.' && !hasDot)
+                    {
+                        hasDot = true;
+                        valid.Add(c);
+                    }
+                }
+
+                string filtered = new string(valid.ToArray());
+
+                if (filtered.StartsWith("."))
+                    filtered = filtered.TrimStart('.');
+
+                if (filtered == "")
+                {
+                    textbox.Text = "";
+                    textbox.SelectionStart = 0;
+                    textbox.TextChanged += handler;
+                    return;
+                }
+
+                // Limit decimal places
+                if (filtered.Contains("."))
+                {
+                    int dot = filtered.IndexOf('.');
+                    string whole = filtered.Substring(0, dot);
+                    string dec = filtered.Substring(dot + 1);
+
+                    if (dec.Length > 2)
+                        dec = dec.Substring(0, 2);
+
+                    filtered = whole + "." + dec;
+                }
+
+                // Safe parse
+                if (!decimal.TryParse(filtered, out decimal amount))
+                {
+                    textbox.TextChanged += handler;
+                    return;
+                }
+
+                // -----------------------------------------
+                // LIMIT CHECK (NO OVERDRAFT)
+                // -----------------------------------------
+                if (amount > _senderBalance)
+                {
+                    MessageBox.Show(
+                        $"Transfer amount exceeds available balance.\n" +
+                        $"Maximum you can transfer: ₱{_senderBalance:N2}",
+                        "Insufficient Balance",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    // Force textbox to the max allowed
+                    filtered = _senderBalance.ToString("0.##");
+                }
+
+                // Formatting:
+                string formatted = "";
+
+                if (filtered.Contains("."))
+                {
+                    int dot = filtered.IndexOf('.');
+                    string whole = filtered.Substring(0, dot);
+                    string dec = filtered.Substring(dot + 1);
+
+                    if (whole == "")
+                        whole = "0";
+
+                    long wholeNumber = long.Parse(whole);
+                    formatted = string.Format("{0:N0}", wholeNumber) + "." + dec;
+                }
+                else
+                {
+                    formatted = string.Format("{0:N0}", long.Parse(filtered));
+                }
+
+                int newCursor = formatted.Length - (text.Length - cursor);
+                if (newCursor < 0) newCursor = 0;
+                if (newCursor > formatted.Length) newCursor = formatted.Length;
+
+                textbox.Text = formatted;
+                textbox.SelectionStart = newCursor;
+            }
+            finally
+            {
+                textbox.TextChanged += handler;
+            }
+        }
+
+        private void txtTransferAmount_TextChanged(object sender, EventArgs e)
+        {
+            FormatTransferAmount(txtTransferAmount, txtTransferAmount_TextChanged);
+        }
+
+
+
+        // ---------------------------------------------------
+        // CONFIRM TRANSFER
+        // ---------------------------------------------------
+        private void btnConfirmTransfer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_selectedCustomer == null)
+                {
+                    MessageBox.Show("Search a customer first.");
+                    return;
+                }
+
+                if (cbxSelectAccount.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Select a sender account.");
+                    return;
+                }
+
+                if (!decimal.TryParse(txtTransferAmount.Text, out decimal amount))
+                {
+                    MessageBox.Show("Enter a valid amount.");
+                    return;
+                }
+
+                dynamic selectedItem = cbxSelectAccount.SelectedItem;
+                int senderAccId = selectedItem.AccountID;
+                string senderAccNum = selectedItem.AccountNumber;
+
+                string recipientAccountNumber = txtRecipientNumber.Text.Trim();
+                var recipientAcc = _accountRepo.GetAccountByAccountNumber(recipientAccountNumber);
+                var senderAcc = _accountRepo.GetAccountByAccountNumber(senderAccNum);
+
+                if (recipientAcc == null)
+                {
+                    MessageBox.Show("Recipient account not found.");
+                    return;
+                }
+
+                if (senderAccId == recipientAcc.AccountID)
+                {
+                    MessageBox.Show("Cannot transfer to same account.");
+                    return;
+                }
+
+                var recCustomer = _customerRepo.GetCustomerById(recipientAcc.CustomerID);
+
+                DialogResult confirm = MessageBox.Show(
+                    $"FROM: {_selectedCustomer.FullName}\n" +
+                    $"Account: {senderAccNum}\n\n" +
+                    $"TO: {recCustomer.FullName}\n" +
+                    $"Account: {recipientAcc.AccountNumber}\n\n" +
+                    $"Amount: ₱{amount:N2}\n\n" +
+                    $"Proceed?",
+                    "Confirm Transfer",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirm != DialogResult.Yes) return;
+
+                var (senderTx, receiverTx) = _transactionRepo.Transfer(
+                    senderAccId,
+                    recipientAcc.AccountID,
+                    amount,
+                    $"Transfer to {recipientAcc.AccountNumber}");
+
+                GenerateTransferReceipt(
+                    _selectedCustomer.FullName,
+                    senderAccNum,
+                    recCustomer.FullName,
+                    recipientAcc.AccountNumber,
+                    amount,
+                    senderTx.NewBalance,
+                    receiverTx.NewBalance,
+                    senderTx.TransactionID);
+
+                DisplayCustomerInfo(_selectedCustomer);
+
+                txtTransferAmount.Clear();
+                txtRecipientNumber.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Transfer error:\n" + ex.Message);
+            }
+        }
+
+        // ---------------------------------------------------
+        // RECEIPT GENERATION
+        // ---------------------------------------------------
         public void GenerateTransferReceipt(
             string senderName,
             string senderAccountNumber,
@@ -289,423 +499,149 @@ namespace VaultLinkBankSystem.UserControls.Admin
         {
             try
             {
-                string cleanSenderName = System.Text.RegularExpressions.Regex.Replace(senderName, @"[^a-zA-Z0-9_]", "_");
-                string cleanRecipientName = System.Text.RegularExpressions.Regex.Replace(recipientName, @"[^a-zA-Z0-9_]", "_");
-                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                string fileName = $"Transfer_{cleanSenderName}_to_{cleanRecipientName}_{timestamp}.pdf";
-
-                string folder = @"D:\Programming\VaultLinkBankSystem\Transaction_Receipts\Withdraws\s";
+                string folder = @"D:\Programming\VaultLinkBankSystem\Transaction_Receipts\Transfers";
 
                 if (!Directory.Exists(folder))
-                {
                     Directory.CreateDirectory(folder);
-                }
 
+                string fileName = $"Transfer_{senderName}_{recipientName}_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                 string filePath = IOPath.Combine(folder, fileName);
 
                 using (PdfWriter writer = new PdfWriter(filePath))
                 using (PdfDocument pdf = new PdfDocument(writer))
                 using (Document doc = new Document(pdf, PageSize.A4))
                 {
-                    doc.SetMargins(50, 50, 50, 50);
+                    doc.SetMargins(40, 40, 40, 40);
 
-                    PdfFont boldFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
-                    PdfFont regularFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+                    PdfFont bold = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+                    PdfFont reg = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
 
-                    // Header
                     doc.Add(new Paragraph("TRANSFER RECEIPT")
                         .SetTextAlignment(TextAlignment.CENTER)
-                        .SetFontSize(20)
-                        .SetFont(boldFont)
-                        .SetMarginBottom(5));
+                        .SetFontSize(20).SetFont(bold));
 
                     doc.Add(new Paragraph("VaultLink Bank")
                         .SetTextAlignment(TextAlignment.CENTER)
-                        .SetFontSize(14)
-                        .SetFont(regularFont)
-                        .SetMarginBottom(20));
+                        .SetFontSize(14));
 
-                    doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
+                    doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(10));
 
-                    // Transaction Information
-                    doc.Add(new Paragraph("TRANSACTION INFORMATION")
-                        .SetFont(boldFont).SetFontSize(12).SetMarginBottom(10));
+                    doc.Add(new Paragraph($"Transaction ID: {transactionId}"));
+                    doc.Add(new Paragraph($"Date: {DateTime.Now:g}"));
 
-                    doc.Add(new Paragraph($"Transaction ID: {transactionId}")
-                        .SetFont(regularFont).SetFontSize(11));
-                    doc.Add(new Paragraph($"Transaction Type: TRANSFER")
-                        .SetFont(regularFont).SetFontSize(11));
-                    doc.Add(new Paragraph($"Date & Time: {DateTime.Now:dddd, MMMM dd, yyyy hh:mm:ss tt}")
-                        .SetFont(regularFont).SetFontSize(11).SetMarginBottom(15));
+                    doc.Add(new LineSeparator(new SolidLine()));
 
-                    doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
+                    doc.Add(new Paragraph("SENDER:").SetFont(bold));
+                    doc.Add(new Paragraph(senderName));
+                    doc.Add(new Paragraph(senderAccountNumber));
+                    doc.Add(new Paragraph($"New Balance: ₱{senderNewBalance:N2}"));
 
-                    // Sender Information
-                    doc.Add(new Paragraph("SENDER INFORMATION")
-                        .SetFont(boldFont).SetFontSize(12).SetMarginBottom(10));
+                    doc.Add(new LineSeparator(new SolidLine()));
 
-                    doc.Add(new Paragraph($"Name: {senderName}")
-                        .SetFont(regularFont).SetFontSize(11));
-                    doc.Add(new Paragraph($"Account Number: {senderAccountNumber}")
-                        .SetFont(regularFont).SetFontSize(11));
+                    doc.Add(new Paragraph("RECIPIENT:").SetFont(bold));
+                    doc.Add(new Paragraph(recipientName));
+                    doc.Add(new Paragraph(recipientAccountNumber));
+                    doc.Add(new Paragraph($"New Balance: ₱{recipientNewBalance:N2}"));
 
-                    decimal senderPreviousBalance = senderNewBalance + amount;
-                    doc.Add(new Paragraph($"Previous Balance: {senderPreviousBalance:C2}")
-                        .SetFont(regularFont).SetFontSize(11));
-                    doc.Add(new Paragraph($"New Balance: {senderNewBalance:C2}")
-                        .SetFont(boldFont).SetFontSize(11).SetMarginBottom(15));
+                    doc.Add(new LineSeparator(new SolidLine()));
 
-                    doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
-
-                    // Recipient Information
-                    doc.Add(new Paragraph("RECIPIENT INFORMATION")
-                        .SetFont(boldFont).SetFontSize(12).SetMarginBottom(10));
-
-                    doc.Add(new Paragraph($"Name: {recipientName}")
-                        .SetFont(regularFont).SetFontSize(11));
-                    doc.Add(new Paragraph($"Account Number: {recipientAccountNumber}")
-                        .SetFont(regularFont).SetFontSize(11));
-
-                    decimal recipientPreviousBalance = recipientNewBalance - amount;
-                    doc.Add(new Paragraph($"Previous Balance: {recipientPreviousBalance:C2}")
-                        .SetFont(regularFont).SetFontSize(11));
-                    doc.Add(new Paragraph($"New Balance: {recipientNewBalance:C2}")
-                        .SetFont(boldFont).SetFontSize(11).SetMarginBottom(15));
-
-                    doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
-
-                    // Transfer Summary
-                    doc.Add(new Paragraph("TRANSFER SUMMARY")
-                        .SetFont(boldFont).SetFontSize(14).SetMarginBottom(10)
+                    doc.Add(new Paragraph($"AMOUNT TRANSFERRED: ₱{amount:N2}")
+                        .SetFontSize(16)
                         .SetTextAlignment(TextAlignment.CENTER));
-
-                    doc.Add(new Paragraph($"Transfer Amount: {amount:C2}")
-                        .SetFont(boldFont).SetFontSize(16)
-                        .SetTextAlignment(TextAlignment.CENTER)
-                        .SetMarginBottom(20));
-
-                    doc.Add(new LineSeparator(new SolidLine()).SetMarginBottom(15));
-
-                    // Footer
-                    doc.Add(new Paragraph("Thank you for banking with VaultLink!")
-                        .SetTextAlignment(TextAlignment.CENTER)
-                        .SetFont(regularFont).SetFontSize(10).SetMarginBottom(5));
-
-                    doc.Add(new Paragraph("This is an electronic receipt and does not require a signature.")
-                        .SetTextAlignment(TextAlignment.CENTER)
-                        .SetFont(regularFont).SetFontSize(8)
-                        .SetFontColor(PdfColor.GRAY));
                 }
 
-                DialogResult result = MessageBox.Show(
-                    $"Transfer receipt generated successfully!\n\nSaved at:\n{filePath}\n\nDo you want to open it now?",
-                    "Success",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Information);
-
-                if (result == DialogResult.Yes)
-                {
-                    try
-                    {
-                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(filePath) { UseShellExecute = true });
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Could not open the PDF viewer automatically: " + ex.Message);
-                    }
-                }
-            }
-            catch (IOException ioEx)
-            {
-                MessageBox.Show($"File access error: {ioEx.Message}", "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Receipt saved:\n{filePath}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Receipt error:\n" + ex.Message);
             }
         }
 
-        private void ClearCustomerInfo()
+        // ---------------------------------------------------
+        // TEXTBOX EVENTS
+        // ---------------------------------------------------
+        private void txtSearchCustomerName_Click(object sender, EventArgs e)
         {
-            cbxSelectAccount.Items.Clear();
-            lblCustomerID.Text = "----------";
-            lblName.Text = "----------";
-            lblTotalBalance.Text = "--------";
-            pbCustomerPicture.Image = null;
-            _selectedCustomer = null;
-            _customerAccounts = null;
-        }
-        private void ClearForm()
-        {
-            txtSearchCustomerName.Clear();
-            txtRecipientNumber.Clear();
-            txtTransferAmount.Clear();
-            ClearCustomerInfo();
+            if (txtSearchCustomerName.Text == "Search Customer")
+                txtSearchCustomerName.Clear();
         }
 
-        private void guna2Panel8_Paint(object sender, EventArgs e)
-        {
-        }
-
-        private void guna2Button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (_selectedCustomer == null)
-                {
-                    MessageBox.Show("Please search for a sender customer first.",
-                        "Validation Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (cbxSelectAccount.SelectedIndex < 0)
-                {
-                    MessageBox.Show("Please select a sender account.",
-                        "Validation Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(txtRecipientNumber.Text))
-                {
-                    MessageBox.Show("Please enter recipient account number.",
-                        "Validation Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(txtTransferAmount.Text))
-                {
-                    MessageBox.Show("Please enter transfer amount.",
-                        "Validation Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (!decimal.TryParse(txtTransferAmount.Text, out decimal amount))
-                {
-                    MessageBox.Show("Please enter a valid amount.",
-                        "Validation Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (amount <= 0)
-                {
-                    MessageBox.Show("Amount must be greater than zero.",
-                        "Validation Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-                dynamic selectedItem = cbxSelectAccount.SelectedItem;
-                int senderAccountId = selectedItem.AccountID;
-                string senderAccountNumber = selectedItem.AccountNumber;
-
-                string recipientAccountNumber = txtRecipientNumber.Text.Trim();
-
-                var recipientAccount = _accountRepo.GetAccountByAccountNumber(recipientAccountNumber);
-
-                var senderAccount = _accountRepo.GetAccountByAccountNumber(senderAccountNumber);
-
-                if (senderAccount.Status == "Closed")
-                {
-                    MessageBox.Show("Sender account is CLOSED. Transfers are not allowed.",
-                        "Account Closed",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-
-               
-
-
-
-
-                if (recipientAccount == null)
-                {
-                    MessageBox.Show("Recipient account not found.",
-                        "Validation Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (recipientAccount.Status == "Closed")
-                {
-                    MessageBox.Show("Recipient account is CLOSED. You cannot transfer to this account.",
-                        "Account Closed",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-
-
-
-                if (senderAccountId == recipientAccount.AccountID)
-                {
-                    MessageBox.Show("Cannot transfer to the same account.",
-                        "Validation Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-                var recipientCustomer = _customerRepo.GetCustomerById(recipientAccount.CustomerID);
-
-                DialogResult result = MessageBox.Show(
-                    $"Transfer Details:\n\n" +
-                    $"FROM: {_selectedCustomer.FullName}\n" +
-                    $"Account: {senderAccountNumber}\n\n" +
-                    $"TO: {recipientCustomer.FullName}\n" +
-                    $"Account: {recipientAccount.AccountNumber}\n\n" +
-                    $"Amount: {amount:C2}\n\n" +
-                    $"Are you sure you want to proceed with this transfer?",
-                    "Confirm Transfer",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    var (senderTransaction, recipientTransaction) = _transactionRepo.Transfer(
-                        senderAccountId,
-                        recipientAccount.AccountID,
-                        amount,
-                        $"Transfer to {recipientAccount.AccountNumber}");
-
-                    MessageBox.Show(
-                        $"Transfer successful!\n\n" +
-                        $"Sender Transaction ID: {senderTransaction.TransactionID}\n" +
-                        $"Amount: {amount:C2}\n" +
-                        $"Sender New Balance: {senderTransaction.NewBalance:C2}\n\n" +
-                        $"Recipient Transaction ID: {recipientTransaction.TransactionID}\n" +
-                        $"Recipient New Balance: {recipientTransaction.NewBalance:C2}\n" +
-                        $"Date: {senderTransaction.TransactionDate:g}",
-                        "Success",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-
-                    // Generate transfer receipt
-                    GenerateTransferReceipt(
-                        _selectedCustomer.FullName,
-                        senderAccountNumber,
-                        recipientCustomer.FullName,
-                        recipientAccount.AccountNumber,
-                        amount,
-                        senderTransaction.NewBalance,
-                        recipientTransaction.NewBalance,
-                        senderTransaction.TransactionID);
-
-                    DisplayCustomerInfo(_selectedCustomer);
-
-                    txtRecipientNumber.Clear();
-                    txtTransferAmount.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error processing transfer: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void cbxSelectAccount_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if (e.Index < 0) return;
-
-            dynamic item = cbxSelectAccount.Items[e.Index];
-
-            string text = item.DisplayText;
-            string status = item.AccountStatus;
-
-            e.DrawBackground();
-
-            // Choose color based on status
-            Color color = status == "Closed" ? Color.Red : Color.Green;
-
-            using (Brush brush = new SolidBrush(color))
-            {
-                e.Graphics.DrawString(text, e.Font, brush, e.Bounds);
-            }
-
-            e.DrawFocusRectangle();
-        }
-
-        private void cbxSelectAccount_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbxSelectAccount.SelectedItem == null) return;
-
-            dynamic selectedItem = cbxSelectAccount.SelectedItem;
-            int accountId = selectedItem.AccountID;
-
-            var account = _customerAccounts.FirstOrDefault(a => a.AccountID == accountId);
-
-            if (account == null) return;
-
-            lblCurrentBalance.Text = account.Balance.ToString("C2");
-
-            if (account.Status == "Closed")
-            {
-                // RED UI for closed accounts
-                cbxSelectAccount.ForeColor = Color.Red;
-                txtTransferAmount.Enabled = false;
-                btnConfirmTransfer.Enabled = false;
-                txtRecipientNumber.Enabled = false;
-            }
-            else
-            {
-                // GREEN UI for active accounts
-                cbxSelectAccount.ForeColor = Color.Green;
-                txtTransferAmount.Enabled = true;
-                btnConfirmTransfer.Enabled = true;
-            }
-        }
-
-        private void txtSearchAccountNumber_Click(object sender, EventArgs e)
-        {
-            txtSearchCustomerName.Clear();
-            
-        }
-
-        private void txtSearchCustomerName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void txtSearchCustomerName_Leave(object sender, EventArgs e)
         {
             if (txtSearchCustomerName.Text.Trim() == "")
-            {
-                txtSearchCustomerName.Text = "Amount";
-            }
+                txtSearchCustomerName.Text = "Search Customer";
         }
 
-        private void lblTotalBalance_Click(object sender, EventArgs e)
+        private void txtRecipientNumber_Click(object sender, EventArgs e)
         {
-
+            txtRecipientNumber.Clear();
         }
 
         private void txtRecipientNumber_Leave(object sender, EventArgs e)
         {
             if (txtRecipientNumber.Text.Trim() == "")
+                txtRecipientNumber.Text = "Recipient Account Number";
+        }
+
+        private void txtTransferAmount_Click(object sender, EventArgs e)
+        {
+            txtTransferAmount.Clear();
+        }
+
+        private void txtTransferAmount_Leave(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtTransferAmount.Text, out decimal value))
             {
-                txtRecipientNumber.Text = "Amount";
+                txtTransferAmount.Text = value.ToString("N2");  // format as 1,234.00
+                txtTransferAmount.FillColor = Color.White;
+            }
+            else
+            {
+                txtTransferAmount.FillColor = Color.FromArgb(255, 200, 200); // highlight red
             }
         }
+
+
+        private void txtTransferAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (e.KeyChar == '.' && txtTransferAmount.Text.Contains("."))
+            {
+                e.Handled = true;
+            }
+        }
+
+
+        // ---------------------------------------------------
+        private void ClearCustomerInfo()
+        {
+            lblCustomerID.Text = "---------";
+            lblName.Text = "---------";
+            lblTotalBalance.Text = "---------";
+            pbCustomerPicture.Image = null;
+
+            cbxSelectAccount.Items.Clear();
+
+            _selectedCustomer = null;
+            _customerAccounts = null;
+
+        }
+
+        private void txtSearchCustomerName_TextChanged(object sender, EventArgs e)
+        {
+        }
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            btnConfirmTransfer_Click(sender, e);
+        }
+
+
     }
 }

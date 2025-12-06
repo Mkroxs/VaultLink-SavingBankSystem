@@ -386,7 +386,7 @@ namespace VaultLinkBankSystem.UserControls.Admin
 
         private void txbCustomerSearch_Leave(object sender, EventArgs e)
         {
-            txbCustomerSearch.Text = "Search";
+
         }
 
         private void guna2Panel2_Paint(object sender, PaintEventArgs e)

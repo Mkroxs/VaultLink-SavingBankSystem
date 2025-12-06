@@ -74,7 +74,7 @@
             this.guna2Panel1.Location = new System.Drawing.Point(3, 2);
             this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(5);
             this.guna2Panel1.Size = new System.Drawing.Size(356, 59);
             this.guna2Panel1.TabIndex = 2;
             // 
@@ -125,7 +125,7 @@
             // 
             this.txbCustomerSearch.BorderRadius = 20;
             this.txbCustomerSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbCustomerSearch.DefaultText = "Search";
+            this.txbCustomerSearch.DefaultText = "";
             this.txbCustomerSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txbCustomerSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txbCustomerSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
